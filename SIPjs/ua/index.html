@@ -38,7 +38,7 @@
 		
 		<ul>
       <li><a href="/SIPjs/" class="active">Documentation</a></li>
-      <li><a href="/guides/">Getting Started</a></li>
+      <li><a href="/guides/">Guides</a></li>
 		</ul>
 	</div>
 	
@@ -88,13 +88,13 @@
 </ul><h4 id="example">Example</h4>
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">var</span> configuration = {
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>ws_servers</span><span style="color:#404">'</span></span>:         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">ws://sip-ws.example.com</span><span style="color:#710">'</span></span>,
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>uri</span><span style="color:#404">'</span></span>:                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:alice@example.com</span><span style="color:#710">'</span></span>,
-<span class="line-numbers"><a href="#n4" name="n4">4</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>password</span><span style="color:#404">'</span></span>:           <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">superpassword</span><span style="color:#710">'</span></span>
-<span class="line-numbers"><a href="#n5" name="n5">5</a></span>};
-<span class="line-numbers"><a href="#n6" name="n6">6</a></span>
-<span class="line-numbers"><a href="#n7" name="n7">7</a></span><span style="color:#080;font-weight:bold">var</span> coolPhone = <span style="color:#080;font-weight:bold">new</span> SIP.UA(configuration);
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> configuration = {
+  <span style="color:#606"><span style="color:#404">'</span><span>ws_servers</span><span style="color:#404">'</span></span>:         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">ws://sip-ws.example.com</span><span style="color:#710">'</span></span>,
+  <span style="color:#606"><span style="color:#404">'</span><span>uri</span><span style="color:#404">'</span></span>:                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:alice@example.com</span><span style="color:#710">'</span></span>,
+  <span style="color:#606"><span style="color:#404">'</span><span>password</span><span style="color:#404">'</span></span>:           <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">superpassword</span><span style="color:#710">'</span></span>
+};
+
+<span style="color:#080;font-weight:bold">var</span> coolPhone = <span style="color:#080;font-weight:bold">new</span> SIP.UA(configuration);
 </pre></div>
 </div>
 </div>
@@ -126,7 +126,7 @@
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -143,11 +143,11 @@
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">var</span> options = {
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ]
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>};
-<span class="line-numbers"><a href="#n4" name="n4">4</a></span>
-<span class="line-numbers"><a href="#n5" name="n5">5</a></span>coolPhone.register(options);
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> options = {
+  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ]
+};
+
+coolPhone.register(options);
 </pre></div>
 </div>
 </div>
@@ -168,7 +168,7 @@
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-1">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-1">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -192,12 +192,12 @@
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">var</span> options = {
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>all</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>,
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ]
-<span class="line-numbers"><a href="#n4" name="n4">4</a></span>};
-<span class="line-numbers"><a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"><a href="#n6" name="n6">6</a></span>coolPhone.unregister(options);
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> options = {
+  <span style="color:#606"><span style="color:#404">'</span><span>all</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>,
+  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ]
+};
+
+coolPhone.unregister(options);
 </pre></div>
 </div>
 </div>
@@ -226,7 +226,7 @@
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
 </tbody>
-</table><h4 id="fields-in-codeoptionscode-object-2">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-2">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -274,38 +274,38 @@
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#777">// HTML5 &amp;lt;video&amp;gt; elements in which local and remote video will be shown</span>
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span><span style="color:#080;font-weight:bold">var</span> views = {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>selfView</span><span style="color:#404">'</span></span>:   document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my-video</span><span style="color:#710">'</span></span>),
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>remoteView</span><span style="color:#404">'</span></span>: document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">peer-video</span><span style="color:#710">'</span></span>)
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>};
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span><span style="color:#777">// Register callbacks to desired call events</span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span><span style="color:#080;font-weight:bold">var</span> eventHandlers = {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>progress</span><span style="color:#404">'</span></span>:   <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> },
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  <span style="color:#606"><span style="color:#404">'</span><span>failed</span><span style="color:#404">'</span></span>:     <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> },
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>accepted</span><span style="color:#404">'</span></span>:    <span style="color:#080;font-weight:bold">function</span>(e){
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    <span style="color:#080;font-weight:bold">var</span> rtcSession = e.data;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    <span style="color:#777">// Attach local stream to selfView</span>
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    <span style="color:#080;font-weight:bold">if</span> (rtcSession.getLocalStreams().length &amp;gt; <span style="color:#00D">0</span>) {
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>      selfView.src = window.URL.createObjectURL(rtcSession.getLocalStreams()[<span style="color:#00D">0</span>]);
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    }
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span style="color:#777">// Attach remote stream to remoteView</span>
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span style="color:#080;font-weight:bold">if</span> (rtcSession.getRemoteStreams().length &amp;gt; <span style="color:#00D">0</span>) {
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>      remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[<span style="color:#00D">0</span>]);
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>    }
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>  },
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>terminated</span><span style="color:#404">'</span></span>:      <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> }
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>};
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span><span style="color:#080;font-weight:bold">var</span> options = {
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ],
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>mediaConstraints</span><span style="color:#404">'</span></span>: {<span style="color:#606"><span style="color:#404">'</span><span>audio</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>, <span style="color:#606"><span style="color:#404">'</span><span>video</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>}
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>};
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>coolPhone.call(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, options);
+  <div class="code"><pre><span style="color:#777">// HTML5 &amp;lt;video&amp;gt; elements in which local and remote video will be shown</span>
+<span style="color:#080;font-weight:bold">var</span> views = {
+  <span style="color:#606"><span style="color:#404">'</span><span>selfView</span><span style="color:#404">'</span></span>:   document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my-video</span><span style="color:#710">'</span></span>),
+  <span style="color:#606"><span style="color:#404">'</span><span>remoteView</span><span style="color:#404">'</span></span>: document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">peer-video</span><span style="color:#710">'</span></span>)
+};
+
+<span style="color:#777">// Register callbacks to desired call events</span>
+<span style="color:#080;font-weight:bold">var</span> eventHandlers = {
+  <span style="color:#606"><span style="color:#404">'</span><span>progress</span><span style="color:#404">'</span></span>:   <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> },
+  <span style="color:#606"><span style="color:#404">'</span><span>failed</span><span style="color:#404">'</span></span>:     <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> },
+  <span style="color:#606"><span style="color:#404">'</span><span>accepted</span><span style="color:#404">'</span></span>:    <span style="color:#080;font-weight:bold">function</span>(e){
+    <span style="color:#080;font-weight:bold">var</span> rtcSession = e.data;
+
+    <span style="color:#777">// Attach local stream to selfView</span>
+    <span style="color:#080;font-weight:bold">if</span> (rtcSession.getLocalStreams().length &amp;gt; <span style="color:#00D">0</span>) {
+      selfView.src = window.URL.createObjectURL(rtcSession.getLocalStreams()[<span style="color:#00D">0</span>]);
+    }
+
+    <span style="color:#777">// Attach remote stream to remoteView</span>
+    <span style="color:#080;font-weight:bold">if</span> (rtcSession.getRemoteStreams().length &amp;gt; <span style="color:#00D">0</span>) {
+      remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[<span style="color:#00D">0</span>]);
+    }
+  },
+  <span style="color:#606"><span style="color:#404">'</span><span>terminated</span><span style="color:#404">'</span></span>:      <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> }
+};
+
+<span style="color:#080;font-weight:bold">var</span> options = {
+  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ],
+  <span style="color:#606"><span style="color:#404">'</span><span>mediaConstraints</span><span style="color:#404">'</span></span>: {<span style="color:#606"><span style="color:#404">'</span><span>audio</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>, <span style="color:#606"><span style="color:#404">'</span><span>video</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>}
+};
+
+coolPhone.call(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, options);
 </pre></div>
 </div>
 </div>
@@ -339,7 +339,7 @@
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
 </tbody>
-</table><h4 id="fields-in-codeoptionscode-object-3">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-3">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -368,9 +368,9 @@
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">var</span> text = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello Bob!</span><span style="color:#710">'</span></span>;
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, text, options);
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> text = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello Bob!</span><span style="color:#710">'</span></span>;
+
+coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, text, options);
 </pre></div>
 </div>
 </div>

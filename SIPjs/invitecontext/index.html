@@ -38,7 +38,7 @@
 		
 		<ul>
       <li><a href="/SIPjs/" class="active">Documentation</a></li>
-      <li><a href="/guides/">Getting Started</a></li>
+      <li><a href="/guides/">Guides</a></li>
 		</ul>
 	</div>
 	
@@ -139,18 +139,50 @@
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object">Fields in <code>options</code> Object</h4>
 
-<p>Name | Type | Description
-—–|——|————–
-<code>extraHeaders</code>|<code>Array</code> of <code>Strings</code>|Extra SIP headers for the request.
-<code>mediaConstraints</code>|<code>Object</code>|<code>Object</code> with two valid fields (<code>audio</code> and <code>video</code>) indicating whether the session is intended to use audio and/or video and the constraints to be used. Default value is both <code>audio</code> and <code>video</code> set to <code>true</code>.
-<code>RTCConstraints</code>|<code>Object</code>|Used similarly to <code>mediaConstraints</code>, but for the RTCMediaHandler
-<code>inviteWithoutSdp</code>|<code>Boolean</code>|Tells the InviteContext if the INVITE should be sent with or without sdp.
-<code>anonymous</code>|<code>Boolean</code>|Tells the InviteContext if the UA being used will be anonymous.
-body<code>|</code>String<code>|represents the SIP message body (in case this parameter is set, a corresponding Content-Type header field must be set in </code>extraHeaders` field).</p>
-
-<h3 id="canceloptions"><code>cancel(options)</code></h3>
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
+      <td>Extra SIP headers for the request.</td>
+    </tr>
+<tr>
+<td><code>mediaConstraints</code></td>
+      <td><code>Object</code></td>
+      <td>
+<code>Object</code> with two valid fields (<code>audio</code> and <code>video</code>) indicating whether the session is intended to use audio and/or video and the constraints to be used. Default value is both <code>audio</code> and <code>video</code> set to <code>true</code>.</td>
+    </tr>
+<tr>
+<td><code>RTCConstraints</code></td>
+      <td><code>Object</code></td>
+      <td>Used similarly to <code>mediaConstraints</code>, but for the RTCMediaHandler</td>
+    </tr>
+<tr>
+<td><code>inviteWithoutSdp</code></td>
+      <td><code>Boolean</code></td>
+      <td>Tells the InviteContext if the INVITE should be sent with or without sdp.</td>
+    </tr>
+<tr>
+<td><code>anonymous</code></td>
+      <td><code>Boolean</code></td>
+      <td>Tells the InviteContext if the UA being used will be anonymous.</td>
+    </tr>
+<tr>
+<td><code>body</code></td>
+      <td><code>String</code></td>
+      <td>represents the SIP message body (in case this parameter is set, a corresponding Content-Type header field must be set in <code>extraHeaders</code> field).</td>
+    </tr>
+</tbody>
+</table><h3 id="canceloptions"><code>cancel(options)</code></h3>
 
 <p>Sends a CANCEL request following an INVITE request that has not received a 2xx response. Returns this InviteClientContext.</p>
 
@@ -167,7 +199,7 @@ body<code>|</code>String<code>|represents the SIP message body (in case this par
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-1">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-1">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -211,7 +243,7 @@ INVALID_STATE_ERROR</p>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-2">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-2">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -255,7 +287,7 @@ INVALID_STATE_ERROR</p>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-3">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-3">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -285,7 +317,7 @@ INVALID_STATE_ERROR</p>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-4">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-4">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -350,7 +382,7 @@ INVALID_STATE_ERROR</p>
       <td>One or multiple valid DTMF symbols.</td>
     </tr>
 </tbody>
-</table><h4 id="fields-in-codeoptionscode-object-5">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-5">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -384,8 +416,8 @@ INVALID_STATE_ERROR</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>call.sendDTMF(<span style="color:#00D">1</span>);
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>call.sendDTMF(<span style="color:#00D">4</span>);
+  <div class="code"><pre>call.sendDTMF(<span style="color:#00D">1</span>);
+call.sendDTMF(<span style="color:#00D">4</span>);
 </pre></div>
 </div>
 </div>
@@ -394,17 +426,17 @@ INVALID_STATE_ERROR</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">var</span> tones = <span style="color:#F00;background-color:#FAA">`</span><span style="color:#00D">1234</span><span style="color:#F00;background-color:#FAA">#</span><span style="color:#F00;background-color:#FAA">`</span>;
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span><span style="color:#080;font-weight:bold">var</span> extraHeaders = [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ];
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span><span style="color:#080;font-weight:bold">var</span> options = {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>duration</span><span style="color:#404">'</span></span>: <span style="color:#00D">160</span>,
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>interToneGap</span><span style="color:#404">'</span></span>: <span style="color:#00D">1200</span>,
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: extraHeaders
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>};
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>call.sendDTMF(tones, options);
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> tones = <span style="color:#F00;background-color:#FAA">`</span><span style="color:#00D">1234</span><span style="color:#F00;background-color:#FAA">#</span><span style="color:#F00;background-color:#FAA">`</span>;
+
+<span style="color:#080;font-weight:bold">var</span> extraHeaders = [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ];
+
+<span style="color:#080;font-weight:bold">var</span> options = {
+  <span style="color:#606"><span style="color:#404">'</span><span>duration</span><span style="color:#404">'</span></span>: <span style="color:#00D">160</span>,
+  <span style="color:#606"><span style="color:#404">'</span><span>interToneGap</span><span style="color:#404">'</span></span>: <span style="color:#00D">1200</span>,
+  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: extraHeaders
+};
+
+call.sendDTMF(tones, options);
 </pre></div>
 </div>
 </div>
@@ -426,7 +458,7 @@ INVALID_STATE_ERROR</p>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-6">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-6">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -480,18 +512,39 @@ INVALID_STATE_ERROR</p>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-7">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-7">Fields in <code>options</code> Object</h4>
 
-<p>Name | Type | Description
-—–|——|————–
-<code>status_code</code>|<code>Number</code>|The SIP response code that will be used in the upcoming response instead of the d\
-efault.
-<code>reason_phrase</code>|<code>String</code>|The SIP reason phrase.
-<code>body</code>|<code>String</code>|represents the SIP message body (in case this parameter is set, a corresponding Content-\
-Type header field must be set in <code>extraHeaders</code> field).
-<code>extraHeaders</code>|<code>Array</code> of <code>Strings</code>|Extra SIP headers for the request.</p>
-
-<h4 id="throws-5">Throws</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>status_code</code></td>
+      <td><code>Number</code></td>
+      <td>The SIP response code that will be used in the upcoming response instead of the default.</td>
+    </tr>
+<tr>
+<td><code>reason_phrase</code></td>
+      <td><code>String</code></td>
+      <td>The SIP reason phrase.</td>
+    </tr>
+<tr>
+<td><code>body</code></td>
+      <td><code>String</code></td>
+      <td>represents the SIP message body (in case this parameter is set, a corresponding Content-Type header field must be set in <code>extraHeaders</code> field).</td>
+    </tr>
+<tr>
+<td><code>extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
+      <td>Extra SIP headers for the request.</td>
+    </tr>
+</tbody>
+</table><h4 id="throws-5">Throws</h4>
 
 <p>TypeError
 INVALID_STATE_ERROR</p>
@@ -528,7 +581,7 @@ INVALID_STATE_ERROR</p>
       <td>The name of the SIP request to be sent</td>
     </tr>
 </tbody>
-</table><h4 id="fields-in-codeoptionscode-object-8">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-8">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>
@@ -558,7 +611,7 @@ INVALID_STATE_ERROR</p>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object-9">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object-9">Fields in <code>options</code> Object</h4>
 
 <table>
 <thead><tr>

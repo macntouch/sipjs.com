@@ -38,14 +38,13 @@
 		
 		<ul>
       <li><a href="/SIPjs/" class="active">Documentation</a></li>
-      <li><a href="/guides/">Getting Started</a></li>
+      <li><a href="/guides/">Guides</a></li>
 		</ul>
 	</div>
 	
   <div id="wrapper">
   	<div class="content">
-    	<h1 id="class-sipmessagecontext">Class <code>SIP.MessageContext</code>
-</h1>
+    	<h1 id="sipmessagecontext">SIP.MessageContext</h1>
 
 <p>SIP.js SIP MESSAGE based IM.</p>
 
@@ -90,12 +89,29 @@
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr></tbody>
-</table><h4 id="fields-in-codeoptionscode-object">Fields in <code>options</code> Object</h4>
+</table><h4 id="fields-in-options-object">Fields in <code>options</code> Object</h4>
 
-<p>Name | Type | Description
-—–|——|————–
-<code>extraHeaders</code>|<code>Array</code> of <code>Strings</code>|Extra SIP headers for the request.
-body<code>|</code>String<code>|represents the SIP message body (in case this parameter is set, a corresponding Content-Type header field must be set in </code>extraHeaders` field).</p>
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
+      <td>Extra SIP headers for the request.</td>
+    </tr>
+<tr>
+<td><code>body</code></td>
+      <td><code>String</code></td>
+      <td>represents the SIP message body (in case this parameter is set, a corresponding Content-Type header field must be set in <code>extraHeaders</code> field).</td>
+    </tr>
+</tbody>
+</table>
     </div>
 
 		<div id="js-sidebar" class="sidebar-shell">
