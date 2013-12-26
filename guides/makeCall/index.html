@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="en-us" />
+  <meta http-equiv="imagetoolbar" content="false" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+  <title>Make a call | SIP.js</title>
+  <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
+  <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="/css/960.css" rel="stylesheet" type="text/css" />
+  <link href="/css/uv_active4d.css" rel="stylesheet" type="text/css" />
+  <link href="/shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/shared/js/jquery.js" type="text/javascript"></script>
+  <script src="/shared/js/documentation.js" type="text/javascript"></script>
+</head>
+
+
+<body class="api">
+	<div id="header-wrapper">
+  <div id="header">
+    <div>
+      <a class="logo" href="/">SIP.js:Developer</a>
+      <ul class="nav">
+        <li><a href="/" class="nav-overview">Homepage</a></li>
+        <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
+        <li><a href="/SIPjs/" class="nav-sipjs">API</a></li>
+        <li><a href="/news/" class="nav-blog">News</a></li>
+        <li><a href="/changelog/" class="nav-blog">Change Log</a></li>
+        <li><a href="https://onsip.com/contact">Support</a></li>
+      </ul>
+    </div>
+  </div><!-- #header -->
+</div><!-- #header-wrapper -->
+
+	
+	<div class="sub-nav">
+		<h2><a href="/SIPjs/">API</a></h2>
+		
+		<ul>
+      <li><a href="/SIPjs/">Documentation</a></li>
+      <li><a href="/guides/" class="active">Guides</a></li>
+		</ul>
+	</div>
+	
+  <div id="wrapper">
+  	<div class="content">
+    	<h1 id="make-a-call">Make a Call</h1>
+
+<ul id="markdown-toc">
+<li><a href="#overview">Overview</a></li>
+</ul><p>Let’s walk through core API concepts as we tackle some everyday use cases.</p>
+
+<h2 id="overview">Overview</h2>
+
+<h3 id="setup">Setup</h3>
+
+<p>The video element adds a standard way for browsers to display video over the internet without additional plugins. This makes video elements perfect for WebRTC. The local video stream should always be muted to prevent feedback.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#34b">&lt;!DOCTYPE html&gt;</span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>  <span style="color:#070;font-weight:bold">&lt;head&gt;</span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span style="color:#070;font-weight:bold">&lt;script</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">sip.js</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/script&gt;</span> 
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  <span style="color:#070;font-weight:bold">&lt;/head&gt;</span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  <span style="color:#070;font-weight:bold">&lt;body&gt;</span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">remoteVideo</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    <span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">localVideo</span><span style="color:#710">"</span></span> <span style="color:#b48">muted</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">muted</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span>  
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span style="color:#070;font-weight:bold">&lt;script</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">phone.js</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/script&gt;</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  <span style="color:#070;font-weight:bold">&lt;/body&gt;</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span><span style="color:#070;font-weight:bold">&lt;/html&gt;</span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+</pre></div>
+</div>
+</div>
+
+<p>In order to make and receive calls and messages you much create a new SIP user agent.  You do so by doing this.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#777">// phone.js</span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>remoteVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">remoteVideo</span><span style="color:#710">'</span></span>);
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>localVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">localVideo</span><span style="color:#710">'</span></span>);
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span><span style="color:#080;font-weight:bold">var</span> configuration = {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>ws_servers</span><span style="color:#404">'</span></span>:         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">ws://sip-ws.example.com</span><span style="color:#710">'</span></span>,
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>register</span><span style="color:#404">'</span></span>:           <span style="color:#069">false</span>,
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  <span style="color:#606"><span style="color:#404">'</span><span>uri</span><span style="color:#404">'</span></span>:                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:alice@example.com</span><span style="color:#710">'</span></span>,
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  <span style="color:#606"><span style="color:#404">'</span><span>display_name</span><span style="color:#404">'</span></span>:       <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Alice</span><span style="color:#710">'</span></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>};
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span><span style="color:#777">//Creates the user agent so that you can make calls</span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span><span style="color:#080;font-weight:bold">var</span> userAgent = <span style="color:#080;font-weight:bold">new</span> SIP.UA(configuration);
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>userAgent.start();
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span><span style="color:#777">//Sets up the options so that the call is a video and audio call</span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span><span style="color:#080;font-weight:bold">var</span> options = {
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>  <span style="color:#606">mediaConstraints</span>: {
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span style="color:#606">audio</span>: <span style="color:#069">true</span>,
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>    <span style="color:#606">video</span>: <span style="color:#069">true</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>  } 
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>}
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span><span style="color:#777">//makes the call</span>
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span><span style="color:#080;font-weight:bold">var</span> session = userAgent.invite(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, options);
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span><span style="color:#777">//attached the received video stream to the Video Elements</span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>remoteVideo.srcObject= session.getRemoteStreams()[<span style="color:#00D">0</span>];
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>localVideo.srcObject= session.getLocalStreams()[<span style="color:#00D">0</span>];
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span><span style="color:#777">//plays the Video Elements</span>
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>remoteVideo.play();
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>localVideo.play();
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>
+</pre></div>
+</div>
+</div>
+    </div>
+
+		<div id="js-sidebar" class="sidebar-shell">
+		  <div class="sidebar-module">
+          <ul>
+            <li><h3><a href="/guides/">Overview</a></h3></li>
+            <li><h3><a href="/guides/getting-started/">Getting Started</a></h3></li>
+            <li><h3><a href="/guides/makecall/">Make a Call</a></h3></li>
+            <li><h3><a href="/guides/receivecall/">Receive a Call</a></h3></li>
+          </ul>
+			</div>
+    </div>
+  </div><!-- #wrapper -->
+		
+	<div id="footer" >
+  <div class="lower_footer">
+    <ul class="footer-cell">
+      <li><a href="http://help.onsip.com/terms-of-service/">Terms</a></li>
+      <li><a href="http://help.onsip.com/privacy-policy/">Privacy</a></li>
+      <li><a href="http://help.onsip.com/security/">Security</a></li>
+      <li><a href="https://onsip.com/contact">Contact</a></li>				
+    </ul>
+
+    <span class="footer-cell">
+      <a href="https://onsip.com" class="mega-icon mega-icon-invertocat"></a>
+    </span>
+
+    <ul class="footer-cell">
+      <li><a href="https://status.onsip.com/">Status</a></li>
+      <li><a href="http://training.onsip.com/">Training</a></li>
+      <li><a href="http://shop.onsip.com/">Shop</a></li>
+      <li><a href="https://onsip.com/blog">Blog</a></li>
+      <li><a href="https://onsip.com/about">About</a></li>
+    </ul>
+  </div>
+  
+  <div class="wrapper">
+    <p>Design &copy; <span class="js-year">2013</span> OnSIP, Inc. All rights reserved. Except where otherwise noted, content on this site is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons CC-BY license</a>.</p>
+  </div>
+
+</div><!-- /#footer -->
+
+<script src="/shared/js/retina.js" type="text/javascript"></script>
+
+</body>
+</html>

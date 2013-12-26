@@ -23,9 +23,11 @@
     <div>
       <a class="logo" href="/">SIP.js:Developer</a>
       <ul class="nav">
-        <li><a href="/" class="nav-overview">Overview</a></li>
+        <li><a href="/" class="nav-overview">Homepage</a></li>
+        <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
         <li><a href="/SIPjs/" class="nav-sipjs">API</a></li>
-        <li><a href="/changes/" class="nav-blog">Blog</a></li>
+        <li><a href="/news/" class="nav-blog">News</a></li>
+        <li><a href="/changelog/" class="nav-blog">Change Log</a></li>
         <li><a href="https://onsip.com/contact">Support</a></li>
       </ul>
     </div>
@@ -46,72 +48,81 @@
   	<div class="content">
     	<h1 id="sipua">SIP.UA</h1>
 
-<p>SIP.js SIP User Agent class.</p>
+<p>A user agent (or UA) is associated with a SIP user address and acts on behalf of that user to send and receive SIP requests.  A user agent can register to receive incoming requests, as well as create and send outbound messages.  The user agent also maintains the WebSocket over which its signaling travels.</p>
 
 <ul id="markdown-toc">
-<li><a href="#instantiation">Instantiation</a></li>
+<li>
+<a href="#construction">Construction</a>    <ul>
+<li><a href="#examples">Examples</a></li>
+    </ul>
+</li>
   <li>
-<a href="#instance-methods">Instance Methods</a>    <ul>
+<a href="#generic-methods">Generic Methods</a>    <ul>
 <li><a href="#start"><code>start()</code></a></li>
       <li><a href="#stop"><code>stop()</code></a></li>
-      <li><a href="#registeroptionsnull"><code>register(options=null)</code></a></li>
-      <li><a href="#unregisteroptionsnull"><code>unregister(options=null)</code></a></li>
-      <li><a href="#invitetarget-optionsnull"><code>invite(target, options=null)</code></a></li>
-      <li><a href="#messagetarget-body-optionsnull"><code>message(target, body, options=null)</code></a></li>
+      <li><a href="#registeroptions"><code>register([options])</code></a></li>
+      <li><a href="#unregisteroptions"><code>unregister([options])</code></a></li>
       <li><a href="#isregistered"><code>isRegistered()</code></a></li>
       <li><a href="#isconnected"><code>isConnected()</code></a></li>
     </ul>
 </li>
   <li>
-<a href="#events">Events</a>    <ul>
-<li><a href="#connected"><code>connected</code></a></li>
-      <li><a href="#disconnected"><code>disconnected</code></a></li>
-      <li><a href="#registered"><code>registered</code></a></li>
-      <li><a href="#unregistered"><code>unregistered</code></a></li>
-      <li><a href="#registrationfailed"><code>registrationFailed</code></a></li>
-      <li><a href="#invite"><code>invite</code></a></li>
-      <li><a href="#message"><code>message</code></a></li>
+<a href="#request-methods">Request Methods</a>    <ul>
+<li><a href="#messagetarget-body-options"><code>message(target, body[, options])</code></a></li>
+      <li><a href="#invitetarget-options"><code>invite(target[, options])</code></a></li>
+      <li><a href="#requestmethod-target-options"><code>request(method, target[, options])</code></a></li>
     </ul>
 </li>
-</ul><h2 id="instantiation">Instantiation</h2>
+  <li>
+<a href="#events">Events</a>    <ul>
+<li><a href="#onconnected-function--"><code>on('connected', function () {})</code></a></li>
+      <li><a href="#ondisconnected-function--"><code>on('disconnected', function () {})</code></a></li>
+      <li><a href="#onregistered-function--"><code>on('registered', function () {})</code></a></li>
+      <li><a href="#onunregistered-function-cause-"><code>on('unregistered', function (cause) {})</code></a></li>
+      <li><a href="#onregistrationfailed-function-cause-"><code>on('registrationFailed', function (cause) {})</code></a></li>
+      <li><a href="#oninvite-function-invite-"><code>on('invite', function (invite) {})</code></a></li>
+      <li><a href="#onmessage-function-message-"><code>on('message', function (message) {})</code></a></li>
+    </ul>
+</li>
+</ul><h2 id="construction">Construction</h2>
 
-<p>A User Agent is associated to a SIP user account. This class requires some configuration parameters for its initialization which are provided through a configuration object.</p>
+<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent. Check the full list for optional <a href="/SIPjs/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
 
-<p>Check the full <a href="/SIPjs/ua_configuration_parameters/">UA Configuration Parameters</a> list.</p>
+<h3 id="examples">Examples</h3>
 
-<p>Instantiation of this class will raise an exception if any of the mandatory parameters is not defined or due to a malformed parameter value.</p>
-
-<h4 id="throws">Throws</h4>
-
-<ul>
-<li>[<code>CONFIGURATION_ERROR</code>](/SIPjs/dom_exceptions/”&gt;</li>
-</ul><h4 id="example">Example</h4>
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> configuration = {
-  <span style="color:#606"><span style="color:#404">'</span><span>ws_servers</span><span style="color:#404">'</span></span>:         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">ws://sip-ws.example.com</span><span style="color:#710">'</span></span>,
-  <span style="color:#606"><span style="color:#404">'</span><span>uri</span><span style="color:#404">'</span></span>:                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:alice@example.com</span><span style="color:#710">'</span></span>,
-  <span style="color:#606"><span style="color:#404">'</span><span>password</span><span style="color:#404">'</span></span>:           <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">superpassword</span><span style="color:#710">'</span></span>
-};
-
-<span style="color:#080;font-weight:bold">var</span> coolPhone = <span style="color:#080;font-weight:bold">new</span> SIP.UA(configuration);
+  <div class="code"><pre><span style="color:#777">// Create a new anonymous user agent</span>
+<span style="color:#080;font-weight:bold">var</span> myUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA();
 </pre></div>
 </div>
 </div>
 
-<h2 id="instance-methods">Instance Methods</h2>
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// Create a user agent for Bob that will register to receive requests</span>
+<span style="color:#080;font-weight:bold">var</span> bob = <span style="color:#080;font-weight:bold">new</span> SIP.UA({
+  <span style="color:#606">uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>,
+  <span style="color:#606">ws_servers</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wss://edge.example.com</span><span style="color:#710">'</span></span>],
+  <span style="color:#606">register</span>: <span style="color:#069">true</span>
+});
+</pre></div>
+</div>
+</div>
+
+<h2 id="generic-methods">Generic Methods</h2>
 
 <h3 id="start"><code>start()</code></h3>
-<p>Connects to the WebSocket server and restores the previous state if previously stopped. For a fresh start, registers with the SIP domain if <code>register</code> parameter in the UA’s configuration is set to <code>true</code>.</p>
+
+<p>Connect to the configured WebSocket server, and restore the previous state if previously stopped. The first time <code>start()</code> is called, the UA will also attempt to register if the <code>register</code> parameter in the UA’s configuration is set to <code>true</code>.</p>
 
 <h3 id="stop"><code>stop()</code></h3>
-<p>Saves the current registration state and disconnects from the WebSocket server after gracefully unregistering and terminating active sessions if any.</p>
 
-<h3 id="registeroptionsnull"><code>register(options=null)</code></h3>
+<p>Saves the current registration state and disconnects from the WebSocket server after gracefully unregistering and terminating any active sessions.</p>
 
-<p>Registers the UA.</p>
+<h3 id="registeroptions"><code>register([options])</code></h3>
 
-<p>Note: If <code>register</code> parameter is set to <code>true</code> in <a href="/SIPjs/ua_configuration_parameters/">UA Configuration Parameters</a>, the UA will register automatically.</p>
+<p>Register the UA to receive incoming requests.  Upon successful registration, the UA will emit a <code>registered</code> event.</p>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -121,25 +132,30 @@
       <th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>options</code></td>
       <td><code>Object</code></td>
-      <td>Optional <code>Object</code> with extra parameters (see below).</td>
-    </tr></tbody>
-</table><h4 id="fields-in-options-object">Fields in <code>options</code> Object</h4>
+      <td>Optional <code>Object</code> with extra parameters (see below)</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td><code>Array</code></td>
+      <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for each REGISTER request.</td>
+    </tr>
+</tbody>
+</table><h4 id="returns">Returns</h4>
 
 <table>
 <thead><tr>
-<th>Name</th>
-      <th>Type</th>
+<th>Type</th>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>extraHeaders</code></td>
-      <td><code>Array</code></td>
-      <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for each REGISTER request.</td>
+<td><code>SIP.UA</code></td>
+      <td>This user agent</td>
     </tr></tbody>
-</table><h4 id="example-1">Example</h4>
+</table><h4 id="example">Example</h4>
 
 <div>
 <div class="CodeRay">
@@ -147,12 +163,13 @@
   <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ]
 };
 
-coolPhone.register(options);
+myUA.register(options);
 </pre></div>
 </div>
 </div>
 
-<h3 id="unregisteroptionsnull"><code>unregister(options=null)</code></h3>
+<h3 id="unregisteroptions"><code>unregister([options])</code></h3>
+
 <p>Unregisters the UA.</p>
 
 <h4 id="parameters-1">Parameters</h4>
@@ -163,32 +180,35 @@ coolPhone.register(options);
       <th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>options</code></td>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
-    </tr></tbody>
-</table><h4 id="fields-in-options-object-1">Fields in <code>options</code> Object</h4>
-
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
+    </tr>
 <tr>
-<td><code>all</code></td>
+<td><code>options.all</code></td>
       <td><code>Boolean</code></td>
       <td>Optional <code>Boolean</code> for unregistering all bindings of the same SIP user. Default value is <code>false</code>.</td>
     </tr>
 <tr>
-<td><code>extraHeaders</code></td>
+<td><code>options.extraHeaders</code></td>
       <td><code>Array</code></td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for each REGISTER request.</td>
     </tr>
 </tbody>
-</table><h4 id="example-2">Example</h4>
+</table><h4 id="returns-1">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.UA</code></td>
+      <td>This user agent</td>
+    </tr></tbody>
+</table><h4 id="example-1">Example</h4>
 
 <div>
 <div class="CodeRay">
@@ -197,14 +217,46 @@ coolPhone.register(options);
   <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ]
 };
 
-coolPhone.unregister(options);
+myUA.unregister(options);
 </pre></div>
 </div>
 </div>
 
-<h3 id="invitetarget-optionsnull"><code>invite(target, options=null)</code></h3>
+<h3 id="isregistered"><code>isRegistered()</code></h3>
 
-<p>Makes an outgoing multimedia call.</p>
+<h4 id="returns-2">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>Boolean</code></td>
+      <td>
+<code>true</code> if the UA is registered, <code>false</code> otherwise</td>
+    </tr></tbody>
+</table><h3 id="isconnected"><code>isConnected()</code></h3>
+
+<h4 id="returns-3">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>Boolean</code></td>
+      <td>
+<code>true</code> if the WebSocket connection is established, <code>false</code> otherwise.</td>
+    </tr></tbody>
+</table><h2 id="request-methods">Request Methods</h2>
+
+<p>The following methods share a similar interface and are all used to send SIP requests from the UA.</p>
+
+<h3 id="messagetarget-body-options"><code>message(target, body[, options])</code></h3>
+
+<p>Sends an instant message making use of SIP MESSAGE method.</p>
 
 <h4 id="parameters-2">Parameters</h4>
 
@@ -217,102 +269,53 @@ coolPhone.unregister(options);
 <tbody>
 <tr>
 <td><code>target</code></td>
-      <td><code>String</code></td>
+      <td><code>String|SIP.URI</code></td>
       <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/SIPjs/uri/"><code>SIP.URI</code></a> instance.</td>
+    </tr>
+<tr>
+<td><code>body</code></td>
+      <td><code>String</code></td>
+      <td>Message content. <code>String</code> representing the body of the message.</td>
     </tr>
 <tr>
 <td><code>options</code></td>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
+<tr>
+<td><code>options.contentType</code></td>
+      <td><code>String</code></td>
+      <td>Optional <code>String</code> representing the content-type of the body. Default <code>text/plain</code>.</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td><code>Array</code></td>
+      <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the MESSAGE request.</td>
+    </tr>
 </tbody>
-</table><h4 id="fields-in-options-object-2">Fields in <code>options</code> Object</h4>
+</table><h4 id="returns-4">Returns</h4>
 
 <table>
 <thead><tr>
-<th>Name</th>
-      <th>Type</th>
+<th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody>
-<tr>
-<td><code>mediaConstraints</code></td>
-      <td><code>Object</code></td>
-      <td>
-<code>Object</code> with two valid fields (<code>audio</code> and <code>video</code>) indicating whether the session is intended to use audio and/or video and the constraints to be used. Default value is both <code>audio</code> and <code>video</code> set to <code>true</code>.</td>
-    </tr>
-<tr>
-<td><code>mediaStream</code></td>
-      <td><code>MediaStream</code></td>
-      <td>
-<code>MediaStream</code> to transmit to the other end.</td>
-    </tr>
-<tr>
-<td><code>RTCConstraints</code></td>
-      <td><code>Object</code></td>
-      <td>
-<code>Object</code> representing RTCPeerconnection constraints</td>
-    </tr>
-<tr>
-<td><code>eventHandlers</code></td>
-      <td><code>Object</code></td>
-      <td>Optional <code>Object</code> of event handlers to be registered to each call event. Define an event handler for each event you want to be notified about.</td>
-    </tr>
-<tr>
-<td><code>extraHeaders</code></td>
-      <td><code>Array</code></td>
-      <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the INVITE request.</td>
-    </tr>
-<tr>
-<td><code>anonymous</code></td>
-      <td><code>Boolean</code></td>
-      <td>
-<code>Boolean</code> field indicating whether the call should be done anonymously. Default value is <code>false</code>.</td>
-    </tr>
-</tbody>
-</table><h4 id="example-3">Example</h4>
+<tbody><tr>
+<td><code>SIP.MessageClientContext</code></td>
+      <td>The context surrounding the newly created MESSAGE</td>
+    </tr></tbody>
+</table><h4 id="example-2">Example</h4>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#777">// HTML5 &amp;lt;video&amp;gt; elements in which local and remote video will be shown</span>
-<span style="color:#080;font-weight:bold">var</span> views = {
-  <span style="color:#606"><span style="color:#404">'</span><span>selfView</span><span style="color:#404">'</span></span>:   document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">my-video</span><span style="color:#710">'</span></span>),
-  <span style="color:#606"><span style="color:#404">'</span><span>remoteView</span><span style="color:#404">'</span></span>: document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">peer-video</span><span style="color:#710">'</span></span>)
-};
-
-<span style="color:#777">// Register callbacks to desired call events</span>
-<span style="color:#080;font-weight:bold">var</span> eventHandlers = {
-  <span style="color:#606"><span style="color:#404">'</span><span>progress</span><span style="color:#404">'</span></span>:   <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> },
-  <span style="color:#606"><span style="color:#404">'</span><span>failed</span><span style="color:#404">'</span></span>:     <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> },
-  <span style="color:#606"><span style="color:#404">'</span><span>accepted</span><span style="color:#404">'</span></span>:    <span style="color:#080;font-weight:bold">function</span>(e){
-    <span style="color:#080;font-weight:bold">var</span> rtcSession = e.data;
-
-    <span style="color:#777">// Attach local stream to selfView</span>
-    <span style="color:#080;font-weight:bold">if</span> (rtcSession.getLocalStreams().length &amp;gt; <span style="color:#00D">0</span>) {
-      selfView.src = window.URL.createObjectURL(rtcSession.getLocalStreams()[<span style="color:#00D">0</span>]);
-    }
-
-    <span style="color:#777">// Attach remote stream to remoteView</span>
-    <span style="color:#080;font-weight:bold">if</span> (rtcSession.getRemoteStreams().length &amp;gt; <span style="color:#00D">0</span>) {
-      remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[<span style="color:#00D">0</span>]);
-    }
-  },
-  <span style="color:#606"><span style="color:#404">'</span><span>terminated</span><span style="color:#404">'</span></span>:      <span style="color:#080;font-weight:bold">function</span>(e){ <span style="color:#777">/* Your code here */</span> }
-};
-
-<span style="color:#080;font-weight:bold">var</span> options = {
-  <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ],
-  <span style="color:#606"><span style="color:#404">'</span><span>mediaConstraints</span><span style="color:#404">'</span></span>: {<span style="color:#606"><span style="color:#404">'</span><span>audio</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>, <span style="color:#606"><span style="color:#404">'</span><span>video</span><span style="color:#404">'</span></span>: <span style="color:#069">true</span>}
-};
-
-coolPhone.call(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, options);
+  <div class="code"><pre>myUA.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello, Bob!</span><span style="color:#710">'</span></span>);
 </pre></div>
 </div>
 </div>
 
-<h3 id="messagetarget-body-optionsnull"><code>message(target, body, options=null)</code></h3>
+<h3 id="invitetarget-options"><code>invite(target[, options])</code></h3>
 
-<p>Sends an instant message making use of SIP MESSAGE method.</p>
+<p>Invite the target to start a multimedia session.</p>
 
 <h4 id="parameters-3">Parameters</h4>
 
@@ -325,8 +328,87 @@ coolPhone.call(<span style="background-color:hsla(0,100%,50%,0.05)"><span style=
 <tbody>
 <tr>
 <td><code>target</code></td>
+      <td><code>String|SIP.URI</code></td>
+      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/SIPjs/uri/"><code>SIP.URI</code></a> instance.</td>
+    </tr>
+<tr>
+<td><code>options</code></td>
+      <td><code>Object</code></td>
+      <td>Optional <code>Object</code> with extra parameters (see below).</td>
+    </tr>
+<tr>
+<td><code>options.mediaConstraints</code></td>
+      <td><code>Object</code></td>
+      <td>
+<code>Object</code> with two valid fields (<code>audio</code> and <code>video</code>) indicating whether the session is intended to use audio and/or video and the constraints to be used. If media constraints are not provided, <code>{audio: true, video: true}</code> will be used.</td>
+    </tr>
+<tr>
+<td><code>options.mediaStream</code></td>
+      <td><code>MediaStream</code></td>
+      <td>
+<code>MediaStream</code> to transmit to the other end.</td>
+    </tr>
+<tr>
+<td><code>options.RTCConstraints</code></td>
+      <td><code>Object</code></td>
+      <td>
+<code>Object</code> representing RTCPeerconnection constraints</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td><code>Array</code></td>
+      <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the INVITE request.</td>
+    </tr>
+<tr>
+<td><code>options.anonymous</code></td>
+      <td><code>Boolean</code></td>
+      <td>
+<code>Boolean</code> field indicating whether the call should be done anonymously. Default value is <code>false</code>.</td>
+    </tr>
+</tbody>
+</table><h4 id="returns-5">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.InviteClientContext</code></td>
+      <td>The context surrounding the newly created INVITE</td>
+    </tr></tbody>
+</table><h4 id="example-3">Example</h4>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>TBD
+</pre></div>
+</div>
+</div>
+
+<h3 id="requestmethod-target-options"><code>request(method, target[, options])</code></h3>
+
+<p>Send a SIP message.</p>
+
+<h4 id="parameters-4">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>method</code></td>
       <td><code>String</code></td>
-      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/SIPjs/uri/"><code>SIP.URI</code></a>&gt; instance.</td>
+      <td>The SIP request method to send, e.g. <code>'INVITE'</code> or <code>'OPTIONS'</code>
+</td>
+    </tr>
+<tr>
+<td><code>target</code></td>
+      <td><code>String|SIP.URI</code></td>
+      <td>Destination address. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/SIPjs/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>body</code></td>
@@ -338,110 +420,64 @@ coolPhone.call(<span style="background-color:hsla(0,100%,50%,0.05)"><span style=
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
-</tbody>
-</table><h4 id="fields-in-options-object-3">Fields in <code>options</code> Object</h4>
-
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
 <tr>
-<td><code>contentType</code></td>
+<td><code>options.body</code></td>
       <td><code>String</code></td>
-      <td>Optional <code>String</code> representing the content-type of the body. Default <code>text/plain</code>.</td>
+      <td>Optional <code>String</code> to be included as the body of the request</td>
     </tr>
 <tr>
-<td><code>eventHandlers</code></td>
-      <td><code>Object</code></td>
-      <td>Optional <code>Object</code> of event handlers to be registered to each <a href="/SIPjs/message/#events"><code>SIP.Message</code></a>”&gt; event. Define an event handler for each event you want to be notified about.</td>
-    </tr>
-<tr>
-<td><code>extraHeaders</code></td>
+<td><code>options.extraHeaders</code></td>
       <td><code>Array</code></td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the MESSAGE request.</td>
     </tr>
 </tbody>
-</table><h4 id="example-4">Example</h4>
+</table><h4 id="returns-6">Returns</h4>
 
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> text = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello Bob!</span><span style="color:#710">'</span></span>;
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.ClientContext</code></td>
+      <td>The context surrounding the newly created request</td>
+    </tr></tbody>
+</table><h2 id="events">Events</h2>
 
-coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, text, options);
-</pre></div>
-</div>
-</div>
+<p>User agent objects extend the <a href="/SIPjs/EventEmitter/">SIP.EventEmitter</a> interface.  Each event emitted by UA passes specific relevant arguments to its callbacks.</p>
 
-<h3 id="isregistered"><code>isRegistered()</code></h3>
-
-<p>Returns <code>true</code> if the UA is registered, <code>false</code> otherwise.</p>
-
-<h3 id="isconnected"><code>isConnected()</code></h3>
-
-<p>Returns <code>true</code> if the WebSocket connection is established, <code>false</code> otherwise.</p>
-
-<h2 id="events">Events</h2>
-
-<p><code>SIP.UA</code> class defines a series of events. Each of them allows callback functions registration in order to let the user execute a handler for each given stimulus.</p>
-
-<p>Every event handler is executed with a <a href="/SIPjs/event/">SIP.Event</a> instance as the only argument.</p>
-
-<h3 id="connected"><code>connected</code></h3>
+<h3 id="onconnected-function--"><code>on('connected', function () {})</code></h3>
 
 <p>Fired when the WebSocket connection is established.</p>
 
-<h4 id="event-data-fields">Event <code>data</code> fields</h4>
+<h4 id="arguments">Arguments</h4>
 
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>transport</code></td>
-      <td> </td>
-      <td>WebSocket connection.</td>
-    </tr></tbody>
-</table><h3 id="disconnected"><code>disconnected</code></h3>
+<p><em>There are no documented arguments for this event</em></p>
+
+<h3 id="ondisconnected-function--"><code>on('disconnected', function () {})</code></h3>
 
 <p>Fired when the WebSocket connection attempt (or automatic re-attempt) fails.</p>
 
-<h4 id="event-data-fields-1">Event <code>data</code> fields</h4>
+<h4 id="arguments-1">Arguments</h4>
 
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>transport</code></td>
-      <td> </td>
-      <td>WebSocket connection.</td>
-    </tr>
-<tr>
-<td><code>code</code></td>
-      <td><code>Number</code></td>
-      <td>
-<code>Number</code> indicating the WebSocket disconnection code.</td>
-    </tr>
-<tr>
-<td><code>reason</code></td>
-      <td><code>String</code></td>
-      <td>
-<code>String</code> indicating the WebSocket disconnection reason.</td>
-    </tr>
-</tbody>
-</table><h3 id="registered"><code>registered</code></h3>
+<p><em>There are no documented arguments for this event</em></p>
+
+<h3 id="onregistered-function--"><code>on('registered', function () {})</code></h3>
 
 <p>Fired for a successful registration.</p>
 
-<h4 id="event-data-fields-2">Event <code>data</code> fields</h4>
+<h4 id="arguments-2">Arguments</h4>
+
+<p><em>There are no documented arguments for this event</em></p>
+
+<h3 id="onunregistered-function-cause-"><code>on('unregistered', function (cause) {})</code></h3>
+
+<p>Fired for an unregistration. This event is fired in the following scenarios:</p>
+
+<ul>
+<li>As a result of a unregistration request. <code>UA.unregister()</code>.</li>
+  <li>If being registered, a periodic re-registration fails.</li>
+</ul><h4 id="arguments-3">Arguments</h4>
 
 <table>
 <thead><tr>
@@ -450,46 +486,17 @@ coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span sty
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>response</code></td>
-      <td><a href="/SIPjs/incomingResponse/"><code>JsSIP.IncomingResponse</code></a></td>
-      <td>
-<a href="/SIPjs/incomingResponse/"><code>JsSIP.IncomingResponse</code></a> instance of the received SIP 2XX response.</td>
-    </tr></tbody>
-</table><h3 id="unregistered"><code>unregistered</code></h3>
-
-<p>Fired for an unregistration. This event is fired in the following scenarios:</p>
-
-<p>*As a result of a unregistration request. <code>UA.unregister()</code>.
-*If being registered, a periodic re-registration fails.</p>
-
-<h4 id="event-data-fields-3">Event <code>data</code> fields</h4>
-
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>response</code></td>
-      <td><a href="/SIPjs/incomingResponse/"><code>JsSIP.IncomingResponse</code></a></td>
-      <td>
-<a href="/SIPjs/incomingResponse/"><code>JsSIP.IncomingResponse</code></a> instance of the received SIP response for a (un)REGISTER SIP request</td>
-    </tr>
-<tr>
 <td><code>cause</code></td>
       <td> </td>
       <td>
-<code>null</code> for possitive response to un-REGISTER SIP request. In other case, one value of <a href="SIPjs/causes">Failure and End Causes</a>
+<code>null</code> for positive response to un-REGISTER SIP request. In other case, one value of <a href="SIPjs/causes">Failure and End Causes</a>
 </td>
-    </tr>
-</tbody>
-</table><h3 id="registrationfailed"><code>registrationFailed</code></h3>
+    </tr></tbody>
+</table><h3 id="onregistrationfailed-function-cause-"><code>on('registrationFailed', function (cause) {})</code></h3>
 
 <p>Fired for a registration failure.</p>
 
-<h4 id="event-data-fields-4">Event <code>data</code> fields</h4>
+<h4 id="arguments-4">Arguments</h4>
 
 <table>
 <thead><tr>
@@ -497,48 +504,17 @@ coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span sty
       <th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody>
-<tr>
-<td><code>response</code></td>
-      <td><a href="/SIPjs/incomingResponse/"><code>JsSIP.IncomingResponse</code></a></td>
-      <td>
-<a href="/SIPjs/incomingResponse/"><code>JsSIP.IncomingResponse</code></a> instance of the received SIP negative response if the failure is generated by the recepcion of such response, null otherwise.</td>
-    </tr>
-<tr>
+<tbody><tr>
 <td><code>cause</code></td>
       <td> </td>
-      <td>
-<code>null</code> for possitive response to un-REGISTER SIP request. In other case, one value of <a href="SIPjs/causes">Failure and End Causes</a>
+      <td>One value of <a href="SIPjs/causes">Failure and End Causes</a>
 </td>
-    </tr>
-</tbody>
-</table><h3 id="invite"><code>invite</code></h3>
+    </tr></tbody>
+</table><h3 id="oninvite-function-invite-"><code>on('invite', function (invite) {})</code></h3>
 
-<p>Fired for an incoming call.</p>
+<p>Fired when an incoming INVITE request is received.</p>
 
-<h4 id="event-data-fields-5">Event <code>data</code> fields</h4>
-
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>session</code></td>
-      <td><a href="/SIPjs/session/">SIP.Session</a></td>
-      <td>
-<a href="/SIPjs/session/">SIP.Session</a> instance of the session.</td>
-    </tr>
-<tr>
-<td><code>request</code></td>
-      <td><a href="/SIPjs/incoming-request/">SIP.IncomingRequest</a></td>
-      <td>
-<a href="/SIPjs/incoming-request/">SIP.IncomingRequest</a> instance of the incoming INVITE request.</td>
-    </tr>
-</tbody>
-</table><h4 id="event-data-fields-for-an-outgoing-session">Event <code>data</code> fields for an outgoing session</h4>
+<h4 id="arguments-5">Arguments</h4>
 
 <table>
 <thead><tr>
@@ -546,25 +522,16 @@ coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span sty
       <th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody>
-<tr>
-<td><code>session</code></td>
-      <td><a href="/SIPjs/session/">SIP.Session</a></td>
-      <td>
-<a href="/SIPjs/session/">SIP.Session</a> instance of the session.</td>
-    </tr>
-<tr>
-<td><code>request</code></td>
-      <td><a href="/SIPjs/outgoing-request/">SIP.OutgoingRequest</a></td>
-      <td>
-<a href="/SIPjs/outgoing-request/">SIP.OutgoingRequest</a> instance of the outgoing INVITE request.</td>
-    </tr>
-</tbody>
-</table><h3 id="message"><code>message</code></h3>
+<tbody><tr>
+<td><code>invite</code></td>
+      <td><a href="/SIPjs/invite/">SIP.InviteServerContext</a></td>
+      <td>The context surrounding the recently received INVITE request.</td>
+    </tr></tbody>
+</table><h3 id="onmessage-function-message-"><code>on('message', function (message) {})</code></h3>
 
-<p>Fired for an incoming <span class="caps">MESSAGE</span> request.</p>
+<p>Fired when an incoming MESSAGE request is received.</p>
 
-<h4 id="event-data-fields-6">Event <code>data</code> fields</h4>
+<h4 id="arguments-6">Arguments</h4>
 
 <table>
 <thead><tr>
@@ -572,20 +539,11 @@ coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span sty
       <th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>message</code></td>
-      <td><a href="/SIPjs/message/">SIP.Message</a></td>
-      <td>
-<a href="/SIPjs/message/">SIP.Message</a> instance.</td>
-    </tr>
-<tr>
-<td><code>request</code></td>
-      <td><a href="/SIPjs/incoming-request/">SIP.IncomingRequest</a></td>
-      <td>
-<a href="/SIPjs/incoming-request/">SIP.IncomingRequest</a> instance of the incoming MESSAGE request.</td>
-    </tr>
-</tbody>
+      <td><a href="/SIPjs/message/">SIP.MessageServerContext</a></td>
+      <td>The context surrounding the recently received MESSAGE request.</td>
+    </tr></tbody>
 </table>
     </div>
 
@@ -602,25 +560,26 @@ coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span sty
       <li class="js-topic">
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/ua/">SIP.UA</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/ua/#instantiation">Instantiation</a></li>
-          <li><a href="/SIPjs/ua/#instance-methods">Instance Methods</a></li>
+          <li><a href="/SIPjs/ua/#construction">Construction</a></li>
+          <li><a href="/SIPjs/ua/#generic-methods">Generic Methods</a></li>
+          <li><a href="/SIPjs/ua/#request-methods">Request Methods</a></li>
           <li><a href="/SIPjs/ua/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/invitecontext/">SIP.InviteContext</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/session/#instantiation">Instantiation</a></li>
-          <li><a href="/SIPjs/session/#instance-methods">Instance Methods</a></li>
-          <li><a href="/SIPjs/session/#events">Events</a></li>
+          <li><a href="/SIPjs/invitecontext/#instantiation">Instantiation</a></li>
+          <li><a href="/SIPjs/invitecontext/#instance-methods">Instance Methods</a></li>
+          <li><a href="/SIPjs/invitecontext/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/messagecontext/">SIP.MessageContext</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/message/#instantiation">Instantiation</a></li>
-          <li><a href="/SIPjs/message/#instance-methods">Instance Methods</a></li>
-          <li><a href="/SIPjs/message/#events">Events</a></li>
+          <li><a href="/SIPjs/messagecontext/#instantiation">Instantiation</a></li>
+          <li><a href="/SIPjs/messagecontext/#instance-methods">Instance Methods</a></li>
+          <li><a href="/SIPjs/messagecontext/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
@@ -637,6 +596,13 @@ coolPhone.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span sty
           <li><a href="/SIPjs/event/#instantiation">Instantiation</a></li>
           <li><a href="/SIPjs/event/#instance-methods">Instance Methods</a></li>
           <li><a href="/SIPjs/event/#events">Events</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/eventemitter/">SIP.EventEmitter</a></h3>
+        <ul class="js-guides">
+          <li><a href="/SIPjs/eventemitter/#construction">Construction</a></li>
+          <li><a href="/SIPjs/eventemitter/#public-methods">Public Methods</a></li>
         </ul>
       </li>
       <li class="js-topic">
