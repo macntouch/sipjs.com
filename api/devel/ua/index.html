@@ -17,7 +17,7 @@
 </head>
 
 
-<body class="sipjs">
+<body class="api">
 	<div id="header-wrapper">
   <div id="header">
     <div>
@@ -25,7 +25,7 @@
       <ul class="nav">
         <li><a href="/" class="nav-overview">Homepage</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
-        <li><a href="/SIPjs/" class="nav-sipjs">API</a></li>
+        <li><a href="/api/" class="nav-api">API</a></li>
         <li><a href="/news/" class="nav-blog">News</a></li>
         <li><a href="/changelog/" class="nav-blog">Change Log</a></li>
         <li><a href="https://onsip.com/contact">Support</a></li>
@@ -36,10 +36,10 @@
 
 	
 	<div class="sub-nav">
-		<h2><a href="/SIPjs/">SIP.js</a></h2>
+		<h2><a href="/api/">SIP.js</a></h2>
 		
 		<ul>
-      <li><a href="/SIPjs/" class="active">Documentation</a></li>
+      <li><a href="/api/" class="active">Documentation</a></li>
       <li><a href="/guides/">Guides</a></li>
 		</ul>
 	</div>
@@ -86,7 +86,7 @@
 </li>
 </ul><h2 id="construction">Construction</h2>
 
-<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent. Check the full list for optional <a href="/SIPjs/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
+<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent. Check the full list for optional <a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
 
 <h3 id="examples">Examples</h3>
 
@@ -270,7 +270,7 @@ myUA.unregister(options);
 <tr>
 <td><code>target</code></td>
       <td><code>String|SIP.URI</code></td>
-      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/SIPjs/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>body</code></td>
@@ -329,7 +329,7 @@ myUA.unregister(options);
 <tr>
 <td><code>target</code></td>
       <td><code>String|SIP.URI</code></td>
-      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/SIPjs/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>options</code></td>
@@ -408,7 +408,7 @@ myUA.unregister(options);
 <tr>
 <td><code>target</code></td>
       <td><code>String|SIP.URI</code></td>
-      <td>Destination address. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/SIPjs/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>Destination address. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>body</code></td>
@@ -444,7 +444,7 @@ myUA.unregister(options);
     </tr></tbody>
 </table><h2 id="events">Events</h2>
 
-<p>User agent objects extend the <a href="/SIPjs/EventEmitter/">SIP.EventEmitter</a> interface.  Each event emitted by UA passes specific relevant arguments to its callbacks.</p>
+<p>User agent objects extend the <a href="/api/devel/eventEmitter/">SIP.EventEmitter</a> interface.  Each event emitted by UA passes specific relevant arguments to its callbacks.</p>
 
 <h3 id="onconnected-function--"><code>on('connected', function () {})</code></h3>
 
@@ -489,7 +489,7 @@ myUA.unregister(options);
 <td><code>cause</code></td>
       <td> </td>
       <td>
-<code>null</code> for positive response to un-REGISTER SIP request. In other case, one value of <a href="SIPjs/causes">Failure and End Causes</a>
+<code>null</code> for positive response to un-REGISTER SIP request. In other case, one value of <a href="/api/devel/causes">Failure and End Causes</a>
 </td>
     </tr></tbody>
 </table><h3 id="onregistrationfailed-function-cause-"><code>on('registrationFailed', function (cause) {})</code></h3>
@@ -507,7 +507,7 @@ myUA.unregister(options);
 <tbody><tr>
 <td><code>cause</code></td>
       <td> </td>
-      <td>One value of <a href="SIPjs/causes">Failure and End Causes</a>
+      <td>One value of <a href="/api/devel/causes">Failure and End Causes</a>
 </td>
     </tr></tbody>
 </table><h3 id="oninvite-function-invite-"><code>on('invite', function (invite) {})</code></h3>
@@ -524,7 +524,7 @@ myUA.unregister(options);
     </tr></thead>
 <tbody><tr>
 <td><code>invite</code></td>
-      <td><a href="/SIPjs/invite/">SIP.InviteServerContext</a></td>
+      <td><a href="/api/devel/invite/">SIP.InviteServerContext</a></td>
       <td>The context surrounding the recently received INVITE request.</td>
     </tr></tbody>
 </table><h3 id="onmessage-function-message-"><code>on('message', function (message) {})</code></h3>
@@ -541,7 +541,7 @@ myUA.unregister(options);
     </tr></thead>
 <tbody><tr>
 <td><code>message</code></td>
-      <td><a href="/SIPjs/message/">SIP.MessageServerContext</a></td>
+      <td><a href="/api/devel/message/">SIP.MessageServerContext</a></td>
       <td>The context surrounding the recently received MESSAGE request.</td>
     </tr></tbody>
 </table>
@@ -551,65 +551,72 @@ myUA.unregister(options);
   <div class="js-toggle-list sidebar-module expandable">
     <ul>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/">Overview</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel">Overview</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/#features">Features</a></li>
-          <li><a href="/SIPjs/#sip-standards">SIP Standards</a></li>
+          <li><a href="/api/devel/#features">Features</a></li>
+          <li><a href="/api/devel/#sip-standards">SIP Standards</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/ua/">SIP.UA</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/ua/">SIP.UA</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/ua/#construction">Construction</a></li>
-          <li><a href="/SIPjs/ua/#generic-methods">Generic Methods</a></li>
-          <li><a href="/SIPjs/ua/#request-methods">Request Methods</a></li>
-          <li><a href="/SIPjs/ua/#events">Events</a></li>
+          <li><a href="/api/devel/ua/#construction">Construction</a></li>
+          <li><a href="/api/devel/ua/#generic-methods">Generic Methods</a></li>
+          <li><a href="/api/devel/ua/#request-methods">Request Methods</a></li>
+          <li><a href="/api/devel/ua/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/invitecontext/">SIP.InviteContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/context/">Contexts</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/invitecontext/#instantiation">Instantiation</a></li>
-          <li><a href="/SIPjs/invitecontext/#instance-methods">Instance Methods</a></li>
-          <li><a href="/SIPjs/invitecontext/#events">Events</a></li>
+          <li><a href="/api/devel/context/client/">SIP.ClientContext</a></li>
+          <li><a href="/api/devel/context/server/">SIP.ServerContext</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/messagecontext/">SIP.MessageContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.InviteContext</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/messagecontext/#instantiation">Instantiation</a></li>
-          <li><a href="/SIPjs/messagecontext/#instance-methods">Instance Methods</a></li>
-          <li><a href="/SIPjs/messagecontext/#events">Events</a></li>
+          <li><a href="/api/devel/invite/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/invite/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/invite/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/uri/">SIP.URI</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.MessageContext</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/uri/#instantiation">Instantiation</a></li>
-          <li><a href="/SIPjs/uri/#instance-methods">Instance Methods</a></li>
-          <li><a href="/SIPjs/uri/#events">Events</a></li>
+          <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/message/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/event/">SIP.Event</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/uri/">SIP.URI</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/event/#instantiation">Instantiation</a></li>
-          <li><a href="/SIPjs/event/#instance-methods">Instance Methods</a></li>
-          <li><a href="/SIPjs/event/#events">Events</a></li>
+          <li><a href="/api/devel/uri/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/uri/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/uri/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/eventemitter/">SIP.EventEmitter</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/event/">SIP.Event</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/eventemitter/#construction">Construction</a></li>
-          <li><a href="/SIPjs/eventemitter/#public-methods">Public Methods</a></li>
+          <li><a href="/api/devel/event/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/event/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/event/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/SIPjs/ua_configuration_parameters/">UA Configuration Parameters</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/eventemitter/">SIP.EventEmitter</a></h3>
         <ul class="js-guides">
-          <li><a href="/SIPjs/ua_configuration_parameters/#mandatory">Mandatory Parameters</a></li>
-          <li><a href="/SIPjs/ua_configuration_parameters/#optional">Optional Parameters</a></li>
+          <li><a href="/api/devel/eventemitter/#construction">Construction</a></li>
+          <li><a href="/api/devel/eventemitter/#public-methods">Public Methods</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/ua_configuration_parameters/#mandatory">Mandatory Parameters</a></li>
+          <li><a href="/api/devel/ua_configuration_parameters/#optional">Optional Parameters</a></li>
         </ul>
       </li>
     </ul>
