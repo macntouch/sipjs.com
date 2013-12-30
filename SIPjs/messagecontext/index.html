@@ -52,31 +52,56 @@
 
 <ul id="markdown-toc">
 <li>
-<a href="#instance-attributes">Instance Attributes</a>    <ul>
-<li><a href="#localidentity"><code>local_identity</code></a></li>
-      <li><a href="#remoteidentity"><code>remote_identity</code></a></li>
+<a href="#inherited-methods">Inherited Methods</a>    <ul>
+<li><a href="#from-servercontext-messageservercontext-only">From ServerContext <em>(MessageServerContext Only)</em></a></li>
     </ul>
 </li>
   <li>
-<a href="#instance-method-client">Instance Method (Client)</a>    <ul>
-<li><a href="#messageoptions"><code>message(options)</code></a></li>
+<a href="#instance-attributes">Instance Attributes</a>    <ul>
+<li><a href="#body"><code>body</code></a></li>
+      <li><a href="#contenttype"><code>content_type</code></a></li>
+      <li><a href="#request"><code>request</code></a></li>
     </ul>
 </li>
-</ul><h2 id="instance-attributes">Instance Attributes</h2>
+  <li>
+<a href="#instance-method">Instance Method</a>    <ul>
+<li><a href="#messageoptions-messageclientcontext-only"><code>message(options)</code> <em>(MessageClientContext Only)</em></a></li>
+    </ul>
+</li>
+</ul><h2 id="inherited-methods">Inherited Methods</h2>
 
-<h3 id="localidentity"><code>local_identity</code></h3>
+<h3 id="from-servercontext-messageservercontext-only">From ServerContext <em>(MessageServerContext Only)</em>
+</h3>
 
-<p>SIP.NameAddrHeader instance indicating the local identity.</p>
+<h4 id="progress"><code>progress()</code></h4>
 
-<h3 id="remoteidentity"><code>remote_identity</code></h3>
+<h4 id="accept"><code>accept()</code></h4>
 
-<p>SIP.NameAddrHeader instance indicating the remote identity.</p>
+<h4 id="reject"><code>reject()</code></h4>
 
-<h2 id="instance-method-client">Instance Method (Client)</h2>
+<h4 id="reply"><code>reply()</code></h4>
 
-<h3 id="messageoptions"><code>message(options)</code></h3>
+<h2 id="instance-attributes">Instance Attributes</h2>
 
-<p>Send a MESSAGE through the WebSocket connection.</p>
+<h3 id="body"><code>body</code></h3>
+
+<p><code>String</code> - The body of the SIP message.</p>
+
+<h3 id="contenttype"><code>content_type</code></h3>
+
+<p><code>String</code> - The content type of the message body.</p>
+
+<h3 id="request"><code>request</code></h3>
+
+<p><code>SIP.OutgoingRequest|SIP.IncomingRequest</code> - The SIP MESSAGE request associated with this context.</p>
+
+<h2 id="instance-method">Instance Method</h2>
+
+<h3 id="messageoptions-messageclientcontext-only">
+<code>message(options)</code> <em>(MessageClientContext Only)</em>
+</h3>
+
+<p>Send this MESSAGE.</p>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -86,33 +111,31 @@
       <th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>options</code></td>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
-    </tr></tbody>
-</table><h4 id="fields-in-options-object">Fields in <code>options</code> Object</h4>
-
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
+    </tr>
 <tr>
-<td><code>extraHeaders</code></td>
+<td><code>options.extraHeaders</code></td>
       <td>
 <code>Array</code> of <code>Strings</code>
 </td>
       <td>Extra SIP headers for the request.</td>
     </tr>
-<tr>
-<td><code>body</code></td>
-      <td><code>String</code></td>
-      <td>represents the SIP message body (in case this parameter is set, a corresponding Content-Type header field must be set in <code>extraHeaders</code> field).</td>
-    </tr>
 </tbody>
+</table><h4 id="returns">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.MessageClientContext</code></td>
+      <td>This MessageClientContext</td>
+    </tr></tbody>
 </table>
     </div>
 
