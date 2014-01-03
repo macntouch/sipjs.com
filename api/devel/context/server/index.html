@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title></title>
+  <title>SIP.ServerContext | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -46,7 +46,429 @@
 	
   <div id="wrapper">
   	<div class="content">
-    	
+    	<h1 id="sipservercontext">SIP.ServerContext</h1>
+
+<p>A <code>SIP.ServerContext</code> encapsulates the behavior required to receive and send replies to a request.  It is typically mixed in with behavior from a method-specific context, such as <a href="/api/devel/invite/"><code>SIP.InviteContext</code></a> or <a href="/api/devel/message"><code>SIP.MessageContext</code></a>.</p>
+
+<ul id="markdown-toc">
+<li>
+<a href="#construction">Construction</a>    <ul>
+<li><a href="#new-sipservercontextua-request"><code>new SIP.ServerContext(ua, request)</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#instance-attributes">Instance Attributes</a>    <ul>
+<li><a href="#ua"><code>ua</code></a></li>
+      <li><a href="#request"><code>request</code></a></li>
+      <li><a href="#localidentity"><code>local_identity</code></a></li>
+      <li><a href="#remoteidentity"><code>remote_identity</code></a></li>
+      <li><a href="#data"><code>data</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#instance-methods">Instance Methods</a>    <ul>
+<li><a href="#progressoptions"><code>progress([options])</code></a></li>
+      <li><a href="#acceptoptions"><code>accept([options])</code></a></li>
+      <li><a href="#rejectoptions"><code>reject([options])</code></a></li>
+      <li><a href="#replyoptions"><code>reply([options])</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#events">Events</a>    <ul>
+<li><a href="#onprogress-function-data-"><code>on('progress', function (data) {})</code></a></li>
+      <li><a href="#onaccepted-function-data-"><code>on('accepted', function (data) {})</code></a></li>
+      <li><a href="#onrejected-function-data-"><code>on('rejected', function (data) {})</code></a></li>
+      <li><a href="#onfailed-function-data-"><code>on('failed', function (data) {})</code></a></li>
+    </ul>
+</li>
+</ul><h2 id="construction">Construction</h2>
+
+<p>Typically, construction of a ServerContext is managed by a <code>SIP.UA</code> and happens automatically upon receipt of a new incoming request. However, advanced users may construct ServerContexts manually.</p>
+
+<h3 id="new-sipservercontextua-request"><code>new SIP.ServerContext(ua, request)</code></h3>
+
+<h4 id="parameters">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>ua</td>
+      <td><code>SIP.UA</code></td>
+      <td>The user agent that received the request.</td>
+    </tr>
+<tr>
+<td>request</td>
+      <td><code>SIP.IncomingRequest</code></td>
+      <td>The request received.</td>
+    </tr>
+</tbody>
+</table><h2 id="instance-attributes">Instance Attributes</h2>
+
+<h3 id="ua"><code>ua</code></h3>
+
+<p><code>SIP.UA</code> - The user agent that received the request.</p>
+
+<h3 id="request"><code>request</code></h3>
+
+<p><code>SIP.IncomingRequest</code> - The request received.</p>
+
+<h3 id="localidentity"><code>local_identity</code></h3>
+
+<p><code>SIP.NameAddrHeader</code> - The To header of the request, representing the identity of the local endpoint.</p>
+
+<h3 id="remoteidentity"><code>remote_identity</code></h3>
+
+<p><code>SIP.NameAddrHeader</code> - The From header of the request, representing the identity of the remtoe endpoing.</p>
+
+<h3 id="data"><code>data</code></h3>
+
+<p><code>Object</code> - An empty object for the application to define custom attributes.  <em>Note: Custom attributes defined elsewhere on the object may be overwritten.</em></p>
+
+<h2 id="instance-methods">Instance Methods</h2>
+
+<h3 id="progressoptions"><code>progress([options])</code></h3>
+
+<p>Send a provisional (100-199) response. By default, <code>progress</code> will send a <code>180 Ringing</code> response with no body.</p>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options</code></td>
+      <td><code>Object</code></td>
+      <td>Optional <code>Object</code> with extra parameters (see below).</td>
+    </tr>
+<tr>
+<td><code>options.statusCode</code></td>
+      <td><code>Integer</code></td>
+      <td>Optional SIP response code between 100 and 199 to be used in the reply. By default, 180 will be used.</td>
+    </tr>
+<tr>
+<td><code>options.reasonPhrase</code></td>
+      <td><code>String</code></td>
+      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>String</code>
+</td>
+      <td>Optional list of extra headers to be added to the response.</td>
+    </tr>
+<tr>
+<td><code>options.body</code></td>
+      <td><code>String</code></td>
+      <td>Optional body to include with the response.</td>
+    </tr>
+</tbody>
+</table><h4 id="returns">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.ServerContext</code></td>
+      <td>This server context.</td>
+    </tr></tbody>
+</table><h3 id="acceptoptions"><code>accept([options])</code></h3>
+
+<p>Send a successful (200-299) response. By default, <code>accept</code> will send a <code>200 Okay</code> response with no body.</p>
+
+<h4 id="parameters-2">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options</code></td>
+      <td><code>Object</code></td>
+      <td>Optional <code>Object</code> with extra parameters (see below).</td>
+    </tr>
+<tr>
+<td><code>options.statusCode</code></td>
+      <td><code>Integer</code></td>
+      <td>Optional SIP response code between 200 and 299 to be used in the reply. By default, 200 will be used.</td>
+    </tr>
+<tr>
+<td><code>options.reasonPhrase</code></td>
+      <td><code>String</code></td>
+      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>String</code>
+</td>
+      <td>Optional list of extra headers to be added to the response.</td>
+    </tr>
+<tr>
+<td><code>options.body</code></td>
+      <td><code>String</code></td>
+      <td>Optional body to include with the response.</td>
+    </tr>
+</tbody>
+</table><h4 id="returns-1">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.ServerContext</code></td>
+      <td>This server context.</td>
+    </tr></tbody>
+</table><h3 id="rejectoptions"><code>reject([options])</code></h3>
+
+<p>Send a failure (300-699) response. By default, <code>reject</code> will send a <code>480 Temporarily Unavailable</code> response with no body.</p>
+
+<h4 id="parameters-3">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options</code></td>
+      <td><code>Object</code></td>
+      <td>Optional <code>Object</code> with extra parameters (see below).</td>
+    </tr>
+<tr>
+<td><code>options.statusCode</code></td>
+      <td><code>Integer</code></td>
+      <td>Optional SIP response code between 300 and 699 to be used in the reply. By default, 480 will be used.</td>
+    </tr>
+<tr>
+<td><code>options.reasonPhrase</code></td>
+      <td><code>String</code></td>
+      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>String</code>
+</td>
+      <td>Optional list of extra headers to be added to the response.</td>
+    </tr>
+<tr>
+<td><code>options.body</code></td>
+      <td><code>String</code></td>
+      <td>Optional body to include with the response.</td>
+    </tr>
+</tbody>
+</table><h4 id="returns-2">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.ServerContext</code></td>
+      <td>This server context.</td>
+    </tr></tbody>
+</table><h3 id="replyoptions"><code>reply([options])</code></h3>
+
+<p>Send any (100-699) response. <code>reply</code> does not have default settings, and will fail without a specified status code.</p>
+
+<h4 id="parameters-4">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options</code></td>
+      <td><code>Object</code></td>
+      <td>
+<code>Object</code> with extra parameters (see below).</td>
+    </tr>
+<tr>
+<td><code>options.statusCode</code></td>
+      <td><code>Integer</code></td>
+      <td>SIP response code between 100 and 699 to be used in the reply.</td>
+    </tr>
+<tr>
+<td><code>options.reasonPhrase</code></td>
+      <td><code>String</code></td>
+      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>String</code>
+</td>
+      <td>Optional list of extra headers to be added to the response.</td>
+    </tr>
+<tr>
+<td><code>options.body</code></td>
+      <td><code>String</code></td>
+      <td>Optional body to include with the response.</td>
+    </tr>
+</tbody>
+</table><h4 id="returns-3">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.ServerContext</code></td>
+      <td>This server context.</td>
+    </tr></tbody>
+</table><h2 id="events">Events</h2>
+
+<h3 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h3>
+
+<p>Fired each time a provisional (100-199) response is sent.</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the sent response, between 100 and 199.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td>The sent response</td>
+    </tr>
+</tbody>
+</table><h3 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h3>
+
+<p>Fired each time a successful final (200-299) response is sent.</p>
+
+<h4 id="arguments-1">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the sent response, between 200 and 299.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td>The sent response</td>
+    </tr>
+</tbody>
+</table><h3 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h3>
+
+<p>Fired each time an unsuccessful final (300-699) response is sent. <em>Note: This will also emit a <code>failed</code> event.</em></p>
+
+<h4 id="arguments-2">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the sent response, between 300 and 699.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse</code></a></td>
+      <td>The sent response</td>
+    </tr>
+<tr>
+<td><code>data.cause</code></td>
+      <td><code>String</code></td>
+      <td>The reason phrase associated with the SIP response code.</td>
+    </tr>
+</tbody>
+</table><h3 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h3>
+
+<p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
+
+<h4 id="arguments-3">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the sent response, between 300 and 699, or 0 if the failure was not due to a received response.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse|null</code></a></td>
+      <td>The sent response, or <code>null</code> if there failure was not due to a received response.</td>
+    </tr>
+<tr>
+<td><code>data.cause</code></td>
+      <td><code>String</code></td>
+      <td>The reason phrase associated with the SIP response code, or one of <code>SIP.C.causes</code> if the failure was not due to a sent response.</td>
+    </tr>
+</tbody>
+</table>
     </div>
 
 		<div id="js-sidebar" class="sidebar-shell">

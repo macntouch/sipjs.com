@@ -92,7 +92,7 @@
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#777">// Create a new anonymous user agent</span>
+  <div class="code"><pre><span style="color:#777">// Create a new anonymous user agent, and connect using the OnSIP Network</span>
 <span style="color:#080;font-weight:bold">var</span> myUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA();
 </pre></div>
 </div>
@@ -100,7 +100,15 @@
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#777">// Create a user agent for Bob that will register to receive requests</span>
+  <div class="code"><pre><span style="color:#777">// Create a user agent for Bob, and connect using the OnSIP Network</span>
+<span style="color:#080;font-weight:bold">var</span> myUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>);<span style="color:#F00;background-color:#FAA">`</span>
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// Create a user agent for Bob, and connect using a custom WebSocket server</span>
 <span style="color:#080;font-weight:bold">var</span> bob = <span style="color:#080;font-weight:bold">new</span> SIP.UA({
   <span style="color:#606">uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>,
   <span style="color:#606">ws_servers</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wss://edge.example.com</span><span style="color:#710">'</span></span>],

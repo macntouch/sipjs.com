@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>SIP.MessageContext | SIP.js</title>
+  <title>SIP.OutgoingRequest | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -46,54 +46,51 @@
 	
   <div id="wrapper">
   	<div class="content">
-    	<h1 id="sipmessagecontext">SIP.MessageContext</h1>
+    	<h1 id="sipoutgoingrequest">SIP.OutgoingRequest</h1>
 
-<p><code>SIP.MessageContext</code> represents an instant message using the SIP method MESSAGE. By default, the message is treated as plain text. However, any valid content type may be specified.</p>
+<p>An OutgoingRequest is a data structure that represents an Outgoing SIP Request and it’s attributes.</p>
 
 <ul id="markdown-toc">
-<li>
+<li><a href="#construction">Construction</a></li>
+  <li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
-<li><a href="#body"><code>body</code></a></li>
-      <li><a href="#contenttype"><code>content_type</code></a></li>
-      <li><a href="#request"><code>request</code></a></li>
+<li><a href="#ua"><code>ua</code></a></li>
+      <li><a href="#method"><code>method</code></a></li>
+      <li><a href="#ruri"><code>ruri</code></a></li>
     </ul>
 </li>
   <li>
-<a href="#instance-method">Instance Method</a>    <ul>
-<li><a href="#messageoptions-messageclientcontext-only"><code>message(options)</code> <em>(MessageClientContext Only)</em></a></li>
+<a href="#instance-methods">Instance Methods</a>    <ul>
+<li><a href="#setheadernamevalue"><code>setHeader(name,value)</code></a></li>
+      <li><a href="#getheadername"><code>getHeader(name)</code></a></li>
+      <li><a href="#getheadersname"><code>getHeaders(name)</code></a></li>
+      <li><a href="#hasheadername"><code>hasHeader(name)</code></a></li>
+      <li><a href="#tostring"><code>toString()</code></a></li>
     </ul>
 </li>
-</ul><h4 id="progress"><code>progress()</code></h4>
+</ul><h2 id="construction">Construction</h2>
 
-<p>Inherited from [<code>SIP.ServerContext</code>]</p>
-
-<h4 id="accept"><code>accept()</code></h4>
-
-<h4 id="reject"><code>reject()</code></h4>
-
-<h4 id="reply"><code>reply()</code></h4>
+<p>The OutgoingRequest constructor is intended for internal use only.</p>
 
 <h2 id="instance-attributes">Instance Attributes</h2>
 
-<h3 id="body"><code>body</code></h3>
+<h3 id="ua"><code>ua</code></h3>
 
-<p><code>String</code> - The body of the SIP message.</p>
+<p><code>SIP.UA</code> - The UA that this request is being sent from</p>
 
-<h3 id="contenttype"><code>content_type</code></h3>
+<h3 id="method"><code>method</code></h3>
 
-<p><code>String</code> - The content type of the message body.</p>
+<p><code>String</code> - The SIP method used for the request</p>
 
-<h3 id="request"><code>request</code></h3>
+<h3 id="ruri"><code>ruri</code></h3>
 
-<p><code>SIP.OutgoingRequest|SIP.IncomingRequest</code> - The SIP MESSAGE request associated with this context.</p>
+<p><code>SIP.URI</code> - The request uri</p>
 
-<h2 id="instance-method">Instance Method</h2>
+<h2 id="instance-methods">Instance Methods</h2>
 
-<h3 id="messageoptions-messageclientcontext-only">
-<code>message(options)</code> <em>(MessageClientContext Only)</em>
-</h3>
+<h3 id="setheadernamevalue"><code>setHeader(name,value)</code></h3>
 
-<p>Send this MESSAGE.</p>
+<p>Replaces the given header name with the given value.</p>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -105,18 +102,33 @@
     </tr></thead>
 <tbody>
 <tr>
-<td><code>options</code></td>
-      <td><code>Object</code></td>
-      <td>Optional <code>Object</code> with extra parameters (see below).</td>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to replace</td>
     </tr>
 <tr>
-<td><code>options.extraHeaders</code></td>
-      <td>
-<code>Array</code> of <code>Strings</code>
-</td>
-      <td>Extra SIP headers for the request.</td>
+<td><code>value</code></td>
+      <td><code>String|Array</code></td>
+      <td>The value of to place in the SIP header field</td>
     </tr>
 </tbody>
+</table><h3 id="getheadername"><code>getHeader(name)</code></h3>
+
+<p>Gets the value of the given header name.</p>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to get the value of</td>
+    </tr></tbody>
 </table><h4 id="returns">Returns</h4>
 
 <table>
@@ -125,10 +137,105 @@
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>SIP.MessageClientContext</code></td>
-      <td>This MessageClientContext</td>
+<td><code>String|undefined</code></td>
+      <td>Returns the specified header, undefined if header doesn’t exist</td>
     </tr></tbody>
-</table>
+</table><h3 id="getheadersname"><code>getHeaders(name)</code></h3>
+
+<p>Gets the header(s) of the given name.</p>
+
+<h4 id="parameters-2">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to get</td>
+    </tr></tbody>
+</table><h4 id="returns-1">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>Array</code></td>
+      <td>All of the headers of the specified name</td>
+    </tr></tbody>
+</table><h3 id="hasheadername"><code>hasHeader(name)</code></h3>
+
+<p>Verify the existence of the given header name</p>
+
+<h4 id="parameters-3">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to verify</td>
+    </tr></tbody>
+</table><h4 id="returns-2">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+      <td>
+<code>true</code> if the header with the given name exists, <code>false</code> otherwise</td>
+    </tr></tbody>
+</table><h3 id="tostring"><code>toString()</code></h3>
+
+<p>Returns a string of the SIP packet generated by the OutgoingRequest</p>
+
+<h4 id="returns-3">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>String</code></td>
+      <td>A string of the SIP packet generated by the OutgoingRequest</td>
+    </tr></tbody>
+</table><h4 id="example">Example</h4>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>
+outgoingRequest.toString();
+
+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">INVITE sip:alice@example.com SIP/2.0
+Via: 
+Max-Forwards: 69
+To: &lt;sip:bob@example.com&gt;
+From: "Alice" &lt;sip:alice@example.com&gt;;tag=12g953gosn
+Call-ID: 9q3341bc39ab41k8f4vb
+CSeq: 4652 INVITE
+Contact: &lt;sip:d5e0h5v6@5jthu1mcbpau.invalid;transport=ws;ob&gt;
+Allow: ACK,CANCEL,BYE,OPTIONS,INVITE,MESSAGE
+Content-Type: application/sdp
+Supported: outbound
+User-Agent: SIPjs
+Content-Length: 0
+</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+</div>
     </div>
 
 		<div id="js-sidebar" class="sidebar-shell">

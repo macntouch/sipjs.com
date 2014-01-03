@@ -18,7 +18,7 @@
 
 
 <body class="api">
-	<div id="header-wrapper">
+  <div id="header-wrapper">
   <div id="header">
     <div>
       <a class="logo" href="/">SIP.js:Developer</a>
@@ -34,19 +34,18 @@
   </div><!-- #header -->
 </div><!-- #header-wrapper -->
 
-	
-	<div class="sub-nav">
-		<h2><a href="/api/">API</a></h2>
-		
-		<ul>
+
+  <div class="sub-nav">
+    <h2><a href="/api/">API</a></h2>
+    <ul>
       <li><a href="/api/">Documentation</a></li>
       <li><a href="/guides/" class="active">Guides</a></li>
-		</ul>
-	</div>
-	
+    </ul>
+  </div>
+
   <div id="wrapper">
-  	<div class="content">
-    	<h1 id="receive-a-call">Receive a Call</h1>
+    <div class="content">
+      <h1 id="receive-a-call">Receive a Call</h1>
 
 <ul id="markdown-toc">
 <li><a href="#overview">Overview</a></li>
@@ -66,7 +65,7 @@
 <span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  <span style="color:#070;font-weight:bold">&lt;body&gt;</span>
 <span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">remoteVideo</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span>
 <span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    <span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">localVideo</span><span style="color:#710">"</span></span> <span style="color:#b48">muted</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">muted</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span>  
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span style="color:#070;font-weight:bold">&lt;button</span> <span style="color:#b48">type</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">button</span><span style="color:#710">"</span></span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">callButton</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span>Call<span style="color:#070;font-weight:bold">&lt;/button&gt;</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span style="color:#070;font-weight:bold">&lt;button</span> <span style="color:#b48">type</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">button</span><span style="color:#710">"</span></span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">answerButton</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span>Answer<span style="color:#070;font-weight:bold">&lt;/button&gt;</span>
 <span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span style="color:#070;font-weight:bold">&lt;button</span> <span style="color:#b48">type</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">button</span><span style="color:#710">"</span></span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">endButton</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span>End<span style="color:#070;font-weight:bold">&lt;/button&gt;</span>
 <span class="line-numbers"><a href="#n11" name="n11">11</a></span>        
 <span class="line-numbers"><a href="#n12" name="n12">12</a></span>    <span style="color:#070;font-weight:bold">&lt;script</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">phone.js</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/script&gt;</span>
@@ -77,85 +76,123 @@
 </div>
 </div>
 
-<p>In order to make and receive calls and messages you must create a new SIP user agent.  You do so by doing this.</p>
+<p>In order to make calls and send messages you must create a new SIP user agent.  We then must start the user agent, which connects to the server and registers it.</p>
 
 <div>
 <div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#777">// phone.js</span>
 <span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span><span style="color:#080;font-weight:bold">function</span> () {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  <span style="color:#777">//Creates the anonymous user agent so that you can make calls</span>
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>  <span style="color:#080;font-weight:bold">var</span> config = {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  <span style="color:#606">uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>,
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>  <span style="color:#606">ws_servers</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wss://edge.example.com</span><span style="color:#710">'</span></span>],
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>  <span style="color:#606">register</span>: <span style="color:#069">true</span>
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>};
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  <span style="color:#080;font-weight:bold">var</span> userAgent = <span style="color:#080;font-weight:bold">new</span> SIP.UA(config);
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>  <span style="color:#080;font-weight:bold">var</span> answerButton = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">answerButton</span><span style="color:#710">'</span></span>);
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>  <span style="color:#080;font-weight:bold">var</span> endButton = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">endButton</span><span style="color:#710">'</span></span>);
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>  userAgent.start();
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>  userAgent.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">start</span><span style="color:#710">'</span></span>, newSessionHandler);
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>}
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">newSessionHandler</span>()
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>{
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>  <span style="color:#777">//here you determine whether the call has video and audio</span>
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>  userAgent.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">connected</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>    <span style="color:#080;font-weight:bold">var</span> options = {
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>      <span style="color:#606">mediaConstraints</span>: {
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        <span style="color:#606">audio</span>: <span style="color:#069">true</span>,
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span style="color:#606">video</span>: <span style="color:#069">true</span>
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>      } 
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    }
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>    <span style="color:#777">//makes the call</span>
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>    <span style="color:#080;font-weight:bold">var</span> session = userAgent.invite(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, options);
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>    session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">accepted</span><span style="color:#710">'</span></span>, onAccept)
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>  })
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>}
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">onAccept</span> () {
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>  <span style="color:#777">//gets the video elements</span>
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>  <span style="color:#080;font-weight:bold">var</span> remoteVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">remoteVideo</span><span style="color:#710">'</span></span>);
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>  <span style="color:#080;font-weight:bold">var</span> localVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">localVideo</span><span style="color:#710">'</span></span>);
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>  <span style="color:#777">//attached the received video stream to the Video Elements</span>
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>  remoteVideo.srcObject= session.getRemoteStreams()[<span style="color:#00D">0</span>];
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>  localVideo.srcObject= session.getLocalStreams()[<span style="color:#00D">0</span>];
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>  <span style="color:#777">//plays the Video Elements</span>
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>  remoteVideo.play();
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>  localVideo.play();
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>}
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span><span style="color:#369;font-weight:bold">$</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">#answerButton</span><span style="color:#710">'</span></span>).addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>,<span style="color:#080;font-weight:bold">function</span> () {
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>  session.answer();
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>});
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>
-<span class="line-numbers"><a href="#n55" name="n55">55</a></span><span style="color:#369;font-weight:bold">$</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">#endButton</span><span style="color:#710">'</span></span>).addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>,<span style="color:#080;font-weight:bold">function</span> () {
-<span class="line-numbers"><a href="#n56" name="n56">56</a></span>  session.terminate();
-<span class="line-numbers"><a href="#n57" name="n57">57</a></span>});
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span><span style="color:#777">//Creates the user agent so that you can make calls</span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span><span style="color:#080;font-weight:bold">var</span> config = {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span><span style="color:#606">uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>,
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span><span style="color:#606">ws_servers</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wss://edge.example.com</span><span style="color:#710">'</span></span>],
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span><span style="color:#606">register</span>: <span style="color:#069">true</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>};
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span style="color:#080;font-weight:bold">var</span> userAgent = <span style="color:#080;font-weight:bold">new</span> SIP.UA(config);
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span><span style="color:#080;font-weight:bold">var</span> answerButton = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">answerButton</span><span style="color:#710">'</span></span>);
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span><span style="color:#080;font-weight:bold">var</span> endButton = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">endButton</span><span style="color:#710">'</span></span>);
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>userAgent.start();
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>userAgent.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">connected</span><span style="color:#710">'</span></span>, newSessionHandler);
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+</pre></div>
+</div>
+</div>
+
+<p>After we start the user agent, we can make a call to SIP address.  We do so by sending a SIP invite.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">newSessionHandler</span>() {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>  <span style="color:#777">//here you determine whether the call has video and audio</span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  <span style="color:#080;font-weight:bold">var</span> options = {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    <span style="color:#606">mediaConstraints</span>: {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>      <span style="color:#606">audio</span>: <span style="color:#069">true</span>,
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>      <span style="color:#606">video</span>: <span style="color:#069">true</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    } 
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  <span style="color:#777">//makes the call</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  <span style="color:#080;font-weight:bold">var</span> session = userAgent.invite(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, options);
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>  session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">accepted</span><span style="color:#710">'</span></span>, onAccept)
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>}
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+</pre></div>
+</div>
+</div>
+
+<p>When the invitee accepts the call, we catch the “accepted” event and start playing the video elements in our browser.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">onAccept</span> () {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>  <span style="color:#777">//gets the video elements</span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  <span style="color:#080;font-weight:bold">var</span> remoteVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">remoteVideo</span><span style="color:#710">'</span></span>);
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>  <span style="color:#080;font-weight:bold">var</span> localVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">localVideo</span><span style="color:#710">'</span></span>);
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>  <span style="color:#777">//attached the received video stream to the Video Elements</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>  attachMediaStream(remoteVideo, session.getRemoteStreams()[<span style="color:#00D">0</span>]);
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  attachMediaStream(localVideo, session.getLocalStreams()[<span style="color:#00D">0</span>]);
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  <span style="color:#777">//plays the Video Elements</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>  remoteVideo.play();
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>  localVideo.play();
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>}
+</pre></div>
+</div>
+</div>
+
+<p>This function attaches the media stream to the video element.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">attachMediaStream</span>(element, stream) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>  <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span> element.srcObject !== <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">undefined</span><span style="color:#710">'</span></span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    element.srcObject = stream;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  } <span style="color:#080;font-weight:bold">else</span> <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span> element.mozSrcObject !== <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">undefined</span><span style="color:#710">'</span></span>) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    element.mozSrcObject = stream;
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  } <span style="color:#080;font-weight:bold">else</span> <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span> element.src !== <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">undefined</span><span style="color:#710">'</span></span>) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    element.src = URL.createObjectURL(stream);
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>  } <span style="color:#080;font-weight:bold">else</span> {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    console.log(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Error attaching stream to element.</span><span style="color:#710">'</span></span>);
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>}
+</pre></div>
+</div>
+</div>
+
+<p>Here we add the click events which allow the user to answer and end calls.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#369;font-weight:bold">$</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">#answerButton</span><span style="color:#710">'</span></span>).addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>,<span style="color:#080;font-weight:bold">function</span> () {
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>  session.answer();
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>});
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>
+<span class="line-numbers"><a href="#n5" name="n5">5</a></span><span style="color:#369;font-weight:bold">$</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">#endButton</span><span style="color:#710">'</span></span>).addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>,<span style="color:#080;font-weight:bold">function</span> () {
+<span class="line-numbers"><a href="#n6" name="n6">6</a></span>  session.terminate();
+<span class="line-numbers"><a href="#n7" name="n7">7</a></span>});
 </pre></div>
 </div>
 </div>
     </div>
 
-		<div id="js-sidebar" class="sidebar-shell">
-		  <div class="sidebar-module">
+    <div id="js-sidebar" class="sidebar-shell">
+      <div class="sidebar-module">
           <ul>
             <li><h3><a href="/guides/">Overview</a></h3></li>
-            <li><h3><a href="/guides/getting-started/">Getting Started</a></h3></li>
             <li><h3><a href="/guides/make-call/">Make a Call</a></h3></li>
             <li><h3><a href="/guides/receive-call/">Receive a Call</a></h3></li>
           </ul>
-			</div>
+      </div>
     </div>
   </div><!-- #wrapper -->
-		
-	<div id="footer" >
+
+  <div id="footer" >
   <div class="lower_footer">
     <ul class="footer-cell">
       <li><a href="http://help.onsip.com/terms-of-service/">Terms</a></li>

@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title></title>
+  <title>SIP.ClientContext | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -46,7 +46,312 @@
 	
   <div id="wrapper">
   	<div class="content">
-    	
+    	<h1 id="sipclientcontext">SIP.ClientContext</h1>
+
+<p>A <code>SIP.ClientContext</code> encapsulates the behavior required to send a request, as well as handle responses and retransmissions of that request. It is typically mixed in with behavior from a method-specific context, such as <a href="/api/devel/invite/"><code>SIP.InviteContext</code></a> or <a href="/api/devel/message/"><code>SIP.MessageContext</code></a>.</p>
+
+<ul id="markdown-toc">
+<li>
+<a href="#construction">Construction</a>    <ul>
+<li><a href="#new-sipclientcontextua-method-target"><code>new SIP.ClientContext(ua, method, target)</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#instance-attributes">Instance Attributes</a>    <ul>
+<li><a href="#ua"><code>ua</code></a></li>
+      <li><a href="#method"><code>method</code></a></li>
+      <li><a href="#target"><code>target</code></a></li>
+      <li><a href="#data"><code>data</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#instance-methods">Instance Methods</a>    <ul>
+<li><a href="#sendoptions"><code>send([options])</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#events">Events</a>    <ul>
+<li><a href="#onprogress-function-data-"><code>on('progress', function (data) {})</code></a></li>
+      <li><a href="#onaccepted-function-data-"><code>on('accepted', function (data) {})</code></a></li>
+      <li><a href="#onrejected-function-data-"><code>on('rejected', function (data) {})</code></a></li>
+      <li><a href="#onfailed-function-data-"><code>on('failed', function (data) {})</code></a></li>
+    </ul>
+</li>
+</ul><h2 id="construction">Construction</h2>
+
+<p>Typically, construction and sending of a ClientContext is managed by a <code>SIP.UA</code>, through either the <code>ua.request(method, target)</code> function or through SIP method-specific functions such as <code>ua.invite(target)</code>. However, advanced users may construct ClientContexts manually.</p>
+
+<h3 id="new-sipclientcontextua-method-target"><code>new SIP.ClientContext(ua, method, target)</code></h3>
+
+<h4 id="parameters">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>ua</td>
+      <td><code>SIP.UA</code></td>
+      <td>The user agent from which the request will be sent.</td>
+    </tr>
+<tr>
+<td>method</td>
+      <td><code>String</code></td>
+      <td>The SIP method to use on the request. For example, <code>INFO</code> or <code>OPTIONS</code>
+</td>
+    </tr>
+<tr>
+<td>target</td>
+      <td><code>String|SIP.URI</code></td>
+      <td>The destination URI for the request to send to.</td>
+    </tr>
+</tbody>
+</table><h2 id="instance-attributes">Instance Attributes</h2>
+
+<h3 id="ua"><code>ua</code></h3>
+
+<p><code>SIP.UA</code> - The user agent from which the request was sent or will be sent.</p>
+
+<h3 id="method"><code>method</code></h3>
+
+<p><code>String</code> - The SIP method of the request. For example, <code>"INVITE"</code> or <code>"MESSAGE"</code>.</p>
+
+<h3 id="target"><code>target</code></h3>
+
+<p><code>String</code> - The requested URI destination for the SIP message.</p>
+
+<h3 id="data"><code>data</code></h3>
+
+<p><code>Object</code> - An empty object.  Define custom application data here. <em>Note: SIP.js may overwrite any custom attributes defined outside of the data object.</em></p>
+
+<h2 id="instance-methods">Instance Methods</h2>
+
+<h3 id="sendoptions"><code>send([options])</code></h3>
+
+<p>Send the request. A constructed <code>SIP.ClientContext</code> will not send itself until this or a similar method is called. This method does not run any custom behavior outside of the default handling of the SIP request. For request methods with their own context objects, please use the method-specific functions for sending requests defined on those objects. (For example, <a href="/api/devel/invite/#inviteoptions"><code>SIP.InviteClientContext</code></a> uses its <code>.invite()</code> method to send itself.)</p>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options</code></td>
+      <td><code>Object</code></td>
+      <td>Optional <code>Object</code> with extra parameters (see below).</td>
+    </tr>
+<tr>
+<td><code>options.body</code></td>
+      <td><code>String</code></td>
+      <td>Optional message body to send in the request</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>String</code>
+</td>
+      <td>Optional list of extra SIP headers to include with the request</td>
+    </tr>
+<tr>
+<td><code>options.params</code></td>
+      <td><code>Object</code></td>
+      <td>Optional extra configuration parameters (see below). These parameters take priority over the SIP.UA configuration parameters.</td>
+    </tr>
+<tr>
+<td><code>options.params.route_set</code></td>
+      <td>
+<code>Array</code> of <code>String</code>
+</td>
+      <td>Optional preloaded route set for the request.</td>
+    </tr>
+<tr>
+<td><code>options.params.to_display_name</code></td>
+      <td><code>String</code></td>
+      <td>Optional display portion of SIP To: URI</td>
+    </tr>
+<tr>
+<td><code>options.params.to_uri</code></td>
+      <td><code>String</code></td>
+      <td>Optional To: URI. By default, this is set to the target.</td>
+    </tr>
+<tr>
+<td><code>options.params.to_tag</code></td>
+      <td><code>String</code></td>
+      <td>Optional To: tag.</td>
+    </tr>
+<tr>
+<td><code>options.params.from_display_name</code></td>
+      <td><code>String</code></td>
+      <td>Optional display portion of SIP From: URI</td>
+    </tr>
+<tr>
+<td><code>options.params.from_uri</code></td>
+      <td><code>String</code></td>
+      <td>Optional From: URI. By default, this is set to the UA’s configured URI</td>
+    </tr>
+<tr>
+<td><code>options.params.from_tag</code></td>
+      <td><code>String</code></td>
+      <td>Optional From: tag</td>
+    </tr>
+<tr>
+<td><code>options.params.call_id</code></td>
+      <td><code>String</code></td>
+      <td>Optional Call-Id value. Otherwise, a new Call-Id is randomly generated.</td>
+    </tr>
+<tr>
+<td><code>options.params.cseq</code></td>
+      <td><code>String</code></td>
+      <td>Optional CSeq number.  Otherwise, a new random CSeq is generated</td>
+    </tr>
+</tbody>
+</table><h4 id="returns">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.ClientContext</code></td>
+      <td>This ClientContext</td>
+    </tr></tbody>
+</table><h2 id="events">Events</h2>
+
+<h3 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h3>
+
+<p>Fired each time a provisional (100-199) response is received.</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the received response, between 100 and 199.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td>The received response</td>
+    </tr>
+</tbody>
+</table><h3 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h3>
+
+<p>Fired each time a successful final (200-299) response is received.</p>
+
+<h4 id="arguments-1">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the received response, between 200 and 299.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td>The received response</td>
+    </tr>
+</tbody>
+</table><h3 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h3>
+
+<p>Fired each time an unsuccessful final (300-699) response is received. <em>Note: This will also emit a <code>failed</code> event.</em></p>
+
+<h4 id="arguments-2">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the received response, between 300 and 699.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse</code></a></td>
+      <td>The received response</td>
+    </tr>
+<tr>
+<td><code>data.cause</code></td>
+      <td><code>String</code></td>
+      <td>The reason phrase associated with the SIP response code.</td>
+    </tr>
+</tbody>
+</table><h3 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h3>
+
+<p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
+
+<h4 id="arguments-3">Arguments</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
+    </tr>
+<tr>
+<td><code>data.code</code></td>
+      <td><code>Integer</code></td>
+      <td>The status code of the received response, between 300 and 699, or 0 if the failure was not due to a received response.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse|null</code></a></td>
+      <td>The received response, or <code>null</code> if there failure was not due to a received response.</td>
+    </tr>
+<tr>
+<td><code>data.cause</code></td>
+      <td><code>String</code></td>
+      <td>The reason phrase associated with the SIP response code, or one of <code>SIP.C.causes</code> if the failure was not due to a received response.</td>
+    </tr>
+</tbody>
+</table>
     </div>
 
 		<div id="js-sidebar" class="sidebar-shell">

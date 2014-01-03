@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="en-us" />
+  <meta http-equiv="imagetoolbar" content="false" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+  <title>SIP.IncomingMessage | SIP.js</title>
+  <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
+  <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="/css/960.css" rel="stylesheet" type="text/css" />
+  <link href="/css/uv_active4d.css" rel="stylesheet" type="text/css" />
+  <link href="/shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/shared/js/jquery.js" type="text/javascript"></script>
+  <script src="/shared/js/documentation.js" type="text/javascript"></script>
+</head>
+
+
+<body class="api">
+	<div id="header-wrapper">
+  <div id="header">
+    <div>
+      <a class="logo" href="/">SIP.js:Developer</a>
+      <ul class="nav">
+        <li><a href="/" class="nav-overview">Homepage</a></li>
+        <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
+        <li><a href="/api/" class="nav-api">API</a></li>
+        <li><a href="/news/" class="nav-blog">News</a></li>
+        <li><a href="/changelog/" class="nav-blog">Change Log</a></li>
+        <li><a href="https://onsip.com/contact">Support</a></li>
+      </ul>
+    </div>
+  </div><!-- #header -->
+</div><!-- #header-wrapper -->
+
+	
+	<div class="sub-nav">
+		<h2><a href="/api/">SIP.js</a></h2>
+		
+		<ul>
+      <li><a href="/api/" class="active">Documentation</a></li>
+      <li><a href="/guides/">Guides</a></li>
+		</ul>
+	</div>
+	
+  <div id="wrapper">
+  	<div class="content">
+    	<h1 id="sipincomingmessage">SIP.IncomingMessage</h1>
+
+<p>An IncomingMessage is a data structure that represents an incoming SIP message and it’s attributes.</p>
+
+<ul id="markdown-toc">
+<li><a href="#construction">Construction</a></li>
+  <li>
+<a href="#instance-attributes">Instance Attributes</a>    <ul>
+<li><a href="#data"><code>data</code></a></li>
+      <li><a href="#method"><code>method</code></a></li>
+      <li><a href="#via"><code>via</code></a></li>
+      <li><a href="#viabranch"><code>via_branch</code></a></li>
+      <li><a href="#callid"><code>call_id</code></a></li>
+      <li><a href="#cseq"><code>cseq</code></a></li>
+      <li><a href="#from"><code>from</code></a></li>
+      <li><a href="#fromtag"><code>from_tag</code></a></li>
+      <li><a href="#to"><code>to</code></a></li>
+      <li><a href="#totag"><code>to_tag</code></a></li>
+      <li><a href="#body"><code>body</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#instance-methods">Instance Methods</a>    <ul>
+<li><a href="#addheadernamevalue"><code>addHeader(name,value)</code></a></li>
+      <li><a href="#getheadername"><code>getHeader(name)</code></a></li>
+      <li><a href="#getheadersname"><code>getHeaders(name)</code></a></li>
+      <li><a href="#hasheadername"><code>hasHeader(name)</code></a></li>
+      <li><a href="#parseheadernameidx"><code>parseHeader(name[,idx])</code></a></li>
+      <li><a href="#setheadernamevalue"><code>setHeader(name,value)</code></a></li>
+      <li><a href="#tostring"><code>toString()</code></a></li>
+    </ul>
+</li>
+</ul><h2 id="construction">Construction</h2>
+
+<p>The IncomingMessage constructor is intended for internal use only.</p>
+
+<h2 id="instance-attributes">Instance Attributes</h2>
+
+<h3 id="data"><code>data</code></h3>
+
+<p><code>String</code> - A string representation of the SIP message</p>
+
+<h3 id="method"><code>method</code></h3>
+
+<p><code>String</code> - The method of the incoming SIP message</p>
+
+<h3 id="via"><code>via</code></h3>
+
+<p><code>Object</code> - An object containing the VIA information of the SIP message</p>
+
+<h3 id="viabranch"><code>via_branch</code></h3>
+
+<p><code>String</code> - The name of the VIA branch of the SIP message</p>
+
+<h3 id="callid"><code>call_id</code></h3>
+
+<p><code>String</code> - The Call-ID header on the SIP message</p>
+
+<h3 id="cseq"><code>cseq</code></h3>
+
+<p><code>Number</code> - The cseq on the SIP message</p>
+
+<h3 id="from"><code>from</code></h3>
+
+<p><code>SIP.NameAddrHeader</code> - Instance representing the from header value of the SIP message</p>
+
+<h3 id="fromtag"><code>from_tag</code></h3>
+
+<p><code>String</code> - The name of the from tag header on the SIP message</p>
+
+<h3 id="to"><code>to</code></h3>
+
+<p><code>SIP.NameAddrHeader</code> - Instance representing the from header value of the SIP message</p>
+
+<h3 id="totag"><code>to_tag</code></h3>
+
+<p><code>String</code> - The to tag header on the SIP message</p>
+
+<h3 id="body"><code>body</code></h3>
+
+<p><code>String</code> - The body of the SIP message</p>
+
+<h2 id="instance-methods">Instance Methods</h2>
+
+<h3 id="addheadernamevalue"><code>addHeader(name,value)</code></h3>
+
+<p>Inserts a header with the given name and value into the last position of the header array</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to add</td>
+    </tr>
+<tr>
+<td><code>value</code></td>
+      <td><code>String</code></td>
+      <td>The value to place in the SIP header field</td>
+    </tr>
+</tbody>
+</table><h3 id="getheadername"><code>getHeader(name)</code></h3>
+
+<p>Gets the value of the given header name.</p>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to get the value of</td>
+    </tr></tbody>
+</table><h4 id="returns">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>String|undefined</code></td>
+      <td>Returns the specified header, undefined if header doesn’t exist</td>
+    </tr></tbody>
+</table><h3 id="getheadersname"><code>getHeaders(name)</code></h3>
+
+<p>Gets the header(s) of the given name.</p>
+
+<h4 id="parameters-2">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to get</td>
+    </tr></tbody>
+</table><h4 id="returns-1">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>Array</code></td>
+      <td>All of the headers of the specified name</td>
+    </tr></tbody>
+</table><h3 id="hasheadername"><code>hasHeader(name)</code></h3>
+
+<p>Verify the existence of the given header name</p>
+
+<h4 id="parameters-3">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to verify</td>
+    </tr></tbody>
+</table><h4 id="returns-2">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+      <td>
+<code>true</code> if the header with the given name exists, <code>false</code> otherwise</td>
+    </tr></tbody>
+</table><h3 id="parseheadernameidx"><code>parseHeader(name[,idx])</code></h3>
+
+<p>Parses the given header on the given index.</p>
+
+<h4 id="parameters-4">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>Name of the SIP header to parse</td>
+    </tr>
+<tr>
+<td><code>idx</code></td>
+      <td><code>Number</code></td>
+      <td>Optional <code>Number</code> header index to parse</td>
+    </tr>
+</tbody>
+</table><h4 id="returns-3">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>Object|undefined</code></td>
+      <td>The parsed header object or undefined if there is a parsing error or the the header is not present.</td>
+    </tr></tbody>
+</table><h3 id="setheadernamevalue"><code>setHeader(name,value)</code></h3>
+
+<p>Replaces the given header name with the given value.</p>
+
+<h4 id="parameters-5">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+      <td><code>String</code></td>
+      <td>The name of the SIP header to replace</td>
+    </tr>
+<tr>
+<td><code>value</code></td>
+      <td><code>String|Array</code></td>
+      <td>The value of to place in the SIP header field</td>
+    </tr>
+</tbody>
+</table><h3 id="tostring"><code>toString()</code></h3>
+
+<p>Returns the data of the message</p>
+
+<h4 id="returns-4">Returns</h4>
+
+<table>
+<thead><tr>
+<th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>String</code></td>
+      <td>The message data</td>
+    </tr></tbody>
+</table><h4 id="example">Example</h4>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>incomingMessage.toString();
+
+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">INVITE sip:jl5as9dj@7n93g7oohn8t.invalid;transport=ws;aor=alice%40example.com SIP/2.0
+Record-Route: &lt;sip:3ad1a7b505@1.2.3.4:443;transport=wss;lr;ovid=7cb85a5c&gt;
+Record-Route: &lt;sip:1.2.3.4:5060;transport=udp;lr;ovid=7cb85a5c&gt;
+Via: SIP/2.0/WSS 1.2.3.4:443;branch=z9hG4bK9f901aba80f26a0c9ba3c655711867914bf4c53e;rport
+Max-Forwards: 65
+From: "Alice" &lt;sip:alice@example.com&gt;;tag=eceN3v52HaQtD
+To: &lt;sip:jl5as9dj@7n93g7oohn8t.invalid;transport=ws;aor=bob%40example.com&gt;
+Call-ID: fdf5e4d7-ee93-1231-1a94-52540040a380
+CSeq: 54012202 INVITE
+Contact: &lt;sip:alice@example.com:5060&gt;
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY
+Supported: timer, precondition, path, replaces
+Content-Type: application/sdp
+Content-Disposition: session
+Content-Length: 916
+
+v=0
+o=UserAgent 1388671790 1388671791 IN IP4 1.2.3.4
+s=UserAgent
+c=IN IP4 1.2.3.4
+t=0 0
+a=msid-semantic: WMS KfiUZ0uBaZEAawCUOatOc6sgJ42dJYwk
+m=audio 24742 RTP/SAVPF 0 101
+a=rtpmap:101 telephone-event/8000
+a=fingerprint:sha-256 24:C2:A8:62:EF:65:E5:C4:F5:77:D9:A1:7F:29:29:3D:D1:53:84:B5:0F:DB:1D:D2:F7:8E:62:7D:10:91:0A:11
+a=rtcp:24743 IN IP4 1.2.3.4
+a=ssrc:3737708532 cname:3E4TuokvePWfbo0Q
+a=ssrc:3737708532 msid:KfiUZ0uBaZEAawCUOatOc6sgJ42dJYwk a0
+a=ssrc:3737708532 mslabel:KfiUZ0uBaZEAawCUOatOc6sgJ42dJYwk
+a=ssrc:3737708532 label:KfiUZ0uBaZEAawCUOatOc6sgJ42dJYwka0
+a=ice-ufrag:pkurgNxQHpUhegr7
+a=ice-pwd:KmQ5A1rFGdKIsAoH
+a=candidate:8521483177 1 udp 659136 1.2.3.4 24742 typ host generation 0
+a=candidate:8521483177 2 udp 659136 1.2.3.4 24743 typ host generation 0
+a=crypto:1 AES_CM_128_HMAC_SHA1_80 inline:q6Nvw6KpcRJEsGYf71U9lsB0a+d6nq/ZtC068SHF
+a=ptime:20
+</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+</div>
+    </div>
+
+		<div id="js-sidebar" class="sidebar-shell">
+  <div class="js-toggle-list sidebar-module expandable">
+    <ul>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel">Overview</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/#features">Features</a></li>
+          <li><a href="/api/devel/#sip-standards">SIP Standards</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/ua/">SIP.UA</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/ua/#construction">Construction</a></li>
+          <li><a href="/api/devel/ua/#generic-methods">Generic Methods</a></li>
+          <li><a href="/api/devel/ua/#request-methods">Request Methods</a></li>
+          <li><a href="/api/devel/ua/#events">Events</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/context/">Contexts</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/context/client/">SIP.ClientContext</a></li>
+          <li><a href="/api/devel/context/server/">SIP.ServerContext</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.InviteContext</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/invite/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/invite/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/invite/#events">Events</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.MessageContext</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/message/#events">Events</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/uri/">SIP.URI</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/uri/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/uri/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/uri/#events">Events</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/event/">SIP.Event</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/event/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/event/#instance-methods">Instance Methods</a></li>
+          <li><a href="/api/devel/event/#events">Events</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/eventemitter/">SIP.EventEmitter</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/eventemitter/#construction">Construction</a></li>
+          <li><a href="/api/devel/eventemitter/#public-methods">Public Methods</a></li>
+        </ul>
+      </li>
+      <li class="js-topic">
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a></h3>
+        <ul class="js-guides">
+          <li><a href="/api/devel/ua_configuration_parameters/#mandatory">Mandatory Parameters</a></li>
+          <li><a href="/api/devel/ua_configuration_parameters/#optional">Optional Parameters</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div> <!-- /sidebar-module -->
+</div><!-- /sidebar-shell -->
+
+  </div><!-- #wrapper -->
+		
+	<div id="footer" >
+  <div class="lower_footer">
+    <ul class="footer-cell">
+      <li><a href="http://help.onsip.com/terms-of-service/">Terms</a></li>
+      <li><a href="http://help.onsip.com/privacy-policy/">Privacy</a></li>
+      <li><a href="http://help.onsip.com/security/">Security</a></li>
+      <li><a href="https://onsip.com/contact">Contact</a></li>				
+    </ul>
+
+    <span class="footer-cell">
+      <a href="https://onsip.com" class="mega-icon mega-icon-invertocat"></a>
+    </span>
+
+    <ul class="footer-cell">
+      <li><a href="https://status.onsip.com/">Status</a></li>
+      <li><a href="http://training.onsip.com/">Training</a></li>
+      <li><a href="http://shop.onsip.com/">Shop</a></li>
+      <li><a href="https://onsip.com/blog">Blog</a></li>
+      <li><a href="https://onsip.com/about">About</a></li>
+    </ul>
+  </div>
+  
+  <div class="wrapper">
+    <p>Design &copy; <span class="js-year">2013</span> OnSIP, Inc. All rights reserved. Except where otherwise noted, content on this site is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons CC-BY license</a>.</p>
+  </div>
+
+</div><!-- /#footer -->
+
+<script src="/shared/js/retina.js" type="text/javascript"></script>
+
+</body>
+</html>
