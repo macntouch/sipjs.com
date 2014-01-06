@@ -71,10 +71,10 @@
 </li>
   <li>
 <a href="#events">Events</a>    <ul>
-<li><a href="#onprogress-function-data-"><code>on('progress', function (data) {})</code></a></li>
-      <li><a href="#onaccepted-function-data-"><code>on('accepted', function (data) {})</code></a></li>
-      <li><a href="#onrejected-function-data-"><code>on('rejected', function (data) {})</code></a></li>
-      <li><a href="#onfailed-function-data-"><code>on('failed', function (data) {})</code></a></li>
+<li><a href="#progress"><code>progress</code></a></li>
+      <li><a href="#accepted"><code>accepted</code></a></li>
+      <li><a href="#rejected"><code>rejected</code></a></li>
+      <li><a href="#failed"><code>failed</code></a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
@@ -131,7 +131,7 @@
 
 <h3 id="sendoptions"><code>send([options])</code></h3>
 
-<p>Send the request. A constructed <code>SIP.ClientContext</code> will not send itself until this or a similar method is called. This method does not run any custom behavior outside of the default handling of the SIP request. For request methods with their own context objects, please use the method-specific functions for sending requests defined on those objects. (For example, <a href="/api/devel/invite/#inviteoptions"><code>SIP.InviteClientContext</code></a> uses its <code>.invite()</code> method to send itself.)</p>
+<p>Send the request. A constructed <code>SIP.ClientContext</code> will not send itself until this or a similar method is called. This method does not run any custom behavior outside of the default handling of the SIP request. For request methods with their own context objects, please use the method-specific functions for sending requests defined on those objects. (For example, <a href="/api/devel/invite/#inviteoptions"><code>SIP.InviteClientContext</code></a> uses its <code>.invite()</code> method to send its request.)</p>
 
 <h4 id="parameters-1">Parameters</h4>
 
@@ -225,11 +225,11 @@
     </tr></tbody>
 </table><h2 id="events">Events</h2>
 
-<h3 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h3>
+<h3 id="progress"><code>progress</code></h3>
 
 <p>Fired each time a provisional (100-199) response is received.</p>
 
-<h4 id="arguments">Arguments</h4>
+<h4 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -254,11 +254,11 @@
       <td>The received response</td>
     </tr>
 </tbody>
-</table><h3 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h3>
+</table><h3 id="accepted"><code>accepted</code></h3>
 
 <p>Fired each time a successful final (200-299) response is received.</p>
 
-<h4 id="arguments-1">Arguments</h4>
+<h4 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -283,11 +283,11 @@
       <td>The received response</td>
     </tr>
 </tbody>
-</table><h3 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h3>
+</table><h3 id="rejected"><code>rejected</code></h3>
 
 <p>Fired each time an unsuccessful final (300-699) response is received. <em>Note: This will also emit a <code>failed</code> event.</em></p>
 
-<h4 id="arguments-2">Arguments</h4>
+<h4 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -317,11 +317,11 @@
       <td>The reason phrase associated with the SIP response code.</td>
     </tr>
 </tbody>
-</table><h3 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h3>
+</table><h3 id="failed"><code>failed</code></h3>
 
 <p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
 
-<h4 id="arguments-3">Arguments</h4>
+<h4 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -343,7 +343,7 @@
 <tr>
 <td><code>data.response</code></td>
       <td><a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse|null</code></a></td>
-      <td>The received response, or <code>null</code> if there failure was not due to a received response.</td>
+      <td>The received response, or <code>null</code> if the failure was not due to a received response.</td>
     </tr>
 <tr>
 <td><code>data.cause</code></td>

@@ -75,10 +75,10 @@
 </li>
   <li>
 <a href="#events">Events</a>    <ul>
-<li><a href="#onprogress-function-data-"><code>on('progress', function (data) {})</code></a></li>
-      <li><a href="#onaccepted-function-data-"><code>on('accepted', function (data) {})</code></a></li>
-      <li><a href="#onrejected-function-data-"><code>on('rejected', function (data) {})</code></a></li>
-      <li><a href="#onfailed-function-data-"><code>on('failed', function (data) {})</code></a></li>
+<li><a href="#progress"><code>progress</code></a></li>
+      <li><a href="#accepted"><code>accepted</code></a></li>
+      <li><a href="#rejected"><code>rejected</code></a></li>
+      <li><a href="#failed"><code>failed</code></a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
@@ -123,7 +123,7 @@
 
 <h3 id="remoteidentity"><code>remote_identity</code></h3>
 
-<p><code>SIP.NameAddrHeader</code> - The From header of the request, representing the identity of the remtoe endpoing.</p>
+<p><code>SIP.NameAddrHeader</code> - The From header of the request, representing the identity of the remote endpoint.</p>
 
 <h3 id="data"><code>data</code></h3>
 
@@ -157,7 +157,7 @@
 <tr>
 <td><code>options.reasonPhrase</code></td>
       <td><code>String</code></td>
-      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+      <td>Optional SIP description of the response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
@@ -185,7 +185,7 @@
     </tr></tbody>
 </table><h3 id="acceptoptions"><code>accept([options])</code></h3>
 
-<p>Send a successful (200-299) response. By default, <code>accept</code> will send a <code>200 Okay</code> response with no body.</p>
+<p>Send a successful (200-299) response. By default, <code>accept</code> will send a <code>200 OK</code> response with no body.</p>
 
 <h4 id="parameters-2">Parameters</h4>
 
@@ -209,7 +209,7 @@
 <tr>
 <td><code>options.reasonPhrase</code></td>
       <td><code>String</code></td>
-      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+      <td>Optional SIP description of the response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
@@ -261,7 +261,7 @@
 <tr>
 <td><code>options.reasonPhrase</code></td>
       <td><code>String</code></td>
-      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+      <td>Optional SIP description of the response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
@@ -314,7 +314,7 @@
 <tr>
 <td><code>options.reasonPhrase</code></td>
       <td><code>String</code></td>
-      <td>Optional SIP description of the Response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
+      <td>Optional SIP description of the response code. If not specified, the reason phrase for the response code from SIP.C.REASON_PHRASE will be used, or the empty string.</td>
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
@@ -342,11 +342,11 @@
     </tr></tbody>
 </table><h2 id="events">Events</h2>
 
-<h3 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h3>
+<h3 id="progress"><code>progress</code></h3>
 
 <p>Fired each time a provisional (100-199) response is sent.</p>
 
-<h4 id="arguments">Arguments</h4>
+<h4 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -371,11 +371,11 @@
       <td>The sent response</td>
     </tr>
 </tbody>
-</table><h3 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h3>
+</table><h3 id="accepted"><code>accepted</code></h3>
 
 <p>Fired each time a successful final (200-299) response is sent.</p>
 
-<h4 id="arguments-1">Arguments</h4>
+<h4 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -400,11 +400,11 @@
       <td>The sent response</td>
     </tr>
 </tbody>
-</table><h3 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h3>
+</table><h3 id="rejected"><code>rejected</code></h3>
 
 <p>Fired each time an unsuccessful final (300-699) response is sent. <em>Note: This will also emit a <code>failed</code> event.</em></p>
 
-<h4 id="arguments-2">Arguments</h4>
+<h4 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -434,11 +434,11 @@
       <td>The reason phrase associated with the SIP response code.</td>
     </tr>
 </tbody>
-</table><h3 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h3>
+</table><h3 id="failed"><code>failed</code></h3>
 
 <p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
 
-<h4 id="arguments-3">Arguments</h4>
+<h4 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -460,7 +460,7 @@
 <tr>
 <td><code>data.response</code></td>
       <td><a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse|null</code></a></td>
-      <td>The sent response, or <code>null</code> if there failure was not due to a received response.</td>
+      <td>The sent response, or <code>null</code> if the failure was not due to a received response.</td>
     </tr>
 <tr>
 <td><code>data.cause</code></td>

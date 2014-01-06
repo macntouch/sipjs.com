@@ -88,18 +88,18 @@
 </li>
   <li>
 <a href="#events">Events</a>    <ul>
-<li><a href="#onconnecting-function-responsecode-"><code>on('connecting', function (response,code) {})</code></a></li>
-      <li><a href="#onprogress-function-data-"><code>on('progress', function (data) {})</code></a></li>
-      <li><a href="#onaccepted-function-data-"><code>on('accepted', function (data) {})</code></a></li>
-      <li><a href="#onrejected-function-data-"><code>on('rejected', function (data) {})</code></a></li>
-      <li><a href="#onfailed-function-data-"><code>on('failed', function (data) {})</code></a></li>
-      <li><a href="#onterminated-functionmessage-cause-"><code>on('terminated', function(message, cause) {})</code></a></li>
-      <li><a href="#oncanceled-functionresponse-code-"><code>on('canceled', function(response, code) {})</code></a></li>
-      <li><a href="#onreferred-functionresponse-"><code>on('referred', function(response) {})</code></a></li>
-      <li><a href="#ondtmf-functiondtmf-request-"><code>.on('dtmf', function(dtmf, request) {})</code></a></li>
-      <li><a href="#oninvite-function-"><code>on('invite', function() {})</code></a></li>
-      <li><a href="#onpreaccepted-function--"><code>on('preaccepted', function () {})</code></a></li>
-      <li><a href="#onbye-function-"><code>on('bye', function() {})</code></a></li>
+<li><a href="#connecting"><code>connecting</code></a></li>
+      <li><a href="#progress"><code>progress</code></a></li>
+      <li><a href="#accepted"><code>accepted</code></a></li>
+      <li><a href="#rejected"><code>rejected</code></a></li>
+      <li><a href="#failed"><code>failed</code></a></li>
+      <li><a href="#terminated"><code>terminated</code></a></li>
+      <li><a href="#canceled"><code>canceled</code></a></li>
+      <li><a href="#referred"><code>referred</code></a></li>
+      <li><a href="#dtmf"><code>dtmf</code></a></li>
+      <li><a href="#invite"><code>invite</code></a></li>
+      <li><a href="#preaccepted"><code>preaccepted</code></a></li>
+      <li><a href="#bye"><code>bye</code></a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
@@ -132,7 +132,7 @@
 
 <h3 id="inviteoptions"><code>invite([options])</code></h3>
 
-<p>Send an INVITE request. Based on the call set up, this may prompt the user for media. Returns this InviteClientContext. This is typically called by the <code>UA</code> in <code>ua.invite(...)</code>.</p>
+<p>Send an INVITE request. Based on the call set up, this may prompt the user for media. This is typically called by the <code>UA</code> in <code>ua.invite(...)</code>.</p>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -159,22 +159,25 @@
 <td><code>options.mediaConstraints</code></td>
       <td><code>Object</code></td>
       <td>
-<code>Object</code> with two valid fields (<code>audio</code> and <code>video</code>) indicating whether the session is intended to use audio and/or video and the constraints to be used. Default value is both <code>audio</code> and <code>video</code> set to <code>true</code>.</td>
+<code>Object</code> with two valid fields (<code>audio</code> and <code>video</code>) indicating whether the session is intended to use audio and/or video and the constraints to be used. If media constraints are not provided, <code>{audio: true, video: true}</code> will be used.</td>
     </tr>
 <tr>
 <td><code>options.RTCConstraints</code></td>
       <td><code>Object</code></td>
-      <td>Used similarly to <code>mediaConstraints</code>, but for the RTCMediaHandler</td>
+      <td>
+<code>Object</code> representing RTCPeerconnection constraints.</td>
     </tr>
 <tr>
 <td><code>options.inviteWithoutSdp</code></td>
       <td><code>Boolean</code></td>
-      <td>Tells the InviteContext if the INVITE should be sent with or without sdp.</td>
+      <td>
+<code>true</code> if the INVITE should be sent without sdp, <code>false</code> otherwise.</td>
     </tr>
 <tr>
 <td><code>options.anonymous</code></td>
       <td><code>Boolean</code></td>
-      <td>Tells the InviteContext if the UA being used will be anonymous.</td>
+      <td>
+<code>true</code> if the UA being used will be anonymous, <code>false</code> otherwise.</td>
     </tr>
 <tr>
 <td><code>options.body</code></td>
@@ -436,7 +439,7 @@ call.sendDTMF(<span style="color:#00D">4</span>);
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> tones = <span style="color:#F00;background-color:#FAA">`</span><span style="color:#00D">1234</span><span style="color:#F00;background-color:#FAA">#</span><span style="color:#F00;background-color:#FAA">`</span>;
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> tones = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">1234#</span><span style="color:#710">'</span></span>;
 
 <span style="color:#080;font-weight:bold">var</span> extraHeaders = [ <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Foo: foo</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">X-Bar: bar</span><span style="color:#710">'</span></span> ];
 
@@ -631,7 +634,7 @@ INVALID_STATE_ERROR</p>
     </tr></tbody>
 </table><h3 id="refertarget-options"><code>refer(target[, options])</code></h3>
 
-<p>Send a REFER request. The transfer that occurs can be attended or blind. An attended transfer is when you have there are two active call sessions and session A is being transferred to session B. Usually the person who is doing the transfer will talk to both session A and session B before making the transfer. A blind transfer is when the person who is doing the transfer will transfer the session without actually setting up the session to the receiving end. Usually the person making the transfer will not talk to the person receiving the transfer.</p>
+<p>Send a REFER request. A REFER occurs when persons A and B have an active call session, and A wants to transfer B to speak with C. This is called a transfer, and these transfers can be attended or blind. An attended transfer occurs when A creates a session with C before connecting B to speak with C. A blind transfer occurs when A causes B to create a session with C, so A and C have no contact.</p>
 
 <h4 id="parameters-8">Parameters</h4>
 
@@ -644,7 +647,9 @@ INVALID_STATE_ERROR</p>
 <tbody>
 <tr>
 <td><code>target</code></td>
-      <td><code>SIP.InviteServerContext|SIP.InviteClientContext|String</code></td>
+      <td>
+<code>SIP.InviteServerContext</code> <code>| SIP.InviteClientContext</code> <code>| String</code>
+</td>
       <td>If the target is an InviteServerContext or InviteClientContext will start an attended transfer. Otherwise it will do a blind transfer.</td>
     </tr>
 <tr>
@@ -678,15 +683,15 @@ INVALID_STATE_ERROR</p>
 
 <h2 id="events">Events</h2>
 
-<p><code>SIP.InviteContext</code> class defines a series of events. Each of them allows callback functions registration in order to let the user execute a handler for each given stimulus.</p>
+<p><code>SIP.InviteContext</code> class defines a series of events. Each of them allows a callback function to be defined in order to let the user execute a handler for each given stimulus.</p>
 
 <p>Every event handler is executed with a <a href="/api/devel/event/">SIP.Event</a> instance as the only argument.</p>
 
-<h3 id="onconnecting-function-responsecode-"><code>on('connecting', function (response,code) {})</code></h3>
+<h3 id="connecting"><code>connecting</code></h3>
 
 <p>Fired when ICE is starting to negotiate between the peers.</p>
 
-<h4 id="event-data-fields">Event <code>data</code> fields</h4>
+<h4 id="onconnecting-function-responsecode-"><code>on('connecting', function (response,code) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -707,11 +712,11 @@ INVALID_STATE_ERROR</p>
       <td>The SIP response code.</td>
     </tr>
 </tbody>
-</table><h3 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h3>
+</table><h3 id="progress"><code>progress</code></h3>
 
 <p>Fired each time a provisional (100-199) response is received.</p>
 
-<h4 id="arguments">Arguments</h4>
+<h4 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -736,11 +741,11 @@ INVALID_STATE_ERROR</p>
       <td>The received response</td>
     </tr>
 </tbody>
-</table><h3 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h3>
+</table><h3 id="accepted"><code>accepted</code></h3>
 
 <p>Fired each time a successful final (200-299) response is received.</p>
 
-<h4 id="arguments-1">Arguments</h4>
+<h4 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -765,11 +770,11 @@ INVALID_STATE_ERROR</p>
       <td>The received response</td>
     </tr>
 </tbody>
-</table><h3 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h3>
+</table><h3 id="rejected"><code>rejected</code></h3>
 
 <p>Fired each time an unsuccessful final (300-699) response is received. <em>Note: This will also emit a <code>failed</code> event.</em></p>
 
-<h4 id="arguments-2">Arguments</h4>
+<h4 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -799,11 +804,11 @@ INVALID_STATE_ERROR</p>
       <td>The reason phrase associated with the SIP response code.</td>
     </tr>
 </tbody>
-</table><h3 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h3>
+</table><h3 id="failed"><code>failed</code></h3>
 
 <p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
 
-<h4 id="arguments-3">Arguments</h4>
+<h4 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -825,7 +830,7 @@ INVALID_STATE_ERROR</p>
 <tr>
 <td><code>data.response</code></td>
       <td><a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse|null</code></a></td>
-      <td>The received response, or <code>null</code> if there failure was not due to a received response.</td>
+      <td>The received response, or <code>null</code> if the failure was not due to a received response.</td>
     </tr>
 <tr>
 <td><code>data.cause</code></td>
@@ -833,11 +838,11 @@ INVALID_STATE_ERROR</p>
       <td>The reason phrase associated with the SIP response code, or one of <code>SIP.C.causes</code> if the failure was not due to a received response.</td>
     </tr>
 </tbody>
-</table><h3 id="onterminated-functionmessage-cause-"><code>on('terminated', function(message, cause) {})</code></h3>
+</table><h3 id="terminated"><code>terminated</code></h3>
 
 <p>Fired when an established call ends.</p>
 
-<h4 id="event-data-fields-1">Event <code>data</code> fields</h4>
+<h4 id="onterminated-functionmessage-cause-"><code>on('terminated', function(message, cause) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -855,14 +860,15 @@ INVALID_STATE_ERROR</p>
 <tr>
 <td><code>cause</code></td>
       <td> </td>
-      <td>One value of Failure and End Causes</td>
+      <td>One value of <a href="/api/devel/causes">Failure and End Causes</a>
+</td>
     </tr>
 </tbody>
-</table><h3 id="oncanceled-functionresponse-code-"><code>on('canceled', function(response, code) {})</code></h3>
+</table><h3 id="canceled"><code>canceled</code></h3>
 
 <p>Fired when the session was canceled by the UAC.</p>
 
-<h4 id="event-data-fields-2">Event <code>data</code> fields</h4>
+<h4 id="oncanceled-functionresponse-code-"><code>on('canceled', function(response, code) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -883,20 +889,11 @@ INVALID_STATE_ERROR</p>
       <td>The SIP response code.</td>
     </tr>
 </tbody>
-</table><table>
-<thead><tr>
-<th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>SIP.Invite</code></td>
-      <td>This ClientContext</td>
-    </tr></tbody>
-</table><h3 id="onreferred-functionresponse-"><code>on('referred', function(response) {})</code></h3>
+</table><h3 id="referred"><code>referred</code></h3>
 
 <p>Fired when the session was unable to establish.</p>
 
-<h4 id="event-data-fields-3">Event <code>data</code> fields</h4>
+<h4 id="onreferred-functionresponse-"><code>on('referred', function(response) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -910,9 +907,11 @@ INVALID_STATE_ERROR</p>
       <td>
 <a href="/api/devel/incomingResponse/"><code>SIP.IncomingResponse</code></a> instance of the received SIP 1XX response.</td>
     </tr></tbody>
-</table><h3 id="ondtmf-functiondtmf-request-"><code>.on('dtmf', function(dtmf, request) {})</code></h3>
+</table><h3 id="dtmf"><code>dtmf</code></h3>
 
 <p>Fired for an incoming or outgoing DTMF.</p>
+
+<h4 id="ondtmf-functiondtmf-request-"><code>.on('dtmf', function(dtmf, request) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -934,17 +933,29 @@ INVALID_STATE_ERROR</p>
 <a href="/api/devel/incomingRequest/"><code>SIP.IncomingRequest</code></a> instance of the received SIP INFO request.</td>
     </tr>
 </tbody>
-</table><h3 id="oninvite-function-"><code>on('invite', function() {})</code></h3>
+</table><h3 id="invite"><code>invite</code></h3>
 
 <p>Fired when an invite is sent.</p>
 
-<h3 id="onpreaccepted-function--"><code>on('preaccepted', function () {})</code></h3>
+<h4 id="oninvited-function--"><code>on('invited', function () {})</code></h4>
+
+<p><em>There are no documented arguments for this event</em></p>
+
+<h3 id="preaccepted"><code>preaccepted</code></h3>
 
 <p>Fired when a session is pre-accepted.</p>
 
-<h3 id="onbye-function-"><code>on('bye', function() {})</code></h3>
+<h4 id="onpreaccepted-function--"><code>on('preaccepted', function () {})</code></h4>
+
+<p><em>There are no documented arguments for this event</em></p>
+
+<h3 id="bye"><code>bye</code></h3>
 
 <p>Fired when a BYE is sent.</p>
+
+<h4 id="onbye-function-"><code>on('bye', function() {})</code></h4>
+
+<p><em>There are no documented arguments for this event</em></p>
     </div>
 
 		<div id="js-sidebar" class="sidebar-shell">

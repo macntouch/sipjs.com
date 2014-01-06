@@ -53,7 +53,8 @@
 <ul id="markdown-toc">
 <li>
 <a href="#construction">Construction</a>    <ul>
-<li><a href="#examples">Examples</a></li>
+<li><a href="#new-sipuaconfiguration"><code>new SIP.UA([configuration])</code></a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 </li>
   <li>
@@ -75,18 +76,20 @@
 </li>
   <li>
 <a href="#events">Events</a>    <ul>
-<li><a href="#onconnected-function--"><code>on('connected', function () {})</code></a></li>
-      <li><a href="#ondisconnected-function--"><code>on('disconnected', function () {})</code></a></li>
-      <li><a href="#onregistered-function--"><code>on('registered', function () {})</code></a></li>
-      <li><a href="#onunregistered-function-cause-"><code>on('unregistered', function (cause) {})</code></a></li>
-      <li><a href="#onregistrationfailed-function-cause-"><code>on('registrationFailed', function (cause) {})</code></a></li>
-      <li><a href="#oninvite-function-invite-"><code>on('invite', function (invite) {})</code></a></li>
-      <li><a href="#onmessage-function-message-"><code>on('message', function (message) {})</code></a></li>
+<li><a href="#connected"><code>connected</code></a></li>
+      <li><a href="#disconnected"><code>disconnected</code></a></li>
+      <li><a href="#registered"><code>registered</code></a></li>
+      <li><a href="#unregistered"><code>unregistered</code></a></li>
+      <li><a href="#registrationfailed"><code>registrationFailed</code></a></li>
+      <li><a href="#invite"><code>invite</code></a></li>
+      <li><a href="#message"><code>message</code></a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
 
 <p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent. Check the full list for optional <a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
+
+<h3 id="new-sipuaconfiguration"><code>new SIP.UA([configuration])</code></h3>
 
 <h3 id="examples">Examples</h3>
 
@@ -293,7 +296,7 @@ myUA.unregister(options);
 <tr>
 <td><code>options.contentType</code></td>
       <td><code>String</code></td>
-      <td>Optional <code>String</code> representing the content-type of the body. Default <code>text/plain</code>.</td>
+      <td>Optional <code>String</code> representing the content-type of the body. Default is <code>text/plain</code>.</td>
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
@@ -452,40 +455,40 @@ myUA.unregister(options);
     </tr></tbody>
 </table><h2 id="events">Events</h2>
 
-<p>User agent objects extend the <a href="/api/devel/eventEmitter/">SIP.EventEmitter</a> interface.  Each event emitted by UA passes specific relevant arguments to its callbacks.</p>
+<p>User agent objects extend the <a href="/api/devel/eventEmitter/">SIP.EventEmitter</a> interface.  Each event emitted by the UA passes specific relevant arguments to its callbacks.</p>
 
-<h3 id="onconnected-function--"><code>on('connected', function () {})</code></h3>
+<h3 id="connected"><code>connected</code></h3>
 
 <p>Fired when the WebSocket connection is established.</p>
 
-<h4 id="arguments">Arguments</h4>
+<h4 id="onconnected-function--"><code>on('connected', function () {})</code></h4>
 
 <p><em>There are no documented arguments for this event</em></p>
 
-<h3 id="ondisconnected-function--"><code>on('disconnected', function () {})</code></h3>
+<h3 id="disconnected"><code>disconnected</code></h3>
 
 <p>Fired when the WebSocket connection attempt (or automatic re-attempt) fails.</p>
 
-<h4 id="arguments-1">Arguments</h4>
+<h4 id="ondisconnected-function--"><code>on('disconnected', function () {})</code></h4>
 
 <p><em>There are no documented arguments for this event</em></p>
 
-<h3 id="onregistered-function--"><code>on('registered', function () {})</code></h3>
+<h3 id="registered"><code>registered</code></h3>
 
 <p>Fired for a successful registration.</p>
 
-<h4 id="arguments-2">Arguments</h4>
+<h4 id="onregistered-function--"><code>on('registered', function () {})</code></h4>
 
 <p><em>There are no documented arguments for this event</em></p>
 
-<h3 id="onunregistered-function-cause-"><code>on('unregistered', function (cause) {})</code></h3>
+<h3 id="unregistered"><code>unregistered</code></h3>
 
 <p>Fired for an unregistration. This event is fired in the following scenarios:</p>
 
 <ul>
 <li>As a result of a unregistration request. <code>UA.unregister()</code>.</li>
   <li>If being registered, a periodic re-registration fails.</li>
-</ul><h4 id="arguments-3">Arguments</h4>
+</ul><h4 id="onunregistered-function-cause-"><code>on('unregistered', function (cause) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -497,14 +500,14 @@ myUA.unregister(options);
 <td><code>cause</code></td>
       <td> </td>
       <td>
-<code>null</code> for positive response to un-REGISTER SIP request. In other case, one value of <a href="/api/devel/causes">Failure and End Causes</a>
+<code>null</code> for positive response to un-REGISTER SIP request. If a reregistration fails, this is one value of <a href="/api/devel/causes">Failure and End Causes</a>
 </td>
     </tr></tbody>
-</table><h3 id="onregistrationfailed-function-cause-"><code>on('registrationFailed', function (cause) {})</code></h3>
+</table><h3 id="registrationfailed"><code>registrationFailed</code></h3>
 
 <p>Fired for a registration failure.</p>
 
-<h4 id="arguments-4">Arguments</h4>
+<h4 id="onregistrationfailed-function-cause-"><code>on('registrationFailed', function (cause) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -518,11 +521,11 @@ myUA.unregister(options);
       <td>One value of <a href="/api/devel/causes">Failure and End Causes</a>
 </td>
     </tr></tbody>
-</table><h3 id="oninvite-function-invite-"><code>on('invite', function (invite) {})</code></h3>
+</table><h3 id="invite"><code>invite</code></h3>
 
 <p>Fired when an incoming INVITE request is received.</p>
 
-<h4 id="arguments-5">Arguments</h4>
+<h4 id="oninvite-function-invite-"><code>on('invite', function (invite) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -535,11 +538,11 @@ myUA.unregister(options);
       <td><a href="/api/devel/invite/">SIP.InviteServerContext</a></td>
       <td>The context surrounding the recently received INVITE request.</td>
     </tr></tbody>
-</table><h3 id="onmessage-function-message-"><code>on('message', function (message) {})</code></h3>
+</table><h3 id="message"><code>message</code></h3>
 
 <p>Fired when an incoming MESSAGE request is received.</p>
 
-<h4 id="arguments-6">Arguments</h4>
+<h4 id="onmessage-function-message-"><code>on('message', function (message) {})</code></h4>
 
 <table>
 <thead><tr>
