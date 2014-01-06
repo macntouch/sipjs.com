@@ -71,6 +71,7 @@
 <a href="#instance-methods-server">Instance Methods (Server)</a>    <ul>
 <li><a href="#acceptoptions"><code>accept([options])</code></a></li>
       <li><a href="#preaccept"><code>preaccept()</code></a></li>
+      <li><a href="#progressoptions"><code>progress([options])</code></a></li>
       <li><a href="#rejectoptions"><code>reject([options])</code></a></li>
     </ul>
 </li>
@@ -87,18 +88,18 @@
 </li>
   <li>
 <a href="#events">Events</a>    <ul>
-<li><a href="#onconnecting-function-responsecode-"><code>.on('connecting', function (response,code) {})</code></a></li>
+<li><a href="#onconnecting-function-responsecode-"><code>on('connecting', function (response,code) {})</code></a></li>
       <li><a href="#onprogress-function-data-"><code>on('progress', function (data) {})</code></a></li>
       <li><a href="#onaccepted-function-data-"><code>on('accepted', function (data) {})</code></a></li>
       <li><a href="#onrejected-function-data-"><code>on('rejected', function (data) {})</code></a></li>
       <li><a href="#onfailed-function-data-"><code>on('failed', function (data) {})</code></a></li>
-      <li><a href="#onterminated-functionmessage-cause-"><code>.on('terminated', function(message, cause) {})</code></a></li>
-      <li><a href="#oncanceled-functionresponse-code-"><code>.on('canceled', function(response, code) {})</code></a></li>
-      <li><a href="#onreferred-functionresponse-"><code>.on('referred', function(response) {})</code></a></li>
+      <li><a href="#onterminated-functionmessage-cause-"><code>on('terminated', function(message, cause) {})</code></a></li>
+      <li><a href="#oncanceled-functionresponse-code-"><code>on('canceled', function(response, code) {})</code></a></li>
+      <li><a href="#onreferred-functionresponse-"><code>on('referred', function(response) {})</code></a></li>
       <li><a href="#ondtmf-functiondtmf-request-"><code>.on('dtmf', function(dtmf, request) {})</code></a></li>
-      <li><a href="#oninvite-function-"><code>.on('invite', function() {})</code></a></li>
-      <li><a href="#onpreaccepted-function--"><code>.on('preaccepted', function () {})</code></a></li>
-      <li><a href="#onbye-function-"><code>.on('bye', function() {})</code></a></li>
+      <li><a href="#oninvite-function-"><code>on('invite', function() {})</code></a></li>
+      <li><a href="#onpreaccepted-function--"><code>on('preaccepted', function () {})</code></a></li>
+      <li><a href="#onbye-function-"><code>on('bye', function() {})</code></a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
@@ -301,7 +302,11 @@ INVALID_STATE_ERROR</p>
 <td><code>SIP.InviteContext</code></td>
       <td>This InviteContext</td>
     </tr></tbody>
-</table><h3 id="rejectoptions"><code>reject([options])</code></h3>
+</table><h3 id="progressoptions"><code>progress([options])</code></h3>
+
+<p>Inherited from <code>SIP.ServerContext</code></p>
+
+<h3 id="rejectoptions"><code>reject([options])</code></h3>
 
 <p>Reject the received INVITE request. The default response is 480 Temporarily Unavailable.</p>
 
@@ -677,7 +682,7 @@ INVALID_STATE_ERROR</p>
 
 <p>Every event handler is executed with a <a href="/api/devel/event/">SIP.Event</a> instance as the only argument.</p>
 
-<h3 id="onconnecting-function-responsecode-"><code>.on('connecting', function (response,code) {})</code></h3>
+<h3 id="onconnecting-function-responsecode-"><code>on('connecting', function (response,code) {})</code></h3>
 
 <p>Fired when ICE is starting to negotiate between the peers.</p>
 
@@ -828,7 +833,7 @@ INVALID_STATE_ERROR</p>
       <td>The reason phrase associated with the SIP response code, or one of <code>SIP.C.causes</code> if the failure was not due to a received response.</td>
     </tr>
 </tbody>
-</table><h3 id="onterminated-functionmessage-cause-"><code>.on('terminated', function(message, cause) {})</code></h3>
+</table><h3 id="onterminated-functionmessage-cause-"><code>on('terminated', function(message, cause) {})</code></h3>
 
 <p>Fired when an established call ends.</p>
 
@@ -853,7 +858,7 @@ INVALID_STATE_ERROR</p>
       <td>One value of Failure and End Causes</td>
     </tr>
 </tbody>
-</table><h3 id="oncanceled-functionresponse-code-"><code>.on('canceled', function(response, code) {})</code></h3>
+</table><h3 id="oncanceled-functionresponse-code-"><code>on('canceled', function(response, code) {})</code></h3>
 
 <p>Fired when the session was canceled by the UAC.</p>
 
@@ -887,7 +892,7 @@ INVALID_STATE_ERROR</p>
 <td><code>SIP.Invite</code></td>
       <td>This ClientContext</td>
     </tr></tbody>
-</table><h3 id="onreferred-functionresponse-"><code>.on('referred', function(response) {})</code></h3>
+</table><h3 id="onreferred-functionresponse-"><code>on('referred', function(response) {})</code></h3>
 
 <p>Fired when the session was unable to establish.</p>
 
@@ -929,15 +934,15 @@ INVALID_STATE_ERROR</p>
 <a href="/api/devel/incomingRequest/"><code>SIP.IncomingRequest</code></a> instance of the received SIP INFO request.</td>
     </tr>
 </tbody>
-</table><h3 id="oninvite-function-"><code>.on('invite', function() {})</code></h3>
+</table><h3 id="oninvite-function-"><code>on('invite', function() {})</code></h3>
 
 <p>Fired when an invite is sent.</p>
 
-<h3 id="onpreaccepted-function--"><code>.on('preaccepted', function () {})</code></h3>
+<h3 id="onpreaccepted-function--"><code>on('preaccepted', function () {})</code></h3>
 
 <p>Fired when a session is pre-accepted.</p>
 
-<h3 id="onbye-function-"><code>.on('bye', function() {})</code></h3>
+<h3 id="onbye-function-"><code>on('bye', function() {})</code></h3>
 
 <p>Fired when a BYE is sent.</p>
     </div>
