@@ -25,6 +25,7 @@
       <ul class="nav">
         <li><a href="/" class="nav-overview">Homepage</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
+        <li><a href="/sip-0.5.0-devel.min.js" class="nav-download">Download</a></li>
         <li><a href="/api/" class="nav-api">API</a></li>
         <li><a href="/news/" class="nav-blog">News</a></li>
         <li><a href="/changelog/" class="nav-blog">Change Log</a></li>
@@ -53,7 +54,7 @@
 <ul id="markdown-toc">
 <li>
 <a href="#construction">Construction</a>    <ul>
-<li><a href="#todo-add-constructor"><code>TODO: Add constructor</code></a></li>
+<li><a href="#new-sipurischeme-user-host-port-parameters-headers">new SIP.URI(scheme, user, host, port[, parameters, headers])</a></li>
     </ul>
 </li>
   <li>
@@ -78,16 +79,60 @@
       <li><a href="#clearheaders"><code>clearHeaders()</code></a></li>
       <li><a href="#clone"><code>clone()</code></a></li>
       <li><a href="#tostring"><code>toString()</code></a></li>
-      <li><a href="#parseuri"><code>parse(uri)</code></a></li>
+    </ul>
+</li>
+  <li>
+<a href="#static-methods">Static Methods</a>    <ul>
+<li><a href="#parseuri"><code>parse(uri)</code></a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
 
 <p>Typically, construction is managed by a <code>SIP.UA</code> when a URI is needed. However, advanced users may construct URIs manually.</p>
 
-<h3 id="todo-add-constructor"><code>TODO: Add constructor</code></h3>
+<h3 id="new-sipurischeme-user-host-port-parameters-headers">new SIP.URI(scheme, user, host, port[, parameters, headers])</h3>
 
-<h2 id="instance-variables">Instance Variables</h2>
+<h4 id="parameters">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>scheme</code></td>
+      <td><code>String</code></td>
+      <td>The scheme used for this URI</td>
+    </tr>
+<tr>
+<td><code>user</code></td>
+      <td><code>String</code></td>
+      <td>The user used for this URI</td>
+    </tr>
+<tr>
+<td><code>host</code></td>
+      <td><code>String</code></td>
+      <td>The host used for this URI</td>
+    </tr>
+<tr>
+<td><code>port</code></td>
+      <td><code>Number</code></td>
+      <td>The port number to use for this URI</td>
+    </tr>
+<tr>
+<td><code>parameters</code></td>
+      <td><code>Array of String</code></td>
+      <td>Optional parameters to use for this URI</td>
+    </tr>
+<tr>
+<td><code>headers</code></td>
+      <td><code>Array of String</code></td>
+      <td>Optional headers to use for this URI</td>
+    </tr>
+</tbody>
+</table><h2 id="instance-variables">Instance Variables</h2>
 
 <h3 id="scheme"><code>scheme</code></h3>
 
@@ -111,7 +156,7 @@
 
 <p>Creates or replaces the given URI parameter with the given value or null if no value is provided</p>
 
-<h4 id="parameters">Parameters</h4>
+<h4 id="parameters-1">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -135,7 +180,7 @@
 
 <p>Gets the value of the given URI parameter. Returns <code>undefined</code> if the parameter does not exist in the parameter set.</p>
 
-<h4 id="parameters-1">Parameters</h4>
+<h4 id="parameters-2">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -163,7 +208,7 @@
 
 <p>Verifies the existence of the given URI parameter.</p>
 
-<h4 id="parameters-2">Parameters</h4>
+<h4 id="parameters-3">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -192,7 +237,7 @@
 
 <p>Deletes the given parameter from the URI.</p>
 
-<h4 id="parameters-3">Parameters</h4>
+<h4 id="parameters-4">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -224,7 +269,7 @@
 
 <p>Creates or replaces the given URI header with the given value.</p>
 
-<h4 id="parameters-4">Parameters</h4>
+<h4 id="parameters-5">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -248,7 +293,7 @@
 
 <p>Gets the value of the given URI header.</p>
 
-<h4 id="parameters-5">Parameters</h4>
+<h4 id="parameters-6">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -276,7 +321,7 @@
 
 <p>Verifies the existence of the given URI header.</p>
 
-<h4 id="parameters-6">Parameters</h4>
+<h4 id="parameters-7">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -305,7 +350,7 @@
 
 <p>Deletes the given header from the URI.</p>
 
-<h4 id="parameters-7">Parameters</h4>
+<h4 id="parameters-8">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -353,11 +398,13 @@
 
 <p>Returns a <code>String</code> representing the URI. Characters that can’t appear unescaped are escaped as stated in the BNF grammar of the RFC 3261.</p>
 
+<h2 id="static-methods">Static Methods</h2>
+
 <h3 id="parseuri"><code>parse(uri)</code></h3>
 
 <p>Parses the given <code>String</code> against the SIP URI grammar rule.</p>
 
-<h4 id="parameters-8">Parameters</h4>
+<h4 id="parameters-9">Parameters</h4>
 
 <table>
 <thead><tr>
