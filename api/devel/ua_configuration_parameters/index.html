@@ -224,9 +224,15 @@
 <div>
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777">/* 
-  level: String representing the level of the log message ('debug', 'log', 'warn', 'error')
-  category: String representing the SIPjs instance class firing the log. ie: 'sipjs.ua'
-  label: String indicating the 'identifier' of the class instance when the log level is '3' (debug). ie: transaction.id
+  level: String representing the level of the log message 
+('debug', 'log', 'warn', 'error')
+
+  category: String representing the SIPjs instance class firing 
+the log. ie: 'sipjs.ua'
+
+  label: String indicating the 'identifier' of the class instance
+ when the log level is '3' (debug). ie: transaction.id
+
   content: String representing the log message
 */</span>
 connector(level, category, label, content);
@@ -323,21 +329,21 @@ connector(level, category, label, content);
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>turn_servers: { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span>}
+  <div class="code"><pre>turn_servers: { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span>}
 </pre></div>
 </div>
 </div>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>turn_servers: { <span style="color:#606">urls</span>:[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example2.org</span><span style="color:#710">"</span></span>], <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span>}
+  <div class="code"><pre>turn_servers: {<span style="color:#606">urls</span>:[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>], <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Al</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">yo</span><span style="color:#710">"</span></span>}
 </pre></div>
 </div>
 </div>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>turn_servers: [{ <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span>}]
+  <div class="code"><pre>turn_servers: [{ <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span>}]
 </pre></div>
 </div>
 </div>
@@ -345,8 +351,8 @@ connector(level, category, label, content);
 <div>
 <div class="CodeRay">
   <div class="code"><pre>turn_servers: [
-  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span> },
-  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org?transport=udp</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser2</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword2</span><span style="color:#710">"</span></span>}
+  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span> },
+  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org?transport=udp</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bob</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">dog</span><span style="color:#710">"</span></span>}
 ]
 </pre></div>
 </div>
