@@ -47,6 +47,333 @@
   <div id="wrapper">
   	<div class="content">
     	<h1 id="sipua-configuration-parameters">SIP.UA Configuration Parameters</h1>
+
+<ul id="markdown-toc">
+<li><a href="#uri">uri</a></li>
+  <li><a href="#wsservers">ws_servers</a></li>
+  <li><a href="#authorizationuser">authorization_user</a></li>
+  <li><a href="#connectionrecoverymaxinterval">connection_recovery_max_interval</a></li>
+  <li><a href="#connectionrecoverymininterval">connection_recovery_min_interval</a></li>
+  <li><a href="#displayname">display_name</a></li>
+  <li><a href="#hackipincontact">hack_ip_in_contact</a></li>
+  <li><a href="#hackviatcp">hack_via_tcp</a></li>
+  <li><a href="#instanceid">instance_id</a></li>
+  <li>
+<a href="#log">log</a>    <ul>
+<li><a href="#builtinenabled">builtinEnabled</a></li>
+      <li><a href="#level">level</a></li>
+      <li><a href="#connector">connector</a></li>
+    </ul>
+</li>
+  <li><a href="#noanswertimeout">no_answer_timeout</a></li>
+  <li><a href="#password">password</a></li>
+  <li><a href="#register">register</a></li>
+  <li><a href="#registerexpires">register_expires</a></li>
+  <li><a href="#registrarserver">registrar_server</a></li>
+  <li><a href="#stunservers">stun_servers</a></li>
+  <li><a href="#tracesip">trace_sip</a></li>
+  <li><a href="#turnservers">turn_servers</a></li>
+  <li><a href="#usepreloadedroute">use_preloaded_route</a></li>
+</ul><h1 id="mandatory-parameters">Mandatory Parameters</h1>
+
+<h2 id="uri">uri</h2>
+
+<p><code>String</code> - SIP URI associated to the User Agent. This is a SIP address given to you by your provider.  By default, URI is set to <code>anonymous.X@anonymous.invalid</code>, where X is a random token generated for each UA.</p>
+
+<h2 id="wsservers">ws_servers</h2>
+
+<p>Set of WebSocket URIs to connect to. If not specified, port 80 will be used for WS URIs and port 443 will be used for WSS URIs. This parameter can be expressed in multiple ways:</p>
+
+<ul>
+<li>
+<code>String</code> to define a single WebSocket URI.</li>
+  <li>
+<code>Array</code> of <code>Strings</code> to define multiple WebSocket URIs.</li>
+  <li>
+<code>Array</code> of <code>Object</code> to define multiple WebSocket URIs with weight. URIs with higher weights are attempted before those with lower weights.</li>
+</ul><div>
+<div class="CodeRay">
+  <div class="code"><pre>ws_servers: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws.example.com</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ws_servers: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws.example.com:8443/sip?KEY=1234</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ws_servers: [
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-1.example.com</span><span style="color:#710">"</span></span>,
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-2.example.com</span><span style="color:#710">"</span></span>
+]
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ws_servers: [
+  {<span style="color:#606">ws_uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-1.example.com</span><span style="color:#710">"</span></span>, <span style="color:#606">weight</span>: <span style="color:#00D">10</span>}, <span style="color:#777">// First connection attempt</span>
+  {<span style="color:#606">ws_uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-2.example.com</span><span style="color:#710">"</span></span>, <span style="color:#606">weight</span>: <span style="color:#00D">1</span>}
+]
+</pre></div>
+</div>
+</div>
+
+<h1 id="optional-parameters">Optional Parameters</h1>
+
+<h2 id="authorizationuser">authorization_user</h2>
+<p>Username (<code>String</code>) to use when generating authentication credentials. If not defined the value in uri parameter is used.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>authorization_user: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice123</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="connectionrecoverymaxinterval">connection_recovery_max_interval</h2>
+<p>Maximum interval (<code>Number</code>) in seconds between WebSocket reconnection attempts. Default value is 30.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>connection_recovery_max_interval: <span style="color:#00D">60</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="connectionrecoverymininterval">connection_recovery_min_interval</h2>
+<p>Minimum interval (<code>Number</code>) in seconds between WebSocket reconnection attempts. Default value is 2.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>connection_recovery_min_interval: <span style="color:#00D">4</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="displayname">display_name</h2>
+<p>Descriptive name (<code>String</code>) to be shown to the called party when calling or sending IM messages. It must NOT be enclosed between double quotes even if the given name contains multi-byte symbols (SIPjs will always enclose the <code>display_name</code> value between double quotes).</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>display_name: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Alice ¶€ĸøĸø</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="hackipincontact">hack_ip_in_contact</h2>
+<p>Set a random IP address as the host value in the Contact header field and Via sent-by parameter. Useful for SIP registrars not allowing domain names in the Contact URI. Valid values are <code>true</code> and <code>false</code> (<code>Boolean</code>). Default value is a <code>false</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>hack_ip_in_contact: <span style="color:#069">true</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="hackviatcp">hack_via_tcp</h2>
+<p>Set Via transport parameter in outgoing SIP requests to “TCP”. Useful when traversing SIP nodes that are not ready to parse Via headers with “WS” or “WSS” value in a Via header. Valid values are <code>true</code> and <code>false</code> (<code>Boolean</code>). Default value is <code>false</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>hack_via_tcp: <span style="color:#069">true</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="instanceid">instance_id</h2>
+<p><code>String</code> indicating the UUID URI to be used as instance ID to identify the UA instance when using GRUU.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>instance_id: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">uuid:8f1fa16a-1165-4a96-8341-785b1ef24f12</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>instance_id: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">8f1fa16a-1165-4a96-8341-785b1ef24f12</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="log">log</h2>
+<p><code>Object</code> providing the desired log behavior.</p>
+
+<h3 id="builtinenabled">builtinEnabled</h3>
+
+<p><code>Boolean</code> indicating whether SIPjs should write log messages in the browser console. Default value is <code>true</code>.</p>
+
+<h3 id="level">level</h3>
+
+<p><code>Number</code> or <code>String</code> indicating the verbose level of the SIPjs log. Valid values are <code>3</code>, <code>2</code>, <code>1</code>, <code>0</code> or <code>"debug"</code>, <code>"log"</code>, <code>"warn"</code>, <code>"error"</code> respectively. Default value is <code>2</code> (or <code>log</code>).</p>
+
+<h3 id="connector">connector</h3>
+
+<p>User defined <code>Function</code> which will be called everytime a log is generated, according to the <code>enabled</code> and <code>level</code> options.</p>
+
+<p>The function is called with the following semantics:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">/* 
+  level: String representing the level of the log message ('debug', 'log', 'warn', 'error')
+  category: String representing the SIPjs instance class firing the log. ie: 'sipjs.ua'
+  label: String indicating the 'identifier' of the class instance when the log level is '3' (debug). ie: transaction.id
+  content: String representing the log message
+*/</span>
+connector(level, category, label, content);
+</pre></div>
+</div>
+</div>
+
+<h2 id="noanswertimeout">no_answer_timeout</h2>
+<p>Time (in seconds) (<code>Integer</code>) after which an incoming call is rejected if not answered. Default value is <code>30</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>no_answer_timeout: <span style="color:#00D">120</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="password">password</h2>
+<p>SIP Authentication password (<code>String</code>).   Default value is <code>null</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>password: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">1234</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="register">register</h2>
+<p>Indicate if JsSIP User Agent should register automatically when starting. Valid values are <code>true</code> and <code>false</code> (<code>Boolean</code>). Default value is <code>true</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>register: <span style="color:#069">false</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="registerexpires">register_expires</h2>
+<p>Registration expiry time (in seconds) (<code>Integer</code>). Default value is <code>600</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>register_expires: <span style="color:#00D">300</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="registrarserver">registrar_server</h2>
+<p>Set the SIP registrar URI. Valid value is a SIP URI without username. Default value is <code>null</code> which means that the registrar URI is taken from the uri parameter (by removing the username).</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>registrar_server: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:registrar.mydomain.com</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="stunservers">stun_servers</h2>
+<p><code>String</code> or <code>Array</code> of <code>Strings</code> indicating the STUN server(s) to use for IP address discovery. Values must include “stun:” or “stuns:” schema. Default value is [<code>"stun:stun.l.google.com:19302"</code>].</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>stun_servers: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">stun:example.org</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>stun_servers: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">stun:example.org</span><span style="color:#710">"</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">stuns:example.org</span><span style="color:#710">"</span></span>]
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>stun_servers: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">stun:example.org:8000</span><span style="color:#710">"</span></span>]
+</pre></div>
+</div>
+</div>
+
+<h2 id="tracesip">trace_sip</h2>
+<p>Indicate whether incoming and outgoing SIP request/responses must be logged in the browser console (<code>Boolean</code>). Default value is <code>false</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>trace_sip: <span style="color:#069">true</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="turnservers">turn_servers</h2>
+<p><code>Object</code> or <code>Array</code> of <code>Objects</code> indicating the TURN server(s) and corresponding username and password to be used for media relay. ‘url’ values can include “turn:” or “turns” schema. No TURN server is set by default.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>turn_servers: { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span>}
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>turn_servers: { <span style="color:#606">urls</span>:[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example2.org</span><span style="color:#710">"</span></span>], <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span>}
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>turn_servers: [{ <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span>}]
+</pre></div>
+</div>
+</div>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>turn_servers: [
+  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword</span><span style="color:#710">"</span></span> },
+  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:example.org?transport=udp</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnuser2</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turnpassword2</span><span style="color:#710">"</span></span>}
+]
+</pre></div>
+</div>
+</div>
+
+<h2 id="usepreloadedroute">use_preloaded_route</h2>
+<p>If set to true every SIP initial request sent by SIPjs includes a Route header with the SIP URI associated to the WebSocket server as value. Some SIP Outbound Proxies require such a header. Valid values are <code>true</code> and <code>false</code> (<code>Boolean</code>). Default value is <code>false</code>.</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ws_servers: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://example.org/sip-ws</span><span style="color:#710">"</span></span>
+use_preloaded_route: <span style="color:#069">true</span>
+</pre></div>
+</div>
+</div>
+
+<p>The Route header will look like Route: <code>&lt;sip:example.org;lr;transport=ws&gt;</code></p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>ws_servers: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">wss://example.org:8443</span><span style="color:#710">"</span></span>
+use_preloaded_route: <span style="color:#069">true</span>
+</pre></div>
+</div>
+</div>
+
+<p>The Route header will look like Route: <code>&lt;sip:example.org:8443;lr;transport=ws&gt;</code></p>
     </div>
 
 		<div id="js-sidebar" class="sidebar-shell">
@@ -109,8 +436,8 @@
       <li class="js-topic">
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a></h3>
         <ul class="js-guides">
-          <li><a href="/api/devel/ua_configuration_parameters/#mandatory">Mandatory Parameters</a></li>
-          <li><a href="/api/devel/ua_configuration_parameters/#optional">Optional Parameters</a></li>
+          <li><a href="/api/devel/ua_configuration_parameters/#mandatory-parameters">Mandatory Parameters</a></li>
+          <li><a href="/api/devel/ua_configuration_parameters/#optional-parameters">Optional Parameters</a></li>
         </ul>
       </li>
     </ul>
