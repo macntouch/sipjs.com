@@ -54,7 +54,7 @@
 
 <p>In the realm of SIP, requests and responses are sent from one endpoint to another. These individual messages make up a SIP <em>transaction</em>. Transactions are able to track forked requests, retransmissions, timeouts, provisional responses, etc. As soon as the request is rejected, the transaction terminates. Any new requests create completely new transactions. Sometimes these requests are related, though, such as when the first request was challenged by an authenticating proxy.  Contexts let us wrap these two requests into one logical object.</p>
 
-<p>Contexts also provide another use:  <em>they stick around.</em> SIP transactions terminate as soon as the request receives a final response, even if the request is accepted. Since the contexts don’t go away, we can use them to describe the result of the request.  For example, a <code>MessageContext</code> contains the body of the accepted message, which an application can display to the user. An <code>InviteContext</code> becomes the SIP session created by the accepted INVITE request. This is where the contexts get their name. They represent not the request, but the entire surrounding context of where the request came from and what it is actually requesting.</p>
+<p>Contexts also provide another use:  <em>they stick around.</em> SIP transactions terminate as soon as the request receives a final response, even if the request is accepted. Since the contexts don’t go away, we can use them to describe the result of the request.  For example, a <code>ServerContext</code> contains the body of the accepted message, which an application can display to the user. An INVITE’s <code>SIP.ClientContext</code> becomes the SIP session created by the accepted INVITE request (as a <code>SIP.Session</code>). This is where the contexts get their name. They represent not the request, but the entire surrounding context of where the request came from and what it is actually requesting.</p>
 
 <h2 id="flavors-of-context-objects">Flavors of Context Objects</h2>
 
@@ -62,9 +62,9 @@
 
 <p>First, the base. This part of the Context deals with handling the request itself. If you’re sending a MESSAGE request, for example, your Context will be a <code>ClientContext</code> and will send the request, handle any authorization challenges and retransmissions, and notify you via events when the MESSAGE is accepted or rejected. If you’re receiving the request, your context will be a <code>ServerContext</code>, and it will do the opposite:  notifying you that you received the request and allowing you to respond to it.</p>
 
-<p>Second, the mixins. This part of the Context defines what will happen after the request is accepted.  An INVITE request will use the <code>InviteContext</code> to define session methods such as <code>hold()</code> and <code>refer()</code>, while MESSAGE requests use <code>MessageContext</code> to parse the body of the MESSAGE.</p>
+<p>Second, the mixins. This part of the Context defines what will happen after the request is accepted.  An INVITE request will use the <code>Session</code> to define session methods such as <code>hold()</code> and <code>refer()</code>, while MESSAGE requests use <code>Message</code> to parse the body of the MESSAGE.</p>
 
-<p>While some people may like plain ice cream or snacking on chocolate chips, creating a <code>ServerContext</code> or <code>InviteContext</code> alone isn’t very useful. The magic happens when you <em>mix them together.</em> That’s why you’ll typically see objects called <code>InviteServerContext</code> or <code>MessageClientContext</code>. They each share only the behavior they need for the <em>context</em> in which the request was encountered.</p>
+<p>While some people may like plain ice cream or snacking on chocolate chips, creating a <code>ServerContext</code> or <code>Session</code> alone isn’t very useful. The magic happens when you <em>mix them together.</em> That’s why in the source code you’ll typically see objects called <code>InviteServerContext</code> or <code>MessageClientContext</code>. They each share only the behavior they need for the <em>context</em> in which the request was encountered.</p>
 
 <h2 id="read-on">Read on</h2>
 
@@ -72,9 +72,9 @@
 <li>
 <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a> and <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a> documentation</li>
   <li>
-<a href="/api/devel/invite"><code>SIP.InviteContext</code></a> documentation (including <code>SIP.InviteClientContext</code> and <code>SIP.InviteServerContext</code>)</li>
+<a href="/api/devel/session"><code>SIP.Session</code></a> documentation</li>
   <li>
-<a href="/api/devel/message"><code>SIP.MessageContext</code></a> documentation (including <code>SIP.MessageClientContext</code> and <code>SIP.MessageServerContext</code>)</li>
+<a href="/api/devel/message"><code>SIP.Message</code></a> documentation</li>
 </ul>
     </div>
 
@@ -105,7 +105,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.InviteContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.Session</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/invite/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/invite/#instance-methods">Instance Methods</a></li>
@@ -113,7 +113,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.MessageContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.Message</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>

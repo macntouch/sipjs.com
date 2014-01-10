@@ -48,20 +48,16 @@
   	<div class="content">
     	<h1 id="sipservercontext">SIP.ServerContext</h1>
 
-<p>A <code>SIP.ServerContext</code> encapsulates the behavior required to receive and send replies to a request.  It is typically mixed in with behavior from a method-specific context, such as <a href="/api/devel/invite/"><code>SIP.InviteContext</code></a> or <a href="/api/devel/message"><code>SIP.MessageContext</code></a>.</p>
+<p>A <code>SIP.ServerContext</code> encapsulates the behavior required to receive and send replies to a request.  It is typically mixed in with behavior from a method-specific class, such as <a href="/api/devel/session/"><code>SIP.Session</code></a> or <a href="/api/devel/message/"><code>SIP.Message</code></a>.</p>
 
 <ul id="markdown-toc">
 <li>
-<a href="#construction">Construction</a>    <ul>
-<li><a href="#new-sipservercontextua-request"><code>new SIP.ServerContext(ua, request)</code></a></li>
-    </ul>
-</li>
-  <li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
 <li><a href="#ua"><code>ua</code></a></li>
+      <li><a href="#method"><code>method</code></a></li>
       <li><a href="#request"><code>request</code></a></li>
-      <li><a href="#localidentity"><code>local_identity</code></a></li>
-      <li><a href="#remoteidentity"><code>remote_identity</code></a></li>
+      <li><a href="#localidentity"><code>localIdentity</code></a></li>
+      <li><a href="#remoteidentity"><code>remoteIdentity</code></a></li>
       <li><a href="#data"><code>data</code></a></li>
     </ul>
 </li>
@@ -81,53 +77,45 @@
       <li><a href="#failed"><code>failed</code></a></li>
     </ul>
 </li>
-</ul><h2 id="construction">Construction</h2>
+</ul><!--
+## Construction
 
-<p>Typically, construction of a ServerContext is managed by a <code>SIP.UA</code> and happens automatically upon receipt of a new incoming request. However, advanced users may construct ServerContexts manually.</p>
+Typically, construction of a ServerContext is managed by a `SIP.UA` and happens automatically upon receipt of a new incoming request. However, advanced users may construct ServerContexts manually.
 
-<h3 id="new-sipservercontextua-request"><code>new SIP.ServerContext(ua, request)</code></h3>
+### `new SIP.ServerContext(ua, request)`
 
-<h4 id="parameters">Parameters</h4>
+#### Parameters
 
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td>ua</td>
-      <td><code>SIP.UA</code></td>
-      <td>The user agent that received the request.</td>
-    </tr>
-<tr>
-<td>request</td>
-      <td><code>SIP.IncomingRequest</code></td>
-      <td>The request received.</td>
-    </tr>
-</tbody>
-</table><h2 id="instance-attributes">Instance Attributes</h2>
+Name | Type | Description
+-|-|-
+ua | `SIP.UA` | The user agent that received the request.
+request | `SIP.IncomingRequest` | The request received.
+
+--><h2 id="instance-attributes">Instance Attributes</h2>
 
 <h3 id="ua"><code>ua</code></h3>
 
-<p><code>SIP.UA</code> - The user agent that received the request.</p>
+<p><a href="/api/devel/ua/"><code>SIP.UA</code></a> - The user agent which received the request.</p>
+
+<h3 id="method"><code>method</code></h3>
+
+<p><code>String</code> - The SIP method of the request. For example, <code>"INVITE"</code> or <code>"MESSAGE"</code>.</p>
 
 <h3 id="request"><code>request</code></h3>
 
-<p><code>SIP.IncomingRequest</code> - The request received.</p>
+<p><a href="/api/devel/incomingMessage/"><code>SIP.IncomingRequest</code></a> - The request received.</p>
 
-<h3 id="localidentity"><code>local_identity</code></h3>
+<h3 id="localidentity"><code>localIdentity</code></h3>
 
-<p><code>SIP.NameAddrHeader</code> - The To header of the request, representing the identity of the local endpoint.</p>
+<p><a href="/api/devel/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The To header field value, representing the local endpoint. This is typically the URI of the UA as a <code>SIP.NameAddrHeader</code>.</p>
 
-<h3 id="remoteidentity"><code>remote_identity</code></h3>
+<h3 id="remoteidentity"><code>remoteIdentity</code></h3>
 
-<p><code>SIP.NameAddrHeader</code> - The From header of the request, representing the identity of the remote endpoint.</p>
+<p><a href="/api/devel/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The From header field value, representing the remote endpoint.</p>
 
 <h3 id="data"><code>data</code></h3>
 
-<p><code>Object</code> - An empty object for the application to define custom attributes.  <em>Note: Custom attributes defined elsewhere on the object may be overwritten.</em></p>
+<p><code>Object</code> - An empty object.  Define custom application data here. <em>Note: SIP.js may overwrite any custom attributes defined outside of the data object.</em></p>
 
 <h2 id="instance-methods">Instance Methods</h2>
 
@@ -135,7 +123,7 @@
 
 <p>Send a provisional (100-199) response. By default, <code>progress</code> will send a <code>180 Ringing</code> response with no body.</p>
 
-<h4 id="parameters-1">Parameters</h4>
+<h4 id="parameters">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -187,7 +175,7 @@
 
 <p>Send a successful (200-299) response. By default, <code>accept</code> will send a <code>200 OK</code> response with no body.</p>
 
-<h4 id="parameters-2">Parameters</h4>
+<h4 id="parameters-1">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -239,7 +227,7 @@
 
 <p>Send a failure (300-699) response. By default, <code>reject</code> will send a <code>480 Temporarily Unavailable</code> response with no body.</p>
 
-<h4 id="parameters-3">Parameters</h4>
+<h4 id="parameters-2">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -289,9 +277,9 @@
     </tr></tbody>
 </table><h3 id="replyoptions"><code>reply([options])</code></h3>
 
-<p>Send any (100-699) response. <code>reply</code> does not have default settings, and will fail without a specified status code.</p>
+<p>Send any (100-699) response. <code>reply</code> does not have default settings and will fail without a specified status code.</p>
 
-<h4 id="parameters-4">Parameters</h4>
+<h4 id="parameters-3">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -498,7 +486,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.InviteContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.Session</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/invite/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/invite/#instance-methods">Instance Methods</a></li>
@@ -506,7 +494,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.MessageContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.Message</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>

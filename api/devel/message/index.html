@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>SIP.MessageContext | SIP.js</title>
+  <title>SIP.Message | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -46,89 +46,46 @@
 	
   <div id="wrapper">
   	<div class="content">
-    	<h1 id="sipmessagecontext">SIP.MessageContext</h1>
+    	<h1 id="sipmessage">SIP.Message</h1>
 
-<p><code>SIP.MessageContext</code> represents an instant message using the SIP method MESSAGE. By default, the message is treated as plain text. However, any valid content type may be specified.</p>
+<p><code>SIP.Message</code> represents an instant message using the SIP method MESSAGE. By default, the message is treated as plain text. However, any valid content type may be specified.</p>
 
 <ul id="markdown-toc">
-<li>
-<a href="#instance-attributes">Instance Attributes</a>    <ul>
-<li><a href="#body"><code>body</code></a></li>
-      <li><a href="#contenttype"><code>content_type</code></a></li>
-      <li><a href="#request"><code>request</code></a></li>
-    </ul>
-</li>
-  <li>
-<a href="#instance-method">Instance Method</a>    <ul>
-<li><a href="#messageoptions-messageclientcontext-only"><code>message(options)</code> <em>(MessageClientContext Only)</em></a></li>
-    </ul>
-</li>
-</ul><h4 id="progress"><code>progress()</code></h4>
+<li><a href="#instance-attributes">Instance Attributes</a></li>
+  <li><a href="#instance-methods">Instance Methods</a></li>
+  <li><a href="#events">Events</a></li>
+</ul><h2 id="instance-attributes">Instance Attributes</h2>
 
-<p>Inherited from [<code>SIP.ServerContext</code>]</p>
+<p><code>SIP.Message</code> inherits its instance attributes from <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a>.</p>
 
-<h4 id="accept"><code>accept()</code></h4>
+<h2 id="instance-methods">Instance Methods</h2>
 
-<h4 id="reject"><code>reject()</code></h4>
+<p><code>SIP.Message</code> inherits its instance methods from <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a>.</p>
 
-<h4 id="reply"><code>reply()</code></h4>
+<h2 id="events">Events</h2>
 
-<h2 id="instance-attributes">Instance Attributes</h2>
+<p><code>SIP.Message</code> inherits its events from <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a>.</p>
 
-<h3 id="body"><code>body</code></h3>
+<!--
 
-<p><code>String</code> - The body of the SIP message.</p>
+### `message(options)` *(Client Only)*
 
-<h3 id="contenttype"><code>content_type</code></h3>
+Send this MESSAGE.
 
-<p><code>String</code> - The content type of the message body.</p>
+#### Parameters
 
-<h3 id="request"><code>request</code></h3>
+Name                  | Type               | Description
+----------------------|--------------------|--------------
+`options`             |`Object`            |Optional `Object` with extra parameters (see below).
+`options.extraHeaders`|`Array` of `Strings`|Extra SIP headers for the request.
 
-<p><code>SIP.OutgoingRequest|SIP.IncomingRequest</code> - The SIP MESSAGE request associated with this context.</p>
+#### Returns
 
-<h2 id="instance-method">Instance Method</h2>
+Type | Description
+-----|-------------
+`SIP.Message`| This Message
 
-<h3 id="messageoptions-messageclientcontext-only">
-<code>message(options)</code> <em>(MessageClientContext Only)</em>
-</h3>
-
-<p>Send this MESSAGE.</p>
-
-<h4 id="parameters">Parameters</h4>
-
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>options</code></td>
-      <td><code>Object</code></td>
-      <td>Optional <code>Object</code> with extra parameters (see below).</td>
-    </tr>
-<tr>
-<td><code>options.extraHeaders</code></td>
-      <td>
-<code>Array</code> of <code>Strings</code>
-</td>
-      <td>Extra SIP headers for the request.</td>
-    </tr>
-</tbody>
-</table><h4 id="returns">Returns</h4>
-
-<table>
-<thead><tr>
-<th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>SIP.MessageClientContext</code></td>
-      <td>This MessageClientContext</td>
-    </tr></tbody>
-</table>
+-->
     </div>
 
 		<div id="js-sidebar" class="sidebar-shell">
@@ -158,7 +115,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.InviteContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.Session</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/invite/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/invite/#instance-methods">Instance Methods</a></li>
@@ -166,7 +123,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.MessageContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.Message</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>

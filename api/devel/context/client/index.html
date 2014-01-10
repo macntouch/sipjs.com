@@ -48,25 +48,22 @@
   	<div class="content">
     	<h1 id="sipclientcontext">SIP.ClientContext</h1>
 
-<p>A <code>SIP.ClientContext</code> encapsulates the behavior required to send a request, as well as handle responses and retransmissions of that request. It is typically mixed in with behavior from a method-specific context, such as <a href="/api/devel/invite/"><code>SIP.InviteContext</code></a> or <a href="/api/devel/message/"><code>SIP.MessageContext</code></a>.</p>
+<p>A <code>SIP.ClientContext</code> encapsulates the behavior required to send a request, as well as handle responses and retransmissions of that request. It is typically mixed in with behavior from a method-specific class, such as <a href="/api/devel/session/"><code>SIP.Session</code></a> or <a href="/api/devel/message/"><code>SIP.Message</code></a>.</p>
 
 <ul id="markdown-toc">
 <li>
-<a href="#construction">Construction</a>    <ul>
-<li><a href="#new-sipclientcontextua-method-target"><code>new SIP.ClientContext(ua, method, target)</code></a></li>
-    </ul>
-</li>
-  <li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
 <li><a href="#ua"><code>ua</code></a></li>
       <li><a href="#method"><code>method</code></a></li>
-      <li><a href="#target"><code>target</code></a></li>
+      <li><a href="#request"><code>request</code></a></li>
+      <li><a href="#localidentity"><code>localIdentity</code></a></li>
+      <li><a href="#remoteidentity"><code>remoteIdentity</code></a></li>
       <li><a href="#data"><code>data</code></a></li>
     </ul>
 </li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-<li><a href="#sendoptions"><code>send([options])</code></a></li>
+<li><a href="#canceloptions"><code>cancel([options])</code></a></li>
     </ul>
 </li>
   <li>
@@ -77,51 +74,41 @@
       <li><a href="#failed"><code>failed</code></a></li>
     </ul>
 </li>
-</ul><h2 id="construction">Construction</h2>
+</ul><!--
+## Construction
 
-<p>Typically, construction and sending of a ClientContext is managed by a <code>SIP.UA</code>, through either the <code>ua.request(method, target)</code> function or through SIP method-specific functions such as <code>ua.invite(target)</code>. However, advanced users may construct ClientContexts manually.</p>
+Typically, construction and sending of a ClientContext is managed by a `SIP.UA`, through either the `ua.request(method, target)` function or through SIP method-specific functions such as `ua.invite(target)`. However, advanced users may construct ClientContexts manually.
 
-<h3 id="new-sipclientcontextua-method-target"><code>new SIP.ClientContext(ua, method, target)</code></h3>
+### `new SIP.ClientContext(ua, method, target)`
 
-<h4 id="parameters">Parameters</h4>
+#### Parameters
 
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td>ua</td>
-      <td><code>SIP.UA</code></td>
-      <td>The user agent from which the request will be sent.</td>
-    </tr>
-<tr>
-<td>method</td>
-      <td><code>String</code></td>
-      <td>The SIP method to use on the request. For example, <code>INFO</code> or <code>OPTIONS</code>
-</td>
-    </tr>
-<tr>
-<td>target</td>
-      <td><code>String|SIP.URI</code></td>
-      <td>The destination URI for the request to send to.</td>
-    </tr>
-</tbody>
-</table><h2 id="instance-attributes">Instance Attributes</h2>
+Name | Type | Description
+-----|------|-------------
+ua | `SIP.UA` | The user agent from which the request will be sent.
+method | `String` | The SIP method to use on the request. For example, `INFO` or `OPTIONS`
+target | `String|SIP.URI` | The destination URI for the request to send to.
+--><h2 id="instance-attributes">Instance Attributes</h2>
 
 <h3 id="ua"><code>ua</code></h3>
 
-<p><code>SIP.UA</code> - The user agent from which the request was sent or will be sent.</p>
+<p><a href="/api/devel/ua/"><code>SIP.UA</code></a> - The user agent from which the request was sent or will be sent.</p>
 
 <h3 id="method"><code>method</code></h3>
 
 <p><code>String</code> - The SIP method of the request. For example, <code>"INVITE"</code> or <code>"MESSAGE"</code>.</p>
 
-<h3 id="target"><code>target</code></h3>
+<h3 id="request"><code>request</code></h3>
 
-<p><code>String</code> - The requested URI destination for the SIP message.</p>
+<p><a href="/api/devel/outgoingRequest/"><code>SIP.OutgoingRequest</code></a> - The request sent or to be sent.</p>
+
+<h3 id="localidentity"><code>localIdentity</code></h3>
+
+<p><a href="/api/devel/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The From header field value, representing the local endpoint. This is typically the URI of the UA as a <code>SIP.NameAddrHeader</code>.</p>
+
+<h3 id="remoteidentity"><code>remoteIdentity</code></h3>
+
+<p><a href="/api/devel/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The To header field value, representing the remote endpoint.</p>
 
 <h3 id="data"><code>data</code></h3>
 
@@ -129,11 +116,43 @@
 
 <h2 id="instance-methods">Instance Methods</h2>
 
-<h3 id="sendoptions"><code>send([options])</code></h3>
+<!--
 
-<p>Send the request. A constructed <code>SIP.ClientContext</code> will not send itself until this or a similar method is called. This method does not run any custom behavior outside of the default handling of the SIP request. For request methods with their own context objects, please use the method-specific functions for sending requests defined on those objects. (For example, <a href="/api/devel/invite/#inviteoptions"><code>SIP.InviteClientContext</code></a> uses its <code>.invite()</code> method to send its request.)</p>
+### `send([options])`
 
-<h4 id="parameters-1">Parameters</h4>
+Send the request. A constructed `SIP.ClientContext` will not send itself until this or a similar method is called. This method does not run any custom behavior outside of the default handling of the SIP request. For request methods with their own context objects, please use the method-specific functions for sending requests defined on those objects. (For example, [`SIP.InviteClientContext`](/api/devel/invite/#inviteoptions) uses its `.invite()` method to send its request.)
+
+#### Parameters
+
+Name | Type | Description
+-----|------|-------------
+`options`|`Object`|Optional `Object` with extra parameters (see below).
+`options.body`|`String`|Optional message body to send in the request
+`options.extraHeaders`|`Array` of `String`|Optional list of extra SIP headers to include with the request
+`options.params`|`Object`|Optional extra configuration parameters (see below). These parameters take priority over the SIP.UA configuration parameters.
+`options.params.route_set`|`Array` of `String`|Optional preloaded route set for the request.
+`options.params.to_display_name`|`String`|Optional display portion of SIP To: URI
+`options.params.to_uri`|`String`|Optional To: URI. By default, this is set to the target.
+`options.params.to_tag`|`String`|Optional To: tag.
+`options.params.from_display_name`|`String`|Optional display portion of SIP From: URI
+`options.params.from_uri`|`String`|Optional From: URI. By default, this is set to the UA's configured URI
+`options.params.from_tag`|`String`|Optional From: tag
+`options.params.call_id`|`String`|Optional Call-Id value. Otherwise, a new Call-Id is randomly generated.
+`options.params.cseq`|`String`|Optional CSeq number.  Otherwise, a new random CSeq is generated
+
+#### Returns
+
+Type | Description
+-|-
+`SIP.ClientContext`| This ClientContext
+
+-->
+
+<h3 id="canceloptions"><code>cancel([options])</code></h3>
+
+<p>Send a CANCEL before the original request has been accepted.</p>
+
+<h4 id="parameters">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -148,68 +167,14 @@
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
 <tr>
-<td><code>options.body</code></td>
+<td><code>options.status_code</code></td>
+      <td><code>Number</code></td>
+      <td>The SIP response code that will be used in the upcoming response instead of the default.</td>
+    </tr>
+<tr>
+<td><code>options.reason_phrase</code></td>
       <td><code>String</code></td>
-      <td>Optional message body to send in the request</td>
-    </tr>
-<tr>
-<td><code>options.extraHeaders</code></td>
-      <td>
-<code>Array</code> of <code>String</code>
-</td>
-      <td>Optional list of extra SIP headers to include with the request</td>
-    </tr>
-<tr>
-<td><code>options.params</code></td>
-      <td><code>Object</code></td>
-      <td>Optional extra configuration parameters (see below). These parameters take priority over the SIP.UA configuration parameters.</td>
-    </tr>
-<tr>
-<td><code>options.params.route_set</code></td>
-      <td>
-<code>Array</code> of <code>String</code>
-</td>
-      <td>Optional preloaded route set for the request.</td>
-    </tr>
-<tr>
-<td><code>options.params.to_display_name</code></td>
-      <td><code>String</code></td>
-      <td>Optional display portion of SIP To: URI</td>
-    </tr>
-<tr>
-<td><code>options.params.to_uri</code></td>
-      <td><code>String</code></td>
-      <td>Optional To: URI. By default, this is set to the target.</td>
-    </tr>
-<tr>
-<td><code>options.params.to_tag</code></td>
-      <td><code>String</code></td>
-      <td>Optional To: tag.</td>
-    </tr>
-<tr>
-<td><code>options.params.from_display_name</code></td>
-      <td><code>String</code></td>
-      <td>Optional display portion of SIP From: URI</td>
-    </tr>
-<tr>
-<td><code>options.params.from_uri</code></td>
-      <td><code>String</code></td>
-      <td>Optional From: URI. By default, this is set to the UA’s configured URI</td>
-    </tr>
-<tr>
-<td><code>options.params.from_tag</code></td>
-      <td><code>String</code></td>
-      <td>Optional From: tag</td>
-    </tr>
-<tr>
-<td><code>options.params.call_id</code></td>
-      <td><code>String</code></td>
-      <td>Optional Call-Id value. Otherwise, a new Call-Id is randomly generated.</td>
-    </tr>
-<tr>
-<td><code>options.params.cseq</code></td>
-      <td><code>String</code></td>
-      <td>Optional CSeq number.  Otherwise, a new random CSeq is generated</td>
+      <td>The SIP reason phrase.</td>
     </tr>
 </tbody>
 </table><h4 id="returns">Returns</h4>
@@ -223,7 +188,12 @@
 <td><code>SIP.ClientContext</code></td>
       <td>This ClientContext</td>
     </tr></tbody>
-</table><h2 id="events">Events</h2>
+</table><h4 id="throws">Throws</h4>
+
+<p>TypeError
+INVALID_STATE_ERROR</p>
+
+<h2 id="events">Events</h2>
 
 <h3 id="progress"><code>progress</code></h3>
 
@@ -381,7 +351,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.InviteContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.Session</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/invite/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/invite/#instance-methods">Instance Methods</a></li>
@@ -389,7 +359,7 @@
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.MessageContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.Message</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>

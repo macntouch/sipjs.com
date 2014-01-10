@@ -58,18 +58,14 @@
     </ul>
 </li>
   <li>
-<a href="#generic-methods">Generic Methods</a>    <ul>
+<a href="#instance-methods">Instance Methods</a>    <ul>
 <li><a href="#start"><code>start()</code></a></li>
       <li><a href="#stop"><code>stop()</code></a></li>
       <li><a href="#registeroptions"><code>register([options])</code></a></li>
       <li><a href="#unregisteroptions"><code>unregister([options])</code></a></li>
       <li><a href="#isregistered"><code>isRegistered()</code></a></li>
       <li><a href="#isconnected"><code>isConnected()</code></a></li>
-    </ul>
-</li>
-  <li>
-<a href="#request-methods">Request Methods</a>    <ul>
-<li><a href="#messagetarget-body-options"><code>message(target, body[, options])</code></a></li>
+      <li><a href="#messagetarget-body-options"><code>message(target, body[, options])</code></a></li>
       <li><a href="#invitetarget-options"><code>invite(target[, options])</code></a></li>
       <li><a href="#requestmethod-target-options"><code>request(method, target[, options])</code></a></li>
     </ul>
@@ -87,45 +83,30 @@
 </li>
 </ul><h2 id="construction">Construction</h2>
 
-<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent. Check the full list for optional <a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
-
 <h3 id="new-sipuaconfiguration"><code>new SIP.UA([configuration])</code></h3>
+
+<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent, although most applications will define at least <a href="/api/devel/ua_configuration_parameters/#uri"><code>uri</code></a> and <a href="/api/devel/ua_configuration_parameters/#ws_servers"><code>ws_servers</code></a>. Check the full list for optional <a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
 
 <h3 id="examples">Examples</h3>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#777">// Create a new anonymous user agent, and connect using the OnSIP Network</span>
-<span style="color:#080;font-weight:bold">var</span> myUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA();
-</pre></div>
-</div>
-</div>
-
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777">// Create a user agent for Bob, and connect using the OnSIP Network</span>
-<span style="color:#080;font-weight:bold">var</span> myUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>);<span style="color:#F00;background-color:#FAA">`</span>
-</pre></div>
-</div>
-</div>
-
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777">// Create a user agent for Bob, and connect using a custom WebSocket server</span>
+  <div class="code"><pre><span style="color:#777">// Create a user agent named Bob, connect, and register to receive invitations.</span>
 <span style="color:#080;font-weight:bold">var</span> bob = <span style="color:#080;font-weight:bold">new</span> SIP.UA({
   <span style="color:#606">uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>,
-  <span style="color:#606">ws_servers</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wss://edge.example.com</span><span style="color:#710">'</span></span>],
+  <span style="color:#606">ws_servers</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wss://sip-ws.example.com</span><span style="color:#710">'</span></span>],
   <span style="color:#606">register</span>: <span style="color:#069">true</span>
 });
+bob.start();
 </pre></div>
 </div>
 </div>
 
-<h2 id="generic-methods">Generic Methods</h2>
+<h2 id="instance-methods">Instance Methods</h2>
 
 <h3 id="start"><code>start()</code></h3>
 
-<p>Connect to the configured WebSocket server, and restore the previous state if previously stopped. The first time <code>start()</code> is called, the UA will also attempt to register if the <code>register</code> parameter in the UA’s configuration is set to <code>true</code>.</p>
+<p>Connect to the configured WebSocket server, and restore the previous state if previously stopped. The first time <code>start()</code> is called, the UA will also attempt to register if the <a href="/api/devel/ua_configuration_parameters/#register"><code>register</code></a> parameter in the UA’s configuration is set to <code>true</code>.</p>
 
 <h3 id="stop"><code>stop()</code></h3>
 
@@ -151,7 +132,9 @@
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
-      <td><code>Array</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for each REGISTER request.</td>
     </tr>
 </tbody>
@@ -204,7 +187,9 @@ myUA.register(options);
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
-      <td><code>Array</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for each REGISTER request.</td>
     </tr>
 </tbody>
@@ -261,11 +246,7 @@ myUA.unregister(options);
       <td>
 <code>true</code> if the WebSocket connection is established, <code>false</code> otherwise.</td>
     </tr></tbody>
-</table><h2 id="request-methods">Request Methods</h2>
-
-<p>The following methods share a similar interface and are all used to send SIP requests from the UA.</p>
-
-<h3 id="messagetarget-body-options"><code>message(target, body[, options])</code></h3>
+</table><h3 id="messagetarget-body-options"><code>message(target, body[, options])</code></h3>
 
 <p>Sends an instant message making use of SIP MESSAGE method.</p>
 
@@ -280,7 +261,9 @@ myUA.unregister(options);
 <tbody>
 <tr>
 <td><code>target</code></td>
-      <td><code>String|SIP.URI</code></td>
+      <td>
+<code>String|</code><a href="/api/devel/uri/"><code>SIP.URI</code></a>
+</td>
       <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
@@ -300,26 +283,33 @@ myUA.unregister(options);
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
-      <td><code>Array</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the MESSAGE request.</td>
     </tr>
 </tbody>
 </table><h4 id="returns-4">Returns</h4>
 
+<p><em>The return value of this method implements multiple interfaces.</em></p>
+
 <table>
 <thead><tr>
-<th>Type</th>
+<th>Types</th>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>SIP.MessageClientContext</code></td>
-      <td>The context surrounding the newly created MESSAGE</td>
+<td>
+<a href="/api/devel/message/"><code>SIP.Message</code></a>, <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a>
+</td>
+      <td>The newly created MESSAGE. The new Message object implements the shared ClientContext interface for outbound requests.</td>
     </tr></tbody>
 </table><h4 id="example-2">Example</h4>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>myUA.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello, Bob!</span><span style="color:#710">'</span></span>);
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> message = myUA.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello, Bob!</span><span style="color:#710">'</span></span>);
+console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 </pre></div>
 </div>
 </div>
@@ -339,7 +329,9 @@ myUA.unregister(options);
 <tbody>
 <tr>
 <td><code>target</code></td>
-      <td><code>String|SIP.URI</code></td>
+      <td>
+<code>String|</code><a href="/api/devel/uri/"><code>SIP.URI</code></a>
+</td>
       <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
@@ -367,7 +359,9 @@ myUA.unregister(options);
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
-      <td><code>Array</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the INVITE request.</td>
     </tr>
 <tr>
@@ -379,14 +373,18 @@ myUA.unregister(options);
 </tbody>
 </table><h4 id="returns-5">Returns</h4>
 
+<p><em>The return value of this method implements multiple interfaces.</em></p>
+
 <table>
 <thead><tr>
-<th>Type</th>
+<th>Types</th>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>SIP.InviteClientContext</code></td>
-      <td>The context surrounding the newly created INVITE</td>
+<td>
+<a href="/api/devel/session/"><code>SIP.Session</code></a>, <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a>
+</td>
+      <td>The session the target is invited to.  The new Session object implements the shared ClientContext interface for outbound requests. The Session is in a provisional or early state until accepted by the remote target.  Please refer to the Session documentation for more information.</td>
     </tr></tbody>
 </table><h4 id="example-3">Example</h4>
 
@@ -418,8 +416,10 @@ myUA.unregister(options);
     </tr>
 <tr>
 <td><code>target</code></td>
-      <td><code>String|SIP.URI</code></td>
-      <td>Destination address. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>
+<code>String|</code><a href="/api/devel/uri/"><code>SIP.URI</code></a>
+</td>
+      <td>Destination address. <code>String</code> representing a destination username or complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>body</code></td>
@@ -438,7 +438,9 @@ myUA.unregister(options);
     </tr>
 <tr>
 <td><code>options.extraHeaders</code></td>
-      <td><code>Array</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the MESSAGE request.</td>
     </tr>
 </tbody>
@@ -450,8 +452,8 @@ myUA.unregister(options);
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>SIP.ClientContext</code></td>
-      <td>The context surrounding the newly created request</td>
+<td><a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a></td>
+      <td>The context surrounding the new outbound request.</td>
     </tr></tbody>
 </table><h2 id="events">Events</h2>
 
@@ -486,7 +488,7 @@ myUA.unregister(options);
 <p>Fired for an unregistration. This event is fired in the following scenarios:</p>
 
 <ul>
-<li>As a result of a unregistration request. <code>UA.unregister()</code>.</li>
+<li>As a result of an unregistration request, <code>UA.unregister()</code>.</li>
   <li>If being registered, a periodic re-registration fails.</li>
 </ul><h4 id="onunregistered-function-cause-"><code>on('unregistered', function (cause) {})</code></h4>
 
@@ -525,18 +527,22 @@ myUA.unregister(options);
 
 <p>Fired when an incoming INVITE request is received.</p>
 
-<h4 id="oninvite-function-invite-"><code>on('invite', function (invite) {})</code></h4>
+<h4 id="oninvite-function-session-"><code>on('invite', function (session) {})</code></h4>
+
+<p><em>The argument passed to this event implements multiple interfaces.</em></p>
 
 <table>
 <thead><tr>
 <th>Name</th>
-      <th>Type</th>
+      <th>Types</th>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>invite</code></td>
-      <td><a href="/api/devel/invite/">SIP.InviteServerContext</a></td>
-      <td>The context surrounding the recently received INVITE request.</td>
+<td><code>session</code></td>
+      <td>
+<a href="/api/devel/message/"><code>SIP.Session</code></a>, <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a>
+</td>
+      <td>The inbound session the user agent was invited to. This argument also implements the shared <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
     </tr></tbody>
 </table><h3 id="message"><code>message</code></h3>
 
@@ -544,16 +550,20 @@ myUA.unregister(options);
 
 <h4 id="onmessage-function-message-"><code>on('message', function (message) {})</code></h4>
 
+<p><em>The argument passed to this event implements multiple interfaces.</em></p>
+
 <table>
 <thead><tr>
 <th>Name</th>
-      <th>Type</th>
+      <th>Types</th>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
 <td><code>message</code></td>
-      <td><a href="/api/devel/message/">SIP.MessageServerContext</a></td>
-      <td>The context surrounding the recently received MESSAGE request.</td>
+      <td>
+<a href="/api/devel/message/"><code>SIP.Message</code></a>, <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a>
+</td>
+      <td>The inbound message received. This argument also implements the shared <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
     </tr></tbody>
 </table>
     </div>
@@ -585,7 +595,7 @@ myUA.unregister(options);
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.InviteContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/invite/">SIP.Session</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/invite/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/invite/#instance-methods">Instance Methods</a></li>
@@ -593,7 +603,7 @@ myUA.unregister(options);
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.MessageContext</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.Message</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
           <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>
