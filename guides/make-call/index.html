@@ -52,105 +52,38 @@
 
 <h2 id="overview">Overview</h2>
 
-<h3 id="setup">Setup</h3>
+<h3 id="setup-and-video-elements">Setup and Video Elements</h3>
 
-<p>The video element adds a standard way for browsers to display video over the internet without additional plugins. This makes video elements perfect for WebRTC. The local video stream should always be muted to prevent feedback.</p>
+<p>In order to make a video call, we first need a way to display the video call on your screen.  We can use a video element for this.  The video element adds a standard way for browsers to display video over the internet without additional plugins. This makes video elements perfect for WebRTC. The local video stream should always be muted to prevent feedback.</p>
 
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>  <span style="color:#34b">&lt;!DOCTYPE html&gt;</span>
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span style="color:#070;font-weight:bold">&lt;head&gt;</span>
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>      <span style="color:#070;font-weight:bold">&lt;script</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">sip.js</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/script&gt;</span> 
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span style="color:#070;font-weight:bold">&lt;/head&gt;</span>
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span style="color:#070;font-weight:bold">&lt;body&gt;</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>      <span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">remoteVideo</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>      <span style="color:#070;font-weight:bold">&lt;video</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">localVideo</span><span style="color:#710">"</span></span> <span style="color:#b48">muted</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">muted</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/video&gt;</span>  
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>      <span style="color:#070;font-weight:bold">&lt;button</span> <span style="color:#b48">type</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">button</span><span style="color:#710">"</span></span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">callButton</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span>Call<span style="color:#070;font-weight:bold">&lt;/button&gt;</span>
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>      <span style="color:#070;font-weight:bold">&lt;button</span> <span style="color:#b48">type</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">button</span><span style="color:#710">"</span></span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">endButton</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span>End<span style="color:#070;font-weight:bold">&lt;/button&gt;</span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>      <span style="color:#070;font-weight:bold">&lt;script</span> <span style="color:#b48">src</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">phone.js</span><span style="color:#710">"</span></span><span style="color:#070;font-weight:bold">&gt;</span><span style="color:#070;font-weight:bold">&lt;/script&gt;</span>
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    <span style="color:#070;font-weight:bold">&lt;/body&gt;</span>
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>  <span style="color:#070;font-weight:bold">&lt;/html&gt;</span>
-</pre></div>
-</div>
-</div>
+<p>In this example, within the &lt;body&gt; tags, we have a “remoteVideo” video element, to display the video of the person you are calling, as well as a “localVideo” video element, to display your video that you are sending to the person you are calling.  </p>
 
-<p>In order to make calls and send messages you must create a new anonymous SIP user agent.  We then must start the user agent, which </p>
+<p>We are also loading the SIPjs library, within the &lt;head&gt; tags.  We are not doing anything with the SIPjs library yet.</p>
 
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>  <span style="color:#777">// phone.js</span>
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>  <span style="color:#777">//Creates the anonymous user agent so that you can make calls</span>
-<span class="line-numbers"><a href="#n4" name="n4">4</a></span>  <span style="color:#080;font-weight:bold">var</span> userAgent = <span style="color:#080;font-weight:bold">new</span> SIP.UA();
-<span class="line-numbers"><a href="#n5" name="n5">5</a></span>  userAgent.start();
-<span class="line-numbers"><a href="#n6" name="n6">6</a></span>
-<span class="line-numbers"><a href="#n7" name="n7">7</a></span>  userAgent.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">connected</span><span style="color:#710">'</span></span>, newSessionHandler);
-</pre></div>
-</div>
-</div>
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/mgc2e/1/embedded/html,js,css,result/">
+</iframe>
 
-<p>After we start the user agent, we can make a call to SIP address.  We do so by sending a SIP invite.</p>
+<h3 id="making-the-call">Making the Call</h3>
 
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>  <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">newSessionHandler</span>() {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span style="color:#777">//here you determine whether the call has video and audio</span>
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span style="color:#080;font-weight:bold">var</span> options = {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>      <span style="color:#606">mediaConstraints</span>: {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span style="color:#606">audio</span>: <span style="color:#069">true</span>,
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span style="color:#606">video</span>: <span style="color:#069">true</span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>      } 
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    }
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span style="color:#777">//makes the call</span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span style="color:#080;font-weight:bold">var</span> session = userAgent.invite(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:bob@example.com</span><span style="color:#710">'</span></span>, options);
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">accepted</span><span style="color:#710">'</span></span>, onAccept)
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>  }
-</pre></div>
-</div>
-</div>
+<p>These video elements are not useful if we aren’t calling anyone, so lets make a call.  </p>
 
-<p>When the invitee accepts the call, we catch the “accepted” event and start playing the video elements in our browser.</p>
+<p>In order to make calls and send messages you must create a new anonymous SIP user agent.  We then must start the user agent.  After the user agent has connected to the sip server we can send an invite.  </p>
 
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>  <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">onAccept</span> () {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span style="color:#777">//gets the video elements</span>
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span style="color:#080;font-weight:bold">var</span> remoteVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">remoteVideo</span><span style="color:#710">'</span></span>);
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span style="color:#080;font-weight:bold">var</span> localVideo = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">localVideo</span><span style="color:#710">'</span></span>);
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span style="color:#777">//attached the received video stream to the Video Elements</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    attachMediaStream(remoteVideo, session.getRemoteStreams()[<span style="color:#00D">0</span>]);
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    attachMediaStream(localVideo, session.getLocalStreams()[<span style="color:#00D">0</span>]);
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span style="color:#777">//plays the Video Elements</span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    remoteVideo.play();
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    localVideo.play();
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>}
-</pre></div>
-</div>
-</div>
+<iframe style="width: 100%; height: 410px" src="http://jsfiddle.net/T4Kv2/1/embedded/">
+</iframe>
 
-<p>This function attaches the media stream to the video element.</p>
+<h3 id="displaying-the-call">Displaying the Call</h3>
 
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>  <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">attachMediaStream</span>(element, stream) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span> element.srcObject !== <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">undefined</span><span style="color:#710">'</span></span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>      element.srcObject = stream;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    } <span style="color:#080;font-weight:bold">else</span> <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span> element.mozSrcObject !== <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">undefined</span><span style="color:#710">'</span></span>) {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>      element.mozSrcObject = stream;
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    } <span style="color:#080;font-weight:bold">else</span> <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span> element.src !== <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">undefined</span><span style="color:#710">'</span></span>) {
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>      element.src = URL.createObjectURL(stream);
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    } <span style="color:#080;font-weight:bold">else</span> {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>      console.log(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Error attaching stream to element.</span><span style="color:#710">'</span></span>);
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    }
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  }
-</pre></div>
-</div>
-</div>
+<p>Although we are now able to make calls, we are not yet displaying the videos on the screen.  To do this we need to attach the video streams that we are sending and receiving to the video elements that we added in the beginning.  </p>
+
+<p>We cannot just immediately attach the media streams; we must first wait until the call begins.  To do this we need to catch the “accepted” SIP event and attach the media streams after this point.  </p>
+
+<p>We have created a new function called onAccepted(), which is runs as soon as the call connects.  This function calls the “attachMediaStream” function on both media streams, and then plays both video elements.</p>
+
+<p>The function “attachMediaStream” attaches the media stream to the video element.</p>
+
+<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/qWmG7/1/embedded/">
+</iframe>
     </div>
 
     <div id="js-sidebar" class="sidebar-shell">
