@@ -100,7 +100,6 @@
       <li><a href="#canceled"><code>canceled</code></a></li>
       <li><a href="#referred"><code>referred</code></a></li>
       <li><a href="#dtmf"><code>dtmf</code></a></li>
-      <li><a href="#invite"><code>invite</code></a></li>
       <li><a href="#bye"><code>bye</code></a></li>
     </ul>
 </li>
@@ -700,15 +699,15 @@ Name | Type | Description
 <a href="/api/devel/incomingRequest/"><code>SIP.IncomingRequest</code></a> instance of the received SIP INFO request.</td>
     </tr>
 </tbody>
-</table><h3 id="invite"><code>invite</code></h3>
+</table><!--
 
-<p>Fired when an invite is sent.</p>
+### `invite`
 
-<h4 id="oninvited-function--"><code>on('invited', function () {})</code></h4>
+Fired when an invite is sent.
 
-<p><em>There are no documented arguments for this event</em></p>
+#### `on('invited', function () {})`
 
-<!--
+*There are no documented arguments for this event*
 
 ### `preaccepted`
 
@@ -718,9 +717,7 @@ Fired when a session is pre-accepted.
 
 *There are no documented arguments for this event*
 
--->
-
-<h3 id="bye"><code>bye</code></h3>
+--><h3 id="bye"><code>bye</code></h3>
 
 <p>Fired when a BYE is sent.</p>
 
