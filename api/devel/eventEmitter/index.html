@@ -23,10 +23,10 @@
     <div>
       <a class="logo" href="/">SIP.js</a>
       <ul class="nav">
-        <li><a href="/sip-0.5.0-devel.min.js" class="nav-download" download="sip-0.5.0-devel.min.js">Download</a></li>
-        <li><a href="https://github.com/onsip/sip.js">Github</a></li>
+        <li><a href="/download/" class="nav-download">Download</a></li>
         <li><a href="/api/" class="nav-api">API</a></li>
         <li><a href="/guides/" class="nav-guides">Guides</a></li>
+        <li><a href="https://github.com/onsip/sip.js">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
         <li><a href="https://groups.google.com/forum/#!forum/sip_js">Support</a></li>
       </ul>
@@ -74,7 +74,7 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
 <li><a href="#example">Example</a></li>
   <li><a href="#construction">Construction</a></li>
   <li>
-<a href="#public-methods">Public Methods</a>    <ul>
+<a href="#instance-methods">Instance Methods</a>    <ul>
 <li><a href="#onevent-callback-bindtarget"><code>on(event, callback[, bindTarget])</code></a></li>
       <li><a href="#onceevent-callback-bindtarget"><code>once(event, callback[, bindTarget])</code></a></li>
       <li><a href="#offevent-callback-bindtarget"><code>off([event[, callback[, bindTarget]]])</code></a></li>
@@ -85,7 +85,7 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
 
 <p>The EventEmitter constructor is intended <em>for internal use only.</em></p>
 
-<h2 id="public-methods">Public Methods</h2>
+<h2 id="instance-methods">Instance Methods</h2>
 
 <h3 id="onevent-callback-bindtarget"><code>on(event, callback[, bindTarget])</code></h3>
 
@@ -253,13 +253,13 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/ua/">SIP.UA</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/ua/#construction">Construction</a></li>
-          <li><a href="/api/devel/ua/#generic-methods">Generic Methods</a></li>
-          <li><a href="/api/devel/ua/#request-methods">Request Methods</a></li>
+          <li><a href="/api/devel/ua/#instance-attributes">Instance Attributes</a></li>
+          <li><a href="/api/devel/ua/#instance-methods">Instance Methods</a></li>
           <li><a href="/api/devel/ua/#events">Events</a></li>
         </ul>
       </li>
       <li class="js-topic">
-        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/context/">Contexts</a></h3>
+        <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/context/">Contexts (Client/Server)</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/context/client/">SIP.ClientContext</a></li>
           <li><a href="/api/devel/context/server/">SIP.ServerContext</a></li>
@@ -268,7 +268,8 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
       <li class="js-topic">
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/session/">SIP.Session</a></h3>
         <ul class="js-guides">
-          <li><a href="/api/devel/session/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/session/#construction">Instantiation</a></li>
+          <li><a href="/api/devel/session/#instance-attributes">Instance Attributes</a></li>
           <li><a href="/api/devel/session/#instance-methods">Instance Methods</a></li>
           <li><a href="/api/devel/session/#events">Events</a></li>
         </ul>
@@ -276,7 +277,7 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
       <li class="js-topic">
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/message/">SIP.Message</a></h3>
         <ul class="js-guides">
-          <li><a href="/api/devel/message/#instantiation">Instantiation</a></li>
+          <li><a href="/api/devel/message/#instance-attributes">Instance Attributes</a></li>
           <li><a href="/api/devel/message/#instance-methods">Instance Methods</a></li>
           <li><a href="/api/devel/message/#events">Events</a></li>
         </ul>
@@ -293,7 +294,7 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
         <h3><a href="#" class="js-expand-btn collapsed arrow-btn"></a><a href="/api/devel/eventEmitter/">SIP.EventEmitter</a></h3>
         <ul class="js-guides">
           <li><a href="/api/devel/eventEmitter/#construction">Construction</a></li>
-          <li><a href="/api/devel/eventEmitter/#public-methods">Public Methods</a></li>
+          <li><a href="/api/devel/eventEmitter/#instance-methods">Instance Methods</a></li>
         </ul>
       </li>
       <li class="js-topic">
