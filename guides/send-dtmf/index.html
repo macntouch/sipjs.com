@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>Development Guides | SIP.js</title>
+  <title>Send Dtmf | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -44,16 +44,26 @@
 
   <div id="wrapper">
     <div class="content">
-      <h1 id="development-guides">Development Guides</h1>
+      <h1 id="send-dtmf">Send Dtmf</h1>
 
-<p>This section of the documentation is intended to get you up-and-running with
-real-world SIP.js applications. We’ll cover everything you need to know.</p>
+<ul id="markdown-toc">
+<li><a href="#overview">Overview</a></li>
+</ul><h2 id="overview">Overview</h2>
 
-<p>Every tutorial here will have a project, and every project will be
-stored and documented in our public
-<a href="https://github.com/onsip/sip.js">platform-samples</a> repo.</p>
+<h3 id="setup">Setup</h3>
 
-<p>Feel free to fork, clone, and improve these guides.</p>
+<p>We will start with the code that we produced at the end of the <a href="/guides/make-call/">make a call</a> example.</p>
+
+<h3 id="create-the-dial-pad">Create The Dial Pad</h3>
+
+<p>In order to send dtmf, we need to create a dial pad to accept user input.  We will do this by creating buttons which, when clicked, send the appropriate dial tone.</p>
+
+<h3 id="send-the-dial-tone">Send the Dial Tone</h3>
+
+<p>Now we need to send the dtmf dial tone.  This is done by using the <code>sendDTMF(number)</code> method.  Using this method you can send one or multiple dial tones at the same time.  </p>
+
+<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/qWmG7/20/embedded/js,html,css,result/">
+</iframe>
     </div>
 
     <div id="js-sidebar" class="sidebar-shell">
