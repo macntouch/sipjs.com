@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>Development Guides | SIP.js</title>
+  <title>Send a Message | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -44,16 +44,42 @@
 
   <div id="wrapper">
     <div class="content">
-      <h1 id="development-guides">Development Guides</h1>
+      <h1 id="send-a-message">Send a Message</h1>
 
-<p>This section of the documentation is intended to get you up-and-running with
-real-world SIP.js applications. We’ll cover everything you need to know.</p>
+<ul id="markdown-toc">
+<li><a href="#overview">Overview</a></li>
+</ul><p>Let’s walk through core API concepts as we tackle some everyday use cases.</p>
 
-<p>Every tutorial here will have a project, and every project will be
-stored and documented in our public
-<a href="https://github.com/onsip/sip.js">platform-samples</a> repo.</p>
+<h2 id="overview">Overview</h2>
 
-<p>Feel free to fork, clone, and improve these guides.</p>
+<h3 id="setup-and-video-elements">Setup and Video Elements</h3>
+
+<p>Like in the make a call example, we must create the files index.html, main.js, and style.css in the same folder.  In the index.html file we need to include the SIP.js library, which can be downloaded <a href="/download/">here</a>, as well as the main.js file.  </p>
+
+<p>Although we are loading the SIP.js library, we are not doing anything with it yet.</p>
+
+<p>We are also including a <code>&lt;button&gt;</code> element which we will use to determine when to send the message.</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/5JbvL/1/embedded/html,js,css,result/">
+</iframe>
+
+<h3 id="creating-the-user-agent">Creating the User Agent</h3>
+
+<p>In order to make calls and send messages you must create a SIP user agent.  For this example, we will create an anonymous user agent.  To do this we will call the <code>SIP.UA()</code> method and then we must start the user agent.</p>
+
+<iframe style="width: 100%; height: 410px" src="http://jsfiddle.net/4m7dc/11/embedded/js,html,css,result/">
+</iframe>
+
+<h3 id="sending-the-message">Sending the Message</h3>
+
+<p>After the user agent has connected to the SIP server (which is a public Google server by default) we can send the message.</p>
+
+<p>To send the message we must use call the <code>.message(target, body)</code> method, along with the address that we are sending the message to in the <code>target</code> variable and the message that we are sending in the <code>body</code> variable.</p>
+
+<p>We will add a click event to the <code>&lt;button&gt;</code> element, which calls the <code>message()</code> method.</p>
+
+<iframe style="width: 100%; height: 410px" src="http://jsfiddle.net/T4Kv2/16/embedded/js,html,css,result/">
+</iframe>
     </div>
 
     <div id="js-sidebar" class="sidebar-shell">
