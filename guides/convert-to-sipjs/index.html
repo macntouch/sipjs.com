@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>Send Dtmf | SIP.js</title>
+  <title>Convert to SIP.js| SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -44,29 +44,30 @@
 
   <div id="wrapper">
     <div class="content">
-      <h1 id="send-dtmf">Send Dtmf</h1>
+      <h1 id="converting-to-sipjs">Converting to SIP.js</h1>
 
 <ul id="markdown-toc">
 <li><a href="#overview">Overview</a></li>
 </ul><h2 id="overview">Overview</h2>
 
-<h3 id="setup">Setup</h3>
+<p>SIP.js is a hard fork of the library JsSIP.  As such, if you want to convert your JsSIP application to use the SIP.js library there are a few changes that need to be made.  Below is a checklist of things that you will need to change.</p>
 
-<p>We will start with the code that we produced at the end of the <a href="/guides/make-call/">make a call</a> example.</p>
+<p>Most importantly, you need to change the loaded library from  <code>JsSIP-devel.js</code> to <code>sip-devel.js</code>.</p>
 
-<h3 id="create-the-dial-pad">Create The Dial Pad</h3>
+<h3 id="user-agent-creation">User Agent creation</h3>
+<p>JsSIP user agents are created using the line <code>MyPhone = new JSIP.UA(configuration);</code>.  In SIP.js this needs to be changed to <code>MyPhone = new SIP.UA(configuration);</code>.</p>
 
-<p>In order to send dtmf, we need to create a dial pad to accept user input.  We will do this by creating buttons which, when clicked, send the appropriate dial tone.</p>
+<h3 id="methods">Methods</h3>
+<p>In SIP.js we have changed some of the method names to terms that are more SIP appropriate.  <code>sendMessage()</code> is now <code>message()</code></p>
 
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/4NMLQ/2/embedded/js,html,css,result/">
-</iframe>
+<p>The method <code>call()</code> is now <code>invite()</code>.  <code>invite()</code> now also returns the <code>session</code>.</p>
 
-<h3 id="send-the-dial-tone">Send the Dial Tone</h3>
+<h3 id="events">Events</h3>
+<p>The event <code>newMessage</code> has been changed to <code>message</code></p>
 
-<p>These buttons don’t do anything yet, though.  Now we need to send the dtmf dial tone when the buttons are clicked.  This is done by using the <code>sendDTMF(number)</code> method.  Using this method you can send one or multiple dial tones at the same time.  We will add a click event for each button so that it sends the appropriate DTMF tone.</p>
+<p>A larger change was made to the <code>newRTCSession</code> event.  This event has been changed to <code>invite</code>.  Also, it previously fired when receive an invite as well as when sending an invite.  Now, the <code>invite</code> only fires upon receiving an event.  </p>
 
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/LPSX5/1/embedded/js,html,css,result/">
-</iframe>
+<p>In order to get the session from an invite that you are sending, you must get the return value from the <code>invite()</code> method.  For example, if you were previous doing <code>THIS</code>.  You must now do <code>THAT</code>.</p>
     </div>
 
     <div id="js-sidebar" class="sidebar-shell">
