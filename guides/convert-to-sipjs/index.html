@@ -63,11 +63,57 @@
 <p>The method <code>call()</code> is now <code>invite()</code>.  <code>invite()</code> now also returns the <code>session</code>.</p>
 
 <h3 id="events">Events</h3>
-<p>The event <code>newMessage</code> has been changed to <code>message</code></p>
+<p>The event <code>.on("newMessage", funct)</code> has been changed to <code>.on("message", funct)</code>.</p>
+
+<p>The <code>.on("started", funct)</code> event has been changed to <code>.on("accepted", funct)</code>.</p>
 
 <p>A larger change was made to the <code>newRTCSession</code> event.  This event has been changed to <code>invite</code>.  Also, it previously fired when receive an invite as well as when sending an invite.  Now, the <code>invite</code> only fires upon receiving an event.  </p>
 
-<p>In order to get the session from an invite that you are sending, you must get the return value from the <code>invite()</code> method.  For example, if you were previous doing <code>THIS</code>.  You must now do <code>THAT</code>.</p>
+<p>In order to get the session from an invite that you are sending, you must get the return value from the <code>invite()</code> method.  For example, if you were previous doing this:  </p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">call</span>(userAgent) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>  userAgent.call(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">test@example.com</span><span style="color:#710">"</span></span>);
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>}
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>MyPhone.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">newRTCSession</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span>(e) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  display_session(e.session);
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>});
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">display_session</span>(e) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  <span style="color:#777">//display phone session in video element</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>}
+</pre></div>
+</div>
+</div>
+
+<p>You must now do this:</p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">call</span>(userAgent) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>  <span style="color:#080;font-weight:bold">var</span> session = userAgent.invite(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">test@example.com</span><span style="color:#710">"</span></span>);
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>  display_session(session);
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>}
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>MyPhone.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">invite</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span>(e) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>  display_session(e.session);
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>});
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">display_session</span>(e) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  <span style="color:#777">//display phone session in video element</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>}
+</pre></div>
+</div>
+</div>
+
+<h3 id="name-address-header-attributes">Name Address Header Attributes</h3>
+<p>A <code>session</code> has various attributes.  A few names of the attributes have been changed.</p>
+
+<p>The <code>remote_identity</code> attribute is now named <code>remoteIdentity</code>.</p>
+
+<p>The <code>local_identity</code> attribute is now named <code>localIdentity</code>.</p>
     </div>
 
     <div id="js-sidebar" class="sidebar-shell">
