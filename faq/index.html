@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>Download | SIP.js</title>
+  <title>FAQ | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="/css/960.css" rel="stylesheet" type="text/css" />
@@ -37,20 +37,25 @@
 
   <div id="wrapper">
   	<div class="content">
-    	<h1 id="download">Download</h1>
+    	<h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
 
-<h2 id="version-devel">Version devel</h2>
+<h2 id="what-can-i-do-with-sipjs">What can I do with SIP.js?</h2>
+<p>You can add a signaling layer to your WebRTC app so it can create, modify, and terminate communication sessions between its peers. In other words, you can crerate full SIP user agent right in a web page. With this SIP user agent, you can send and receive voice and video calls as well as SIP messages.</p>
 
-<p>Version devel is the development version of SIP.js and should not be used in production environments. The download offered here is a snapshot of ongoing development. For the bleeding edge, please <a href="//github.com/onsip/SIP.js">download and build from source</a>.</p>
+<h2 id="what-is-sip">What is SIP?</h2>
+<p>SIP stands for Session Initiation Protocol and is used for setting up communications in an IP network. It is commonly leveraged to control multimedia VOIP communications sessions, such as voice and video calls— but it is designed to manage real-time media of all kinds.  </p>
 
-<ul>
-  <li>Development (uncompressed code, 679KB) <a href="/download/sip-devel.js" download="sip-devel.js">sip-devel.js</a></li>
-  <li>Production (minified code, 220KB) <a href="/download/sip-devel.min.js" download="sip-devel.min.js">sip-devel.min.js</a></li>
-</ul>
+<h2 id="what-is-a-user-agent">What is a user agent?</h2>
+<p>A user agent (UA for short) is generally a software agent that is acting on behalf of a user. In the land of SIP, the term user agent refers to both end points of a communications session. OnSIP associates a SIP address to a UA, and that SIP address and can make and receive requests on that user’s behalf. The UA also maintains the WebSocket, on which the signaling travels.</p>
 
-<h2 id="version-050">Version 0.5.0</h2>
+<h2 id="i-see-references-to-something-called-a-context-in-your-documentation-thats-not-a-sip-term-what-is-it">I see references to something called a context in your documentation. That’s not a SIP term! What is it?</h2>
+<p>This is a term we created in order to group together related SIP transactions.  For an in-depth explanation, check out <a href="/api/devel/context/">this context page</a></p>
 
-<p><em>Coming Soon!</em></p>
+<h2 id="does-sipjs-work-in-every-web-browser">Does SIP.js work in every web browser?</h2>
+<p>SIP.js requires the browser to have WebRTC support. The current browsers that support WebRTC are listed by Google’s <a href="http://www.webrtc.org/">WebRTC project site</a>. SIP.js also uses SIP over websockets for transporting SIP requests. To check out browser support there, we suggest <a href="http://caniuse.com/websockets">Can I Use Webosockets? http://caniuse.com/websockets</a></p>
+
+<h2 id="my-sipjs-application-isnt-working--where-do-i-get-help">My SIP.js application isn’t working!  Where do I get help?</h2>
+<p>The best way to get help is through our google group mailing list.  This can be found <a href="https://groups.google.com/forum/#!forum/sip_js">here</a>.</p>
 
     </div>
 
