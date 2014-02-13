@@ -58,7 +58,9 @@
 
 <p>In order to receive calls we need to create a registered SIP user agent, instead of an anonymous user agent.  Instead of calling the <code>SIP.UA()</code> method without any parameters, we need to give it a <code>uri</code>, a <code>ws_servers</code>, a <code>password</code>, and set <code>register</code> equal to <code>true</code>.</p>
 
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/5aqm7/3/embedded/js,html,css,result/">
+<p>We will also remove the session invite, so that our app stops making calls.</p>
+
+<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/5aqm7/4/embedded/js,html,css,result/">
 </iframe>
 
 <h3 id="accept-a-call-button">Accept a Call Button</h3>
