@@ -63,9 +63,9 @@
 
 <h3 id="accept-a-call-button">Accept a Call Button</h3>
 
-<p>Finally, we need a way to accept a call that we are receiving.  We can do this by creating an <code>acceptCall</code> <code>&lt;button&gt;</code> which calls the <code>.accept()</code> method when it is clicked.</p>
+<p>Finally, we need a way to accept a call that we are receiving.  We can do this by catching the <code>invite</code> event.  Then, we take the session that the invite event returns and we call the <code>.accept()</code> method on it.</p>
 
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/tEGgn/3/embedded/js,html,css,result/">
+<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/tEGgn/4/embedded/js,html,css,result/">
 </iframe>
     </div>
 
