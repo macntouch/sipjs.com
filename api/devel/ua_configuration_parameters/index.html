@@ -74,6 +74,7 @@
   <li><a href="#tracesip">trace_sip</a></li>
   <li><a href="#turnservers">turn_servers</a></li>
   <li><a href="#usepreloadedroute">use_preloaded_route</a></li>
+  <li><a href="#autostart">autostart</a></li>
 </ul><h1 id="mandatory-parameters">Mandatory Parameters</h1>
 
 <h2 id="uri">uri</h2>
@@ -118,8 +119,14 @@
 <div>
 <div class="CodeRay">
   <div class="code"><pre>ws_servers: [
-  {<span style="color:#606">ws_uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-1.example.com</span><span style="color:#710">"</span></span>, <span style="color:#606">weight</span>: <span style="color:#00D">10</span>}, <span style="color:#777">// First connection attempt</span>
-  {<span style="color:#606">ws_uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-2.example.com</span><span style="color:#710">"</span></span>, <span style="color:#606">weight</span>: <span style="color:#00D">1</span>}
+  { <span style="color:#777">// First connection attempt</span>
+    <span style="color:#606">ws_uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-1.example.com</span><span style="color:#710">"</span></span>,
+    <span style="color:#606">weight</span>: <span style="color:#00D">10</span>
+  },
+  {
+    <span style="color:#606">ws_uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">ws://sip-ws-2.example.com</span><span style="color:#710">"</span></span>,
+    <span style="color:#606">weight</span>: <span style="color:#00D">1</span>
+  }
 ]
 </pre></div>
 </div>
@@ -329,21 +336,34 @@ connector(level, category, label, content);
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>turn_servers: { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span>}
+  <div class="code"><pre>turn_servers: {
+  <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>,
+  <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>,
+  <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span>
+}
 </pre></div>
 </div>
 </div>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>turn_servers: {<span style="color:#606">urls</span>:[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>], <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Al</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">yo</span><span style="color:#710">"</span></span>}
+  <div class="code"><pre>turn_servers: {
+  <span style="color:#606">urls</span>:[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>,
+  <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>],
+  <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Al</span><span style="color:#710">"</span></span>,
+  <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">yo</span><span style="color:#710">"</span></span>
+}
 </pre></div>
 </div>
 </div>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>turn_servers: [{ <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span>}]
+  <div class="code"><pre>turn_servers: [{
+  <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>,
+  <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>,
+  <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span>
+}]
 </pre></div>
 </div>
 </div>
@@ -351,8 +371,16 @@ connector(level, category, label, content);
 <div>
 <div class="CodeRay">
   <div class="code"><pre>turn_servers: [
-  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span> },
-  { <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org?transport=udp</span><span style="color:#710">"</span></span>, <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bob</span><span style="color:#710">"</span></span>, <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">dog</span><span style="color:#710">"</span></span>}
+  {
+    <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org</span><span style="color:#710">"</span></span>,
+    <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">alice</span><span style="color:#710">"</span></span>,
+    <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">racecar</span><span style="color:#710">"</span></span>
+  },
+  {
+    <span style="color:#606">urls</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">turn:exam.org?transport=udp</span><span style="color:#710">"</span></span>,
+    <span style="color:#606">username</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bob</span><span style="color:#710">"</span></span>,
+    <span style="color:#606">password</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">dog</span><span style="color:#710">"</span></span>
+  }
 ]
 </pre></div>
 </div>
@@ -380,6 +408,16 @@ use_preloaded_route: <span style="color:#069">true</span>
 </div>
 
 <p>The Route header will look like Route: <code>&lt;sip:example.org:8443;lr;transport=ws&gt;</code></p>
+
+<h2 id="autostart">autostart</h2>
+<p>If set to true, the user agent calls the <code>.start()</code> method upon being created.  </p>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre>autostart: <span style="color:#069">true</span>
+</pre></div>
+</div>
+</div>
 		</div>
 
 		<nav id="sideNav">

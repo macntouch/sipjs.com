@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>API | SIP.js</title>
+  <title>User Agent Construction | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
@@ -18,8 +18,8 @@
 </head>
 
 
-<body class="api">
-	<header id="siteHeader">
+<body class="guides">
+  <header id="siteHeader">
   <div class="wrapper">
     <a href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
     <nav id="mainNav">
@@ -36,39 +36,53 @@
 </header>
 
 
-	<article id="main" class="wrapper group">
-		<header id="sectionHeader">
-			<h1><a href="/api/">API</a></h1>
-		</header>
-		<div id="content">
-			<h1 id="what-version-do-you-want">What Version Do You Want?</h1>
+  <article id="main" class="wrapper group">
+    <header id="sectionHeader">
+      <h1><a href="/guides/">Guides</a></h1>
+    </header>
+    <div id="content">
+      <h1 id="make-a-call">Make a Call</h1>
 
-<ul>
-<li>Version Devel (<a href="/api/devel/">docs</a> , <a href="/guides/">guides</a>)</li>
-  <li>Version 0.5.0 (Coming Soon…)</li>
-</ul><h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
+<ul id="markdown-toc">
+<li><a href="#overview">Overview</a></li>
+</ul><p>Let’s walk through the process of creating a SIP user agent.</p>
 
-<p><em>Check back later!</em></p>
-		</div>
+<h2 id="overview">Overview</h2>
 
-		<nav id="sideNav">
+<h3 id="anonymous-user-agent">Anonymous User Agent</h3>
+
+<p>First we need to include the SIP.js library, which can be downloaded <a href="/download/">here</a>.  </p>
+
+<p>In order to make calls and send messages you must create a SIP user agent.  One way to do this is to create an anonymous user agent.  To do this we will call the <code>SIP.UA()</code> method without sending anything into it.  An anonymous user agent allows you to make calls and send messages only to other SIP user agents, and not to the PSTN. </p>
+
+<h3 id="authenticated-user-agent">Authenticated User Agent</h3>
+
+<p>To create an authenticated user agent, so that you can receive calls and make calls to the PSTN, we need to pass in a configuration variable.  </p>
+
+<p>This configuration variable needs a <code>uri</code>.  This will have a username and a domain.  It will look something like <code>examplename@test.onsip.com</code> The <code>authorization_user</code> and <code>password</code> are used to authenticate with your SIP provider.  </p>
+
+<p>Further descriptions of the configuration variables can be found <a href="/api/devel/ua_configuration_parameters/">here</a>.</p>
+
+<p>Directions for authenticating a user agent using OnSIP can be found <a href="http://developer.onsip.com/guides/useragentauthentication/">here</a>.</p>
+
+<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/V6WMY/2/embedded/html,js,css,result/">
+</iframe>
+    </div>
+
+    <nav id="sideNav">
   <ul>
-    <li class="parent">
-      <a class="parent" href="/api/">Overview</a>
-      <ul>
-        <li><a href="/api#Versions">Versions</a></li>
-      </ul>
-    </li>
-    <li>
-      <a class="last" href="/api/devel/">devel</a>
-    </li>
+    <li><a href="/guides/">Overview</a></li>
+    <li><a href="/guides/convert-to-sipjs/">Convert to SIP.js</a></li>
+    <li><a href="/guides/make-call/">Make a Call</a></li>
+    <li><a href="/guides/receive-call/">Receive a Call</a></li>
+    <li><a href="/guides/send-dtmf/">Send Dtmf</a></li>
+    <li><a class="last" href="/guides/send-message/">Send Message</a></li>
   </ul>
 </nav>
 
+  </article>
 
-	</article>
-
-	<footer class="wrapper">
+  <footer class="wrapper">
   <a href="#" id="onsip"></a>
   <nav class="left">
     <ul class="horizontal">

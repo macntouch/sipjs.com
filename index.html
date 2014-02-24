@@ -42,11 +42,15 @@
 		<p class="intro">Build audio, video, and realtime data into your into your application. SIP.js is fast, lightweight, and easy to use.</p>
 	</div>
 	<pre>
-<span style="color:#080;font-weight:bold">var</span> ua = <span style="color:#080;font-weight:bold">new</span> SIP.UA();
-ua.message('will@example.onsip.com', 'Hello, world!');
-<span style="color:#080;font-weight:bold">var</span> session = ua.invite('will@example.onsip.com');
-session.on('accepted', function () {
-  this.bye();
+<span style="color:#080;font-weight:bold">var</span> ua = <span style="color:#080;font-weight:bold">new</span> SIP.<span style="color:#06B;font-weight:bold">UA</span>();
+ua.<span style="color:#06B;font-weight:bold">message</span>(
+  <span style="background-color:hsla(0,100%,50%,0.05); color:#D20;"><span style="color:#710">'</span>will@example.onsip.com<span style="color:#710">'</span></span>,
+  <span style="background-color:hsla(0,100%,50%,0.05); color:#D20;"><span style="color:#710">'</span>Hello, world!<span style="color:#710">'</span></span>
+);
+
+<span style="color:#080;font-weight:bold">var</span> session = ua.<span style="color:#06B;font-weight:bold">invite</span>(<span style="background-color:hsla(0,100%,50%,0.05); color:#D20;"><span style="color:#710">'</span>will@example.onsip.com<span style="color:#710">'</span></span>);
+session.<span style="color:#06B;font-weight:bold">on</span>(<span style="background-color:hsla(0,100%,50%,0.05); color:#D20;"><span style="color:#710">'</span>accepted<span style="color:#710">'</span></span>, function () {
+  this.<span style="color:#06B;font-weight:bold">bye</span>();
 });
 	</pre>
 	<div class="clearfix"></div>
