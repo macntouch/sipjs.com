@@ -70,7 +70,7 @@
 </li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-<li><a href="#senddtmftone-options"><code>sendDTMF(tone[, options])</code></a></li>
+<li><a href="#dtmftone-options"><code>dtmf(tone[, options])</code></a></li>
       <li><a href="#byeoptions"><code>bye([options])</code></a></li>
       <li><a href="#getlocalstreams"><code>getLocalStreams()</code></a></li>
       <li><a href="#getremotestreams"><code>getRemoteStreams()</code></a></li>
@@ -179,7 +179,7 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 
 <h2 id="instance-methods">Instance Methods</h2>
 
-<h3 id="senddtmftone-options"><code>sendDTMF(tone[, options])</code></h3>
+<h3 id="dtmftone-options"><code>dtmf(tone[, options])</code></h3>
 
 <p>Send one or multiple DTMF tones making use of SIP INFO method.</p>
 
@@ -240,8 +240,8 @@ INVALID_STATE_ERROR</p>
 
 <div>
 <div class="CodeRay">
-  <div class="code"><pre>call.sendDTMF(<span style="color:#00D">1</span>);
-call.sendDTMF(<span style="color:#00D">4</span>);
+  <div class="code"><pre>call.dtmf(<span style="color:#00D">1</span>);
+call.dtmf(<span style="color:#00D">4</span>);
 </pre></div>
 </div>
 </div>
@@ -260,7 +260,7 @@ call.sendDTMF(<span style="color:#00D">4</span>);
   <span style="color:#606"><span style="color:#404">'</span><span>extraHeaders</span><span style="color:#404">'</span></span>: extraHeaders
 };
 
-call.sendDTMF(tones, options);
+call.dtmf(tones, options);
 </pre></div>
 </div>
 </div>
