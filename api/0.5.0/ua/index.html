@@ -81,6 +81,7 @@
       <li><a href="#registrationfailed"><code>registrationFailed</code></a></li>
       <li><a href="#invite"><code>invite</code></a></li>
       <li><a href="#message"><code>message</code></a></li>
+      <li><a href="#example-4">Example</a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
@@ -567,7 +568,25 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 </td>
       <td>The inbound message received. This argument also implements the shared <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
     </tr></tbody>
-</table>
+</table><h3 id="example-4">Example</h3>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// Create a user agent named Bob, connect, and register to receive invitations.</span>
+<span style="color:#080;font-weight:bold">var</span> bob = <span style="color:#080;font-weight:bold">new</span> SIP.UA({
+  <span style="color:#606">uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>,
+  <span style="color:#606">ws_servers</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">wss://sip-ws.example.com</span><span style="color:#710">'</span></span>],
+  <span style="color:#606">register</span>: <span style="color:#069">true</span>
+});
+bob.start();
+bob.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>, onMessage);
+
+<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">onMessage</span>(message) {
+  alert(message.body);
+}
+</pre></div>
+</div>
+</div>
 		</div>
 
 		<nav id="sideNav">
