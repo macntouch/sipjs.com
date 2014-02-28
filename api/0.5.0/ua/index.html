@@ -88,7 +88,7 @@
 
 <h3 id="new-sipuaconfiguration"><code>new SIP.UA([configuration])</code></h3>
 
-<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent, although most applications will define at least <a href="/api/devel/ua_configuration_parameters/#uri"><code>uri</code></a> and <a href="/api/devel/ua_configuration_parameters/#ws_servers"><code>ws_servers</code></a>. Check the full list for optional <a href="/api/devel/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
+<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent, although most applications will define at least <a href="/api/0.5.0/ua_configuration_parameters/#uri"><code>uri</code></a> and <a href="/api/0.5.0/ua_configuration_parameters/#ws_servers"><code>ws_servers</code></a>. Check the full list for optional <a href="/api/0.5.0/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
 
 <h3 id="examples">Examples</h3>
 
@@ -109,7 +109,7 @@ bob.start();
 
 <h3 id="start"><code>start()</code></h3>
 
-<p>Connect to the configured WebSocket server, and restore the previous state if previously stopped. The first time <code>start()</code> is called, the UA will also attempt to register if the <a href="/api/devel/ua_configuration_parameters/#register"><code>register</code></a> parameter in the UA’s configuration is set to <code>true</code>.</p>
+<p>Connect to the configured WebSocket server, and restore the previous state if previously stopped. The first time <code>start()</code> is called, the UA will also attempt to register if the <a href="/api/0.5.0/ua_configuration_parameters/#register"><code>register</code></a> parameter in the UA’s configuration is set to <code>true</code>.</p>
 
 <h3 id="stop"><code>stop()</code></h3>
 
@@ -265,9 +265,9 @@ myUA.unregister(options);
 <tr>
 <td><code>target</code></td>
       <td>
-<code>String|</code><a href="/api/devel/uri/"><code>SIP.URI</code></a>
+<code>String|</code><a href="/api/0.5.0/uri/"><code>SIP.URI</code></a>
 </td>
-      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/0.5.0/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>body</code></td>
@@ -303,7 +303,7 @@ myUA.unregister(options);
     </tr></thead>
 <tbody><tr>
 <td>
-<a href="/api/devel/message/"><code>SIP.Message</code></a>, <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a>
+<a href="/api/0.5.0/message/"><code>SIP.Message</code></a>, <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a>
 </td>
       <td>The newly created MESSAGE. The new Message object implements the shared ClientContext interface for outbound requests.</td>
     </tr></tbody>
@@ -333,9 +333,9 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 <tr>
 <td><code>target</code></td>
       <td>
-<code>String|</code><a href="/api/devel/uri/"><code>SIP.URI</code></a>
+<code>String|</code><a href="/api/0.5.0/uri/"><code>SIP.URI</code></a>
 </td>
-      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/0.5.0/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>options</code></td>
@@ -385,7 +385,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
     </tr></thead>
 <tbody><tr>
 <td>
-<a href="/api/devel/session/"><code>SIP.Session</code></a>, <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a>
+<a href="/api/0.5.0/session/"><code>SIP.Session</code></a>, <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a>
 </td>
       <td>The session the target is invited to.  The new Session object implements the shared ClientContext interface for outbound requests. The Session is in a provisional or early state until accepted by the remote target.  Please refer to the Session documentation for more information.</td>
     </tr></tbody>
@@ -420,9 +420,9 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 <tr>
 <td><code>target</code></td>
       <td>
-<code>String|</code><a href="/api/devel/uri/"><code>SIP.URI</code></a>
+<code>String|</code><a href="/api/0.5.0/uri/"><code>SIP.URI</code></a>
 </td>
-      <td>Destination address. <code>String</code> representing a destination username or complete SIP URI, or a <a href="/api/devel/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>Destination address. <code>String</code> representing a destination username or complete SIP URI, or a <a href="/api/0.5.0/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>body</code></td>
@@ -455,12 +455,12 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a></td>
+<td><a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a></td>
       <td>The context surrounding the new outbound request.</td>
     </tr></tbody>
 </table><h2 id="events">Events</h2>
 
-<p>User agent objects extend the <a href="/api/devel/eventEmitter/">SIP.EventEmitter</a> interface.  Each event emitted by the UA passes specific relevant arguments to its callbacks.</p>
+<p>User agent objects extend the <a href="/api/0.5.0/eventEmitter/">SIP.EventEmitter</a> interface.  Each event emitted by the UA passes specific relevant arguments to its callbacks.</p>
 
 <h3 id="connected"><code>connected</code></h3>
 
@@ -505,7 +505,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 <td><code>cause</code></td>
       <td> </td>
       <td>
-<code>null</code> for positive response to un-REGISTER SIP request. If a reregistration fails, this is one value of <a href="/api/devel/causes">Failure and End Causes</a>
+<code>null</code> for positive response to un-REGISTER SIP request. If a reregistration fails, this is one value of <a href="/api/0.5.0/causes">Failure and End Causes</a>
 </td>
     </tr></tbody>
 </table><h3 id="registrationfailed"><code>registrationFailed</code></h3>
@@ -523,7 +523,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 <tbody><tr>
 <td><code>cause</code></td>
       <td> </td>
-      <td>One value of <a href="/api/devel/causes">Failure and End Causes</a>
+      <td>One value of <a href="/api/0.5.0/causes">Failure and End Causes</a>
 </td>
     </tr></tbody>
 </table><h3 id="invite"><code>invite</code></h3>
@@ -543,9 +543,9 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 <tbody><tr>
 <td><code>session</code></td>
       <td>
-<a href="/api/devel/message/"><code>SIP.Session</code></a>, <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a>
+<a href="/api/0.5.0/message/"><code>SIP.Session</code></a>, <a href="/api/0.5.0/context/server/"><code>SIP.ServerContext</code></a>
 </td>
-      <td>The inbound session the user agent was invited to. This argument also implements the shared <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
+      <td>The inbound session the user agent was invited to. This argument also implements the shared <a href="/api/0.5.0/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
     </tr></tbody>
 </table><h3 id="message"><code>message</code></h3>
 
@@ -564,9 +564,9 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 <tbody><tr>
 <td><code>message</code></td>
       <td>
-<a href="/api/devel/message/"><code>SIP.Message</code></a>, <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a>
+<a href="/api/0.5.0/message/"><code>SIP.Message</code></a>, <a href="/api/0.5.0/context/server/"><code>SIP.ServerContext</code></a>
 </td>
-      <td>The inbound message received. This argument also implements the shared <a href="/api/devel/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
+      <td>The inbound message received. This argument also implements the shared <a href="/api/0.5.0/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
     </tr></tbody>
 </table><h3 id="example-4">Example</h3>
 
