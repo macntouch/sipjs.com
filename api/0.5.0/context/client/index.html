@@ -50,7 +50,7 @@
 		<div id="content">
 			<h1 id="sipclientcontext">SIP.ClientContext</h1>
 
-<p>A <code>SIP.ClientContext</code> encapsulates the behavior required to send a request, as well as handle responses and retransmissions of that request. It is typically mixed in with behavior from a method-specific class, such as <a href="/api/devel/session/"><code>SIP.Session</code></a> or <a href="/api/devel/message/"><code>SIP.Message</code></a>.</p>
+<p>A <code>SIP.ClientContext</code> encapsulates the behavior required to send a request, as well as handle responses and retransmissions of that request. It is typically mixed in with behavior from a method-specific class, such as <a href="/api/0.5.0/session/"><code>SIP.Session</code></a> or <a href="/api/0.5.0/message/"><code>SIP.Message</code></a>.</p>
 
 <ul id="markdown-toc">
 <li>
@@ -94,7 +94,7 @@ target | `String|SIP.URI` | The destination URI for the request to send to.
 
 <h3 id="ua"><code>ua</code></h3>
 
-<p><a href="/api/devel/ua/"><code>SIP.UA</code></a> - The user agent from which the request was sent or will be sent.</p>
+<p><a href="/api/0.5.0/ua/"><code>SIP.UA</code></a> - The user agent from which the request was sent or will be sent.</p>
 
 <h3 id="method"><code>method</code></h3>
 
@@ -102,15 +102,15 @@ target | `String|SIP.URI` | The destination URI for the request to send to.
 
 <h3 id="request"><code>request</code></h3>
 
-<p><a href="/api/devel/outgoingRequest/"><code>SIP.OutgoingRequest</code></a> - The request sent or to be sent.</p>
+<p><a href="/api/0.5.0/outgoingRequest/"><code>SIP.OutgoingRequest</code></a> - The request sent or to be sent.</p>
 
 <h3 id="localidentity"><code>localIdentity</code></h3>
 
-<p><a href="/api/devel/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The From header field value, representing the local endpoint. This is typically the URI of the UA as a <code>SIP.NameAddrHeader</code>.</p>
+<p><a href="/api/0.5.0/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The From header field value, representing the local endpoint. This is typically the URI of the UA as a <code>SIP.NameAddrHeader</code>.</p>
 
 <h3 id="remoteidentity"><code>remoteIdentity</code></h3>
 
-<p><a href="/api/devel/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The To header field value, representing the remote endpoint.</p>
+<p><a href="/api/0.5.0/nameAddrHeader/"><code>SIP.NameAddrHeader</code></a> - The To header field value, representing the remote endpoint.</p>
 
 <h3 id="data"><code>data</code></h3>
 
@@ -122,7 +122,7 @@ target | `String|SIP.URI` | The destination URI for the request to send to.
 
 ### `send([options])`
 
-Send the request. A constructed `SIP.ClientContext` will not send itself until this or a similar method is called. This method does not run any custom behavior outside of the default handling of the SIP request. For request methods with their own context objects, please use the method-specific functions for sending requests defined on those objects. (For example, [`SIP.InviteClientContext`](/api/devel/session/#inviteoptions) uses its `.invite()` method to send its request.)
+Send the request. A constructed `SIP.ClientContext` will not send itself until this or a similar method is called. This method does not run any custom behavior outside of the default handling of the SIP request. For request methods with their own context objects, please use the method-specific functions for sending requests defined on those objects. (For example, [`SIP.InviteClientContext`](/api/0.5.0/session/#inviteoptions) uses its `.invite()` method to send its request.)
 
 #### Parameters
 
@@ -212,7 +212,7 @@ INVALID_STATE_ERROR</p>
 <tbody>
 <tr>
 <td><code>response</code></td>
-      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td><a href="/api/0.5.0/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
       <td>The received response</td>
     </tr>
 <tr>
@@ -236,7 +236,7 @@ INVALID_STATE_ERROR</p>
 <tbody>
 <tr>
 <td><code>response</code></td>
-      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td><a href="/api/0.5.0/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
       <td>The received response</td>
     </tr>
 <tr>
@@ -260,7 +260,7 @@ INVALID_STATE_ERROR</p>
 <tbody>
 <tr>
 <td><code>response</code></td>
-      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td><a href="/api/0.5.0/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
       <td>The received response</td>
     </tr>
 <tr>
@@ -284,7 +284,7 @@ INVALID_STATE_ERROR</p>
 <tbody>
 <tr>
 <td><code>response</code></td>
-      <td><a href="/api/devel/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
+      <td><a href="/api/0.5.0/incomingResponse"><code>SIP.IncomingResponse</code></a></td>
       <td>The received response, on a non SIP related failure this will be null</td>
     </tr>
 <tr>

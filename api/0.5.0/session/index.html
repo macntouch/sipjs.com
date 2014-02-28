@@ -50,7 +50,7 @@
 		<div id="content">
 			<h1 id="sipsession">SIP.Session</h1>
 
-<p>The class SIP.Session represents a WebRTC media (audio/video) session. It can be initiated by the local user or by a remote peer. Sessions are created via INVITE SIP messages. Sessions also implement one of <a href="/api/devel/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server"><code>SIP.ServerContext</code></a>, depending on if they are the result of outbound (client) or inbound (server) INVITE requests.</p>
+<p>The class SIP.Session represents a WebRTC media (audio/video) session. It can be initiated by the local user or by a remote peer. Sessions are created via INVITE SIP messages. Sessions also implement one of <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server"><code>SIP.ServerContext</code></a>, depending on if they are the result of outbound (client) or inbound (server) INVITE requests.</p>
 
 <ul id="markdown-toc">
 <li>
@@ -157,27 +157,27 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 
 <h3 id="ua"><code>ua</code></h3>
 
-<p><a href="/api/devel/ua/"><code>SIP.UA</code></a> - Inherited from <a href="/api/devel/context/client/#ua"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/#ua"><code>SIP.ServerContext</code></a>.</p>
+<p><a href="/api/0.5.0/ua/"><code>SIP.UA</code></a> - Inherited from <a href="/api/0.5.0/context/client/#ua"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server/#ua"><code>SIP.ServerContext</code></a>.</p>
 
 <h3 id="method"><code>method</code></h3>
 
-<p><code>String</code> - The value of <code>method</code> is always <code>"INVITE"</code>. Inherited from <a href="/api/devel/context/client/#method"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/#method"><code>SIP.ServerContext</code></a>.</p>
+<p><code>String</code> - The value of <code>method</code> is always <code>"INVITE"</code>. Inherited from <a href="/api/0.5.0/context/client/#method"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server/#method"><code>SIP.ServerContext</code></a>.</p>
 
 <h3 id="request"><code>request</code></h3>
 
-<p><a href="/api/devel/incomingMessage/"><code>SIP.IncomingRequest</code></a> or <a href="/api/devel/outgoingRequest/"><code>SIP.OutgoingRequest</code></a> - Inherited from <a href="/api/devel/context/client/#request"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/#request"><code>SIP.ServerContext</code></a>.</p>
+<p><a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingRequest</code></a> or <a href="/api/0.5.0/outgoingRequest/"><code>SIP.OutgoingRequest</code></a> - Inherited from <a href="/api/0.5.0/context/client/#request"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server/#request"><code>SIP.ServerContext</code></a>.</p>
 
 <h3 id="localidentity"><code>localIdentity</code></h3>
 
-<p><code>SIP.NameAddrHeader</code> - Inherited from <a href="/api/devel/context/client/#localIdentity"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/#localIdentity"><code>SIP.ServerContext</code></a>.</p>
+<p><code>SIP.NameAddrHeader</code> - Inherited from <a href="/api/0.5.0/context/client/#localIdentity"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server/#localIdentity"><code>SIP.ServerContext</code></a>.</p>
 
 <h3 id="remoteidentity"><code>remoteIdentity</code></h3>
 
-<p><code>SIP.NameAddrHeader</code> - Inherited from <a href="/api/devel/context/client/#remoteIdentity"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/#remoteIdentity"><code>SIP.ServerContext</code></a>.</p>
+<p><code>SIP.NameAddrHeader</code> - Inherited from <a href="/api/0.5.0/context/client/#remoteIdentity"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server/#remoteIdentity"><code>SIP.ServerContext</code></a>.</p>
 
 <h3 id="data"><code>data</code></h3>
 
-<p><code>Object</code> - Empty object for application to define custom data. Inherited from <a href="/api/devel/context/client/#data"><code>SIP.ClientContext</code></a> or <a href="/api/devel/context/server/#data"><code>SIP.ServerContext</code></a>.</p>
+<p><code>Object</code> - Empty object for application to define custom data. Inherited from <a href="/api/0.5.0/context/client/#data"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server/#data"><code>SIP.ServerContext</code></a>.</p>
 
 <h2 id="instance-methods">Instance Methods</h2>
 
@@ -442,31 +442,31 @@ INVALID_STATE_ERROR</p>
 
 <h3 id="canceloptions"><code>cancel([options])</code></h3>
 
-<p>Overrides <a href="/api/devel/context/client/#canceloptions/"><code>SIP.ClientContext.cancel</code></a></p>
+<p>Overrides <a href="/api/0.5.0/context/client/#canceloptions/"><code>SIP.ClientContext.cancel</code></a></p>
 
 <h2 id="instance-methods-inboundserver">Instance Methods (Inbound/Server)</h2>
 
 <h3 id="progressoptions"><code>progress([options])</code></h3>
 
-<p>Overrides <a href="/api/devel/context/server/#progressoptions"><code>SIP.ServerContext.progress</code></a></p>
+<p>Overrides <a href="/api/0.5.0/context/server/#progressoptions"><code>SIP.ServerContext.progress</code></a></p>
 
 <h3 id="acceptoptions"><code>accept([options])</code></h3>
 
-<p>Overrides <a href="/api/devel/context/server/#acceptoptions"><code>SIP.ServerContext.accept</code></a></p>
+<p>Overrides <a href="/api/0.5.0/context/server/#acceptoptions"><code>SIP.ServerContext.accept</code></a></p>
 
 <h3 id="rejectoptions"><code>reject([options])</code></h3>
 
-<p>Overrides <a href="/api/devel/context/server/#rejectoptions"><code>SIP.ServerContext.reject</code></a></p>
+<p>Overrides <a href="/api/0.5.0/context/server/#rejectoptions"><code>SIP.ServerContext.reject</code></a></p>
 
 <h3 id="replyoptions"><code>reply([options])</code></h3>
 
-<p>Overrides <a href="/api/devel/context/server/#replyoptions"><code>SIP.ServerContext.reply</code></a></p>
+<p>Overrides <a href="/api/0.5.0/context/server/#replyoptions"><code>SIP.ServerContext.reply</code></a></p>
 
 <h2 id="events">Events</h2>
 
 <p><code>SIP.Session</code> class defines a series of events. Each of them allows a callback function to be defined in order to let the user execute a handler for each given stimulus.</p>
 
-<p>Every event handler is executed with a <a href="/api/devel/eventEmitter/">SIP.Event</a> instance as the only argument.</p>
+<p>Every event handler is executed with a <a href="/api/0.5.0/eventEmitter/">SIP.Event</a> instance as the only argument.</p>
 
 <h3 id="progress"><code>progress</code></h3>
 
@@ -493,7 +493,7 @@ INVALID_STATE_ERROR</p>
     </tr>
 <tr>
 <td><code>data.response</code></td>
-      <td><a href="/api/devel/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.5.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
 </tbody>
@@ -522,7 +522,7 @@ INVALID_STATE_ERROR</p>
     </tr>
 <tr>
 <td><code>data.response</code></td>
-      <td><a href="/api/devel/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.5.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
 </tbody>
@@ -551,7 +551,7 @@ INVALID_STATE_ERROR</p>
     </tr>
 <tr>
 <td><code>data.response</code></td>
-      <td><a href="/api/devel/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
 <tr>
@@ -585,7 +585,7 @@ INVALID_STATE_ERROR</p>
     </tr>
 <tr>
 <td><code>data.response</code></td>
-      <td><a href="/api/devel/incomingMessage/"><code>SIP.IncomingMessage|null</code></a></td>
+      <td><a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage|null</code></a></td>
       <td>The received response, or <code>null</code> if the failure was not due to a received response.</td>
     </tr>
 <tr>
@@ -611,7 +611,7 @@ INVALID_STATE_ERROR</p>
 <td><code>response</code></td>
       <td><code>Object</code></td>
       <td>
-<a href="/api/devel/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
     </tr>
 <tr>
 <td><code>code</code></td>
@@ -629,8 +629,8 @@ Fired when an established call ends.
 
 Name | Type | Description 
 -----|------|--------------
-`message`|`Object`|[`SIP.IncomingResponse`](/api/devel/incomingResponse/) instance of the received SIP 1XX response.
-`cause`||One value of [Failure and End Causes](/api/devel/causes)
+`message`|`Object`|[`SIP.IncomingResponse`](/api/0.5.0/incomingResponse/) instance of the received SIP 1XX response.
+`cause`||One value of [Failure and End Causes](/api/0.5.0/causes)
 
 --><h3 id="canceled"><code>canceled</code></h3>
 
@@ -649,7 +649,7 @@ Name | Type | Description
 <td><code>response</code></td>
       <td><code>Object</code></td>
       <td>
-<a href="/api/devel/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
     </tr>
 <tr>
 <td><code>code</code></td>
@@ -673,7 +673,7 @@ Name | Type | Description
 <td><code>response</code></td>
       <td><code>Object</code></td>
       <td>
-<a href="/api/devel/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
     </tr></tbody>
 </table><h3 id="dtmf"><code>dtmf</code></h3>
 
@@ -698,7 +698,7 @@ Name | Type | Description
 <td><code>request</code></td>
       <td><code>Object</code></td>
       <td>
-<a href="/api/devel/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP INFO request.</td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP INFO request.</td>
     </tr>
 </tbody>
 </table><!--
