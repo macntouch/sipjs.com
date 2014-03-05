@@ -99,7 +99,7 @@
       <li><a href="#rejected"><code>rejected</code></a></li>
       <li><a href="#failed"><code>failed</code></a></li>
       <li><a href="#connecting"><code>connecting</code></a></li>
-      <li><a href="#canceled"><code>canceled</code></a></li>
+      <li><a href="#cancel"><code>cancel</code></a></li>
       <li><a href="#referred"><code>referred</code></a></li>
       <li><a href="#dtmf"><code>dtmf</code></a></li>
       <li><a href="#bye"><code>bye</code></a></li>
@@ -472,7 +472,7 @@ INVALID_STATE_ERROR</p>
 
 <p>Fired each time a provisional (100-199) response is received.</p>
 
-<h4 id="onprogress-function-data-"><code>on('progress', function (data) {})</code></h4>
+<h4 id="onprogress-function-response-"><code>on('progress', function (response) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -480,23 +480,11 @@ INVALID_STATE_ERROR</p>
       <th>Type</th>
       <th>Description</th>
     </tr></thead>
-<tbody>
-<tr>
-<td><code>data</code></td>
-      <td><code>Object</code></td>
-      <td>A wrapper object containing the event data</td>
-    </tr>
-<tr>
-<td><code>data.code</code></td>
-      <td><code>Integer</code></td>
-      <td>The status code of the received response, between 100 and 199.</td>
-    </tr>
-<tr>
-<td><code>data.response</code></td>
+<tbody><tr>
+<td><code>response</code></td>
       <td><a href="/api/0.5.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
-    </tr>
-</tbody>
+    </tr></tbody>
 </table><h3 id="accepted"><code>accepted</code></h3>
 
 <p>Fired each time a successful final (200-299) response is received.</p>
@@ -530,7 +518,7 @@ INVALID_STATE_ERROR</p>
 
 <p>Fired each time an unsuccessful final (300-699) response is received. <em>Note: This will also emit a <code>failed</code> event.</em></p>
 
-<h4 id="onrejected-function-data-"><code>on('rejected', function (data) {})</code></h4>
+<h4 id="onrejected-function-response-cause-"><code>on('rejected', function (response, cause) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -540,22 +528,12 @@ INVALID_STATE_ERROR</p>
     </tr></thead>
 <tbody>
 <tr>
-<td><code>data</code></td>
-      <td><code>Object</code></td>
-      <td>A wrapper object containing the event data</td>
-    </tr>
-<tr>
-<td><code>data.code</code></td>
-      <td><code>Integer</code></td>
-      <td>The status code of the received response, between 300 and 699.</td>
-    </tr>
-<tr>
-<td><code>data.response</code></td>
+<td><code>response</code></td>
       <td><a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
 <tr>
-<td><code>data.cause</code></td>
+<td><code>cause</code></td>
       <td><code>String</code></td>
       <td>The reason phrase associated with the SIP response code.</td>
     </tr>
@@ -598,28 +576,11 @@ INVALID_STATE_ERROR</p>
 
 <p>Fired when ICE is starting to negotiate between the peers.</p>
 
-<h4 id="onconnecting-function-responsecode-"><code>on('connecting', function (response,code) {})</code></h4>
+<h4 id="onconnecting-function--"><code>on('connecting', function () {})</code></h4>
 
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>response</code></td>
-      <td><code>Object</code></td>
-      <td>
-<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
-    </tr>
-<tr>
-<td><code>code</code></td>
-      <td> </td>
-      <td>The SIP response code.</td>
-    </tr>
-</tbody>
-</table><!--
+<p><em>There are no documented arguments for this event</em></p>
+
+<!--
 
 ### `terminated`
 
@@ -632,11 +593,21 @@ Name | Type | Description
 `message`|`Object`|[`SIP.IncomingResponse`](/api/0.5.0/incomingResponse/) instance of the received SIP 1XX response.
 `cause`||One value of [Failure and End Causes](/api/0.5.0/causes)
 
---><h3 id="canceled"><code>canceled</code></h3>
+-->
+
+<h3 id="cancel"><code>cancel</code></h3>
 
 <p>Fired when the session was canceled by the UAC.</p>
 
-<h4 id="oncanceled-functionresponse-code-"><code>on('canceled', function(response, code) {})</code></h4>
+<h4 id="oncancel-function-"><code>on('cancel', function() {})</code></h4>
+
+<p><em>There are no documented arguments for this event</em></p>
+
+<h3 id="referred"><code>referred</code></h3>
+
+<p>Fired when the session was unable to establish.</p>
+
+<h4 id="onreferred-functionrequestnewsession-"><code>on('referred', function(request,newSession) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -646,35 +617,18 @@ Name | Type | Description
     </tr></thead>
 <tbody>
 <tr>
-<td><code>response</code></td>
+<td><code>request</code></td>
       <td><code>Object</code></td>
       <td>
-<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP REFER request.</td>
     </tr>
 <tr>
-<td><code>code</code></td>
-      <td> </td>
-      <td>The SIP response code.</td>
-    </tr>
-</tbody>
-</table><h3 id="referred"><code>referred</code></h3>
-
-<p>Fired when the session was unable to establish.</p>
-
-<h4 id="onreferred-functionresponse-"><code>on('referred', function(response) {})</code></h4>
-
-<table>
-<thead><tr>
-<th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>response</code></td>
+<td><code>newSession</code></td>
       <td><code>Object</code></td>
       <td>
-<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP 1XX response.</td>
-    </tr></tbody>
+<a href="/api/0.5.0/session/"><code>SIP.Session</code></a> the new session created by the refer.</td>
+    </tr>
+</tbody>
 </table><h3 id="dtmf"><code>dtmf</code></h3>
 
 <p>Fired for an incoming or outgoing DTMF.</p>
@@ -723,9 +677,21 @@ Fired when a session is pre-accepted.
 
 <p>Fired when a BYE is sent.</p>
 
-<h4 id="onbye-function-"><code>on('bye', function() {})</code></h4>
+<h4 id="onbye-functionrequest-"><code>on('bye', function(request) {})</code></h4>
 
-<p><em>There are no documented arguments for this event</em></p>
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td><code>request</code></td>
+      <td><code>Object</code></td>
+      <td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP INFO request.</td>
+    </tr></tbody>
+</table>
 		</div>
 
 		<nav id="sideNav">

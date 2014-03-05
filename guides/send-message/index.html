@@ -64,20 +64,20 @@
 
 <h3 id="creating-the-user-agent">Creating the User Agent</h3>
 
-<p>In order to make calls and send messages you must create a SIP user agent.  For this example, we will create an anonymous user agent.  To do this we will call the <code>SIP.UA()</code> method and then we must start the user agent.</p>
+<p>In order to make calls and send messages you must create a SIP user agent.  For this example, we will create an anonymous user agent.  To do this we will call the <code>SIP.UA()</code> method which will create and start the user agent.</p>
 
-<iframe style="width: 100%; height: 250px" src="http://jsfiddle.net/gk3p4/4/embedded/js,html,result/">
+<iframe style="width: 100%; height: 250px" src="http://jsfiddle.net/gk3p4/5/embedded/js,html,result/">
 </iframe>
 
 <h3 id="sending-the-message">Sending the Message</h3>
 
-<p>After the user agent has connected to the SIP server (which is a public Google server by default) we can send the message.</p>
+<p>After the user agent has connected to the SIP server we can send the message.</p>
 
 <p>To send the message we must use call the <code>.message(target, body)</code> method, along with the address that we are sending the message to in the <code>target</code> variable and the message that we are sending in the <code>body</code> variable.</p>
 
 <p>We will add a click event to the <code>&lt;button&gt;</code> element, which calls the <code>message()</code> method.</p>
 
-<iframe style="width: 100%; height: 250px" src="http://jsfiddle.net/8Cg6M/4/embedded/js,html,result/">
+<iframe style="width: 100%; height: 250px" src="http://jsfiddle.net/8Cg6M/5/embedded/js,html,result/">
 </iframe>
     </div>
 
