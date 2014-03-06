@@ -68,6 +68,7 @@
       <li><a href="#isregistered"><code>isRegistered()</code></a></li>
       <li><a href="#isconnected"><code>isConnected()</code></a></li>
       <li><a href="#messagetarget-body-options"><code>message(target, body[, options])</code></a></li>
+      <li><a href="#subscribetarget-event-options"><code>subscribe(target, event[, options])</code></a></li>
       <li><a href="#invitetarget-options"><code>invite(target[, options])</code></a></li>
       <li><a href="#requestmethod-target-options"><code>request(method, target[, options])</code></a></li>
     </ul>
@@ -81,7 +82,7 @@
       <li><a href="#registrationfailed"><code>registrationFailed</code></a></li>
       <li><a href="#invite"><code>invite</code></a></li>
       <li><a href="#message"><code>message</code></a></li>
-      <li><a href="#example-4">Example</a></li>
+      <li><a href="#example-5">Example</a></li>
     </ul>
 </li>
 </ul><h2 id="construction">Construction</h2>
@@ -267,7 +268,7 @@ myUA.unregister(options);
       <td>
 <code>String|</code><a href="/api/0.5.0/uri/"><code>SIP.URI</code></a>
 </td>
-      <td>Destination of the call. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/0.5.0/uri/"><code>SIP.URI</code></a> instance.</td>
+      <td>Destination of the message. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/0.5.0/uri/"><code>SIP.URI</code></a> instance.</td>
     </tr>
 <tr>
 <td><code>body</code></td>
@@ -317,11 +318,78 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 </div>
 </div>
 
+<h3 id="subscribetarget-event-options"><code>subscribe(target, event[, options])</code></h3>
+
+<p>Creates a <a href="/api/0.5.0/subscription/"><code>SIP.Subscription</code></a> to a certain event of another user.</p>
+
+<h4 id="parameters-3">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>target</code></td>
+      <td>
+<code>String|</code><a href="/api/0.5.0/uri/"><code>SIP.URI</code></a>
+</td>
+      <td>Destination of the subscription. <code>String</code> representing a destination username or a complete SIP URI, or a <a href="/api/0.5.0/uri/"><code>SIP.URI</code></a> instance.</td>
+    </tr>
+<tr>
+<td><code>event</code></td>
+      <td><code>String</code></td>
+      <td>Message content. <code>String</code> representing the name of the event-package to be subscribed to.</td>
+    </tr>
+<tr>
+<td><code>options</code></td>
+      <td><code>Object</code></td>
+      <td>Optional <code>Object</code> with extra parameters (see below).</td>
+    </tr>
+<tr>
+<td><code>options.expires</code></td>
+      <td><code>Number</code></td>
+      <td>Optional <code>Number</code> representing the desired duration of the subscription. Default (and minimum) is 3600 (1 hour).</td>
+    </tr>
+<tr>
+<td><code>options.extraHeaders</code></td>
+      <td>
+<code>Array</code> of <code>Strings</code>
+</td>
+      <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the MESSAGE request.</td>
+    </tr>
+</tbody>
+</table><h4 id="returns-5">Returns</h4>
+
+<p><em>The return value of this method implements multiple interfaces.</em></p>
+
+<table>
+<thead><tr>
+<th>Types</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody><tr>
+<td>
+<a href="/api/0.5.0/subscription/"><code>SIP.Subscription</code></a>, <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a>
+</td>
+      <td>The newly created Subscription. The new Subscription object implements the shared ClientContext interface for outbound requests.</td>
+    </tr></tbody>
+</table><h4 id="example-3">Example</h4>
+
+<div>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> subscription = myUA.subscribe(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob@example.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">presence</span><span style="color:#710">'</span></span>);
+</pre></div>
+</div>
+</div>
+
 <h3 id="invitetarget-options"><code>invite(target[, options])</code></h3>
 
 <p>Invite the target to start a multimedia session.</p>
 
-<h4 id="parameters-3">Parameters</h4>
+<h4 id="parameters-4">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -374,7 +442,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 <code>Boolean</code> field indicating whether the call should be done anonymously. Default value is <code>false</code>.</td>
     </tr>
 </tbody>
-</table><h4 id="returns-5">Returns</h4>
+</table><h4 id="returns-6">Returns</h4>
 
 <p><em>The return value of this method implements multiple interfaces.</em></p>
 
@@ -389,7 +457,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 </td>
       <td>The session the target is invited to.  The new Session object implements the shared ClientContext interface for outbound requests. The Session is in a provisional or early state until accepted by the remote target.  Please refer to the Session documentation for more information.</td>
     </tr></tbody>
-</table><h4 id="example-3">Example</h4>
+</table><h4 id="example-4">Example</h4>
 
 <div>
 <div class="CodeRay">
@@ -402,7 +470,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 
 <p>Send a SIP message.</p>
 
-<h4 id="parameters-4">Parameters</h4>
+<h4 id="parameters-5">Parameters</h4>
 
 <table>
 <thead><tr>
@@ -447,7 +515,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for the MESSAGE request.</td>
     </tr>
 </tbody>
-</table><h4 id="returns-6">Returns</h4>
+</table><h4 id="returns-7">Returns</h4>
 
 <table>
 <thead><tr>
@@ -568,7 +636,7 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
 </td>
       <td>The inbound message received. This argument also implements the shared <a href="/api/0.5.0/context/server/"><code>SIP.ServerContext</code></a> behavior for inbound requests.</td>
     </tr></tbody>
-</table><h3 id="example-4">Example</h3>
+</table><h3 id="example-5">Example</h3>
 
 <div>
 <div class="CodeRay">
@@ -623,10 +691,21 @@ bob.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#
       </ul>
     </li>
     <li class="parent">
+      <a class="parent" href="/api/0.5.0/subscription/">SIP.Subscription</a>
+      <ul>
+        <li><a href="/api/0.5.0/subscription/#construction">Instantiation</a></li>
+        <li><a href="/api/0.5.0/subscription/#instance-attributes">Instance Attributes</a></li>
+        <li><a href="/api/0.5.0/subscription/#instance-methods">Instance Methods</a></li>
+        <li><a href="/api/0.5.0/subscription/#events">Events</a></li>
+      </ul>
+    </li>
+    <li class="parent">
       <a class="parent" href="/api/0.5.0/message/">SIP.Message</a>
       <ul>
-        <li><a href="/api/0.5.0/message/">Sip.Message</a></li>
-        <li><a href="/api/0.5.0/incomingMessage/">Incoming Message Data Structure</a></li>
+        <li><a href="/api/0.5.0/message/#construction">Instantiation</a></li>
+        <li><a href="/api/0.5.0/message/#instance-attributes">Instance Attributes</a></li>
+        <li><a href="/api/0.5.0/message/#instance-methods">Instance Methods</a></li>
+        <li><a href="/api/0.5.0/message/#events">Events</a></li>
       </ul>
     </li>
     <li class="parent">
