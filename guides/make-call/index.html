@@ -52,9 +52,9 @@
 
 <p>First we must create the files index.html, main.js, and style.css in the same folder.  In the index.html file we need to include the SIP.js library, which can be downloaded <a href="/download/">here</a>, as well as the main.js file.  </p>
 
-<p>In order to make a video call, we need a way to display the video call on your screen.  We can use a <code>&lt;video&gt;</code> element for this.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC. The local video stream should always be muted to prevent feedback.</p>
+<p>A <code>&lt;video&gt;</code> element is need to display the video stream.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC. </p>
 
-<p>In this example, within the <code>&lt;body&gt;</code> tags, we have a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person you are calling.  We also have a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that you are sending to the person you are calling.  </p>
+<p>Within the <code>&lt;body&gt;</code> tags, there is a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person being calling.  There is also a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that is being sendt to the person being called.  The local video stream should always be muted to prevent feedback.</p>
 
 <p>Although we are loading the SIP.js library, we are not doing anything with it yet.</p>
 
@@ -93,9 +93,9 @@
 
 <p>Although we are now able to make calls, we are not yet displaying the videos on the screen.  To do this we need to attach the video streams that we are sending and receiving to the video elements that we added in the beginning.  </p>
 
-<p>We cannot just immediately attach the media streams; we must first wait until the call begins.  To do this we need to catch the <code>accepted</code> SIP event and attach the media streams after this point.  </p>
+<p>We cannot just immediately attach the media streams; we must first wait until the call begins.  To do this we need to catch the <code>accepted</code> event and attach the media streams after this point.  </p>
 
-<p>We have created a new function called onAccepted(), which it runs as soon as the call connects.  This function calls the <code>attachMediaStream</code> function on both media streams, and then plays both video elements.</p>
+<p>We have created a new function called onAccepted(), which runs as soon as the call connects.  This function calls the <code>attachMediaStream</code> function on both media streams, and then plays both video elements.</p>
 
 <p>The function <code>attachMediaStream</code> attaches the media stream to the video element.</p>
 
