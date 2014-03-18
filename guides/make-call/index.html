@@ -54,9 +54,7 @@
 
 <p>A <code>&lt;video&gt;</code> element is need to display the video stream.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC. </p>
 
-<p>Within the <code>&lt;body&gt;</code> tags, there is a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person being calling.  There is also a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that is being sendt to the person being called.  The local video stream should always be muted to prevent feedback.</p>
-
-<p>Although we are loading the SIP.js library, we are not doing anything with it yet.</p>
+<p>Within the <code>&lt;body&gt;</code> tags, there is a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person being called.  There is also a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that is being sent to the person being called.  The local video stream should always be muted to prevent feedback.</p>
 
 <p>In the style.css file we will put a border around the <code>&lt;video&gt;</code> elements, to visualize them better.</p>
 
@@ -69,7 +67,7 @@
 
 <h4 id="creating-the-user-agent">Creating the User Agent</h4>
 
-<p>In order to make calls and send messages you must create a SIP user agent.  For this example, we will create an anonymous user agent.  To do this we will call the <code>SIP.UA()</code> method.</p>
+<p>In order to make calls and send messages, create a SIP user agent.  Calling <code>SIP.UA()</code> method, with no parameters, creates an anonymous user agent.</p>
 
 <iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/4m7dc/12/embedded/js,html,css,result/">
 </iframe>
@@ -78,24 +76,24 @@
 
 <p>After the user agent has connected to the SIP server, we can send an invite to make a call and thereby create a SIP session.</p>
 
-<p>To send an invite we must first create a javascript object, which contains the <code>media</code> variable in which we specify whether the session contains audio and video (i.e. whether it is a video call or an audio call).  </p>
+<p>To send an invite first create a javascript object, which contains the <code>media</code> variable in which that specifies whether the session contains audio and video (i.e. whether it is a video call or an audio call).  </p>
 
-<p>We must then call the <code>.invite()</code> method, along with the address that we are sending the invite to, and the <code>options</code> object containing media information.</p>
+<p>Then call the <code>.invite()</code> method with the target address and the <code>options</code> object containing media information.</p>
 
-<p>When we make the call the browser will ask for permission to access the camera and microphone.  We must allow this in order to make the call.  Once we send the invite the other party has the choice of either accepting or rejecting the call.  </p>
+<p>After invite is called, the browser will ask for permission to access the camera and microphone.  Permission must be allowed to make the call.  The person being called has the choice of accepting or rejecting the call.  </p>
 
-<p>We will also add an <code>endCall</code> button, which terminates the session using the <code>.bye()</code> method.</p>
+<p>An <code>endCall</code> button is added to terminate the session using the <code>.bye()</code> method.</p>
 
 <iframe style="width: 100%; height: 410px" src="http://jsfiddle.net/T4Kv2/18/embedded/js,html,css,result/">
 </iframe>
 
 <h3 id="displaying-the-call">Displaying the Call</h3>
 
-<p>Although we are now able to make calls, we are not yet displaying the videos on the screen.  To do this we need to attach the video streams that we are sending and receiving to the video elements that we added in the beginning.  </p>
+<p>Although we are now able to make calls, we are not yet displaying the videos on the screen.  To do this attach the video streams to the <code>&lt;video&gt;</code> elements.  </p>
 
-<p>We cannot just immediately attach the media streams; we must first wait until the call begins.  To do this we need to catch the <code>accepted</code> event and attach the media streams after this point.  </p>
+<p>The streams cannot be attached until the call begins. Catch the <code>accepted</code> event and attach the video streams after this point.  </p>
 
-<p>We have created a new function called onAccepted(), which runs as soon as the call connects.  This function calls the <code>attachMediaStream</code> function on both media streams, and then plays both video elements.</p>
+<p>Create a new function called onAccepted(), and bind it to the <code>accepted</code> event.  Inside this function, call the <code>attachMediaStream</code> function on both media streams, and then play both video elements.</p>
 
 <p>The function <code>attachMediaStream</code> attaches the media stream to the video element.</p>
 
