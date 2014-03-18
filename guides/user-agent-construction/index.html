@@ -45,25 +45,22 @@
     <div id="content">
       <h1 id="user-agent-construction">User Agent Construction</h1>
 
-<ul id="markdown-toc">
-<li><a href="#overview">Overview</a></li>
-</ul><p>Let’s walk through the process of creating a SIP user agent.</p>
 
-<h2 id="overview">Overview</h2>
+<p>Let’s walk through the process of creating a SIP user agent.</p>
 
 <h3 id="anonymous-user-agent">Anonymous User Agent</h3>
 
 <p>First we need to include the SIP.js library, which can be downloaded <a href="/download/">here</a>.  </p>
 
-<p>In order to make calls and send messages you must create a SIP user agent.  One way to do this is to create an anonymous user agent.  To do this we will call the <code>SIP.UA()</code> method without sending anything into it.  An anonymous user agent allows you to make calls and send messages only to other SIP user agents, and not to the PSTN. </p>
+<p>In order to make calls and send messages you must create a SIP user agent.  In this example, we will create an anonymous user agent.  To do this call the <code>SIP.UA()</code> method, with no arguments.  An anonymous user agent can make calls and send messages to SIP endpoints.  It cannot receive calls or messages.</p>
 
 <h3 id="authenticated-user-agent">Authenticated User Agent</h3>
 
-<p>To create an authenticated user agent, so that you can receive calls and make calls to the PSTN, we need to pass in a configuration variable.  </p>
+<p>To create an authenticated user agent, pass a configuration argument to the sip.ua constructor. </p>
 
-<p>This configuration variable needs a <code>uri</code>.  This will have a username and a domain.  It will look something like <code>examplename@test.onsip.com</code> The <code>authorizationUser</code> and <code>password</code> are used to authenticate with your SIP provider.  </p>
+<p>This configuration object needs a <code>uri</code>.  This will have a username and a domain.  It will look something like <code>examplename@test.onsip.com</code> The <code>authorizationUser</code> and <code>password</code> are used to authenticate with your SIP provider.  </p>
 
-<p>Further descriptions of the configuration variables can be found <a href="/api/devel/ua_configuration_parameters/">here</a>.</p>
+<p>Further descriptions of the configuration object can be found <a href="/api/0.5.0/ua_configuration_parameters/">here</a>.</p>
 
 <p>Directions for authenticating a user agent using OnSIP can be found <a href="http://developer.onsip.com/guides/useragentauthentication/">here</a>.</p>
 
