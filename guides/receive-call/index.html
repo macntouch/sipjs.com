@@ -52,16 +52,16 @@
 
 <h3 id="register-a-sip-user-agent">Register A SIP User Agent</h3>
 
-<p>In order to receive calls we need to create a registered SIP user agent, instead of an anonymous user agent.  Instead of calling the <code>SIP.UA()</code> method without any parameters, pass in an configuration object that contains a <code>uri</code>, a <code>ws_servers</code>, and a <code>password</code>.</p>
+<p>In order to receive calls we need to create a registered SIP user agent, instead of an anonymous user agent.  Instead of calling the <code>SIP.UA()</code> method without any parameters, pass in a configuration object that contains a <code>uri</code>, a <code>ws_servers</code>, and a <code>password</code>.</p>
 
 <p>We will also remove <code>session.invite()</code>, so that our app stops making calls.</p>
 
 <iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/5aqm7/5/embedded/js,html,css,result/">
 </iframe>
 
-<h3 id="accept-a-call-button">Accept a Call Button</h3>
+<h3 id="accept-a-call">Accept a Call</h3>
 
-<p>Finally, we need a way to accept a call that we are receiving.  We can do this by catching the <code>invite</code> event.  Then, we take the session that the invite event returns and we call the <code>.accept()</code> method on it.</p>
+<p>Finally, To accept a call that is being received, catch the <code>invite</code> event.  This event is emitted with a session that the <code>.accept()</code> method must be called on.</p>
 
 <iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/tEGgn/5/embedded/js,html,css,result/">
 </iframe>
