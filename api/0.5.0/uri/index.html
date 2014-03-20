@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <title>SIP.uri | SIP.js</title>
+  <title>SIP.URI | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
@@ -48,9 +48,9 @@
 			</nav>
 		</header>
 		<div id="content">
-			<h1 id="sipuri">SIP.uri</h1>
+			<h1 id="sipuri">SIP.URI</h1>
 
-<p>The class SIP.uri represents a SIP URI and provides a set of attributes and methods to access and set different parts of a URI.</p>
+<p>The class SIP.URI represents a SIP URI and provides a set of attributes and methods to access and set different parts of a URI.</p>
 
 <ul id="markdown-toc">
 <li>
@@ -89,7 +89,7 @@
 </li>
 </ul><h2 id="construction">Construction</h2>
 
-<p>Typically, construction is managed by a <code>SIP.UA</code> when a URI is needed. However, advanced users may construct URIs manually.</p>
+<p>Typically, construction is managed by a <a href="/api/0.5.0/ua"><code>SIP.UA</code></a> when a URI is needed. However, advanced users may construct URIs manually.</p>
 
 <h3 id="new-sipurischeme-user-host-port-parameters-headers">new SIP.URI(scheme, user, host, port[, parameters, headers])</h3>
 
@@ -137,25 +137,25 @@
 
 <h3 id="scheme"><code>scheme</code></h3>
 
-<p><code>String</code> - Represents the URI scheme (converted to lower case when set)</p>
+<p><code>String</code> - Represents the URI scheme (converted to lower case when set).</p>
 
 <h3 id="user"><code>user</code></h3>
 
-<p><code>String</code> - Represents the URI user</p>
+<p><code>String</code> - Represents the URI user.</p>
 
 <h3 id="host"><code>host</code></h3>
 
-<p><code>String</code> - Represents the URI host (converted to lower case when set)</p>
+<p><code>String</code> - Represents the URI host (converted to lower case when set).</p>
 
 <h3 id="port"><code>port</code></h3>
 
-<p><code>Number</code> - Represents the URI port</p>
+<p><code>Number</code> - Represents the URI port.</p>
 
 <h2 id="instance-methods">Instance Methods</h2>
 
 <h3 id="setparamkey-value"><code>setParam(key[, value])</code></h3>
 
-<p>Creates or replaces the given URI parameter with the given value or null if no value is provided</p>
+<p>Creates or replaces the given URI parameter with the given value or null if no value is provided.</p>
 
 <h4 id="parameters-1">Parameters</h4>
 
@@ -373,7 +373,7 @@
     </tr></thead>
 <tbody><tr>
 <td><code>Array of String</code></td>
-      <td>Value of the deleted URI header.</td>
+      <td>Value of the deleted URI header</td>
     </tr></tbody>
 </table><h3 id="clearheaders"><code>clearHeaders()</code></h3>
 
@@ -416,7 +416,7 @@
 <tbody><tr>
 <td><code>uri</code></td>
       <td><code>String</code></td>
-      <td>String to parse against the SIP URI grammar rule.</td>
+      <td>String to parse against the SIP URI grammar rule</td>
     </tr></tbody>
 </table><h4 id="returns-7">Returns</h4>
 
