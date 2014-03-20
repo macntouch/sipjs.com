@@ -50,7 +50,7 @@
 		<div id="content">
 			<h1 id="sipincomingmessage">SIP.IncomingMessage</h1>
 
-<p>An IncomingMessage is a data structure that represents an incoming SIP message and it’s attributes.</p>
+<p>An IncomingMessage is a data structure that represents an incoming SIP message and its attributes.</p>
 
 <ul id="markdown-toc">
 <li><a href="#construction">Construction</a></li>
@@ -82,59 +82,59 @@
 </li>
 </ul><h2 id="construction">Construction</h2>
 
-<p>An IncomingMessage cannot be constructed on it’s own. It is intended to be extended by other classes such as <code>SIP.IncomingRequest</code> and <code>SIP.IncomingResponse</code></p>
+<p>An IncomingMessage cannot be constructed on it’s own. It is intended to be extended by other classes such as <code>SIP.IncomingRequest</code> and <code>SIP.IncomingResponse</code>.</p>
 
 <h2 id="instance-attributes">Instance Attributes</h2>
 
 <h3 id="data"><code>data</code></h3>
 
-<p><code>String</code> - A string representation of the SIP message</p>
+<p><code>String</code> - A string representation of the SIP message.</p>
 
 <h3 id="method"><code>method</code></h3>
 
-<p><code>String</code> - The method of the incoming SIP message</p>
+<p><code>String</code> - The method of the incoming SIP message.</p>
 
 <h3 id="via"><code>via</code></h3>
 
-<p><code>Object</code> - An object containing the VIA information of the SIP message</p>
+<p><code>Object</code> - An object containing the VIA information of the SIP message.</p>
 
 <h3 id="viabranch"><code>via_branch</code></h3>
 
-<p><code>String</code> - The name of the VIA branch of the SIP message</p>
+<p><code>String</code> - The name of the VIA branch of the SIP message.</p>
 
 <h3 id="callid"><code>call_id</code></h3>
 
-<p><code>String</code> - The Call-ID header on the SIP message</p>
+<p><code>String</code> - The Call-ID header on the SIP message.</p>
 
 <h3 id="cseq"><code>cseq</code></h3>
 
-<p><code>Number</code> - The cseq on the SIP message</p>
+<p><code>Number</code> - The cseq on the SIP message.</p>
 
 <h3 id="from"><code>from</code></h3>
 
-<p><code>SIP.NameAddrHeader</code> - Instance representing the from header value of the SIP message</p>
+<p><code>SIP.NameAddrHeader</code> - Instance representing the from header value of the SIP message.</p>
 
 <h3 id="fromtag"><code>from_tag</code></h3>
 
-<p><code>String</code> - The name of the from tag header on the SIP message</p>
+<p><code>String</code> - The name of the from tag header on the SIP message.</p>
 
 <h3 id="to"><code>to</code></h3>
 
-<p><code>SIP.NameAddrHeader</code> - Instance representing the from header value of the SIP message</p>
+<p><code>SIP.NameAddrHeader</code> - Instance representing the from header value of the SIP message.</p>
 
 <h3 id="totag"><code>to_tag</code></h3>
 
-<p><code>String</code> - The to tag header on the SIP message</p>
+<p><code>String</code> - The to tag header on the SIP message.</p>
 
 <h3 id="body"><code>body</code></h3>
 
-<p><code>String</code> - The body of the SIP message</p>
+<p><code>String</code> - The body of the SIP message.</p>
 
 <h2 id="instance-methods">Instance Methods</h2>
 
 <h3 id="addheadernamevalue"><code>addHeader(name,value)</code></h3>
 
-<p>Inserts a header with the given name and value into the last position of the header array</p>
+<p>Inserts a header with the given name and value into the last position of the header array.</p>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -214,7 +214,7 @@
     </tr></tbody>
 </table><h3 id="hasheadername"><code>hasHeader(name)</code></h3>
 
-<p>Verify the existence of the given header name</p>
+<p>Verify the existence of the given header name.</p>
 
 <h4 id="parameters-3">Parameters</h4>
 
@@ -302,7 +302,7 @@
 </tbody>
 </table><h3 id="tostring"><code>toString()</code></h3>
 
-<p>Returns the data of the message</p>
+<p>Returns the data of the message.</p>
 
 <h4 id="returns-4">Returns</h4>
 
