@@ -393,7 +393,7 @@ Type | Description
 
 --><h3 id="refertarget-options"><code>refer(target[, options])</code></h3>
 
-<p>Send a REFER request. A REFER occurs when persons A and B have an active call session, and A wants to transfer B to speak with C. This is called a transfer, and these transfers can be attended or blind. An attended transfer occurs when A creates a session with C before connecting B to speak with C. A blind transfer occurs when A causes B to create a session with C, so A and C have no contact.</p>
+<p>Send a REFER request. A REFER occurs when persons A and B have an active call session, and A wants to transfer B to speak with C. This is called a transfer, and these transfers can be attended or blind. An attended transfer occurs when A creates a session with C before connecting B to speak with C. A blind transfer occurs when A causes B to create a session with C, so A and C have no contact.  SIP.js only supports blind transfers.</p>
 
 <h4 id="parameters-2">Parameters</h4>
 
@@ -406,8 +406,8 @@ Type | Description
 <tbody>
 <tr>
 <td><code>target</code></td>
-      <td><code>SIP.Session|String</code></td>
-      <td>If the target is a session, this will start an attended transfer. Otherwise, it will do a blind transfer.</td>
+      <td><code>String</code></td>
+      <td>The target address to be referred to.</td>
     </tr>
 <tr>
 <td><code>options</code></td>
@@ -464,7 +464,7 @@ INVALID_STATE_ERROR</p>
 
 <h2 id="events">Events</h2>
 
-<p><code>SIP.Session</code> class defines a series of events. Each of them allows a callback function to be defined in order to let the user execute a handler for each given stimulus.</p>
+<p>The <code>SIP.Session</code> class defines a series of events. Each of them allows a callback function to be defined in order to let the user execute a handler for each given stimulus.</p>
 
 <p>Every event handler is executed with a <a href="/api/0.5.0/eventEmitter/">SIP.Event</a> instance as the only argument.</p>
 
@@ -505,7 +505,7 @@ INVALID_STATE_ERROR</p>
     </tr>
 <tr>
 <td><code>data.code</code></td>
-      <td><code>Integer</code></td>
+      <td><code>Number</code></td>
       <td>The status code of the received response, between 200 and 299.</td>
     </tr>
 <tr>
@@ -558,7 +558,7 @@ INVALID_STATE_ERROR</p>
     </tr>
 <tr>
 <td><code>data.code</code></td>
-      <td><code>Integer</code></td>
+      <td><code>Number</code></td>
       <td>The status code of the received response, between 300 and 699, or 0 if the failure was not due to a received response.</td>
     </tr>
 <tr>
@@ -574,7 +574,7 @@ INVALID_STATE_ERROR</p>
 </tbody>
 </table><h3 id="connecting"><code>connecting</code></h3>
 
-<p>Fired when ICE is starting to negotiate between the peers.</p>
+<p>Fired when <a href="http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/#after-signaling-using-ice-to-cope-with-nats-and-firewalls">ICE</a> is starting to negotiate between the peers.</p>
 
 <h4 id="onconnecting-function--"><code>on('connecting', function () {})</code></h4>
 
@@ -597,7 +597,7 @@ Name | Type | Description
 
 <h3 id="cancel"><code>cancel</code></h3>
 
-<p>Fired when the session was canceled by the UAC.</p>
+<p>Fired when the session was canceled by the client.</p>
 
 <h4 id="oncancel-function-"><code>on('cancel', function() {})</code></h4>
 
@@ -605,7 +605,7 @@ Name | Type | Description
 
 <h3 id="referred"><code>referred</code></h3>
 
-<p>Fired when the session was unable to establish.</p>
+<p>Fired after the user is referred, when the transfer begins.</p>
 
 <h4 id="onreferred-functionrequestnewsession-"><code>on('referred', function(request,newSession) {})</code></h4>
 
@@ -689,7 +689,7 @@ Fired when a session is pre-accepted.
 <td><code>request</code></td>
       <td><code>Object</code></td>
       <td>
-<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP INFO request.</td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP BYE request.</td>
     </tr></tbody>
 </table>
 		</div>
