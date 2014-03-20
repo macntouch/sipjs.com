@@ -50,7 +50,7 @@
 		<div id="content">
 			<h1 id="sipsession">SIP.Session</h1>
 
-<p>The class SIP.Session represents a WebRTC media (audio/video) session. It can be initiated by the local user or by a remote peer. Sessions are created via INVITE SIP messages. Sessions also implement one of <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server"><code>SIP.ServerContext</code></a>, depending on if they are the result of outbound (client) or inbound (server) INVITE requests.</p>
+<p>The class SIP.Session represents a WebRTC media (audio/video) session. It can be initiated by the local user or by a remote peer. Sessions are created via SIP INVITE messages. Sessions also implement one of <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server"><code>SIP.ServerContext</code></a>, depending on if they are the result of outbound (client) or inbound (server) INVITE requests.</p>
 
 <ul id="markdown-toc">
 <li>
@@ -153,7 +153,7 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 
 <h3 id="endtime"><code>endTime</code></h3>
 
-<p><code>DATE</code> - Date object indicating the time when the session ended. Takes its value at the moment when terminated event was fired.</p>
+<p><code>DATE</code> - Date object indicating the time when the session ended. Takes its value at the moment when the terminated event was fired.</p>
 
 <h3 id="ua"><code>ua</code></h3>
 
@@ -344,7 +344,7 @@ INVALID_STATE_ERROR</p>
 
 <h3 id="getlocalstreams"><code>getLocalStreams()</code></h3>
 
-<p>Returns a sequence of MediaStream objects representing the streams that are currently sent in this Session.</p>
+<p>Returns an array of MediaStream objects representing the streams that are currently sent in this Session.</p>
 
 <h4 id="returns-1">Returns</h4>
 
@@ -354,12 +354,12 @@ INVALID_STATE_ERROR</p>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>Array of RTCMediaStream</code></td>
+<td><code>Array of MediaStream</code></td>
       <td>The local media stream</td>
     </tr></tbody>
 </table><h3 id="getremotestreams"><code>getRemoteStreams()</code></h3>
 
-<p>Returns a sequence of MediaStream objects representing the streams that are currently received in this session.</p>
+<p>Returns an array of MediaStream objects representing the streams that are currently received in this session.</p>
 
 <table>
 <thead><tr>
@@ -367,7 +367,7 @@ INVALID_STATE_ERROR</p>
       <th>Description</th>
     </tr></thead>
 <tbody><tr>
-<td><code>Array of RTCMediaStream</code></td>
+<td><code>Array of MediaStream</code></td>
       <td>The remote media stream</td>
     </tr></tbody>
 </table><!--
