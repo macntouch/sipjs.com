@@ -100,6 +100,7 @@
       <li><a href="#failed"><code>failed</code></a></li>
       <li><a href="#connecting"><code>connecting</code></a></li>
       <li><a href="#cancel"><code>cancel</code></a></li>
+      <li><a href="#refer"><code>refer</code></a></li>
       <li><a href="#referred"><code>referred</code></a></li>
       <li><a href="#dtmf"><code>dtmf</code></a></li>
       <li><a href="#bye"><code>bye</code></a></li>
@@ -603,9 +604,43 @@ Name | Type | Description
 
 <p><em>There are no documented arguments for this event</em></p>
 
-<h3 id="referred"><code>referred</code></h3>
+<h3 id="refer"><code>refer</code></h3>
 
-<p>Fired after the user is referred, when the transfer begins.</p>
+<p>Fired when a REFER is received, and the user would like to handle the
+transfer at the application level. This event will not be emitted if
+it is not listened for.
+NOTE: This event does not exist in tagged release 0.5.0.</p>
+
+<h4 id="onrefer-functiontargetrequest-"><code>on('refer', function(target,request) {})</code></h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>target</code></td>
+      <td><code>Object</code></td>
+      <td>
+<a href="/api/0.5.0/uri"><code>SIP.URI</code></a> instance of the sip address to be referred to.</td>
+    </tr>
+<tr>
+<td><code>request</code></td>
+      <td><code>Object</code></td>
+      <td>
+<a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP REFER request.</td>
+    </tr>
+</tbody>
+</table><h3 id="referred"><code>referred</code></h3>
+
+<p>Fired when a REFER is received and the user wants SIP.js to handle the
+details of setting up the new session. This new session is set up in a
+generic way, and then emitted with the event. This event
+will not be emitted if it is not listened for.
+NOTE: In tagged release 0.5.0, this is how all REFERS are handled, and
+will always be emitted.</p>
 
 <h4 id="onreferred-functionrequestnewsession-"><code>on('referred', function(request,newSession) {})</code></h4>
 
