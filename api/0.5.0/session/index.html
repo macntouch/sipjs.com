@@ -5,6 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
+  <meta name="description" content="" />
   <title>SIP.Session | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
@@ -53,14 +54,14 @@
 <p>The class SIP.Session represents a WebRTC media (audio/video) session. It can be initiated by the local user or by a remote peer. Sessions are created via SIP INVITE messages. Sessions also implement one of <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a> or <a href="/api/0.5.0/context/server"><code>SIP.ServerContext</code></a>, depending on if they are the result of outbound (client) or inbound (server) INVITE requests.</p>
 
 <ul id="markdown-toc">
-<li>
+  <li>
 <a href="#construction">Construction</a>    <ul>
-<li><a href="#examples">Examples</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
-<li><a href="#starttime"><code>startTime</code></a></li>
+      <li><a href="#starttime"><code>startTime</code></a></li>
       <li><a href="#endtime"><code>endTime</code></a></li>
       <li><a href="#ua"><code>ua</code></a></li>
       <li><a href="#method"><code>method</code></a></li>
@@ -69,32 +70,32 @@
       <li><a href="#remoteidentity"><code>remoteIdentity</code></a></li>
       <li><a href="#data"><code>data</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-<li><a href="#dtmftone-options"><code>dtmf(tone[, options])</code></a></li>
+      <li><a href="#dtmftone-options"><code>dtmf(tone[, options])</code></a></li>
       <li><a href="#byeoptions"><code>bye([options])</code></a></li>
       <li><a href="#getlocalstreams"><code>getLocalStreams()</code></a></li>
       <li><a href="#getremotestreams"><code>getRemoteStreams()</code></a></li>
       <li><a href="#refertarget-options"><code>refer(target[, options])</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-methods-outboundclient">Instance Methods (Outbound/Client)</a>    <ul>
-<li><a href="#canceloptions"><code>cancel([options])</code></a></li>
+      <li><a href="#canceloptions"><code>cancel([options])</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-methods-inboundserver">Instance Methods (Inbound/Server)</a>    <ul>
-<li><a href="#progressoptions"><code>progress([options])</code></a></li>
+      <li><a href="#progressoptions"><code>progress([options])</code></a></li>
       <li><a href="#acceptoptions"><code>accept([options])</code></a></li>
       <li><a href="#rejectoptions"><code>reject([options])</code></a></li>
       <li><a href="#replyoptions"><code>reply([options])</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#events">Events</a>    <ul>
-<li><a href="#progress"><code>progress</code></a></li>
+      <li><a href="#progress"><code>progress</code></a></li>
       <li><a href="#accepted"><code>accepted</code></a></li>
       <li><a href="#rejected"><code>rejected</code></a></li>
       <li><a href="#failed"><code>failed</code></a></li>
@@ -105,8 +106,10 @@
       <li><a href="#dtmf"><code>dtmf</code></a></li>
       <li><a href="#bye"><code>bye</code></a></li>
     </ul>
-</li>
-</ul><h2 id="construction">Construction</h2>
+  </li>
+</ul>
+
+<h2 id="construction">Construction</h2>
 
 <p>The Session constructor is intended for internal use only. Instead, outbound Sessions are created through the <code>SIP.UA.invite</code> method. Inbound Sessions are obtained via the <code>SIP.UA</code> <code>invite</code> event callback.</p>
 
@@ -189,41 +192,45 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 <h4 id="parameters">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>tone</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>tone</code></td>
       <td>
 <code>String</code> or <code>Number</code>
 </td>
       <td>One or multiple valid DTMF symbols. Converts <code>Number</code> to <code>String</code> using <code>toString()</code>.</td>
     </tr>
-<tr>
-<td><code>options</code></td>
+    <tr>
+      <td><code>options</code></td>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
-<tr>
-<td><code>options.extraHeaders</code></td>
+    <tr>
+      <td><code>options.extraHeaders</code></td>
       <td><code>Array</code></td>
       <td>Optional <code>Array</code> of <code>Strings</code> with extra SIP headers for each INFO request.</td>
     </tr>
-<tr>
-<td><code>options.duration</code></td>
+    <tr>
+      <td><code>options.duration</code></td>
       <td><code>Number</code></td>
       <td>Positive decimal <code>Number</code> indicating the duration of the tone expressed in milliseconds. Default value is <code>100</code>.</td>
     </tr>
-<tr>
-<td><code>options.interToneGap</code></td>
+    <tr>
+      <td><code>options.interToneGap</code></td>
       <td><code>Number</code></td>
       <td>Positive decimal <code>Number</code> indicating the interval between two tones expressed in milliseconds. Default value is <code>500</code>.</td>
     </tr>
-</tbody>
-</table><h4 id="throws">Throws</h4>
+  </tbody>
+</table>
+
+<h4 id="throws">Throws</h4>
 
 <p>TypeError
 INVALID_STATE_ERROR</p>
@@ -231,15 +238,21 @@ INVALID_STATE_ERROR</p>
 <h4 id="returns">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>SIP.Session</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SIP.Session</code></td>
       <td>This Session</td>
-    </tr></tbody>
-</table><h4 id="example-1">Example 1</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="example-1">Example 1</h4>
 
 <div>
 <div class="CodeRay">
@@ -304,41 +317,45 @@ INVALID_STATE_ERROR
 <h4 id="parameters-1">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>options</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>options</code></td>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
-<tr>
-<td><code>options.status_code</code></td>
+    <tr>
+      <td><code>options.status_code</code></td>
       <td><code>Number</code></td>
       <td>The SIP response code that will be used in the upcoming response instead of the default.</td>
     </tr>
-<tr>
-<td><code>options.reason_phrase</code></td>
+    <tr>
+      <td><code>options.reason_phrase</code></td>
       <td><code>String</code></td>
       <td>The SIP reason phrase.</td>
     </tr>
-<tr>
-<td><code>options.body</code></td>
+    <tr>
+      <td><code>options.body</code></td>
       <td><code>String</code></td>
       <td>represents the SIP message body (in case this parameter is set, a corresponding Content-Type header field must be set in <code>extraHeaders</code> field).</td>
     </tr>
-<tr>
-<td><code>options.extraHeaders</code></td>
+    <tr>
+      <td><code>options.extraHeaders</code></td>
       <td>
 <code>Array</code> of <code>Strings</code>
 </td>
       <td>Extra SIP headers for the request.</td>
     </tr>
-</tbody>
-</table><h4 id="throws-1">Throws</h4>
+  </tbody>
+</table>
+
+<h4 id="throws-1">Throws</h4>
 
 <p>TypeError
 INVALID_STATE_ERROR</p>
@@ -350,28 +367,40 @@ INVALID_STATE_ERROR</p>
 <h4 id="returns-1">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>Array of MediaStream</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Array of MediaStream</code></td>
       <td>The local media stream</td>
-    </tr></tbody>
-</table><h3 id="getremotestreams"><code>getRemoteStreams()</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="getremotestreams"><code>getRemoteStreams()</code></h3>
 
 <p>Returns an array of MediaStream objects representing the streams that are currently received in this session.</p>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>Array of MediaStream</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Array of MediaStream</code></td>
       <td>The remote media stream</td>
-    </tr></tbody>
-</table><!--
+    </tr>
+  </tbody>
+</table>
+
+<!--
 
 ### `sendRequest(method[, options])`
 
@@ -392,49 +421,61 @@ Type | Description
 -|-
 `SIP.Session`| This session
 
---><h3 id="refertarget-options"><code>refer(target[, options])</code></h3>
+-->
+
+<h3 id="refertarget-options"><code>refer(target[, options])</code></h3>
 
 <p>Send a REFER request. A REFER occurs when persons A and B have an active call session, and A wants to transfer B to speak with C. This is called a transfer, and these transfers can be attended or blind. An attended transfer occurs when A creates a session with C before connecting B to speak with C. A blind transfer occurs when A causes B to create a session with C, so A and C have no contact.  SIP.js only supports blind transfers.</p>
 
 <h4 id="parameters-2">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>target</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>target</code></td>
       <td><code>String</code></td>
       <td>The target address to be referred to.</td>
     </tr>
-<tr>
-<td><code>options</code></td>
+    <tr>
+      <td><code>options</code></td>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
-<tr>
-<td><code>options.extraHeaders</code></td>
+    <tr>
+      <td><code>options.extraHeaders</code></td>
       <td>
 <code>Array</code> of <code>Strings</code>
 </td>
       <td>Extra SIP headers for the request.</td>
     </tr>
-</tbody>
-</table><h4 id="returns-2">Returns</h4>
+  </tbody>
+</table>
+
+<h4 id="returns-2">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>SIP.Session</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SIP.Session</code></td>
       <td>This session</td>
-    </tr></tbody>
-</table><h4 id="throws-2">Throws</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="throws-2">Throws</h4>
 
 <p>TypeError
 INVALID_STATE_ERROR</p>
@@ -476,104 +517,122 @@ INVALID_STATE_ERROR</p>
 <h4 id="onprogress-function-response-"><code>on('progress', function (response) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>response</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>response</code></td>
       <td><a href="/api/0.5.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
-    </tr></tbody>
-</table><h3 id="accepted"><code>accepted</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="accepted"><code>accepted</code></h3>
 
 <p>Fired each time a successful final (200-299) response is received.</p>
 
 <h4 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>data</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>data</code></td>
       <td><code>Object</code></td>
       <td>A wrapper object containing the event data</td>
     </tr>
-<tr>
-<td><code>data.code</code></td>
+    <tr>
+      <td><code>data.code</code></td>
       <td><code>Number</code></td>
       <td>The status code of the received response, between 200 and 299.</td>
     </tr>
-<tr>
-<td><code>data.response</code></td>
+    <tr>
+      <td><code>data.response</code></td>
       <td><a href="/api/0.5.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
-</tbody>
-</table><h3 id="rejected"><code>rejected</code></h3>
+  </tbody>
+</table>
+
+<h3 id="rejected"><code>rejected</code></h3>
 
 <p>Fired each time an unsuccessful final (300-699) response is received. <em>Note: This will also emit a <code>failed</code> event.</em></p>
 
 <h4 id="onrejected-function-response-cause-"><code>on('rejected', function (response, cause) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>response</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>response</code></td>
       <td><a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
-<tr>
-<td><code>cause</code></td>
+    <tr>
+      <td><code>cause</code></td>
       <td><code>String</code></td>
       <td>The reason phrase associated with the SIP response code.</td>
     </tr>
-</tbody>
-</table><h3 id="failed"><code>failed</code></h3>
+  </tbody>
+</table>
+
+<h3 id="failed"><code>failed</code></h3>
 
 <p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
 
 <h4 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>data</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>data</code></td>
       <td><code>Object</code></td>
       <td>A wrapper object containing the event data</td>
     </tr>
-<tr>
-<td><code>data.code</code></td>
+    <tr>
+      <td><code>data.code</code></td>
       <td><code>Number</code></td>
       <td>The status code of the received response, between 300 and 699, or 0 if the failure was not due to a received response.</td>
     </tr>
-<tr>
-<td><code>data.response</code></td>
+    <tr>
+      <td><code>data.response</code></td>
       <td><a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage|null</code></a></td>
       <td>The received response, or <code>null</code> if the failure was not due to a received response.</td>
     </tr>
-<tr>
-<td><code>data.cause</code></td>
+    <tr>
+      <td><code>data.cause</code></td>
       <td><code>String</code></td>
       <td>The reason phrase associated with the SIP response code, or one of <code>SIP.C.causes</code> if the failure was not due to a received response.</td>
     </tr>
-</tbody>
-</table><h3 id="connecting"><code>connecting</code></h3>
+  </tbody>
+</table>
+
+<h3 id="connecting"><code>connecting</code></h3>
 
 <p>Fired when <a href="http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/#after-signaling-using-ice-to-cope-with-nats-and-firewalls">ICE</a> is starting to negotiate between the peers.</p>
 
@@ -614,26 +673,30 @@ NOTE: This event does not exist in tagged release 0.5.0.</p>
 <h4 id="onrefer-functiontargetrequest-"><code>on('refer', function(target,request) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>target</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>target</code></td>
       <td><code>Object</code></td>
       <td>
 <a href="/api/0.5.0/uri"><code>SIP.URI</code></a> instance of the sip address to be referred to.</td>
     </tr>
-<tr>
-<td><code>request</code></td>
+    <tr>
+      <td><code>request</code></td>
       <td><code>Object</code></td>
       <td>
 <a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP REFER request.</td>
     </tr>
-</tbody>
-</table><h3 id="referred"><code>referred</code></h3>
+  </tbody>
+</table>
+
+<h3 id="referred"><code>referred</code></h3>
 
 <p>Fired when a REFER is received and the user wants SIP.js to handle the
 details of setting up the new session. This new session is set up in a
@@ -645,52 +708,60 @@ will always be emitted.</p>
 <h4 id="onreferred-functionrequestnewsession-"><code>on('referred', function(request,newSession) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>request</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>request</code></td>
       <td><code>Object</code></td>
       <td>
 <a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP REFER request.</td>
     </tr>
-<tr>
-<td><code>newSession</code></td>
+    <tr>
+      <td><code>newSession</code></td>
       <td><code>Object</code></td>
       <td>
 <a href="/api/0.5.0/session/"><code>SIP.Session</code></a> the new session created by the refer.</td>
     </tr>
-</tbody>
-</table><h3 id="dtmf"><code>dtmf</code></h3>
+  </tbody>
+</table>
+
+<h3 id="dtmf"><code>dtmf</code></h3>
 
 <p>Fired for an incoming or outgoing DTMF.</p>
 
 <h4 id="ondtmf-functiondtmf-request-"><code>.on('dtmf', function(dtmf, request) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>dtmf</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>dtmf</code></td>
       <td><code>Object</code></td>
       <td>
 <code>SIP.Session.DTMF</code> instance.</td>
     </tr>
-<tr>
-<td><code>request</code></td>
+    <tr>
+      <td><code>request</code></td>
       <td><code>Object</code></td>
       <td>
 <a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP INFO request.</td>
     </tr>
-</tbody>
-</table><!--
+  </tbody>
+</table>
+
+<!--
 
 ### `invite`
 
@@ -708,25 +779,32 @@ Fired when a session is pre-accepted.
 
 *There are no documented arguments for this event*
 
---><h3 id="bye"><code>bye</code></h3>
+-->
+
+<h3 id="bye"><code>bye</code></h3>
 
 <p>Fired when a BYE is sent.</p>
 
 <h4 id="onbye-functionrequest-"><code>on('bye', function(request) {})</code></h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>request</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>request</code></td>
       <td><code>Object</code></td>
       <td>
 <a href="/api/0.5.0/incomingMessage/"><code>SIP.IncomingMessage</code></a> instance of the received SIP BYE request.</td>
-    </tr></tbody>
+    </tr>
+  </tbody>
 </table>
+
 		</div>
 
 		<nav id="sideNav">
@@ -797,11 +875,7 @@ Fired when a session is pre-accepted.
       </ul>
     </li>
     <li class="parent">
-      <a class="parent last" href="/api/0.5.0/ua_configuration_parameters/">UA Configuration Parameters</a>
-      <ul>
-        <li><a href="/api/0.5.0/ua_configuration_parameters/#mandatory-parameters">Mandatory Parameters</a></li>
-        <li><a href="/api/0.5.0/ua_configuration_parameters/#optional-parameters" class="last">Optional Parameters</a></li>
-      </ul>
+      <a class="parent" href="/api/0.5.0/ua_configuration_parameters/">UA Configuration Parameters</a>
     </li>
   </ul>
 </nav>
