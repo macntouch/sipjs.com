@@ -89,7 +89,7 @@
 
 <h3 id="new-sipuaconfiguration"><code>new SIP.UA([configuration])</code></h3>
 
-<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent, although most applications will define at least <a href="/api/0.5.0/ua_configuration_parameters/#uri"><code>uri</code></a> and <a href="/api/0.5.0/ua_configuration_parameters/#ws_servers"><code>ws_servers</code></a>. Check the full list for optional <a href="/api/0.5.0/ua_configuration_parameters/">UA Configuration Parameters</a>.</p>
+<p>A new user agent is created via the <code>SIP.UA</code> constructor.  There are no mandatory parameters for creating a new user agent, although most applications will define at least <a href="/api/0.5.0/ua_configuration_parameters/#uri"><code>uri</code></a> and <a href="/api/0.5.0/ua_configuration_parameters/#ws_servers"><code>ws_servers</code></a>. Check the full list for optional <a href="/api/0.5.0/ua_configuration_parameters/">UA Configuration Parameters</a>.  If no parameters are passed then an anonymous user agent is created.   If only a string is passed, then just the uri is set to that string.</p>
 
 <h3 id="examples">Examples</h3>
 
