@@ -54,14 +54,14 @@
 <p><code>SIP.Subscription</code> represents a subscription to an event (presence or dialog, for example) of a sip address using the SIP SUBSCRIBE request. Currently, only outgoing subscriptions are available, so incoming SUBSCRIBEs will be ignored.</p>
 
 <ul id="markdown-toc">
-  <li>
+<li>
 <a href="#construction">Construction</a>    <ul>
-      <li><a href="#examples">Examples</a></li>
+<li><a href="#examples">Examples</a></li>
     </ul>
-  </li>
+</li>
   <li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
-      <li><a href="#id"><code>id</code></a></li>
+<li><a href="#id"><code>id</code></a></li>
       <li><a href="#state"><code>state</code></a></li>
       <li><a href="#event"><code>event</code></a></li>
       <li><a href="#dialog"><code>dialog</code></a></li>
@@ -74,22 +74,20 @@
       <li><a href="#remoteidentity"><code>remoteIdentity</code></a></li>
       <li><a href="#data"><code>data</code></a></li>
     </ul>
-  </li>
+</li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-      <li><a href="#subscribe"><code>subscribe()</code></a></li>
+<li><a href="#subscribe"><code>subscribe()</code></a></li>
       <li><a href="#unsubscribe"><code>unsubscribe()</code></a></li>
       <li><a href="#close"><code>close()</code></a></li>
     </ul>
-  </li>
+</li>
   <li>
 <a href="#events">Events</a>    <ul>
-      <li><a href="#notify"><code>notify</code></a></li>
+<li><a href="#notify"><code>notify</code></a></li>
     </ul>
-  </li>
-</ul>
-
-<h2 id="construction">Construction</h2>
+</li>
+</ul><h2 id="construction">Construction</h2>
 
 <p>The Subscription constructor is intended for internal use only. Subscriptions are obtained via the <code>SIP.UA</code> <a href="/api/devel/ua/#subscribe"><code>subscribe</code></a> method.</p>
 
@@ -174,21 +172,15 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 <h4 id="returns">Returns</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Type</th>
+<thead><tr>
+<th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>SIP.Subscription</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.Subscription</code></td>
       <td>This Subscription</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="unsubscribe"><code>unsubscribe()</code></h3>
+    </tr></tbody>
+</table><h3 id="unsubscribe"><code>unsubscribe()</code></h3>
 
 <p>Sends an unsubscribe request, which is a SUBSCRIBE request with an expires header with value 0.</p>
 
@@ -207,22 +199,17 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 <h4 id="onnotify-functionrequest-"><code>on('notify', function(request) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>request</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>request</code></td>
       <td><code>SIP.IncomingRequest</code></td>
       <td>The received NOTIFY request.</td>
-    </tr>
-  </tbody>
+    </tr></tbody>
 </table>
-
 		</div>
 
 		<nav id="sideNav">
@@ -288,7 +275,7 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
       </ul>
     </li>
     <li class="parent">
-      <a class="parent" href="/api/0.5.0/incomingMessage/">Incoming Message Data Structure</a>
+      <a class="parent" href="/api/0.5.0/incomingMessage/">SIP.IncomingMessage</a>
       <ul>
       </ul>
     </li>
