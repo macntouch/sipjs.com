@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <meta name="description" content="" />
+  <meta name="description" content="Contexts are SIP.js objects that help your WebRTC app handle SIP requests and define what happens after a request is accepted." />
   <title>SIP Contexts | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
@@ -55,7 +55,7 @@
 
 <p>Let’s get this out of the way first:  <em>context is not a SIP term.</em>  We made it up. Sorry. That said, it is an incredibly useful concept for a few reasons.</p>
 
-<p>In the realm of SIP, requests and responses are sent from one endpoint to another. These individual messages make up a SIP <em>transaction</em>. Transactions are able to track forked requests, retransmissions, timeouts, provisional responses, etc. As soon as the request is rejected, the transaction terminates. Any new requests create completely new transactions. Sometimes these requests are related, though, such as when the first request was challenged by an authenticating proxy.  Contexts let us wrap these two requests into one logical object.</p>
+<p>In the realm of SIP, requests and responses are sent from one user agent to another. These individual messages make up a SIP <em>transaction</em>. Transactions are able to track forked requests, retransmissions, timeouts, provisional responses, etc. As soon as the request is rejected, the transaction terminates. Any new requests create completely new transactions. Sometimes these requests are related, though, such as when the first request was challenged by an authenticating proxy.  Contexts let us wrap these two requests into one logical object.</p>
 
 <p>Contexts also provide another use:  <em>they stick around.</em> SIP transactions terminate as soon as the request receives a final response, even if the request is accepted. Since the contexts don’t go away, we can use them to describe the result of the request.  For example, a <code>ServerContext</code> contains the body of the accepted message, which an application can display to the user. An INVITE’s <code>SIP.ClientContext</code> becomes the SIP session created by the accepted INVITE request (as a <code>SIP.Session</code>). This is where the contexts get their name. They represent not the request, but the entire surrounding context of where the request came from and what it is actually requesting.</p>
 
@@ -63,9 +63,14 @@
 
 <p>Take a moment to think about your favorite kind of ice cream. Maybe it’s chocolate with fudge swirls or pistachio with real nuts, or maybe just vanilla with a few fresh berries. Notice that these ice creams have two parts: the base (chocolate, pistachio, or vanilla) and the mixin (fudge, nuts, or berries). Contexts are, in a much less delicious way, kind of like ice cream. They have two parts, and they match up to their two main uses.</p>
 
-<p>First, the base. This part of the Context deals with handling the request itself. If you’re sending a MESSAGE request, for example, your Context will be a <code>ClientContext</code> and will send the request, handle any authorization challenges and retransmissions, and notify you via events when the MESSAGE is accepted or rejected. If you’re receiving the request, your context will be a <code>ServerContext</code>, and it will do the opposite:  notifying you that you received the request and allowing you to respond to it.</p>
-
-<p>Second, the mixins. This part of the Context defines what will happen after the request is accepted.  An INVITE request will use the <code>Session</code> to define session methods such as <code>hold()</code> and <code>refer()</code>, while MESSAGE requests use <code>Message</code> to parse the body of the MESSAGE.</p>
+<ol>
+  <li>
+    <p>First, the base. This part of the Context <em>deals with handling the request, itself.</em> If you’re sending a MESSAGE request, for example, your Context will be a <code>ClientContext</code> and will send the request, handle any authorization challenges and retransmissions, and notify you via events when the MESSAGE is accepted or rejected. If you’re receiving the request, your context will be a <code>ServerContext</code>, and it will do the opposite:  notifying you that you received the request and allowing you to respond to it.</p>
+  </li>
+  <li>
+    <p>Second, the mixins. This part of the Context <em>defines what will happen after the request is accepted.</em>  An INVITE request will use the <code>Session</code> to define session methods such as <code>hold()</code> and <code>refer()</code>, while MESSAGE requests use <code>Message</code> to parse the body of the MESSAGE.</p>
+  </li>
+</ol>
 
 <p>While some people may like plain ice cream or snacking on chocolate chips, creating a <code>ServerContext</code> or <code>Session</code> alone isn’t very useful. The magic happens when you <em>mix them together.</em> That’s why in the source code you’ll typically see objects called <code>InviteServerContext</code> or <code>MessageClientContext</code>. They each share only the behavior they need for the <em>context</em> in which the request was encountered.</p>
 
