@@ -51,7 +51,7 @@
 
 <h3 id="anonymous-user-agent">Anonymous User Agent</h3>
 
-<p>First we need to include the SIP.js library, which can be downloaded <a href="/download/">here</a>.  </p>
+<p>First we need to include the <a href="/download/">SIP.js library</a>.  </p>
 
 <p>In order to make calls and send messages you must create a SIP user agent.  In this example, we will create an anonymous user agent.  To do this, call the <code>SIP.UA()</code> method with no arguments.  An anonymous user agent can make calls and send messages to SIP endpoints.  It cannot receive calls or messages.</p>
 
@@ -59,11 +59,9 @@
 
 <p>To create an authenticated user agent, pass a configuration object to the <code>SIP.UA</code> constructor. </p>
 
-<p>This configuration object needs a <code>uri</code>.  This will have a username and a domain.  It will look something like <code>examplename@test.onsip.com</code> The <code>authorizationUser</code> and <code>password</code> are used to authenticate with your SIP provider.  </p>
+<p>This <a href="/api/0.5.0/ua_configuration_parameters/">configuration object</a> needs a <code>uri</code>.  This will have a username and a domain.  It will look something like <code>examplename@test.onsip.com</code> The <code>authorizationUser</code> and <code>password</code> are used to authenticate with your SIP provider.  </p>
 
-<p>Further descriptions of the configuration object can be found <a href="/api/0.5.0/ua_configuration_parameters/">here</a>.</p>
-
-<p>Directions for authenticating a user agent using OnSIP can be found <a href="http://developer.onsip.com/guides/useragentauthentication/">here</a>.</p>
+<p>If you are authenticating a user agent using OnSIP, follow <a href="http://developer.onsip.com/guides/sip-ua-authentication/">these instructions</a>.</p>
 
 <iframe style="width: 100%; height: 250px" src="http://jsfiddle.net/V6WMY/3/embedded/js,result/">
 </iframe>
