@@ -5,8 +5,8 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <meta name="description" content="Easily convert your JsSIP application to use the SIP.js library. Here's how." />
-  <title>Convert to SIP.js| SIP.js</title>
+  <meta name="description" content="How to reuse MediaStreams between calls with SIP.js." />
+  <title>Reuse MediaStreams | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
@@ -44,62 +44,22 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="converting-to-sipjs">Converting to SIP.js</h1>
+      <h1 id="reuse-mediastreams">Reuse MediaStreams</h1>
 
+<ul id="markdown-toc">
+<li><a href="#setup">Setup</a></li>
+  <li><a href="#making-a-call">Making a call</a></li>
+  <li><a href="#receiving-a-call">Receiving a call</a></li>
+  <li><a href="#live-example">Live Example</a></li>
+</ul><p>In order to provide a more streamlined user experience, applications built with SIP.js may wish to minimize the number of times the user is prompted to allow access to their microphone/camera. This is especially useful when the user makes multiple calls, since only Chrome and Opera on https:// pages will remember media allowances.</p>
 
-<p>SIP.js is a hard fork of the library <a href="http://www.jssip.net/">JsSIP</a>.  As such, if you want to convert your JsSIP application to use the SIP.js library there are a few changes that need to be made.  Below is a checklist of things that you will need to change.</p>
+<p>When making or receiving a call, SIP.js allows applications to specify the desired <code>MediaStream</code> as the <code>media</code> key of the <code>options</code> argument to <a href="../../api/0.5.0/ua/#invitetarget-options"><code>UA.invite</code></a> and <a href="../../api/0.5.0/session/#acceptoptions"><code>Session.accept</code></a>, respectively.</p>
 
-<p>Most importantly, you need to change the loaded library from  <code>JsSIP-devel.js</code> to <a href="/download/"><code>sip-devel.js</code></a>.</p>
+<p>SIP.js applications can get a reference to a <code>MediaStream</code> using <code>SIP.WebRTC.getUserMedia</code>:</p>
 
-<h3 id="user-agent-creation">User Agent creation</h3>
-<p>JsSIP user agents are created using the line <code>MyPhone = new JSSIP.UA(configuration);</code>.  In SIP.js this needs to be changed to <code>MyPhone = new SIP.UA(configuration);</code>.</p>
+<h2 id="setup">Setup</h2>
 
-<h3 id="methods">Methods</h3>
-<p>In SIP.js we have changed some of the method names to terms that are more SIP appropriate.  <code>sendMessage()</code> is now <code>message()</code>.</p>
-
-<p>The method <code>call()</code> is now <code>invite()</code>.  <code>invite()</code> now also returns the <code>session</code>.</p>
-
-<h3 id="events">Events</h3>
-<p>The event <code>.on("newMessage", funct)</code> has been changed to <code>.on("message", funct)</code>.</p>
-
-<p>The <code>.on("started", funct)</code> event has been changed to <code>.on("accepted", funct)</code>.</p>
-
-<p>The <code>.on("newDtmf", funct)</code> event has been changed to <code>.on("dtmf", funct)</code>.</p>
-
-<p>There are also a few new session events, such as <code>referred</code>, <code>cancel</code>, and <code>failed</code>.</p>
-
-<p>A larger change was made to the <code>newRTCSession</code> event.  This event has been changed to <code>invite</code>.  Also, it previously fired when receiving an invite as well as when sending an invite.  Now, the <code>invite</code> only fires upon receiving an event.  </p>
-
-<p>When you call <code>invite</code>, the return value of that function call will be the session.  For example, if you were previously doing this:  </p>
-
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td>
-  <td class="code"><pre><span class="keyword">function</span> <span class="function">call</span>(userAgent) {
-  userAgent.call(<span class="string"><span class="delimiter">"</span><span class="content">test@example.com</span><span class="delimiter">"</span></span>);
-}
-
-MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="content">newRTCSession</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(e) {
-  display_session(e.session);
-});
-
-<span class="keyword">function</span> <span class="function">display_session</span>(session) {
-  <span class="comment">//display phone session in video element</span>
-}
-</pre></td>
-</tr></table></div>
-
-<p>You must now do this:</p>
+<p>Note: the following code blocks assume you already have a <code>SIP.UA</code> named <code>ua</code>. Please see the <a href="../user-agent-construction/">User Agent Construction guide</a> for instructions.</p>
 
 <div><table class="CodeRay"><tr>
 <td class="line-numbers"><pre>1
@@ -114,28 +74,74 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
 10
 11
 12
+13
+14
+15
+16
+17
 </pre></td>
-  <td class="code"><pre><span class="keyword">function</span> <span class="function">call</span>(userAgent) {
-  <span class="keyword">var</span> session = userAgent.invite(<span class="string"><span class="delimiter">"</span><span class="content">test@example.com</span><span class="delimiter">"</span></span>);
-  display_session(session);
-}
+  <td class="code"><pre>  <span class="keyword">var</span> mediaStream;
 
-MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="content">invite</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(session) {
-  display_session(session);
-});
+  <span class="keyword">var</span> mediaConstraints = {
+    <span class="key">audio</span>: <span class="predefined-constant">true</span>,
+    <span class="key">video</span>: <span class="predefined-constant">true</span>
+  };
 
-<span class="keyword">function</span> <span class="function">display_session</span>(session) {
-  <span class="comment">//display phone session in video element</span>
-}
+  <span class="keyword">function</span> <span class="function">getUserMediaSuccess</span> (stream) {
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">getUserMedia succeeded</span><span class="delimiter">'</span></span>, stream)
+    mediaStream = stream;
+  }
+
+  <span class="keyword">function</span> <span class="function">getUserMediaFailure</span> (e) {
+    console.error(<span class="string"><span class="delimiter">'</span><span class="content">getUserMedia failed:</span><span class="delimiter">'</span></span>, e);
+  }
+
+  SIP.WebRTC.getUserMedia(mediaConstraints, getUserMediaSuccess, getUserMediaFailure);
 </pre></td>
 </tr></table></div>
 
-<h3 id="session-attributes">Session Attributes</h3>
-<p>A <code>session</code> has various attributes.  A few names of the attributes have been changed.</p>
+<p>After <code>getUserMediaSuccess</code> has been called, the stream can be used to make or receive calls.</p>
 
-<p>The <code>remote_identity</code> attribute is now named <code>remoteIdentity</code>.</p>
+<h2 id="making-a-call">Making a call</h2>
 
-<p>The <code>local_identity</code> attribute is now named <code>localIdentity</code>.</p>
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>  <span class="keyword">var</span> target = <span class="string"><span class="delimiter">'</span><span class="content">someone@domain.tld</span><span class="delimiter">'</span></span>;
+  <span class="keyword">var</span> options = {
+    <span class="key">media</span>: mediaStream
+  };
+  ua.invite(target, options);
+</pre></td>
+</tr></table></div>
+
+<h2 id="receiving-a-call">Receiving a call</h2>
+
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>  ua.on(<span class="string"><span class="delimiter">'</span><span class="content">invite</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (session) {
+    <span class="keyword">var</span> options = {
+      <span class="key">media</span>: mediaStream
+    };
+    session.accept(options);
+  });
+</pre></td>
+</tr></table></div>
+
+<h2 id="live-example">Live Example</h2>
+
+<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/XsKmL/embedded/js,html,css,result/">
+</iframe>
     </div>
 
     <nav id="sideNav">
