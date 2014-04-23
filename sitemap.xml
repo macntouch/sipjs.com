@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://sipjs.com/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/CNAME</loc>
-    <lastmod>2014-02-25</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/aboutus/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/causes/</loc>
@@ -26,63 +26,63 @@
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/context/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/context/client/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/context/server/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/eventEmitter/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/incomingMessage/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/message/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/outgoingRequest/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/session/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/subscription/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/ua/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/ua_configuration_parameters/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/uri/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/download/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/faq/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/convert-to-sipjs/</loc>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/getting-started/</loc>
-    <lastmod>2014-02-25</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/make-call/</loc>
@@ -98,15 +98,15 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/receive-call/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/reuse-mediastreams/</loc>
-    <lastmod>2014-04-16</lastmod>
+    <lastmod>2014-04-18</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/send-dtmf/</loc>
-    <lastmod>2014-04-07</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/send-message/</loc>
@@ -114,11 +114,11 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/user-agent-construction/</loc>
-    <lastmod>2014-04-14</lastmod>
+    <lastmod>2014-04-23</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/license/</loc>
-    <lastmod>2014-02-25</lastmod>
+    <lastmod>2014-04-14</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/sitemap.xml</loc>
