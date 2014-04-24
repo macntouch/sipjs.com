@@ -57,9 +57,11 @@
 <li><a href="#construction">Construction</a></li>
   <li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
-<li><a href="#ua"><code>ua</code></a></li>
-      <li><a href="#method"><code>method</code></a></li>
+<li><a href="#method"><code>method</code></a></li>
       <li><a href="#ruri"><code>ruri</code></a></li>
+      <li><a href="#ua"><code>ua</code></a></li>
+      <li><a href="#headers"><code>headers</code></a></li>
+      <li><a href="#body"><code>body</code></a></li>
     </ul>
 </li>
   <li>
@@ -77,17 +79,25 @@
 
 <h2 id="instance-attributes">Instance Attributes</h2>
 
-<h3 id="ua"><code>ua</code></h3>
-
-<p><code>SIP.UA</code> - The UA that this request is being sent from</p>
-
 <h3 id="method"><code>method</code></h3>
 
-<p><code>String</code> - The SIP method used for the request</p>
+<p><code>String</code> - The SIP method used for the request.</p>
 
 <h3 id="ruri"><code>ruri</code></h3>
 
-<p><code>SIP.URI</code> - The request uri</p>
+<p><code>SIP.URI</code> - The request uri, or the SIP address that the request will be sent to.</p>
+
+<h3 id="ua"><code>ua</code></h3>
+
+<p><code>SIP.UA</code> - The UA that this request is being sent from.</p>
+
+<h3 id="headers"><code>headers</code></h3>
+
+<p><code>Object</code> - An object containing extra SIP headers for the request.</p>
+
+<h3 id="body"><code>body</code></h3>
+
+<p><code>String</code> - The body of the request, which will follow the SIP headers.</p>
 
 <h2 id="instance-methods">Instance Methods</h2>
 
@@ -304,6 +314,11 @@ Content-Length: 0
     </li>
     <li class="parent">
       <a class="parent" href="/api/0.5.0/incomingMessage/">SIP.IncomingMessage</a>
+      <ul>
+      </ul>
+    </li>
+    <li class="parent">
+      <a class="parent" href="/api/0.5.0/outgoingRequest/">SIP.OutgoingRequest</a>
       <ul>
       </ul>
     </li>
