@@ -96,15 +96,10 @@
 <div>
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777">//Subscribes to the presence information of alice@example.com</span>
-myUA.subscribe(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice@example.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">presence</span><span style="color:#710">'</span></span>);
-</pre></div>
-</div>
-</div>
+<span style="color:#080;font-weight:bold">var</span> subscription = myUA.subscribe(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice@example.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">presence</span><span style="color:#710">'</span></span>);
 
-<div>
-<div class="CodeRay">
-  <div class="code"><pre><span style="color:#777">// Once subscribed, receive notifications and print out the presence information</span>
-myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">notify</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (notification) {
+<span style="color:#777">// Once subscribed, receive notifications and print out the presence information</span>
+subscription.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">notify</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (notification) {
   console.log(notification.body);
 });
 </pre></div>
