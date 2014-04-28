@@ -450,13 +450,67 @@ INVALID_STATE_ERROR</p>
 
 <h3 id="progressoptions"><code>progress([options])</code></h3>
 
-<p>Overrides <a href="/api/0.5.0/context/server/#progressoptions"><code>SIP.ServerContext.progress</code></a></p>
+<p>Overrides <a href="/api/0.5.0/context/server/#progressoptions"><code>SIP.ServerContext.progress</code></a>. Additional parameters specific to INVITE requests can be specified.</p>
 
-<h3 id="acceptoptions"><code>accept([options])</code></h3>
+<p>As per <a href="http://tools.ietf.org/html/rfc3262">RFC 3262</a>, non-100 provisional responses may be transmitted reliably. Support for this is determined by the initial invite request (see the <a href="/api/0.5.0/ua/#invitetarget-options"><code>rel100</code></a> parameter on <code>ua.invite()</code>). If the INVITE prohibits reliable provisional responses, all responses sent with <code>progress</code> will be transmitted unreliably. Likewise, if the INVITE requires 100rel, all non-100 responses will be sent reliably. If 100rel is supported, reliable transmission is determined by the <code>options.rel100</code> parameter. Note that reliable provisional responses typically contain the SDP answer and so an <code>options.media</code> parameter is also provided.</p>
 
-<p>Overrides <a href="/api/0.5.0/context/server/#acceptoptions"><code>SIP.ServerContext.accept</code></a></p>
+<h4 id="parameters-3">Parameters</h4>
 
-<h3 id="rejectoptions"><code>reject([options])</code></h3>
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options.rel100</code></td>
+      <td><code>Boolean</code></td>
+      <td>If the INVITE request supports 100rel, progress responses will be transmitted reliably based on this option. If the INVITE request requires or does not support 100rel, this option is ignored.</td>
+    </tr>
+<tr>
+<td><code>options.media</code></td>
+      <td><code>Object</code></td>
+      <td>Media constraints to use in a reliable provisional response. After the response is PRACKed, early media will begin. If the session is later accepted, these media constraints will be used.</td>
+    </tr>
+<tr>
+<td>ServerContext Parameters</td>
+      <td> </td>
+      <td>See <a href="/api/0.5.0/context/server/#progressoptions"><code>SIP.ServerContext.progress</code></a>.</td>
+    </tr>
+</tbody>
+</table><h3 id="acceptoptions"><code>accept([options])</code></h3>
+
+<p>Overrides <a href="/api/0.5.0/context/server/#acceptoptions"><code>SIP.ServerContext.accept</code></a>.  Additional parameters specific to INVITE requests can be specified.</p>
+
+<h4 id="parameters-4">Parameters</h4>
+
+<table>
+<thead><tr>
+<th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options.media</code></td>
+      <td>Object</td>
+      <td>Media constraints to use for the Session. For example, <code>{ audio: true, video: true }</code>.</td>
+    </tr>
+<tr>
+<td><code>options.mediaConstraints</code></td>
+      <td>Object</td>
+      <td>
+<em>Deprecated</em> - Same as <code>options.media</code>
+</td>
+    </tr>
+<tr>
+<td>ServerContext Parameters</td>
+      <td> </td>
+      <td>See <a href="/api/0.5.0/context/server/#acceptoptions"><code>SIP.ServerContext.accept</code></a>.</td>
+    </tr>
+</tbody>
+</table><h3 id="rejectoptions"><code>reject([options])</code></h3>
 
 <p>Overrides <a href="/api/0.5.0/context/server/#rejectoptions"><code>SIP.ServerContext.reject</code></a></p>
 
