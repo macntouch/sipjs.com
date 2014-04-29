@@ -100,7 +100,7 @@
 
 <span style="color:#777">// Once subscribed, receive notifications and print out the presence information</span>
 subscription.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">notify</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (notification) {
-  console.log(notification.body);
+  console.log(notification.request.body);
 });
 </pre></div>
 </div>
