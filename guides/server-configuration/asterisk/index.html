@@ -46,15 +46,14 @@
     <div id="content">
       <h1 id="configure-asterisk">Configure Asterisk</h1>
 
-<p>SIP.js is tested and will work with <a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz">Asterisk 11.9.0</a> without any modification to the source code of SIP.js or Asterisk. Similar configuration should also work for Asterisk 12.</p>
+<p>SIP.js has been tested with <a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz">Asterisk 11.9.0</a> without any modification to the source code of SIP.js or Asterisk. Similar configuration should also work for Asterisk 12.</p>
 
 <h2 id="system-setup">System Setup</h2>
 
 <p>Asterisk and SIP.js were tested using the following setup:</p>
 
 <ul>
-<li>
-<a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a>.</li>
+<li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
   <li><a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz">Asterisk 11.9.0</a></li>
   <li><a href="http://srtp.sourceforge.net/srtp-1.4.2.tgz">libsrtp 1.4.2</a></li>
   <li>A public IP address to avoid NAT scenarios on the server side.</li>
@@ -104,18 +103,52 @@
 By default, Asterisk config files are located in <code>/etc/asterisk/</code>.
 Start by editing <code>http.conf</code> and make sure that the following lines are uncommented:</p>
 
-<pre><code>;http.conf
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>;http.conf
 [general]
 enabled=yes
 bindaddr=127.0.0.1 ; Replace this with your IP address
 bindport=8088 ; Replace this with the port you want to listen on
-</code></pre>
+</pre></td>
+</tr></table></div>
 
 <p>Change the IP address and port to the IP address of your server and the port that you would like Asterisk to listen for web socket connections on.</p>
 
 <p>Next, edit <code>sip.conf</code>. Here you will set up two peers, one for a WebRTC client and one for a non-WebRTC SIP client. The WebRTC peer requires encryption, avpf, and icesupport to be enabled. In most cases, directmedia should be disabled. Also under the WebRTC client, the transport needs to be listed as ‘ws’ to allow websocket connections. All of these config lines should be under the peer itself; setting these config lines globally might not work.</p>
 
-<pre><code>;sip.conf
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td>
+  <td class="code"><pre>;sip.conf
 [general]
 realm=127.0.0.1 ; Replace this with your IP address
 udpbindaddr=127.0.0.1 ; Replace this with your IP address
@@ -139,15 +172,23 @@ username=1061
 host=dynamic
 secret=password
 context=default
-</code></pre>
+</pre></td>
+</tr></table></div>
 
 <p>Lastly, set up <code>extensions.conf</code> to allow the two peers to call each other.</p>
 
-<pre><code>;extensions.conf
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>;extensions.conf
 [default]
 exten =&gt; 1060,1,Dial(SIP/1060) ; Dialing 1060 will call the SIP client registered to 1060
 exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client registered to 1061
-</code></pre>
+</pre></td>
+</tr></table></div>
 
 <p>Restart Asterisk using <code>service asterisk restart</code> to ensure that the new settings take effect.</p>
 
@@ -184,7 +225,7 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
 
   <span class="comment">// Replace this IP address with your Asterisk IP address,</span>
   <span class="comment">// and replace the port with your Asterisk port from the http.conf file</span>
-  <span class="key">ws_servers</span>: [<span class="string"><span class="delimiter">'</span><span class="content">ws://127.0.0.1:8088/ws</span><span class="delimiter">'</span></span>],
+  <span class="key">ws_servers</span>: <span class="string"><span class="delimiter">'</span><span class="content">ws://127.0.0.1:8088/ws</span><span class="delimiter">'</span></span>,
 
   <span class="comment">// Replace this with the username from your sip.conf file</span>
   <span class="key">authorizationUser</span>: <span class="string"><span class="delimiter">'</span><span class="content">1060</span><span class="delimiter">'</span></span>,
@@ -208,6 +249,14 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
     <nav id="sideNav">
   <ul>
     <li><a href="/guides/">Overview</a></li>
+    <li class="parent">
+      <a class="parent" href="/guides/server-configuration/">Server Configuration</a>
+      <ul>
+        <li><a href="/guides/server-configuration/freeswitch/">FreeSWITCH</a></li>
+        <li><a href="/guides/server-configuration/asterisk/">Asterisk</a></li>
+        <li><a href="/guides/server-configuration/onsip-network/">OnSIP Network</a></li>
+      </ul>
+    </li>
     <li><a href="/guides/convert-to-sipjs/">Convert to SIP.js</a></li>
     <li><a href="/guides/user-agent-construction/">User Agent Construction</a></li>
     <li><a href="/guides/make-call/">Make a Call</a></li>

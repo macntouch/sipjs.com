@@ -6,11 +6,11 @@
   </url>
   <url>
     <loc>http://sipjs.com/CNAME</loc>
-    <lastmod>2013-12-18</lastmod>
+    <lastmod>2014-01-02</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/aboutus/</loc>
-    <lastmod>2014-04-29</lastmod>
+    <lastmod>2014-04-28</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/causes/</loc>
-    <lastmod>2014-04-09</lastmod>
+    <lastmod>2014-04-07</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/context/</loc>
@@ -50,19 +50,19 @@
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/outgoingRequest/</loc>
-    <lastmod>2014-04-29</lastmod>
+    <lastmod>2014-04-28</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/session/</loc>
-    <lastmod>2014-04-29</lastmod>
+    <lastmod>2014-05-01</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/subscription/</loc>
-    <lastmod>2014-04-29</lastmod>
+    <lastmod>2014-04-30</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/ua/</loc>
-    <lastmod>2014-04-29</lastmod>
+    <lastmod>2014-04-28</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/api/0.5.0/ua_configuration_parameters/</loc>
@@ -86,15 +86,15 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/convert-to-sipjs/</loc>
-    <lastmod>2014-04-09</lastmod>
+    <lastmod>2014-04-08</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/getting-started/</loc>
-    <lastmod>2014-01-08</lastmod>
+    <lastmod>2014-01-09</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/make-call/</loc>
-    <lastmod>2014-04-09</lastmod>
+    <lastmod>2014-04-08</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/receive-call/</loc>
@@ -102,7 +102,7 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/reuse-mediastreams/</loc>
-    <lastmod>2014-04-29</lastmod>
+    <lastmod>2014-04-21</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/send-dtmf/</loc>
@@ -110,30 +110,38 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/send-message/</loc>
-    <lastmod>2014-04-09</lastmod>
+    <lastmod>2014-04-08</lastmod>
+  </url>
+  <url>
+    <loc>http://sipjs.com/guides/server-configuration/</loc>
+    <lastmod>2014-05-01</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/server-configuration/asterisk/</loc>
-    <lastmod>2014-04-30</lastmod>
+    <lastmod>2014-05-01</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/server-configuration/freeswitch/</loc>
-    <lastmod>2014-04-30</lastmod>
+    <lastmod>2014-05-01</lastmod>
+  </url>
+  <url>
+    <loc>http://sipjs.com/guides/server-configuration/onsip-network/</loc>
+    <lastmod>2014-05-01</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/transfer/</loc>
-    <lastmod>2014-04-30</lastmod>
+    <lastmod>2014-05-01</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/user-agent-construction/</loc>
-    <lastmod>2014-04-29</lastmod>
+    <lastmod>2014-04-28</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/license/</loc>
-    <lastmod>2014-02-19</lastmod>
+    <lastmod>2014-02-24</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/sitemap.xml</loc>
-    <lastmod>2014-04-09</lastmod>
+    <lastmod>2014-04-07</lastmod>
   </url>
 </urlset>
