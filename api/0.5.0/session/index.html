@@ -547,6 +547,8 @@ INVALID_STATE_ERROR</p>
 
 <h4 id="onaccepted-function-data-"><code>on('accepted', function (data) {})</code></h4>
 
+<p>Outbound sessions emit <code>accepted</code> with the following parameters:</p>
+
 <table>
 <thead><tr>
 <th>Name</th>
@@ -570,7 +572,9 @@ INVALID_STATE_ERROR</p>
       <td>The received response</td>
     </tr>
 </tbody>
-</table><h3 id="rejected"><code>rejected</code></h3>
+</table><p>Inbound sessions do not currently provide any parameters when emitting the <code>accepted</code> event. <a href="https://github.com/onsip/SIP.js/issues/15">Track this bug on GitHub.</a></p>
+
+<h3 id="rejected"><code>rejected</code></h3>
 
 <p>Fired each time an unsuccessful final (300-699) response is received. <em>Note: This will also emit a <code>failed</code> event.</em></p>
 
