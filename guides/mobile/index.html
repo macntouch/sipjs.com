@@ -5,8 +5,8 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <meta name="description" content="How to enable your WebRTC application to accept calls from peers and third parties by registering a SIP user agent." />
-  <title>Receive a Call | SIP.js</title>
+  <meta name="description" content="The SIP.js Mobile Guides will show you how use SIP.js on mobile platforms." />
+  <title>Mobile | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
@@ -44,28 +44,13 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="receive-a-call">Receive a Call</h1>
+      <h1 id="mobile-guides">Mobile Guides</h1>
 
+<p>This section of the documentation is intended to help you use SIP.js on mobile platforms.</p>
 
-<h3 id="setup">Setup</h3>
-
-<p>We will start with the code that we produced at the end of the <a href="/guides/make-call/">make a call</a> example.</p>
-
-<h3 id="register-a-sip-user-agent">Register A SIP User Agent</h3>
-
-<p>In order to receive calls we need to create a registered SIP user agent, instead of an anonymous user agent.  Instead of calling the <code>SIP.UA()</code> method without any parameters, pass in a configuration object that contains a <code>uri</code>, a <code>ws_servers</code>, and a <code>password</code>.</p>
-
-<p>We will also remove <code>session.invite()</code>, so that our app stops making calls.</p>
-
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/5aqm7/5/embedded/js,html,css,result/">
-</iframe>
-
-<h3 id="accept-a-call">Accept a Call</h3>
-
-<p>Finally, To accept a call that is being received, catch the <code>invite</code> event.  This event is emitted with a session that the <code>.accept()</code> method must be called on.</p>
-
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/tEGgn/5/embedded/js,html,css,result/">
-</iframe>
+<ul>
+  <li><a href="./android-native/">Android (Native)</a></li>
+</ul>
 
     </div>
 

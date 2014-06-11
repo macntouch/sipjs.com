@@ -53,16 +53,18 @@
 <p>Asterisk and SIP.js were tested using the following setup:</p>
 
 <ul>
-<li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
+  <li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
   <li><a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz">Asterisk 11.9.0</a></li>
   <li><a href="http://srtp.sourceforge.net/srtp-1.4.2.tgz">libsrtp 1.4.2</a></li>
   <li>A public IP address to avoid NAT scenarios on the server side.</li>
-</ul><h2 id="required-packages">Required Packages</h2>
+</ul>
+
+<h2 id="required-packages">Required Packages</h2>
 
 <p>Install the following dependencies:</p>
 
 <ul>
-<li>wget</li>
+  <li>wget</li>
   <li>gcc</li>
   <li>gcc-c++</li>
   <li>ncurses-devel</li>
@@ -70,7 +72,9 @@
   <li>sqlite3-devel</li>
   <li>libsrtp-devel</li>
   <li>libuuid-devel</li>
-</ul><p>Using YUM, all dependencies can be installed with:</p>
+</ul>
+
+<p>Using YUM, all dependencies can be installed with:</p>
 
 <p><code>yum install wget gcc gcc-c++ ncurses-devel libxml2-devel sqlite3-devel libsrtp-devel libuuid-devel</code>.</p>
 
@@ -79,16 +83,18 @@
 <p>By default, libsrtp is not included in the Asterisk yum repository. Installing it from source is not difficult.</p>
 
 <ol>
-<li><code>cd /usr/src/</code></li>
+  <li><code>cd /usr/src/</code></li>
   <li><code>wget http://srtp.sourceforge.net/srtp-1.4.2.tgz</code></li>
   <li><code>tar zxvf srtp-1.4.2.tgz</code></li>
   <li><code>cd /usr/src/srtp</code></li>
   <li><code>./configure CFLAGS=-fPIC</code></li>
   <li><code>make &amp;&amp; make install</code></li>
-</ol><h2 id="install-asterisk">Install Asterisk</h2>
+</ol>
+
+<h2 id="install-asterisk">Install Asterisk</h2>
 
 <ol>
-<li><code>cd /usr/src/</code></li>
+  <li><code>cd /usr/src/</code></li>
   <li>Downlaod Asterisk with <code>wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz</code>.</li>
   <li>Extract Asterisk: <code>tar zxvf asterisk*</code>.</li>
   <li>Enter the Asterisk directory: <code>cd /usr/src/asterisk*</code>.</li>
@@ -97,14 +103,17 @@
   <li>In the menuselect, go to the resources option and ensure that res_srtp is enabled. If there are 3 x’s next to res_srtp, there is a problem with the srtp library and you must reinstall it. Save the configuration (press x).</li>
   <li>Compile and install Asterisk: <code>make &amp;&amp; make install</code>.</li>
   <li>If you need the sample configs you can run <code>make samples</code> to install the sample configs. If you need to install the Asterisk startup script you can run <code>make config</code>.</li>
-</ol><h2 id="configure-asterisk-for-webrtc">Configure Asterisk For WebRTC</h2>
+</ol>
+
+<h2 id="configure-asterisk-for-webrtc">Configure Asterisk For WebRTC</h2>
 
 <p>For WebRTC, a lot of the settings that are needed MUST be in the <strong>peer settings</strong>. The global settings do not flow down into the peer settings very well.
 By default, Asterisk config files are located in <code>/etc/asterisk/</code>.
 Start by editing <code>http.conf</code> and make sure that the following lines are uncommented:</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -116,14 +125,16 @@ enabled=yes
 bindaddr=127.0.0.1 ; Replace this with your IP address
 bindport=8088 ; Replace this with the port you want to listen on
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <p>Change the IP address and port to the IP address of your server and the port that you would like Asterisk to listen for web socket connections on.</p>
 
 <p>Next, edit <code>sip.conf</code>. Here you will set up two peers, one for a WebRTC client and one for a non-WebRTC SIP client. The WebRTC peer requires encryption, avpf, and icesupport to be enabled. In most cases, directmedia should be disabled. Also under the WebRTC client, the transport needs to be listed as ‘ws’ to allow websocket connections. All of these config lines should be under the peer itself; setting these config lines globally might not work.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -173,12 +184,14 @@ host=dynamic
 secret=password
 context=default
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <p>Lastly, set up <code>extensions.conf</code> to allow the two peers to call each other.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -188,7 +201,8 @@ context=default
 exten =&gt; 1060,1,Dial(SIP/1060) ; Dialing 1060 will call the SIP client registered to 1060
 exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client registered to 1061
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <p>Restart Asterisk using <code>service asterisk restart</code> to ensure that the new settings take effect.</p>
 
@@ -198,8 +212,9 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
 
 <p>The following configuration example creates a UA for the Asterisk configuration above. Replace the values with the values from your config.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -239,11 +254,13 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
 
 <span class="keyword">var</span> ua = <span class="keyword">new</span> SIP.UA(config);
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
 <p>This <a href="http://forums.digium.com/viewtopic.php?f=1&amp;t=90167&amp;sid=66fdf8cc4be5d955ba584e989a23442f">forum post</a> on troubleshooting WebRTC issues is a great guide for trouble shooting problems with Asterisk.</p>
+
     </div>
 
     <nav id="sideNav">
@@ -255,6 +272,12 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
         <li><a href="/guides/server-configuration/freeswitch/">FreeSWITCH</a></li>
         <li><a href="/guides/server-configuration/asterisk/">Asterisk</a></li>
         <li><a href="/guides/server-configuration/onsip-network/">OnSIP Network</a></li>
+      </ul>
+    </li>
+    <li class="parent">
+      <a class="parent" href="/guides/mobile/">Mobile</a>
+      <ul>
+        <li><a href="/guides/mobile/android-native/">Android (Native)</a></li>
       </ul>
     </li>
     <li><a href="/guides/convert-to-sipjs/">Convert to SIP.js</a></li>

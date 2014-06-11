@@ -5,8 +5,8 @@
   <meta http-equiv="Content-Language" content="en-us" />
   <meta http-equiv="imagetoolbar" content="false" />
   <meta name="MSSmartTagsPreventParsing" content="true" />
-  <meta name="description" content="How to enable your WebRTC application to accept calls from peers and third parties by registering a SIP user agent." />
-  <title>Receive a Call | SIP.js</title>
+  <meta name="description" content="Easily write SIP.js apps for the Android platform." />
+  <title>Android Native Apps | SIP.js</title>
   <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
   <link href="/css/reset.css" rel="stylesheet" type="text/css" />
@@ -44,28 +44,59 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="receive-a-call">Receive a Call</h1>
+      <h1 id="android-native-apps">Android Native Apps</h1>
 
+<p>SIP.js web apps can be ported to Android using <a href="https://crosswalk-project.org/">Crosswalk</a>, which provides a WebRTC-capable WebView to display the web app without the convential browser interface surrounding it. This guide will show you how to use Crosswalk to generate an Android app for the <a href="http://sipjs.com/demo-phone/">SIP.js Demo Phone</a> on Mac OS X. Linux and Windows users should be able to follow along, as well.</p>
 
-<h3 id="setup">Setup</h3>
+<h2 id="system-setup">System Setup</h2>
 
-<p>We will start with the code that we produced at the end of the <a href="/guides/make-call/">make a call</a> example.</p>
+<ul>
+  <li>Create and go to a working directory: <code>mkdir /tmp/xwalk &amp;&amp; cd /tmp/xwalk</code>
+</li>
+  <li>Install Crosswalk (instructions for <a href="https://crosswalk-project.org/#documentation/getting_started/linux_host_setup/Install-the-Oracle-JDK">OS X</a>, <a href="https://crosswalk-project.org/#documentation/getting_started/Linux_host_setup/Installation-for-Crosswalk-Android">Linux</a>, <a href="https://crosswalk-project.org/#documentation/getting_started/Windows_host_setup/Installation-for-Crosswalk-Android">Windows</a>)</li>
+  <li>Ensure your Android device can connect to your computer: <a href="https://crosswalk-project.org/#documentation/getting_started/android_target_setup">Android Target Setup</a>
+</li>
+</ul>
 
-<h3 id="register-a-sip-user-agent">Register A SIP User Agent</h3>
+<h2 id="project-configuration">Project Configuration</h2>
 
-<p>In order to receive calls we need to create a registered SIP user agent, instead of an anonymous user agent.  Instead of calling the <code>SIP.UA()</code> method without any parameters, pass in a configuration object that contains a <code>uri</code>, a <code>ws_servers</code>, and a <code>password</code>.</p>
+<ul>
+  <li>
+    <p>Clone the <a href="https://github.com/onsip/sipjs-examples">sipjs-examples repository</a>: <code>git clone https://github.com/onsip/sipjs-examples</code></p>
+  </li>
+  <li>
+    <p>Add an <a href="https://raw.githubusercontent.com/onsip/sipjs-examples/crosswalk/demo-phone/icon.png">icon.png</a> and a <a href="https://raw.githubusercontent.com/onsip/sipjs-examples/crosswalk/demo-phone/manifest.json">manifest.json</a> to the demo-phone directory of the checked-out repository. This tells Crosswalk how the app should appear on the phone and which page to load when it opens. More detail can be found in <a href="https://crosswalk-project.org/#wiki/Crosswalk-manifest">the Crosswalk docs</a>:</p>
+  </li>
+</ul>
 
-<p>We will also remove <code>session.invite()</code>, so that our app stops making calls.</p>
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>cd sipjs-examples/demo-phone
+curl -o icon.png https://raw.githubusercontent.com/onsip/sipjs-examples/crosswalk/demo-phone/icon.png
+curl -o manifest.json https://raw.githubusercontent.com/onsip/sipjs-examples/crosswalk/demo-phone/manifest.json
+# (or just `git checkout crosswalk`)
+</pre></td>
+</tr></table>
+</div>
 
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/5aqm7/5/embedded/js,html,css,result/">
-</iframe>
+<h2 id="native-app-generation">Native App Generation</h2>
 
-<h3 id="accept-a-call">Accept a Call</h3>
+<p>Follow <a href="https://crosswalk-project.org/#documentation/getting_started/run_on_android">these steps from the Crosswalk docs</a>, substituting the project’s paths/filenames in as needed:</p>
 
-<p>Finally, To accept a call that is being received, catch the <code>invite</code> event.  This event is emitted with a session that the <code>.accept()</code> method must be called on.</p>
-
-<iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/tEGgn/5/embedded/js,html,css,result/">
-</iframe>
+<ul>
+  <li>Go to the unpacked Crosswalk Android directory: <code>cd /tmp/xwalk/crosswalk-5.34.104.5</code>
+</li>
+  <li>Run the make_apk.py script with Python as follows: <code>python make_apk.py --manifest=../sipjs-examples/demo-phone/manifest.json</code>
+</li>
+  <li>Install the application on the target device: <code>adb install -r DemoPhone_0.0.0.1_arm.apk</code>
+</li>
+  <li>If the installation is successful, your application should now be on the Android target. Find its icon in the application list and open it.</li>
+</ul>
 
     </div>
 

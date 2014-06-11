@@ -74,151 +74,162 @@ session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="col
 <h1 id="common-causes">Common Causes</h1>
 
 <table>
-<thead><tr>
-<th>Constant</th>
+  <thead>
+    <tr>
+      <th>Constant</th>
       <th>Value</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>INVALID_TARGET</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>INVALID_TARGET</code></td>
       <td>‘Invalid target’</td>
       <td>The specified target can not be parsed as a valid <a href="/api/0.5.0/uri/"><code>SIP.URI</code></a>.</td>
     </tr>
-<tr>
-<td><code>CONNECTION_ERROR</code></td>
+    <tr>
+      <td><code>CONNECTION_ERROR</code></td>
       <td>‘Connection Error’</td>
       <td>WebSocket connection error occurred.</td>
     </tr>
-<tr>
-<td><code>REQUEST_TIMEOUT</code></td>
+    <tr>
+      <td><code>REQUEST_TIMEOUT</code></td>
       <td>‘Request Timeout’</td>
       <td>The timeout expired for the client transaction before a response was received.</td>
     </tr>
-<tr>
-<td><code>SIP_FAILURE_CODE</code></td>
+    <tr>
+      <td><code>SIP_FAILURE_CODE</code></td>
       <td>‘SIP Failure Code’</td>
       <td>A negative SIP response was received which is not part of any of the groups defined in the table below.</td>
     </tr>
-</tbody>
-</table><h1 id="sip-error-causes">SIP Error Causes</h1>
+  </tbody>
+</table>
+
+<h1 id="sip-error-causes">SIP Error Causes</h1>
 <p>Some SIP response status codes are grouped into the following causes:</p>
 
 <table>
-<thead><tr>
-<th>Constant</th>
+  <thead>
+    <tr>
+      <th>Constant</th>
       <th>Value</th>
       <th>SIP Status Codes</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>BUSY</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>BUSY</code></td>
       <td>‘Busy’</td>
       <td>486,600</td>
     </tr>
-<tr>
-<td><code>REJECTED</code></td>
+    <tr>
+      <td><code>REJECTED</code></td>
       <td>‘Rejected’</td>
       <td>403,603</td>
     </tr>
-<tr>
-<td><code>REDIRECTED</code></td>
+    <tr>
+      <td><code>REDIRECTED</code></td>
       <td>‘Redirected’</td>
       <td>300,301,302,305,380</td>
     </tr>
-<tr>
-<td><code>UNAVAILABLE</code></td>
+    <tr>
+      <td><code>UNAVAILABLE</code></td>
       <td>‘Unavailable’</td>
       <td>408,410,430,480</td>
     </tr>
-<tr>
-<td><code>NOT_FOUND</code></td>
+    <tr>
+      <td><code>NOT_FOUND</code></td>
       <td>‘Not Found’</td>
       <td>404,604</td>
     </tr>
-<tr>
-<td><code>ADDRESS_INCOMPLETE</code></td>
+    <tr>
+      <td><code>ADDRESS_INCOMPLETE</code></td>
       <td>‘Address Incomplete’</td>
       <td>484</td>
     </tr>
-<tr>
-<td><code>INCOMPATIBLE_SDP</code></td>
+    <tr>
+      <td><code>INCOMPATIBLE_SDP</code></td>
       <td>‘Incompatible SDP’</td>
       <td>488,606</td>
     </tr>
-<tr>
-<td><code>AUTHENTICATION_ERROR</code></td>
+    <tr>
+      <td><code>AUTHENTICATION_ERROR</code></td>
       <td>‘Authentication Error’</td>
       <td>401,407</td>
     </tr>
-</tbody>
-</table><h1 id="session-causes">Session Causes</h1>
+  </tbody>
+</table>
+
+<h1 id="session-causes">Session Causes</h1>
 <p>The following causes apply to audio/video sessions:</p>
 
 <table>
-<thead><tr>
-<th>Constant</th>
+  <thead>
+    <tr>
+      <th>Constant</th>
       <th>Value</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>BYE</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>BYE</code></td>
       <td>‘Terminated’</td>
       <td>Session terminated normally by local or remote peer.</td>
     </tr>
-<tr>
-<td><code>CANCELED</code></td>
+    <tr>
+      <td><code>CANCELED</code></td>
       <td>‘Canceled’</td>
       <td>Session canceled by local or remote peer.</td>
     </tr>
-<tr>
-<td><code>NO_ANSWER</code></td>
+    <tr>
+      <td><code>NO_ANSWER</code></td>
       <td>‘No Answer’</td>
       <td>Incoming call was not answered in the time given in the configuration <code>no_answer_timeout</code> parameter.</td>
     </tr>
-<tr>
-<td><code>EXPIRES</code></td>
+    <tr>
+      <td><code>EXPIRES</code></td>
       <td>‘Expires’</td>
       <td>Incoming call contains an Expires header and the local user did not answer within the time given in the header.</td>
     </tr>
-<tr>
-<td><code>NO_ACK</code></td>
+    <tr>
+      <td><code>NO_ACK</code></td>
       <td>‘No ACK’</td>
       <td>An incoming INVITE was replied to with a 2XX status code, but no ACK was received.</td>
     </tr>
-<tr>
-<td><code>NO_PRACK</code></td>
+    <tr>
+      <td><code>NO_PRACK</code></td>
       <td>‘No PRACK’</td>
       <td>An incoming iNVITE was replied to with a reliable provisional response, but no PRACK was received.</td>
     </tr>
-<tr>
-<td><code>USER_DENIED_MEDIA_ACCESS</code></td>
+    <tr>
+      <td><code>USER_DENIED_MEDIA_ACCESS</code></td>
       <td>‘User Denied Media Access’</td>
       <td>Local user denied media access when prompted for audio/video devices.</td>
     </tr>
-<tr>
-<td><code>WEBRTC_NOT_SUPPORTED</code></td>
+    <tr>
+      <td><code>WEBRTC_NOT_SUPPORTED</code></td>
       <td>‘WebRTC not supported’</td>
       <td>The browser or device does not support the WebRTC specification.</td>
     </tr>
-<tr>
-<td><code>RTP_TIMEOUT</code></td>
+    <tr>
+      <td><code>RTP_TIMEOUT</code></td>
       <td>‘RTP Timeout’</td>
       <td>There was an error involving the PeerConnection associated with the call.</td>
     </tr>
-<tr>
-<td><code>BAD_MEDIA_DESCRIPTION</code></td>
+    <tr>
+      <td><code>BAD_MEDIA_DESCRIPTION</code></td>
       <td>‘Bad Media Description’</td>
       <td>Received SDP is wrong.</td>
     </tr>
-<tr>
-<td><code>DIALOG_ERROR</code></td>
+    <tr>
+      <td><code>DIALOG_ERROR</code></td>
       <td>‘Dialog Error’</td>
       <td>An in-dialog request received a 408 or 481 SIP error.</td>
     </tr>
-</tbody>
+  </tbody>
 </table>
+
 		</div>
 
 		<nav id="sideNav">
