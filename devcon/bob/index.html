@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="en-us" />
+  <meta http-equiv="imagetoolbar" content="false" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+  <meta name="description" content="" />
+  <title></title>
+  <link rel="alternate" type="application/atom+xml" title="API Changes" href="/changes.atom" />
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300|Varela+Round' rel='stylesheet' type='text/css'>
+  <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="/css/960.css" rel="stylesheet" type="text/css" />
+  <link href="/css/uv_active4d.css" rel="stylesheet" type="text/css" />
+  <link href="/shared/css/documentation.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/devcon/style.css" rel="stylesheet" type="text/css" />
+  <link href="/shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/shared/js/jquery.js" type="text/javascript"></script>
+  <script src="/shared/js/documentation.js" type="text/javascript"></script>
+
+  <link rel="shortcut icon" type="image/x-icon" href="/shared/img/favicon-6.ico"/>
+</head>
+
+<body>
+  <div id="dev"></div>
+<header id="siteHeader">
+  <div class="wrapper">
+    <a href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
+    <nav id="mainNav">
+      <ul class="horizontal">
+        <li><a href="/download/">Download</a></li>
+        <li><a href="/api/0.6.0/">API</a></li>
+        <li><a href="/guides/">Guides</a></li>
+        <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
+        <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
+        <li><a href="https://groups.google.com/forum/#!forum/sip_js" target="_blank">Support</a></li>
+      <ul>
+    </nav>
+  </div>
+</header>
+
+
+  <article id="main" class="wrapper group devcon">
+    <header>
+    </header>
+
+    <main>
+      <div id="subtitle">
+        <h1 class="all-caps">Demo Bob User</h1>
+        <a href="/devcon/Alice/" target="_blank" data-tokenize data-tokenize-after="You should have a Alice User opened in another tab. If not, please click to open a new Alice User tab.">Click here to open tab for Alice User</a>
+      </div>
+
+      <div id="phone">
+        <video id="videoStream" poster="/devcon/demo_guy.png"></video>
+        <div id="beforecall" class="show">
+          <p>Call Alice:</p>
+          <button type="button" id="video">Video</button>
+          <button type="button" id="audio">Audio</button>
+        </div>
+        <div id="incomingcall">
+          <p>Incoming call from Alice</p>
+          <button type="button" id="accept" disabled>Accept</button>
+          <button type="button" id="reject" disabled>Reject</button>
+        </div>
+        <div id="duringcall">
+          <p>On a call with Alice</p>
+          <button type="button" id="bye" disabled>Bye</button>
+        </div>
+      </div>
+
+      <div id="message">
+        <h2 class="all-caps">Send message to Alice</h2>
+        <div id="msgreceive">
+          <p>Alice:</p><p id="incomingMessage">No messages sent yet</p>
+        </div>
+        <div id="msgsend">
+          <p>Bob:</p><textarea rows="2" maxlength="140" columns="70" id="messageContent" placeholder="Enter your message to Alice here, 140 characters or less"></textarea>
+          <button id="sendMessage">SEND</button>
+        </div>
+      </div>
+
+      <div id="data">
+        <h2 class="all-caps">Send data to Alice</h2>
+        <div id="datareceive">
+          <p>Alice:</p><p id="incomingdata">No data sent yet</p>
+        </div>
+        <div id="datasend">
+          <p id="sendinstructions">Tell Alice's app what browser you are using by clicking the Send button below.</p>
+          <button id="sendData">SEND</button>
+        </div>
+      </div>
+
+      <div id="note">
+        <h2 class="all-caps">Important Note</h2>
+        <p>This demo is using the OnSIP Network to create Alice's SIP address <span id="remote-uri">Alice@example.onsip.com</span> on the fly and register this user agent as <span id="local-uri">Bob@example.onsip.com</span></p>
+        <a href="https://signup.onsip.com/network" id="signup">
+          <p>Get Started Fast, Free</p>
+          <p>Open an OnSIP sandbox account</p>
+        </a>
+      </div>
+
+      <div id="code">
+        <h2 class="all-caps">Code</h2>
+        <div id="codebox">
+          <ul id="codelist">
+            <li>
+              <div class="active">
+                <a data-tab="1">Voice + Video</a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a data-tab="2">Message</a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a data-tab="3">Data</a>
+              </div>
+            </li>
+          </ul>
+          <div id="code-tabs">
+            <div data-tab="1" class="active code">
+              <div class="CodeRay">
+
+
+                <!-- BEGIN VOICE + VIDEO CODE SNIPPET -->
+                <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> session,
+    ua = window.ua,
+    target = window.target;
+
+<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">call</span>(vid) {
+  session = ua.invite(
+    target,
+    {
+      <span style="color:#606">media</span>: {
+        <span style="color:#606">constraints</span>: {
+          <span style="color:#606">audio</span>: <span style="color:#069">true</span>,
+          <span style="color:#606">video</span>: vid
+        },
+        <span style="color:#606">render</span>: {
+          <span style="color:#606">remote</span>: {
+            <span style="color:#606">video</span>: elements.videoStream
+          }
+        }
+      }
+    }
+  );
+
+  updateUI(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">during</span><span style="color:#710">'</span></span>);
+
+  session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">rejected</span><span style="color:#710">"</span></span>, updateUI.bind(<span style="color:#069">null</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">before</span><span style="color:#710">'</span></span>));
+  session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">accepted</span><span style="color:#710">"</span></span>, updateUI.bind(<span style="color:#069">null</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">during</span><span style="color:#710">'</span></span>));
+  session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bye</span><span style="color:#710">"</span></span>, updateUI.bind(<span style="color:#069">null</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">before</span><span style="color:#710">'</span></span>));
+}
+
+ua.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">invite</span><span style="color:#710">"</span></span>, <span style="color:#080;font-weight:bold">function</span> (incomingSession) {
+  updateUI(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">incoming</span><span style="color:#710">'</span></span>);
+  session = incomingSession;
+});
+
+elements.audio.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">click</span><span style="color:#710">"</span></span>, call.bind(<span style="color:#069">null</span>, <span style="color:#069">false</span>), <span style="color:#069">false</span>);
+elements.video.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">click</span><span style="color:#710">"</span></span>, call.bind(<span style="color:#069">null</span>, <span style="color:#069">true</span>),  <span style="color:#069">false</span>);
+
+elements.accept.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">click</span><span style="color:#710">"</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
+  updateUI(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">during</span><span style="color:#710">'</span></span>);
+  session.accept(
+    {
+      <span style="color:#606">media</span>: {
+        <span style="color:#606">render</span>: {
+          <span style="color:#606">remote</span>: {
+            <span style="color:#606">video</span>: elements.videoStream
+          }
+        }
+      }
+    }
+  );
+
+  session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">bye</span><span style="color:#710">"</span></span>, updateUI.bind(<span style="color:#069">null</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">before</span><span style="color:#710">'</span></span>));
+}, <span style="color:#069">false</span>);
+
+elements.reject.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">click</span><span style="color:#710">"</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
+  updateUI(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">before</span><span style="color:#710">'</span></span>);
+  session.reject();
+}, <span style="color:#069">false</span>);
+
+elements.bye.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">click</span><span style="color:#710">"</span></span>, <span style="color:#080;font-weight:bold">function</span>() {
+  updateUI(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">before</span><span style="color:#710">'</span></span>);
+  session.bye();
+}, <span style="color:#069">false</span>);
+</pre></div>
+              </div>
+
+              <!-- END VOICE + VIDEO CODE SNIPPET -->
+            </div>
+            <div data-tab="2" class="code">
+              <div class="CodeRay">
+                <!-- BEGIN MESSAGE CODE SNIPPET -->
+                <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> msg = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">sendMessage</span><span style="color:#710">"</span></span>),
+    msgContent = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">messageContent</span><span style="color:#710">"</span></span>),
+    showMessage = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">incomingMessage</span><span style="color:#710">"</span></span>);
+
+<span style="color:#080;font-weight:bold">var</span> ua = window.ua,
+    target = window.target;
+
+msg.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">click</span><span style="color:#710">"</span></span>, <span style="color:#080;font-weight:bold">function</span>() {
+  ua.message(target, msgContent.value);
+}, <span style="color:#069">false</span>);
+
+ua.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (request) {
+  showMessage.innerHTML = request.body;
+});
+</pre></div>
+                <!-- END MESSAGE CODE SNIPPET -->
+              </div>
+            </div>
+            <div data-tab="3" class="code">
+              <div class="CodeRay">
+                <!-- BEGIN DATA CODE SNIPPET -->
+                <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> dataSend = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">sendData</span><span style="color:#710">"</span></span>),
+    dataReceive = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">incomingdata</span><span style="color:#710">"</span></span>);
+
+<span style="color:#777">/*
+  Custom media handler factories don't have great compatibility with
+  our WebRTC function caching (like SIP.WebRTC.RTCPeerConnection)
+*/</span>
+SIP.WebRTC.isSupported();
+
+<span style="color:#080;font-weight:bold">var</span> dataUA;
+
+dataUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA({
+  <span style="color:#606">traceSip</span>: <span style="color:#069">true</span>,
+  <span style="color:#606">uri</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">data</span><span style="color:#710">'</span></span> + window.uri,
+  <span style="color:#06B;font-weight:bold">mediaHandlerFactory</span>: <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">mediaHandlerFactory</span>(session, options) {
+
+    <span style="color:#777">/* Like a default mediaHandler, but no streams to manage */</span>
+    <span style="color:#080;font-weight:bold">var</span> self = <span style="color:#080;font-weight:bold">new</span> SIP.WebRTC.MediaHandler(session, {
+      <span style="color:#606">mediaStreamManager</span>: {
+        <span style="color:#06B;font-weight:bold">acquire</span>: <span style="color:#080;font-weight:bold">function</span> (onSuccess) {
+          <span style="color:#777">// Must be async for on('dataChannel') callback to have a chance</span>
+          setTimeout(onSuccess.bind(<span style="color:#069">null</span>, {}), <span style="color:#00D">0</span>);
+        },
+        <span style="color:#06B;font-weight:bold">release</span>: <span style="color:#080;font-weight:bold">function</span> (onSuccess) {
+          setTimeout(onSuccess, <span style="color:#00D">0</span>);
+        }
+      }
+    });
+
+    <span style="color:#777">// No stream to add.  Assume success.</span>
+    self.<span style="color:#06B;font-weight:bold">addStream</span> = <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">addStream</span>(stream, success, failure) {
+      success();
+    };
+
+    <span style="color:#080;font-weight:bold">return</span> self;
+  }
+});
+
+dataUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">invite</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (session) {
+  session.mediaHandler.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">dataChannel</span><span style="color:#710">"</span></span>, <span style="color:#080;font-weight:bold">function</span> (dataChannel) {
+    dataChannel.<span style="color:#06B;font-weight:bold">onmessage</span> = <span style="color:#080;font-weight:bold">function</span> (e) {
+      dataReceive.innerHTML = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">The browser is </span><span style="color:#710">"</span></span> + e.data;
+      session.bye();
+    };
+  });
+
+  session.accept();
+});
+
+data.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
+  <span style="color:#080;font-weight:bold">var</span> browser = (navigator.userAgent.search(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Chrome</span><span style="color:#710">"</span></span>) &gt; <span style="color:#00D">0</span>) ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Chrome</span><span style="color:#710">"</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Firefox</span><span style="color:#710">"</span></span>;
+
+  session = dataUA.invite(
+    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">data</span><span style="color:#710">'</span></span> + window.target,
+    {
+      <span style="color:#606">media</span>: {
+        <span style="color:#606">dataChannel</span>: <span style="color:#069">true</span>
+      }
+    }
+  );
+
+  session.mediaHandler.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">dataChannel</span><span style="color:#710">"</span></span>, <span style="color:#080;font-weight:bold">function</span> (dataChannel) {
+    dataChannel.<span style="color:#06B;font-weight:bold">onopen</span> = <span style="color:#080;font-weight:bold">function</span> () {
+      dataChannel.send(browser);
+    };
+  });
+});
+</pre></div>
+                <!-- END DATA CODE SNIPPET -->
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+    </footer>
+  </article>
+
+  <footer class="wrapper">
+  <a href="https://www.onsip.com/webrtc-sip-network" id="onsip"></a>
+  <nav class="left">
+    <ul class="horizontal">
+      <li><a href="https://groups.google.com/forum/#!forum/sip_js" target="_blank">Mailing List</a></li>        
+      <li><a href="https://github.com/onsip/sip.js/issues" target="_blank">Report Issues</a></li>
+      <li><a href="/license/">License</a></li>
+    </ul>
+  </nav>
+  <nav class="right">
+    <ul class="horizontal">
+      <li><a href="http://onsip.com/blog" target="_blank">Blog</a></li>
+      <li><a href="/aboutus/">About</a></li>
+      <li><a href="/faq/">FAQ</a></li>
+    </ul>
+  </nav>
+  <div class="clearfix"></div>
+</footer>
+<script src="/shared/js/retina.js" type="text/javascript"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1008379-16', 'sipjs.com');
+  ga('send', 'pageview');
+</script>
+
+  <script src="/devcon/sip.js"></script>
+  <script src="/devcon/token.js"></script>
+  <script src="/devcon/bob.js" ></script>
+  <script src="/devcon/ua.js"></script>
+  <script src="/devcon/tabs.js" type="text/javascript"></script>
+</body>
+</html>
+v

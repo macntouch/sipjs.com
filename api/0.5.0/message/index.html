@@ -16,19 +16,20 @@
   <link href="/shared/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
   <script src="/shared/js/jquery.js" type="text/javascript"></script>
   <script src="/shared/js/documentation.js" type="text/javascript"></script>
-  
+
   <link rel="shortcut icon" type="image/x-icon" href="/shared/img/favicon-6.ico"/>
 </head>
 
 
 <body class="api">
-	<header id="siteHeader">
+	<div id="dev"></div>
+<header id="siteHeader">
   <div class="wrapper">
     <a href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
     <nav id="mainNav">
       <ul class="horizontal">
         <li><a href="/download/">Download</a></li>
-        <li><a href="/api/0.5.0/">API</a></li>
+        <li><a href="/api/0.6.0/">API</a></li>
         <li><a href="/guides/">Guides</a></li>
         <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
@@ -54,17 +55,15 @@
 <p><code>SIP.Message</code> represents an instant message using the SIP MESSAGE request. By default, the message is treated as plain text. However, any valid content type may be specified.</p>
 
 <ul id="markdown-toc">
-  <li>
+<li>
 <a href="#construction">Construction</a>    <ul>
-      <li><a href="#examples">Examples</a></li>
+<li><a href="#examples">Examples</a></li>
     </ul>
-  </li>
+</li>
   <li><a href="#instance-attributes">Instance Attributes</a></li>
   <li><a href="#instance-methods">Instance Methods</a></li>
   <li><a href="#events">Events</a></li>
-</ul>
-
-<h2 id="construction">Construction</h2>
+</ul><h2 id="construction">Construction</h2>
 
 <p>The Message constructor is intended for internal use only. Instead, outbound Messages are created through the <a href="/api/0.5.0/ua/#messagetarget-body-options"><code>SIP.UA.message</code></a> method. Inbound Messages are obtained via the <code>SIP.UA</code> <a href="/api/0.5.0/ua/#message"><code>message</code></a> event callback.</p>
 
@@ -120,7 +119,6 @@ Type | Description
 `SIP.Message`| This Message
 
 -->
-
 		</div>
 
 		<nav id="sideNav">
