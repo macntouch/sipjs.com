@@ -470,22 +470,33 @@ console.log(message.body); <span style="color:#777">// 'Hello, Bob!'</span>
       <td>Optional <code>Object</code> with extra parameters (see below)</td>
     </tr>
     <tr>
-      <td><code>options.mediaConstraints</code></td>
+      <td><code>options.media</code></td>
+      <td><code>Object</code></td>
+      <td>Optional <code>Object</code> with media related parameters (see below)</td>
+    </tr>
+    <tr>
+      <td><code>options.media.constraints</code></td>
       <td><code>Object</code></td>
       <td>
 <code>Object</code> with two valid fields (<code>audio</code> and <code>video</code>) indicating whether the session is intended to use audio and/or video and the constraints to be used. If media constraints are not provided, <code>{audio: true, video: true}</code> will be used</td>
     </tr>
     <tr>
-      <td><code>options.mediaStream</code></td>
+      <td><code>options.media.stream</code></td>
       <td><code>MediaStream</code></td>
       <td>
 <code>MediaStream</code> to transmit to the other end</td>
     </tr>
     <tr>
-      <td><code>options.RTCConstraints</code></td>
+      <td><code>options.media.RTCConstraints</code></td>
       <td><code>Object</code></td>
       <td>
 <code>Object</code> representing RTCPeerconnection constraints</td>
+    </tr>
+    <tr>
+      <td><code>options.media.render</code></td>
+      <td><code>Object</code></td>
+      <td>Video or audio elements that streams should be automatically rendered in.  For example: <code>{ remote: { video: element, audio: element } }</code>
+</td>
     </tr>
     <tr>
       <td><code>options.extraHeaders</code></td>
