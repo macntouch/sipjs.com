@@ -54,17 +54,15 @@
 <p>FreeSWITCH and SIP.js were tested using the following setup:</p>
 
 <ul>
-  <li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
+<li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
   <li><a href="https://confluence.freeswitch.org/display/FREESWITCH/Linux+Quick+Install+Guide#LinuxQuickInstallGuide-Download">FreeSWITCH 1.5.11</a></li>
   <li>A public IP address to avoid NAT scenarios on the server side.</li>
-</ul>
-
-<h2 id="required-packages">Required Packages</h2>
+</ul><h2 id="required-packages">Required Packages</h2>
 
 <p>Install the following dependencies:</p>
 
 <ul>
-  <li>git</li>
+<li>git</li>
   <li>autoconf</li>
   <li>automake</li>
   <li>libtool</li>
@@ -74,9 +72,7 @@
   <li>libjpeg-devel</li>
   <li>ncurses-devel</li>
   <li>openssl-devel</li>
-</ul>
-
-<p>Using YUM, all dependencies can be installed with:</p>
+</ul><p>Using YUM, all dependencies can be installed with:</p>
 
 <p><code>yum install git autoconf automake libtool gcc-c++ libuuid-devel zlib-devel libjpeg-devel ncurses-devel openssl-devel</code></p>
 
@@ -85,7 +81,7 @@
 <p>FreeSWITCH recommends using the latest version of FreeSWITCH from the <a href="http://git.freeswitch.org/git/freeswitch/">FreeSWITCH git repo</a>. This example uses FreeSWITCH tag v1.5.11.</p>
 
 <ul>
-  <li><code>cd /usr/local/src/</code></li>
+<li><code>cd /usr/local/src/</code></li>
   <li><code>git clone git://git.freeswitch.org/freeswitch.git</code></li>
   <li><code>cd /usr/local/src/freeswitch</code></li>
   <li><code>git checkout v1.5.11</code></li>
@@ -94,17 +90,14 @@
   <li>
 <code>make</code> (This may take a few minutes.)</li>
   <li><code>make install</code></li>
-</ul>
-
-<h2 id="configure-freeswitch-1">Configure FreeSWITCH</h2>
+</ul><h2 id="configure-freeswitch-1">Configure FreeSWITCH</h2>
 
 <p>The default configuration files for FreeSWITCH are located in <code>/usr/local/freeswitch/conf</code>.</p>
 
 <p>Start by editing the internal SIP profile <code>sip_profiles/internal.xml</code>. Uncomment the line <code>&lt;param name="ws-binding"  value=":5066"/&gt;</code> to allow web sockets to talk to FreeSWITCH. No other configuration changes are necessary to make FreeSWITCH work with WebRTC.</p>
 
-<div>
-<table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
 2
 3
 </pre></td>
@@ -112,8 +105,7 @@
 <span class="comment">&lt;!-- Uncomment the following: --&gt;</span>
 <span class="tag">&lt;param</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">"</span><span class="content">ws-binding</span><span class="delimiter">"</span></span>  <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">"</span><span class="content">:5066</span><span class="delimiter">"</span></span><span class="tag">/&gt;</span>
 </pre></td>
-</tr></table>
-</div>
+</tr></table></div>
 
 <p>Start FreeSWITCH: <code>/usr/local/freeswitch/bin/freeswitch</code>.</p>
 
@@ -121,9 +113,8 @@
 
 <p>SIP.js works with FreeSWITCH without any special configuration parameters. The following UA is configured to connect to a default FreeSWITCH configuration. Replace <code>127.0.0.1</code> with the IP address of your FreeSWITCH server.</p>
 
-<div>
-<table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
 2
 3
 4
@@ -157,13 +148,11 @@
 
 <span class="keyword">var</span> ua = <span class="keyword">new</span> SIP.UA(config);
 </pre></td>
-</tr></table>
-</div>
+</tr></table></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
 <p>FreeSWITCH has a wiki article on <a href="https://wiki.freeswitch.org/wiki/Webrtc">WebRTC support</a>.</p>
-
     </div>
 
     <nav id="sideNav">

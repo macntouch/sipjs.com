@@ -55,32 +55,30 @@
 <p>A <code>SIP.ClientContext</code> encapsulates the behavior required to send a request, as well as handle responses and retransmissions of that request. It is typically mixed in with behavior from a method-specific class, such as <a href="/api/0.6.0/session/"><code>SIP.Session</code></a> or <a href="/api/0.6.0/message/"><code>SIP.Message</code></a>.</p>
 
 <ul id="markdown-toc">
-  <li>
+<li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
-      <li><a href="#ua"><code>ua</code></a></li>
+<li><a href="#ua"><code>ua</code></a></li>
       <li><a href="#method"><code>method</code></a></li>
       <li><a href="#request"><code>request</code></a></li>
       <li><a href="#localidentity"><code>localIdentity</code></a></li>
       <li><a href="#remoteidentity"><code>remoteIdentity</code></a></li>
       <li><a href="#data"><code>data</code></a></li>
     </ul>
-  </li>
+</li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-      <li><a href="#canceloptions"><code>cancel([options])</code></a></li>
+<li><a href="#canceloptions"><code>cancel([options])</code></a></li>
     </ul>
-  </li>
+</li>
   <li>
 <a href="#events">Events</a>    <ul>
-      <li><a href="#progress"><code>progress</code></a></li>
+<li><a href="#progress"><code>progress</code></a></li>
       <li><a href="#accepted"><code>accepted</code></a></li>
       <li><a href="#rejected"><code>rejected</code></a></li>
       <li><a href="#failed"><code>failed</code></a></li>
     </ul>
-  </li>
-</ul>
-
-<!--
+</li>
+</ul><!--
 ## Construction
 
 Typically, construction and sending of a ClientContext is managed by a `SIP.UA`, through either the `ua.request(method, target)` function or through SIP method-specific functions such as `ua.invite(target)`. However, advanced users may construct ClientContexts manually.
@@ -94,9 +92,7 @@ Name | Type | Description
 ua | `SIP.UA` | The user agent from which the request will be sent.
 method | `String` | The SIP method to use on the request. For example, `INFO` or `OPTIONS`
 target | `String|SIP.URI` | The destination URI for the request to send to.
--->
-
-<h2 id="instance-attributes">Instance Attributes</h2>
+--><h2 id="instance-attributes">Instance Attributes</h2>
 
 <h3 id="ua"><code>ua</code></h3>
 
@@ -163,50 +159,40 @@ Type | Description
 <h4 id="parameters">Parameters</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>options</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>options</code></td>
       <td><code>Object</code></td>
       <td>Optional <code>Object</code> with extra parameters (see below).</td>
     </tr>
-    <tr>
-      <td><code>options.status_code</code></td>
+<tr>
+<td><code>options.status_code</code></td>
       <td><code>Number</code></td>
       <td>The SIP response code that will be used in the upcoming response instead of the default.</td>
     </tr>
-    <tr>
-      <td><code>options.reason_phrase</code></td>
+<tr>
+<td><code>options.reason_phrase</code></td>
       <td><code>String</code></td>
       <td>The SIP reason phrase.</td>
     </tr>
-  </tbody>
-</table>
-
-<h4 id="returns">Returns</h4>
+</tbody>
+</table><h4 id="returns">Returns</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Type</th>
+<thead><tr>
+<th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>SIP.ClientContext</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>SIP.ClientContext</code></td>
       <td>This ClientContext</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="throws">Throws</h4>
+    </tr></tbody>
+</table><h4 id="throws">Throws</h4>
 
 <p>TypeError
 INVALID_STATE_ERROR</p>
@@ -220,111 +206,96 @@ INVALID_STATE_ERROR</p>
 <h4 id="onprogress-function-response-cause-"><code>on('progress', function (response, cause) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>response</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>response</code></td>
       <td><a href="/api/0.6.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
-    <tr>
-      <td><code>cause</code></td>
+<tr>
+<td><code>cause</code></td>
       <td><code>String</code></td>
       <td>The SIP cause of the event</td>
     </tr>
-  </tbody>
-</table>
-
-<h3 id="accepted"><code>accepted</code></h3>
+</tbody>
+</table><h3 id="accepted"><code>accepted</code></h3>
 
 <p>Fired each time a successful final (200-299) response is received.</p>
 
 <h4 id="onaccepted-function-response-cause-"><code>on('accepted', function (response, cause) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>response</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>response</code></td>
       <td><a href="/api/0.6.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
-    <tr>
-      <td><code>cause</code></td>
+<tr>
+<td><code>cause</code></td>
       <td><code>String</code></td>
       <td>The SIP cause of the event</td>
     </tr>
-  </tbody>
-</table>
-
-<h3 id="rejected"><code>rejected</code></h3>
+</tbody>
+</table><h3 id="rejected"><code>rejected</code></h3>
 
 <p>Fired each time an unsuccessful final (300-699) response is received. <em>Note: This will also emit a <code>failed</code> event.</em></p>
 
 <h4 id="onrejected-function-responsecause-"><code>on('rejected', function (response,cause) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>response</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>response</code></td>
       <td><a href="/api/0.6.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
-    <tr>
-      <td><code>cause</code></td>
+<tr>
+<td><code>cause</code></td>
       <td><code>String</code></td>
       <td>The SIP cause of the event</td>
     </tr>
-  </tbody>
-</table>
-
-<h3 id="failed"><code>failed</code></h3>
+</tbody>
+</table><h3 id="failed"><code>failed</code></h3>
 
 <p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
 
 <h4 id="onfailed-function-response-cause-"><code>on('failed', function (response, cause) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>response</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>response</code></td>
       <td><a href="/api/0.6.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response, on a non SIP related failure this will be null</td>
     </tr>
-    <tr>
-      <td><code>cause</code></td>
+<tr>
+<td><code>cause</code></td>
       <td><code>String</code></td>
       <td>The SIP cause of the event</td>
     </tr>
-  </tbody>
+</tbody>
 </table>
-
 		</div>
 
 		<nav id="sideNav">
