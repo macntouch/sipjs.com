@@ -171,7 +171,7 @@ myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:
 
 <h3 id="request"><code>request</code></h3>
 
-<p><a href="/api/0.6.0/incomingMessage/"><code>SIP.IncomingRequest</code></a> or <a href="/api/0.6.0/outgoingRequest/"><code>SIP.OutgoingRequest</code></a> - Inherited from <a href="/api/0.6.0/context/client/#request"><code>SIP.ClientContext</code></a> or <a href="/api/0.6.0/context/server/#request"><code>SIP.ServerContext</code></a>.</p>
+<p><a href="/api/0.6.0/message/"><code>SIP.IncomingRequest</code></a> or <a href="/api/0.6.0/message/"><code>SIP.OutgoingRequest</code></a> - Inherited from <a href="/api/0.6.0/context/client/#request"><code>SIP.ClientContext</code></a> or <a href="/api/0.6.0/context/server/#request"><code>SIP.ServerContext</code></a>.</p>
 
 <h3 id="localidentity"><code>localIdentity</code></h3>
 
@@ -589,7 +589,7 @@ INVALID_STATE_ERROR</p>
     </tr></thead>
 <tbody><tr>
 <td><code>response</code></td>
-      <td><a href="/api/0.6.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.6.0/message"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr></tbody>
 </table><h3 id="accepted"><code>accepted</code></h3>
@@ -619,7 +619,7 @@ INVALID_STATE_ERROR</p>
     </tr>
 <tr>
 <td><code>data.response</code></td>
-      <td><a href="/api/0.6.0/incomingMessage"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.6.0/message"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
 </tbody>
@@ -640,7 +640,7 @@ INVALID_STATE_ERROR</p>
 <tbody>
 <tr>
 <td><code>response</code></td>
-      <td><a href="/api/0.6.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.6.0/message/"><code>SIP.IncomingMessage</code></a></td>
       <td>The received response</td>
     </tr>
 <tr>
@@ -653,7 +653,7 @@ INVALID_STATE_ERROR</p>
 
 <p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
 
-<h4 id="onfailed-function-response-cause-"><code>on('failed', function (response, cause) {})</code></h4>
+<h4 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -663,14 +663,24 @@ INVALID_STATE_ERROR</p>
     </tr></thead>
 <tbody>
 <tr>
-<td><code>response</code></td>
-      <td><a href="/api/0.6.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
-      <td>The received response. On a failure not due to a SIP message, this will be null.</td>
+<td><code>data</code></td>
+      <td><code>Object</code></td>
+      <td>A wrapper object containing the event data</td>
     </tr>
 <tr>
-<td><code>cause</code></td>
+<td><code>data.code</code></td>
+      <td><code>Number</code></td>
+      <td>The status code of the received response, between 300 and 699, or 0 if the failure was not due to a received response.</td>
+    </tr>
+<tr>
+<td><code>data.response</code></td>
+      <td><a href="/api/0.6.0/message/"><code>SIP.IncomingMessage|null</code></a></td>
+      <td>The received response, or <code>null</code> if the failure was not due to a received response.</td>
+    </tr>
+<tr>
+<td><code>data.cause</code></td>
       <td><code>String</code></td>
-      <td>The reason phrase associated with the SIP response code, or one of <a href="/api/0.6.0/causes">Failure and End Causes</a>.</td>
+      <td>The reason phrase associated with the SIP response code, or one of <code>SIP.C.causes</code> if the failure was not due to a received response.</td>
     </tr>
 </tbody>
 </table><h3 id="connecting"><code>connecting</code></h3>
@@ -691,7 +701,7 @@ Fired when an established call ends.
 
 Name | Type | Description 
 -----|------|--------------
-`message`|`Object`|[`SIP.IncomingResponse`](/api/0.6.0/incomingResponse/) instance of the received SIP 1XX response.
+`message`|`Object`|[`SIP.IncomingResponse`](/api/0.6.0/message/) instance of the received SIP 1XX response.
 `cause`||One value of [Failure and End Causes](/api/0.6.0/causes)
 
 -->
@@ -720,7 +730,7 @@ the refer, use the <code>session.followRefer(callback)</code> function.</p>
     </tr></thead>
 <tbody><tr>
 <td><code>request</code></td>
-      <td><a href="/api/0.6.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.6.0/message/"><code>SIP.IncomingMessage</code></a></td>
       <td>Instance of the received SIP REFER request.</td>
     </tr></tbody>
 </table><h4 id="onrefer-sessionfollowrefercallback"><code>on('refer', session.followRefer(callback)</code></h4>
@@ -756,7 +766,7 @@ the refer, use the <code>session.followRefer(callback)</code> function.</p>
     </tr>
 <tr>
 <td><code>request</code></td>
-      <td><a href="/api/0.6.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.6.0/message/"><code>SIP.IncomingMessage</code></a></td>
       <td>Instance of the received SIP INFO request.</td>
     </tr>
 </tbody>
@@ -850,7 +860,7 @@ Fired when a session is pre-accepted.
     </tr></thead>
 <tbody><tr>
 <td><code>request</code></td>
-      <td><a href="/api/0.6.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
+      <td><a href="/api/0.6.0/message/"><code>SIP.IncomingMessage</code></a></td>
       <td>Instance of the received SIP BYE request.</td>
     </tr></tbody>
 </table>
