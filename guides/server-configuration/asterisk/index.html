@@ -47,74 +47,61 @@
     <div id="content">
       <h1 id="configure-asterisk">Configure Asterisk</h1>
 
-<p>SIP.js has been tested with <a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz">Asterisk 11.9.0</a> without any modification to the source code of SIP.js or Asterisk. Similar configuration should also work for Asterisk 12.</p>
+<p>SIP.js has been tested with <a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.11.0.tar.gz">Asterisk 11.11.0</a> without any modification to the source code of SIP.js or Asterisk. Similar configuration should also work for Asterisk 12.</p>
 
 <h2 id="system-setup">System Setup</h2>
 
 <p>Asterisk and SIP.js were tested using the following setup:</p>
 
 <ul>
-  <li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
-  <li><a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz">Asterisk 11.9.0</a></li>
-  <li><a href="http://srtp.sourceforge.net/srtp-1.4.2.tgz">libsrtp 1.4.2</a></li>
+<li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
+  <li><a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.11.0.tar.gz">Asterisk 11.11.0</a></li>
+  <li>OpenSSL 1.0.1e-fips 11 Feb 2013 or later.</li>
   <li>A public IP address to avoid NAT scenarios on the server side.</li>
-</ul>
-
-<h2 id="required-packages">Required Packages</h2>
+</ul><h2 id="required-packages">Required Packages</h2>
 
 <p>Install the following dependencies:</p>
 
 <ul>
-  <li>wget</li>
+<li>wget</li>
   <li>gcc</li>
   <li>gcc-c++</li>
   <li>ncurses-devel</li>
   <li>libxml2-devel</li>
-  <li>sqlite3-devel</li>
+  <li>sqlite-devel</li>
   <li>libsrtp-devel</li>
   <li>libuuid-devel</li>
-</ul>
+  <li>openssl-devel</li>
+</ul><p>Using YUM, all dependencies can be installed with:</p>
 
-<p>Using YUM, all dependencies can be installed with:</p>
-
-<p><code>yum install wget gcc gcc-c++ ncurses-devel libxml2-devel sqlite3-devel libsrtp-devel libuuid-devel</code>.</p>
-
-<h2 id="install-libsrtp">Install libsrtp</h2>
-
-<p>By default, libsrtp is not included in the CentOS yum repository. Installing it from source is not difficult.</p>
-
-<ol>
-  <li><code>cd /usr/src/</code></li>
-  <li><code>wget http://srtp.sourceforge.net/srtp-1.4.2.tgz</code></li>
-  <li><code>tar zxvf srtp-1.4.2.tgz</code></li>
-  <li><code>cd /usr/src/srtp</code></li>
-  <li><code>./configure CFLAGS=-fPIC</code></li>
-  <li><code>make &amp;&amp; make install</code></li>
-</ol>
+<p><code>yum install wget gcc gcc-c++ ncurses-devel libxml2-devel sqlite-devel libsrtp-devel libuuid-devel openssl-devel</code>.</p>
 
 <h2 id="install-asterisk">Install Asterisk</h2>
 
 <ol>
-  <li><code>cd /usr/src/</code></li>
-  <li>Download Asterisk with <code>wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.9.0.tar.gz</code>.</li>
+<li><code>cd /usr/local/src/</code></li>
+  <li>Download Asterisk with <code>wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.11.0.tar.gz</code>.</li>
   <li>Extract Asterisk: <code>tar zxvf asterisk*</code>.</li>
-  <li>Enter the Asterisk directory: <code>cd /usr/src/asterisk*</code>.</li>
+  <li>Enter the Asterisk directory: <code>cd /usr/local/src/asterisk*</code>.</li>
   <li>Run the Asterisk configure script: <code>./configure --libdir=/usr/lib64</code>.</li>
   <li>Run the Asterisk menuselect tool: <code>make menuselect</code>.</li>
   <li>In the menuselect, go to the resources option and ensure that res_srtp is enabled. If there are 3 x’s next to res_srtp, there is a problem with the srtp library and you must reinstall it. Save the configuration (press x).</li>
   <li>Compile and install Asterisk: <code>make &amp;&amp; make install</code>.</li>
   <li>If you need the sample configs you can run <code>make samples</code> to install the sample configs. If you need to install the Asterisk startup script you can run <code>make config</code>.</li>
-</ol>
+</ol><h2 id="setup-dtls-certificates">Setup DTLS Certificates</h2>
 
-<h2 id="configure-asterisk-for-webrtc">Configure Asterisk For WebRTC</h2>
+<ol>
+<li><code>mkdir /etc/asterisk/keys</code></li>
+  <li>Enter the Asterisk scripts directory: <code>/cd /usr/local/src/asterisk*/contrib/scripts</code>.</li>
+  <li>Create the DTLS certificates (replace pbx.mycomany.com with your ip address or dns name, replace My Super Company with your company name): <code>./ast_tls_cert -C pbx.mycompany.com -O "My Super Company" -d /etc/asterisk/keys</code>. </li>
+</ol><h2 id="configure-asterisk-for-webrtc">Configure Asterisk For WebRTC</h2>
 
 <p>For WebRTC, a lot of the settings that are needed MUST be in the <strong>peer settings</strong>. The global settings do not flow down into the peer settings very well.
 By default, Asterisk config files are located in <code>/etc/asterisk/</code>.
 Start by editing <code>http.conf</code> and make sure that the following lines are uncommented:</p>
 
-<div>
-<table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
 2
 3
 4
@@ -126,16 +113,14 @@ enabled=yes
 bindaddr=127.0.0.1 ; Replace this with your IP address
 bindport=8088 ; Replace this with the port you want to listen on
 </pre></td>
-</tr></table>
-</div>
+</tr></table></div>
 
 <p>Change the IP address and port to the IP address of your server and the port that you would like Asterisk to listen for web socket connections on.</p>
 
 <p>Next, edit <code>sip.conf</code>. Here you will set up two peers, one for a WebRTC client and one for a non-WebRTC SIP client. The WebRTC peer requires encryption, avpf, and icesupport to be enabled. In most cases, directmedia should be disabled. Also under the WebRTC client, the transport needs to be listed as ‘ws’ to allow websocket connections. All of these config lines should be under the peer itself; setting these config lines globally might not work.</p>
 
-<div>
-<table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
 2
 3
 4
@@ -159,6 +144,12 @@ bindport=8088 ; Replace this with the port you want to listen on
 22
 23
 24
+25
+26
+27
+28
+29
+30
 </pre></td>
   <td class="code"><pre>;sip.conf
 [general]
@@ -177,6 +168,12 @@ icesupport=yes ; Tell Asterisk to use ICE for this peer
 context=default ; Tell Asterisk which context to use when this peer is dialing
 directmedia=no ; Asterisk will relay media for this peer
 transport=udp,ws ; Asterisk will allow this peer to register on UDP or WebSockets
+force_avp=yes ; Force Asterisk to use avp. Introduced in Asterisk 11.11
+dtlsenable=yes ; Tell Asterisk to enable DTLS for this peer
+dtlsverify=no ; Tell Asterisk to not verify your DTLS certs
+dtlscertfile=/etc/asterisk/keys/asterisk.pem ; Tell Asterisk where your DTLS cert file is
+dtlsprivatekey=/etc/asterisk/keys/asterisk.pem ; Tell Asterisk where your DTLS private key is
+dtlssetup=actpass ; Tell Asterisk to use actpass SDP parameter when setting up DTLS
 
 [1061] ; This will be the legacy SIP client
 type=friend
@@ -185,14 +182,12 @@ host=dynamic
 secret=password
 context=default
 </pre></td>
-</tr></table>
-</div>
+</tr></table></div>
 
 <p>Lastly, set up <code>extensions.conf</code> to allow the two peers to call each other.</p>
 
-<div>
-<table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
 2
 3
 4
@@ -202,8 +197,7 @@ context=default
 exten =&gt; 1060,1,Dial(SIP/1060) ; Dialing 1060 will call the SIP client registered to 1060
 exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client registered to 1061
 </pre></td>
-</tr></table>
-</div>
+</tr></table></div>
 
 <p>Restart Asterisk using <code>service asterisk restart</code> to ensure that the new settings take effect.</p>
 
@@ -213,9 +207,8 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
 
 <p>The following configuration example creates a UA for the Asterisk configuration above. Replace the values with the values from your config.</p>
 
-<div>
-<table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
 2
 3
 4
@@ -231,9 +224,6 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
 14
 15
 16
-17
-18
-19
 </pre></td>
   <td class="code"><pre><span class="keyword">var</span> config = {
   <span class="comment">// Replace this IP address with your Asterisk IP address</span>
@@ -248,20 +238,16 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
 
   <span class="comment">// Replace this with the password from your sip.conf file</span>
   <span class="key">password</span>: <span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>,
-
-  <span class="comment">// This is required to route requests through Asterisk</span>
-  <span class="key">hackIpInContact</span>: <span class="predefined-constant">true</span>
 };
 
 <span class="keyword">var</span> ua = <span class="keyword">new</span> SIP.UA(config);
 </pre></td>
-</tr></table>
-</div>
+</tr></table></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
-<p>This <a href="http://forums.digium.com/viewtopic.php?f=1&amp;t=90167&amp;sid=66fdf8cc4be5d955ba584e989a23442f">forum post</a> on troubleshooting WebRTC issues is a great guide for trouble shooting problems with Asterisk.</p>
-
+<p>This <a href="http://forums.digium.com/viewtopic.php?f=1&amp;t=90167&amp;sid=66fdf8cc4be5d955ba584e989a23442f">forum post</a> on troubleshooting WebRTC issues is a great guide for trouble shooting problems with Asterisk.
+<a href="https://wiki.asterisk.org/wiki/display/AST/Secure+Calling+Tutorial">Asterisk Secure Calling Guide</a></p>
     </div>
 
     <nav id="sideNav">
