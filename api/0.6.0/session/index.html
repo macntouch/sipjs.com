@@ -45,7 +45,7 @@
 			<h1><a href="/api/">API</a></h1>
 			<nav id="subNav">
 				<ul class="horizontal">
-					<li class="first"><a href="/api/0.6.0/">0.6.0</a></li>
+					<li class="first"><a href="/api/0.6.0/">0.6.x</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -653,7 +653,7 @@ INVALID_STATE_ERROR</p>
 
 <p>Fired when the request fails, whether due to an unsuccessful final response or due to timeout, transport, or other error.</p>
 
-<h4 id="onfailed-function-data-"><code>on('failed', function (data) {})</code></h4>
+<h4 id="onfailed-function-response-cause-"><code>on('failed', function (response, cause) {})</code></h4>
 
 <table>
 <thead><tr>
@@ -663,24 +663,14 @@ INVALID_STATE_ERROR</p>
     </tr></thead>
 <tbody>
 <tr>
-<td><code>data</code></td>
-      <td><code>Object</code></td>
-      <td>A wrapper object containing the event data</td>
+<td><code>response</code></td>
+      <td><a href="/api/0.6.0/incomingMessage/"><code>SIP.IncomingMessage</code></a></td>
+      <td>The received response. On a failure not due to a SIP message, this will be null.</td>
     </tr>
 <tr>
-<td><code>data.code</code></td>
-      <td><code>Number</code></td>
-      <td>The status code of the received response, between 300 and 699, or 0 if the failure was not due to a received response.</td>
-    </tr>
-<tr>
-<td><code>data.response</code></td>
-      <td><a href="/api/0.6.0/message/"><code>SIP.IncomingMessage|null</code></a></td>
-      <td>The received response, or <code>null</code> if the failure was not due to a received response.</td>
-    </tr>
-<tr>
-<td><code>data.cause</code></td>
+<td><code>cause</code></td>
       <td><code>String</code></td>
-      <td>The reason phrase associated with the SIP response code, or one of <code>SIP.C.causes</code> if the failure was not due to a received response.</td>
+      <td>The reason phrase associated with the SIP response code, or one of <a href="/api/0.6.0/causes">Failure and End Causes</a>.</td>
     </tr>
 </tbody>
 </table><h3 id="connecting"><code>connecting</code></h3>
