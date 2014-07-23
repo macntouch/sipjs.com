@@ -54,8 +54,10 @@
 <p>Asterisk and SIP.js were tested using the following setup:</p>
 
 <ul>
-<li><a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a></li>
-  <li><a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.11.0.tar.gz">Asterisk 11.11.0</a></li>
+<li>
+<a href="http://isoredirect.centos.org/centos/6/isos/x86_64/">CentOS 6.5 minimal (x86_64)</a>.</li>
+  <li>
+<a href="http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.11.0.tar.gz">Asterisk 11.11.0</a>.</li>
   <li>OpenSSL 1.0.1e-fips 11 Feb 2013 or later.</li>
   <li>A public IP address to avoid NAT scenarios on the server side.</li>
 </ul><h2 id="required-packages">Required Packages</h2>
@@ -74,12 +76,28 @@
   <li>openssl-devel</li>
 </ul><p>Using YUM, all dependencies can be installed with:</p>
 
-<p><code>yum install wget gcc gcc-c++ ncurses-devel libxml2-devel sqlite-devel libsrtp-devel libuuid-devel openssl-devel</code>.</p>
+<p><code>yum install wget gcc gcc-c++ ncurses-devel libxml2-devel sqlite-devel libuuid-devel openssl-devel</code>.</p>
 
-<h2 id="install-asterisk">Install Asterisk</h2>
+<h2 id="install-libsrtp">Install libsrtp</h2>
+
+<p>First try installing libsrtp from the repo.</p>
+
+<p><code>yum install libsrtp-devel</code> </p>
+
+<p>If libsrtp is not available in the repo install it from source.</p>
 
 <ol>
 <li><code>cd /usr/local/src/</code></li>
+  <li><code>wget http://srtp.sourceforge.net/srtp-1.4.2.tgz</code></li>
+  <li><code>tar zxvf srtp-1.4.2.tgz</code></li>
+  <li><code>cd /usr/local/src/srtp</code></li>
+  <li><code>./configure CFLAGS=-fPIC</code></li>
+  <li><code>make &amp;&amp; make install</code></li>
+</ol><h2 id="install-asterisk">Install Asterisk</h2>
+
+<ol>
+<li>
+<code>cd /usr/local/src/</code>.</li>
   <li>Download Asterisk with <code>wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.11.0.tar.gz</code>.</li>
   <li>Extract Asterisk: <code>tar zxvf asterisk*</code>.</li>
   <li>Enter the Asterisk directory: <code>cd /usr/local/src/asterisk*</code>.</li>
