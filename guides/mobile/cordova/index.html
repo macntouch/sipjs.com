@@ -52,14 +52,16 @@
 <p>To create a hybrid native iOS WebRTC app you will need:</p>
 
 <ul>
-<li><a href="http://www.apple.com/osx/">Mac OS X</a></li>
+  <li><a href="http://www.apple.com/osx/">Mac OS X</a></li>
   <li><a href="https://developer.apple.com/programs/ios/">Apple iOS Developer Account</a></li>
   <li><a href="http://store.apple.com/us/iphone">Physical iOS device (this will not work on an emulator)</a></li>
   <li><a href="https://developer.apple.com/xcode/">XCode</a></li>
   <li>
 <a href="http://cordova.apache.org/">Cordova</a> - If you are running <a href="http://brew.sh/">Homebrew</a>, you can run <code>brew install cordova</code>
 </li>
-</ul><h2 id="project-setup">Project Setup</h2>
+</ul>
+
+<h2 id="project-setup">Project Setup</h2>
 
 <p>Open terminal and navigate to the directory you want to create your project in. Run the following commands to create a Cordova iOS project. Replace <code>Cordova-SIPjs</code> with your own project name.</p>
 
@@ -92,8 +94,10 @@ In XCode navigate to the build settings for <code>CordovaLib.xcodeproj</code>. <
 <p>Set <code>Valid Architectures</code> to <code>armv7</code></p>
 
 <ul>
-<li>You should now be able to compile and run the sample Cordova project on your iOS device. If you are still having linker errors verify the settings above and clean the project before building `</li>
-</ul><h2 id="adding-sipjs-and-web-content">Adding SIP.js and Web Content</h2>
+  <li>You should now be able to compile and run the sample Cordova project on your iOS device. If you are still having linker errors verify the settings above and clean the project before building `</li>
+</ul>
+
+<h2 id="adding-sipjs-and-web-content">Adding SIP.js and Web Content</h2>
 
 <p>Go back to the project’s root folder. There you should see a few folders which include <code>platforms</code>, <code>plugins</code>, <code>www</code>, among others. In the <code>www</code> folder you can place your web application and include the <code>SIP.js</code> library.</p>
 
@@ -102,12 +106,15 @@ In XCode navigate to the build settings for <code>CordovaLib.xcodeproj</code>. <
 <p>Once the project is staged, go back to XCode and run the project on your iOS device. You should now see the new web content. </p>
 
 <ul>
-<li>Every time you update the content in the <code>www</code> folder you will need to run <code>cordova prepare</code>.</li>
-</ul><h2 id="configure-sipjs">Configure SIP.js</h2>
+  <li>Every time you update the content in the <code>www</code> folder you will need to run <code>cordova prepare</code>.</li>
+</ul>
+
+<h2 id="configure-sipjs">Configure SIP.js</h2>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
 <p>If you have difficulty, please reach out to us on our <a href="https://groups.google.com/forum/#!forum/sip_js">mailing list</a>.</p>
+
     </div>
 
     <nav id="sideNav">
