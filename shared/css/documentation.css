@@ -1,4 +1,3 @@
-
 /*  BASE STYLES
 		========================================  */
 /*  Remove margin & padding on all elements
@@ -12,32 +11,35 @@
 	box-sizing: border-box;
 }
 body {
-	font-family: 'Nunito', sans-serif;
-	font-size: 16px;
-	font-weight: 300;
-	color: #3f4446;
+    position: relative;
+    min-height: 100%;
+    height: auto;
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+    color: #404547;
 }
+
+/* This bit is so we can have a margin around all of the elements where the
+ * elements backgrounds extend across the whole page.
+ */
 .wrapper {
-	width: 940px;
-	margin-left: auto;
-	margin-right: auto;
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.left {
-	float: left;
-}
-.right {
-	float: right;
-}
-.clearfix {
-	clear: both;
-}
-.hidden {
-	display: none;
+.wrapper-bg-extend {
+    width: 100%;
+ }
+.wrapper-bg-extend>* {
+    width: 100%;
+    padding-left: calc(50% - 460px);
+    padding-right: calc(50% - 460px);
 }
 /*  BASIC TYPOGRAPHY
 		========================================  */
-h1, h2, h3, h4 { 
-	font-family: 'Varela Round', sans-serif;
+h1, h2, h3, h4 {
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
 	font-weight: normal;
 	color: #8a7c7a;
 }
@@ -52,8 +54,9 @@ h2 {
 	margin-bottom: .8em;
 }
 h3 {
-	font-size: 24px;
-	margin: 1.618em 0 .8em;
+	font-size: 1.75em;
+    font-weight: 700;
+    margin: 0.8em 0 0.8em 0;
 }
 h4 {
 	font-size: 18px;
@@ -61,20 +64,31 @@ h4 {
 }
 p {
 	margin-bottom: 1em;
-	line-height: 23px;
+	line-height: 1.45em;
 	letter-spacing: .02em;
+    font-weight: 300;
 }
-p.intro {
-	font-family: 'Varela Round', sans-serif;
+h2 + p {
+    margin-top: 1.5em;
+}
+h4.intro {
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
 	letter-spacing: .02em;
+    margin-top: 0;
 	margin-bottom: 0;
-	font-size: 1.2em;
+	font-size: 1.1em;
+    font-weight: 400;
 	line-height: 1.4em;
-	color: #3f4446;
+    color: #404547;
+    text-align: center;
+}
+
+.placeholder {
+    color: #cccac3;
 }
 
 /*  CODE
-		========================================  */
+    ========================================  */
 /*  Type & color for all code  */
 code, pre {
 	font-family: 'Consolas', 'Courier New', 'Courier', monospace;
@@ -108,6 +122,23 @@ pre {
 	color: #3f4446;
 	overflow: auto;
 }
+#code-intro {
+    width: 50%;
+    float: left;
+    padding: 0 3% 0 0;
+}
+
+.code-wrapper {
+    width: 50%;
+    padding: 0 0 0 3%;
+    float: right;
+}
+.index-demo-code pre {
+    width: 100%;
+    height: 25em;
+    margin: 3.5em 0;
+    padding: 0.5em;
+}
 
 table.CodeRay {
   margin: 1.618em 0;
@@ -129,11 +160,12 @@ td.line-numbers {
   padding-right: 1em;;
 }
 
-/*  LISTS
-		========================================  */
+/* LISTS
+   ========================================  */
 /*  Top level lists  */
 ol, ul {
 	margin: 0 0 2em 1.2em;
+    line-height: 2em;
 }
 ol {
 	list-style-type: decimal;
@@ -155,17 +187,36 @@ li ol {
 li ul {
 	list-style: circle;
 }
+.multicolumn {
+    column-count: 2;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-fill: balance;
+    column-gap: 3em;
+    -webkit-column-gap: 3em;
+    -moz-column-gap: 3em;
+    /* This is a hack to get bullet points to appear again */
+    list-style-position: inside;
+}
+.multicolumn li {
+    page-break-inside: avoid;
+    -moz-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    /* This is so line wraps in list elements are properly indented. */
+    padding-left: 1em;
+    text-indent: -1em;
+}
 
 /*  LINKS & NAVIGATION
-		========================================  */
+    ========================================  */
 a {
 	text-decoration: none;
 	color: #ea4b35;
-	-webkit-transition: color .12s ease-in-out;
-	-moz-transition: color .12s ease-in-out;
-	-ms-transition: color .12s ease-in-out;
-	-o-transition: color .12s ease-in-out;
-	transition: color .12s ease-in-out;
+	-webkit-transition: color .12s ease-in-out background-color .12s ease-in-out;
+	-moz-transition: color .12s ease-in-out background-color .12s ease-in-out;
+	-ms-transition: color .12s ease-in-out background-color .12s ease-in-out;
+	-o-transition: color .12s ease-in-out background-color .12s ease-in-out;
+	transition: color .12s ease-in-out background-color .12s ease-in-out;
 }
 a:hover {
 	color: #c63a27;
@@ -186,9 +237,133 @@ a > code:hover {
 	border-color: #c63a27;
 }
 
+a.message-link {
+    color: #cccac3;
+    text-decoration: none;
+}
+a.message-link:hover {
+    text-decoration: underline;
+}
+
+/* BUTTONS AND OTHER STUFF
+ * ========================================
+ */
+button, .button {
+    font-weight: 700;
+}
+.button {
+    display: inline-block;
+    width: auto;
+    margin: 10px;
+    padding: 1em 40px;
+    padding: 1em 10%;
+    color: white;
+    background-color: rgb(103, 101, 94);
+    border-radius: 0.25em;
+
+	-webkit-transition: color .12s ease-in-out;
+	-moz-transition: color .12s ease-in-out;
+	-ms-transition: color .12s ease-in-out;
+	-o-transition: color .12s ease-in-out;
+	transition: color .12s ease-in-out;
+}
+.button:hover {
+    background-color: rgb(88, 86, 79);
+}
+a.button.orange-bg:hover {
+    color: white;
+    /* I sort of feel like the botton should lighten up on hover (2nd line), but
+     * that is inconsistent with the behavior for text links,
+     * so the button darkens on hover (1st line). */
+	background-color: #c63a27;
+    /* background-color: rgb(254,95,73); */
+}
+.dark-gray-bg .button {
+    width: 90%;
+}
+button {
+    display: inline-block;
+    width: auto;
+    font-size: 100%;
+    margin: 10px;
+    padding: 15px 40px;
+    color: white;
+    background-color: rgb(234, 75, 53);
+    border-radius: 0.25em;
+    border: none;
+
+	-webkit-transition: color .12s ease-in-out;
+	-moz-transition: color .12s ease-in-out;
+	-ms-transition: color .12s ease-in-out;
+	-o-transition: color .12s ease-in-out;
+	transition: color .12s ease-in-out;
+}
+button:hover {
+    /* I sort of feel like the botton should lighten up on hover (2nd line), but
+     * that is inconsistent with the behavior for text links,
+     * so the button darkens on hover (1st line). */
+	background-color: #c63a27;
+}
+#success-column-box {
+    padding-left: 2%;
+}
+#success-opener {
+    width: 96.5%;
+    margin-top: 1em;
+}
+#success-column-newpage {
+    padding-left: 2%;
+}
+#success-newpage {
+    width: 96.5%;
+    margin-top: 1em;
+}
+#thank-you-heading {
+    padding-top: 2em;
+}
+.text-hover-left {
+    position: relative;
+    left: 0;
+    -webkit-transition: left .25s ease-in-out;
+	-moz-transition: left .25s ease-in-out;
+	-ms-transition: left .25s ease-in-out;
+	-o-transition: left .25s ease-in-out;
+	transition: left .25s ease-in-out;
+}
+.button:hover > .text-hover-left {
+    left: -0.5em;
+}
+.hover-arrow {
+    font-size: 1.25em;
+    font-weight: bold;
+    visibility: hidden;
+
+	-webkit-transition: color .12s ease-in-out;
+	-moz-transition: color .12s ease-in-out;
+	-ms-transition: color .12s ease-in-out;
+	-o-transition: color .12s ease-in-out;
+	transition: color .12s ease-in-out;
+}
+.button:hover>.hover-arrow {
+    visibility: visible;
+}
+p .button {
+    margin-left: 0;
+}
+#signup-button {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 700;
+    margin-top: 1.1em;
+}
+
 /*  Horizontal nav styles  */
 .horizontal li {
 	float: left;
+    margin-bottom: 0;
 }
 .left .horizontal li {
 	margin-right: 1.618em;
@@ -205,7 +380,7 @@ nav ul, nav ol {
 
 /*  Nav link colors are different than inline links */
 nav a, header a {
-	font-family: 'Varela Round', sans-serif;
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
 	color: #3f4446;
 }
 nav a:hover, header a:hover {
@@ -225,7 +400,7 @@ th, td {
 	text-align: left;
 }
 th {
-	font-family: 'Varela Round', sans-serif;
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
 	letter-spacing: .0618em;
 	background-color: #f3f2ee;
 }
@@ -240,15 +415,21 @@ th {
 #logo {
 	height: 60px;
 	width: 214px;
-	margin: 30px 0;
+    margin: 15%;
 }
 #mainNav {
-	float: right;
 	height: 120px;
-	line-height: 120px;
+}
+#mainNav > #logo-link {
+    float: left;
 }
 #mainNav ul {
-	margin: 0;
+	line-height: 120px;
+	margin: 0.8em 0 0 0;
+    float: right;
+}
+#mainNav #full-nav {
+    margin-right: 1em;
 }
 #mainNav li {
 	margin-left: 2em;
@@ -268,8 +449,12 @@ th {
 	-o-transition: width .12s ease-in-out;
 	transition: width .12s ease-in-out;
 }
-#mainNav a:hover:after {
+#mainNav > ul a:hover:after {
 	width: 100%;
+}
+
+#mainNav > #mobile-nav {
+    display: none;
 }
 
 /*  SECTION HEADER & SUB NAVIGATION
@@ -305,7 +490,6 @@ th {
 		========================================  */
 #main {
 	padding-bottom: 60px;
-	border-bottom: 1px solid #a8a8a8;
 }
 #main > h1:first-child {
 	height: 120px;
@@ -433,65 +617,135 @@ th {
 }
 
 /*  FOOTER
-		========================================  */
+    ========================================  */
+/* When we absolutely position the footer, we need to prevent overlap from
+ * the body. */
+#body {
+    padding-bottom: 101px;
+}
 footer {
-	padding: 40px 0 100px;
+    padding: 30px 0 20px 0;
 	font-size: .9em;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+footer > .wrapper {
+    padding: 0 1em;
+}
+
+#onsip-stamp {
+	margin: 0 0 -36px 0; /*  center & bring nav lists up  */
+    text-align:center;
+}
+
+#made-by-prefix {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 1em;
+    margin-top: -0.3em;
+    margin-right: 0.45em;
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
+    color: #cccac3;
+    font-size: 1.4em;
+    font-weight: 400;
+    line-height: 2.4em;
 }
 
 #onsip {
-	display: block;
+	display: inline-block;
 	width: 151px;
 	height: 49px;
 	overflow: hidden;
-	margin: 0 auto -36px; /*  center & bring nav lists up  */
 	background-image: url(../img/onsip-logo-2.png);
-	background-position: top center;
+	background-position: middle center;
 }
 
 #onsip:hover {
 	background-position: bottom center;
 }
 
-/*
-	Homepage
+/* Homepage
+   ========================================
 */
+.full-width-divider {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+/* padding-top should be related to .feature h2 font size */
+.full-width-divider h2 {
+    font-size: 2.25em;
+    font-weight: 400;
+    margin-bottom:0;
+    text-align:center;
+}
+.full-width-divider ul {
+    margin-top: 4%;
+    margin-left: 0;
+}
 .home-feature {
-	padding: 50px 0 50px 0;
-}
-.feature {
-	width: 370px;
-	float: left;
-}
-.home-feature pre {
-	width: 535px;
-	height: 255px;
-	margin: 0;
-	float: right;
-	font-size: 1em;
+	padding-top: 3em;
 }
 .feature h1 {
-	font-size: 36px;
-	line-height: 54px;
-	color: #ea4b35;
-	text-transform: uppercase;
-	margin-bottom: 20px;
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
+    color: #ea4b35;
+    font-size: 2em;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+.feature h2 {
+    color: white;
+    font-size: 1.9em;
+}
+#feature-selector {
+    padding-bottom: 2em;
+    padding-top: 0;
+}
+#feature-selector > div {
+    position: relative;
+}
+#feature-demo .column-box {
+    position: relative;
+}
+.two-column-boxes {
+    width: 100%;
+    margin: auto;
+   padding: 2.5% 0;
+}
+.column-box {
+    float: left;
+    width: 50%;
+    background-clip: content-box;
+    padding: 0 3% 0 0;
+}
+/* This does the padding correctly, where we don't pad the left of the first box
+ * and the right of the last box.
+ */
+.column-box~.column-box {
+    padding: 0 0 0 3%;
 }
 
-
-.full-width-divider {
-	background-color: #f3f2ee;
-}
 .highlights {
 	list-style-type: none;
-	padding: 0;
+    margin: 0;
 }
 .highlights li {
 	float: left;
 	margin: 0;
 	width: 33%;
+    background-clip: padding-box;
 	text-align: center;
-	padding: 60px 60px 40px 60px;
+	padding: 30px 30px 10px 30px;
+}
+.highlights img {
+    height: 50px;
+}
+
+.highlights li:hover {
+    background-color: rgb(245,244,239);
 }
 .highlights h2 {
 	font-size: 28px;
@@ -499,22 +753,25 @@ footer {
 	color: #ea4b35;
 	text-transform: uppercase;
 }
+.highlights h4 {
+    margin: 0.5em 0 .75em 0;
+}
 .highlights p.subpara {
 	font-size: 17px;
+    font-weight: 700;
 	line-height: 20px;
 	color: #3f4445;
-	font-family: 'Varela Round', sans-serif;
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
 }
 .highlight-icon-wrapper {
 	width: 180px;
 	height: 180px;
-	margin: 0 auto;
+    margin: 0 auto 30px auto;
+    border: 0px solid #ea4b35;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	border: 6px solid #c0beb6;
 	background-color: #fff;
-	margin-bottom: 45px;
 	overflow: hidden;
 	-webkit-transition: all .12s ease-in-out;
 	-moz-transition: all .12s ease-in-out;
@@ -522,11 +779,11 @@ footer {
 	-o-transition: all .12s ease-in-out;
 	transition: all .12s ease-in-out;
 }
-.highlights li:hover .highlight-icon-wrapper {
-	width: 190px;
-	height: 190px;
-	margin-top: -5px;
-	margin-bottom: 40px;
+.highlights .column-box:hover .highlight-icon-wrapper {
+	width: 192px;
+	height: 192px;
+	margin-top: -6px;
+	margin-bottom: 24px;
 	border: 6px solid #ea4b35;
 }
 .highlight-icon {
@@ -541,14 +798,8 @@ footer {
 .icon-chat {
 	background: url(../img/icon-chat.png) no-repeat center center;
 }
-.highlights li:hover .icon-arrow {
-	/*background: url(../img/icon-arrow-hover.png) no-repeat center center;*/
-}
-.highlights li:hover .icon-books {
-	/*background: url(../img/icon-books-hover.png) no-repeat center center;*/
-}
-.highlights li:hover .icon-chat {
-	/*background: url(../img/icon-chat-hover.png) no-repeat center center;*/
+.icon-people {
+    background: url(../img/icon-people.png) no-repeat center center;
 }
 .highlight-icon .hoverstate {
 	width: 100%;
@@ -556,7 +807,7 @@ footer {
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	padding-top: 45px;
+    padding-top: 46%;
 	opacity: 0;
 	background-color: rgba(255,255,255,0.84);
 	-webkit-transition: opacity .12s ease-in-out;
@@ -565,15 +816,42 @@ footer {
 	-o-transition: opacity .12s ease-in-out;
 	transition: opacity .12s ease-in-out;
 }
-.highlights li:hover .hoverstate {
+.highlights .column-box:hover .hoverstate {
 	opacity: 1;
+}
+/*  Underline hover effect  */
+.highlights .column-box h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+.highlights .column-box:hover h3 {
+    color: #ea4b35;
+}
+.highlights .column-box h3 > span {
+    display: inline-block;
+}
+.highlights .column-box h3 > span:after {
+	content: "";
+	display: block;
+	width: 0%;
+	height: 3px;
+	margin: 0 auto 0;
+	background-color: #ea4b35;
+	-webkit-transition: width .12s ease-in-out;
+	-moz-transition: width .12s ease-in-out;
+	-ms-transition: width .12s ease-in-out;
+	-o-transition: width .12s ease-in-out;
+	transition: width .12s ease-in-out;
+}
+.highlights .column-box:hover h3 > span:after {
+	width: 100%;
 }
 .highlight-icon a {
 	color: #3f4445;
 	text-transform: uppercase;
 	font-size: 18px;
 	line-height: 1;
-	font-family: 'Varela Round', sans-serif;
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
 }
 .highlight-icon a:hover {
 	color: #ea4b35;
@@ -586,6 +864,141 @@ footer {
 
 #instance-attributes {
     margin-top: 50px;
+}
+
+#feature-demo {
+    padding-bottom: 3em;
+    position: relative;
+}
+#demo-error {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding-top: 20%;
+    top: 0;
+    left: 0;
+    background-color: rgba(94,98,98,0.8);
+    text-align: center;
+    color: white;
+}
+#demo-error h1 {
+    color: white;
+}
+.demo-window {
+    position: relative;
+    background-color: white;
+    padding: 4%;
+    background-color: rgb(240,239,234);
+}
+.demo-window h4 {
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #ea4b35;
+    margin: 1.05em 0 0 0;
+}
+.demo-window h5 {
+    font-family: 'ProximaNovaSoft', 'Varela Round', sans-serif;
+    font-size: 0.7em;
+    font-weight: 400;
+    color: #53595b;
+}
+#content-video-audio .demo-view, #content-message .demo-view {
+    width: 100%;
+    height: 293px;
+}
+#content-video-audio .demo-view {
+    background-color: rgb(65,71,73);
+}
+.demo-view video {
+    width: 100%;
+    opacity: 1;
+}
+#content-message .demo-view {
+    background-color: rgb(240,239,234);
+}
+#content-data-channel .demo-view {
+    width: 100%;
+    height: 200px;
+    background-color: rgb(240,239,234);
+
+}
+.message-display {
+    overflow: scroll;
+}
+.message-display p {
+    line-height: 1em;
+    margin: 0.5em;
+}
+.message-from {
+    color: #ea4b35;
+    font-weight: 700;
+}
+.message-body {
+    color: #7a7872;
+}
+.demo-view .message-display {
+    background-color: rgb(255,255,255);
+    height: 100%;
+    width: 100%;
+}
+.demo-view .message-input {
+    width: 100%;
+    height: 25%;
+    border: 1em solid white;
+    background-color: rgb(255,255,255);
+    background-clip: border-box;
+    resize: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.file-choose-button {
+    background-color: rgb(122,120,114);
+    font-weight: 400;
+    margin-left: 0;
+    padding: 15px;
+}
+.file-chooser-hack:hover > button.file-choose-button {
+    background-color: rgb(85,91,93);
+}
+.file-chooser-hack + .message-body {
+    font-size: 0.8em;
+    font-weight: 300;
+}
+.file-send-button+p {
+    position: relative;
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+}
+#content-message .message-display {
+    background-color: rgb(255,255,255);
+    background-clip: content-box;
+    height: 75%;
+    border-bottom: 1.25em solid transparent;
+    width: 100%;
+}
+
+#git-mit-images {
+    padding: 3em 0;
+}
+#git-mit-images img {
+    height: 82px;
+}
+
+.file-chooser-hack {
+    position: relative;
+    display: inline-block;
+    height: auto;
+    width: auto;
+}
+.file-chooser-hack > input.file-choose-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }
 
 
@@ -609,4 +1022,148 @@ footer {
 
 #dev:target ~ * .dev {
     display: block;
+}
+
+
+/* SVG STUFF
+   ========================================
+   Stuff related to SVG.
+*/
+
+.arrow polygon {
+    fill: rgb(193,191,182);
+    stroke: rgb(193,191,182);
+    stroke-width: 10;
+    stroke-linejoin: round;
+}
+#feature-arrow {
+    position: absolute;
+    bottom: -190px;
+    left: calc(16.5% - 30px);
+}
+#feature-arrow polygon {
+    /* These colors are for when Javascript and WebRTC are enabled */
+    fill: rgb(193,191,182);
+    stroke: rgb(193,191,182);
+
+    /* These colors are for when Javascript or WebRTC are disabled */
+    fill: rgb(114,117,115);
+    stroke: rgb(114,117,115);
+}
+.demo-arrow {
+    position: absolute;
+    bottom: -82px;
+    left: 20.5%;
+}
+.demo-arrow polygon {
+    fill: rgb(234, 75, 53);
+    stroke: rgb(234, 75, 53);
+}
+
+
+/* LAYOUT FORMATTING TEMPLATE STYLING
+   ========================================
+   Classes that are supposed to be drop-ins for formatting groups of elements.
+   Does some slightly more complicated layout stuff.
+ */
+.dead-center-content {
+    height: auto;
+    width: auto;
+    position: relative;
+    text-align: center;
+    top: calc(50% - 0.5em);
+}
+
+.dead-center-container {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+
+/* VARIABLES
+   ========================================
+   Classes that are really simple and are basically just used as variables to
+   mix in with other classes.
+   These go at the bottom so they override other styles with same level of
+   specificity.
+ */
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.align-left {
+    text-align: left;
+}
+.align-center {
+    text-align: center;
+}
+.align-right {
+    text-align: right;
+}
+.clearfix {
+	clear: both;
+}
+.hidden {
+	display: none;
+}
+
+.light-gray-bg {
+    background-color: rgb(240,239,234);
+}
+.light-gray-fg {
+    color: rgb(240,239,234);
+}
+
+.mid-gray-bg {
+    background-color: rgb(193,191,182);
+}
+.mid-gray-fg {
+    color: rgb(193,191,182);
+}
+
+.dark-gray-bg {
+    background-color: rgb(65,71,73);
+}
+.dark-gray-bg h3 {
+    color: white;
+}
+.dark-gray-fg {
+    color: rgb(65,71,73);
+}
+
+.orange-bg {
+    background-color: rgb(234, 75, 53);
+}
+.orange-fg {
+    color: rgb(234, 75, 53);
+}
+.orange-bg h3, .orange-bg p, .orange-bg a {
+    color: #ffffff;
+}
+.orange-bg .button {
+    margin-left: 0;
+}
+
+
+/* This sets visibility defaults for if Javascript is disabled */
+.highlights img.icon-unselected {
+    display: inline;
+}
+.highlights img.icon-selected {
+    display: none;
+}
+#feature-video-audio img.icon-unselected {
+    display: none;
+}
+#feature-video-audio img.icon-selected {
+    display: inline;
+}
+#content-message, #content-data-channel,
+#code-message, #code-data-channel {
+    display: none;
 }

@@ -25,16 +25,16 @@
   <div id="dev"></div>
 <header id="siteHeader">
   <div class="wrapper">
-    <a href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
     <nav id="mainNav">
-      <ul class="horizontal">
+      <a id="logo-link" href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
+      <ul id="full-nav" class="horizontal mobile-hide">
         <li><a href="/download/">Download</a></li>
-        <li><a href="/api/0.6.0/">API</a></li>
+        <li><a id="api-nav" href="/api/0.6.0/">API</a></li>
         <li><a href="/guides/">Guides</a></li>
         <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
         <li><a href="https://groups.google.com/forum/#!forum/sip_js" target="_blank">Support</a></li>
-      <ul>
+      </ul>
     </nav>
   </div>
 </header>
@@ -296,34 +296,29 @@ data.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span
     </footer>
   </article>
 
-  <footer class="wrapper">
-  <a href="https://www.onsip.com/webrtc-sip-network" id="onsip"></a>
-  <nav class="left">
-    <ul class="horizontal">
-      <li><a href="https://groups.google.com/forum/#!forum/sip_js" target="_blank">Mailing List</a></li>        
-      <li><a href="https://github.com/onsip/sip.js/issues" target="_blank">Report Issues</a></li>
-      <li><a href="/license/">License</a></li>
-    </ul>
-  </nav>
-  <nav class="right">
-    <ul class="horizontal">
-      <li><a href="http://onsip.com/blog" target="_blank">Blog</a></li>
-      <li><a href="/aboutus/">About</a></li>
-      <li><a href="/faq/">FAQ</a></li>
-    </ul>
-  </nav>
-  <div class="clearfix"></div>
+  <footer class="light-gray-bg">
+  <div class="wrapper">
+    <div id="onsip-stamp">
+      <span id="made-by-prefix">made by</span>
+      <a href="https://www.onsip.com/webrtc-sip-network" id="onsip"></a>
+    </div>
+    <nav class="left">
+      <ul class="horizontal">
+        <li><a href="https://groups.google.com/forum/#!forum/sip_js" target="_blank">Mailing List</a></li>
+        <li><a href="https://github.com/onsip/sip.js/issues" target="_blank">Report Issues</a></li>
+        <li><a href="/license/">License</a></li>
+      </ul>
+    </nav>
+    <nav class="right">
+      <ul class="horizontal">
+        <li><a href="http://onsip.com/blog" target="_blank">Blog</a></li>
+        <li><a href="/aboutus/">About</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="clearfix"></div>
+  </div>
 </footer>
-<script src="/shared/js/retina.js" type="text/javascript"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-1008379-16', 'sipjs.com');
-  ga('send', 'pageview');
-</script>
 
   <script src="/devcon/sip.js"></script>
   <script src="/devcon/token.js"></script>
