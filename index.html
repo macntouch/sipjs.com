@@ -181,6 +181,7 @@
               <button id="alice-file-choose-button" class="file-choose-button" type="button">choose a file to send</button>
               <input id="alice-file-choose-input" type="file" name="file" class="file-choose-button"></span>
             <span id="alice-filename" class="message-body">no file selected</span>
+            <div id="alice-file-error-msg" class="file-error-msg"></div>
             <div class="left">
               <h4>Alice's View</h4>
               <h5>Demo user one</h5>
@@ -201,6 +202,7 @@
               <button id="bob-file-choose-button" class="file-choose-button" type="button">choose a file to send</button>
               <input id="bob-file-choose-input" type="file" name="file" class="file-choose-button"></span>
             <span id="bob-filename" class="message-body">no file selected</span>
+            <div id="bob-file-error-msg" class="file-error-msg"></div>
             <div class="clearfix"></div>
             <div class="left">
               <h4>Bob's View</h4>
@@ -485,13 +487,18 @@ setUpMessageInterface(aliceUA, bobURI,
                             dataRenderId,
                             fileInputId,
                             filenameDisplayId,
-                            dataShareButtonId) {
+                            dataShareButtonId,
+                            errorMsgContainerId) {
     <span style="color:#777">// Target has a 'data.' prefix</span>
     <span style="color:#080;font-weight:bold">var</span> dataTarget = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">data.</span><span style="color:#710">'</span></span> + target;
     <span style="color:#080;font-weight:bold">var</span> dataRender = document.getElementById(dataRenderId);
     <span style="color:#080;font-weight:bold">var</span> fileInput = document.getElementById(fileInputId);
     <span style="color:#080;font-weight:bold">var</span> filenameDisplay = document.getElementById(filenameDisplayId);
     <span style="color:#080;font-weight:bold">var</span> dataShareButton = document.getElementById(dataShareButtonId);
+    <span style="color:#080;font-weight:bold">var</span> errorMsgContainer = document.getElementById(errorMsgContainerId);
+    <span style="color:#080;font-weight:bold">if</span> (errorMsgContainer.childNodes.length === <span style="color:#00D">0</span>) {
+        errorMsgContainer.appendChild(document.createTextNode(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>));
+    }
 
     <span style="color:#777">// The open data transfer session</span>
     <span style="color:#080;font-weight:bold">var</span> session;
@@ -504,6 +511,8 @@ setUpMessageInterface(aliceUA, bobURI,
     <span style="color:#080;font-weight:bold">var</span> receivedFileMetadata;
     <span style="color:#777">// The actual received file data</span>
     <span style="color:#080;font-weight:bold">var</span> receivedFileData;
+    <span style="color:#777">// We do not support file chunking, so we can only send small files.</span>
+    <span style="color:#080;font-weight:bold">var</span> maxChunkSize = <span style="color:#00D">16000</span>; <span style="color:#777">// 16 KB</span>
     <span style="color:#777">// The Blob object that combines the received file data and file type.</span>
     <span style="color:#777">// We cannot construct File objects, so we must make a Blob, which does not</span>
     <span style="color:#777">// have a file name.</span>
@@ -568,16 +577,36 @@ setUpMessageInterface(aliceUA, bobURI,
     fileInput.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">change</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (event) {
         <span style="color:#080;font-weight:bold">var</span> tmpFile = event.target.files[<span style="color:#00D">0</span>];
         <span style="color:#080;font-weight:bold">if</span> (tmpFile !== <span style="color:#069">undefined</span> &amp;&amp; tmpFile !== file) {
+            <span style="color:#777">// Reset the loadedFile variable, since we are supposed to load in a</span>
+            <span style="color:#777">// new file but have not done so yet.</span>
+            <span style="color:#777">// This value might not be set if the file is too large. This is</span>
+            <span style="color:#777">// intended. We later prevent ourselves from sending a null file.</span>
+            loadedFile = <span style="color:#069">null</span>;
             file = tmpFile;
 
             <span style="color:#080;font-weight:bold">var</span> filename = file.name;
             filenameDisplay.childNodes[<span style="color:#00D">0</span>].nodeValue = filename;
 
-            <span style="color:#080;font-weight:bold">var</span> reader = <span style="color:#080;font-weight:bold">new</span> FileReader();
-            reader.onload = (<span style="color:#080;font-weight:bold">function</span> (e) {
-                loadedFile = e.target.result;
-            });
-            reader.readAsArrayBuffer(file);
+            <span style="color:#777">// File is small enough to send, so we load it.</span>
+            <span style="color:#080;font-weight:bold">if</span> (file.size &lt;= maxChunkSize) {
+                <span style="color:#777">// Clear the error message</span>
+                errorMsgContainer.childNodes[<span style="color:#00D">0</span>].nodeValue = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>;
+                <span style="color:#777">// errorMsgContainer.nodeValue = '';</span>
+                <span style="color:#080;font-weight:bold">var</span> reader = <span style="color:#080;font-weight:bold">new</span> FileReader();
+                reader.onload = (<span style="color:#080;font-weight:bold">function</span> (e) {
+                    loadedFile = e.target.result;
+                });
+                reader.readAsArrayBuffer(file);
+            }
+            <span style="color:#777">// The file is too large to send. We still display its name, but we</span>
+            <span style="color:#777">// do not set the loadedFile variable, which will prevent us from</span>
+            <span style="color:#777">// sending it.</span>
+            <span style="color:#080;font-weight:bold">else</span> {
+                <span style="color:#777">// DBM: foobar</span>
+                <span style="color:#080;font-weight:bold">var</span> errorStr = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">File too large to send (chunking not supported)</span><span style="color:#710">'</span></span>;
+                errorMsgContainer.childNodes[<span style="color:#00D">0</span>].nodeValue = errorStr;
+                <span style="color:#777">// errorMsgContainer.nodeValue = errorStr;</span>
+            }
         }
     });
 
@@ -631,6 +660,7 @@ setUpMessageInterface(aliceUA, bobURI,
     });
 }
 
+
 <span style="color:#777">// Creates the HTML tag and its children for a given message.</span>
 <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">createMsgTag</span>(from, msgBody) {
     <span style="color:#080;font-weight:bold">var</span> msgTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">p</span><span style="color:#710">'</span></span>);
@@ -672,7 +702,8 @@ setUpDataInterface(aliceDataUA, bobURI,
                    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-data-display</span><span style="color:#710">'</span></span>,
                    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-file-choose-input</span><span style="color:#710">'</span></span>,
                    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-filename</span><span style="color:#710">'</span></span>,
-                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-data-share-button</span><span style="color:#710">'</span></span>);
+                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-data-share-button</span><span style="color:#710">'</span></span>,
+                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-file-error-msg</span><span style="color:#710">'</span></span>);
 </pre></div>
 </div>
         </div>
