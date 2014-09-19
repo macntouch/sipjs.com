@@ -57,22 +57,22 @@
 <p>The class SIP.URI represents a SIP URI and provides a set of attributes and methods to access and set different parts of a URI.</p>
 
 <ul id="markdown-toc">
-<li>
+  <li>
 <a href="#construction">Construction</a>    <ul>
-<li><a href="#new-sipurischeme-user-host-port-parameters-headers">new SIP.URI(scheme, user, host, port[, parameters, headers])</a></li>
+      <li><a href="#new-sipurischeme-user-host-port-parameters-headers">new SIP.URI(scheme, user, host, port[, parameters, headers])</a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-variables">Instance Variables</a>    <ul>
-<li><a href="#scheme"><code>scheme</code></a></li>
+      <li><a href="#scheme"><code>scheme</code></a></li>
       <li><a href="#user"><code>user</code></a></li>
       <li><a href="#host"><code>host</code></a></li>
       <li><a href="#port"><code>port</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-<li><a href="#setparamkey-value"><code>setParam(key[, value])</code></a></li>
+      <li><a href="#setparamkey-value"><code>setParam(key[, value])</code></a></li>
       <li><a href="#getparamkey"><code>getParam(key)</code></a></li>
       <li><a href="#hasparamkey"><code>hasParam(key)</code></a></li>
       <li><a href="#deleteparamkey"><code>deleteParam(key)</code></a></li>
@@ -85,13 +85,15 @@
       <li><a href="#clone"><code>clone()</code></a></li>
       <li><a href="#tostring"><code>toString()</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#static-methods">Static Methods</a>    <ul>
-<li><a href="#parseuri"><code>parse(uri)</code></a></li>
+      <li><a href="#parseuri"><code>parse(uri)</code></a></li>
     </ul>
-</li>
-</ul><h2 id="construction">Construction</h2>
+  </li>
+</ul>
+
+<h2 id="construction">Construction</h2>
 
 <p>Typically, construction is managed by a <a href="/api/0.5.0/ua"><code>SIP.UA</code></a> when a URI is needed. However, advanced users may construct URIs manually.</p>
 
@@ -100,44 +102,48 @@
 <h4 id="parameters">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>scheme</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>scheme</code></td>
       <td><code>String</code></td>
       <td>The scheme used for this URI</td>
     </tr>
-<tr>
-<td><code>user</code></td>
+    <tr>
+      <td><code>user</code></td>
       <td><code>String</code></td>
       <td>The user used for this URI</td>
     </tr>
-<tr>
-<td><code>host</code></td>
+    <tr>
+      <td><code>host</code></td>
       <td><code>String</code></td>
       <td>The host used for this URI</td>
     </tr>
-<tr>
-<td><code>port</code></td>
+    <tr>
+      <td><code>port</code></td>
       <td><code>Number</code></td>
       <td>The port number to use for this URI</td>
     </tr>
-<tr>
-<td><code>parameters</code></td>
+    <tr>
+      <td><code>parameters</code></td>
       <td><code>Array of String</code></td>
       <td>Optional parameters to use for this URI</td>
     </tr>
-<tr>
-<td><code>headers</code></td>
+    <tr>
+      <td><code>headers</code></td>
       <td><code>Array of String</code></td>
       <td>Optional headers to use for this URI</td>
     </tr>
-</tbody>
-</table><h2 id="instance-variables">Instance Variables</h2>
+  </tbody>
+</table>
+
+<h2 id="instance-variables">Instance Variables</h2>
 
 <h3 id="scheme"><code>scheme</code></h3>
 
@@ -164,109 +170,149 @@
 <h4 id="parameters-1">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
     </tr>
-<tr>
-<td><code>value</code></td>
+    <tr>
+      <td><code>value</code></td>
       <td><code>String</code></td>
       <td>Optional parameter value</td>
     </tr>
-</tbody>
-</table><h3 id="getparamkey"><code>getParam(key)</code></h3>
+  </tbody>
+</table>
+
+<h3 id="getparamkey"><code>getParam(key)</code></h3>
 
 <p>Gets the value of the given URI parameter. Returns <code>undefined</code> if the parameter does not exist in the parameter set.</p>
 
 <h4 id="parameters-2">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
-    </tr></tbody>
-</table><h4 id="returns">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>String</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>String</code></td>
       <td>Value of the given URI parameter.</td>
-    </tr></tbody>
-</table><h3 id="hasparamkey"><code>hasParam(key)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="hasparamkey"><code>hasParam(key)</code></h3>
 
 <p>Verifies the existence of the given URI parameter.</p>
 
 <h4 id="parameters-3">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
-    </tr></tbody>
-</table><h4 id="returns-1">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-1">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>boolean</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>boolean</code></td>
       <td>
 <code>true</code> if the parameter exists, <code>false</code> otherwise.</td>
-    </tr></tbody>
-</table><h3 id="deleteparamkey"><code>deleteParam(key)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="deleteparamkey"><code>deleteParam(key)</code></h3>
 
 <p>Deletes the given parameter from the URI.</p>
 
 <h4 id="parameters-4">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
-    </tr></tbody>
-</table><h4 id="returns-2">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-2">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>String</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>String</code></td>
       <td>Value of the deleted URI parameter</td>
-    </tr></tbody>
-</table><h3 id="clearparams"><code>clearParams()</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="clearparams"><code>clearParams()</code></h3>
 
 <p>Removes all of the URI parameters.</p>
 
@@ -277,109 +323,149 @@
 <h4 id="parameters-5">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>Header name</td>
     </tr>
-<tr>
-<td><code>value</code></td>
+    <tr>
+      <td><code>value</code></td>
       <td><code>String</code></td>
       <td>Header value</td>
     </tr>
-</tbody>
-</table><h3 id="getheadername"><code>getHeader(name)</code></h3>
+  </tbody>
+</table>
+
+<h3 id="getheadername"><code>getHeader(name)</code></h3>
 
 <p>Gets the value of the given URI header.</p>
 
 <h4 id="parameters-6">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>Header name</td>
-    </tr></tbody>
-</table><h4 id="returns-3">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-3">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>Array of String</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Array of String</code></td>
       <td>Value of the given URI header, or <code>undefined</code> if the header does not exist</td>
-    </tr></tbody>
-</table><h3 id="hasheadername"><code>hasHeader(name)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="hasheadername"><code>hasHeader(name)</code></h3>
 
 <p>Verifies the existence of the given URI header.</p>
 
 <h4 id="parameters-7">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>Header name</td>
-    </tr></tbody>
-</table><h4 id="returns-4">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-4">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>boolean</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>boolean</code></td>
       <td>
 <code>true</code> if the header exists, <code>false</code> otherwise.</td>
-    </tr></tbody>
-</table><h3 id="deleteheadername"><code>deleteHeader(name)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="deleteheadername"><code>deleteHeader(name)</code></h3>
 
 <p>Deletes the given header from the URI.</p>
 
 <h4 id="parameters-8">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>Header name</td>
-    </tr></tbody>
-</table><h4 id="returns-5">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-5">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>Array of String</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Array of String</code></td>
       <td>Value of the deleted URI header</td>
-    </tr></tbody>
-</table><h3 id="clearheaders"><code>clearHeaders()</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="clearheaders"><code>clearHeaders()</code></h3>
 
 <p>Removes all the URI headers.</p>
 
@@ -390,16 +476,22 @@
 <h4 id="returns-6">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>SIP.URI</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SIP.URI</code></td>
       <td>A clone of the current <code>SIP.URI</code>
 </td>
-    </tr></tbody>
-</table><h3 id="tostring"><code>toString()</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="tostring"><code>toString()</code></h3>
 
 <p>Returns a <code>String</code> representing the URI. Characters that can’t appear unescaped are escaped as stated in the BNF grammar of the RFC 3261.</p>
 
@@ -412,28 +504,39 @@
 <h4 id="parameters-9">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>uri</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>uri</code></td>
       <td><code>String</code></td>
       <td>String to parse against the SIP URI grammar rule</td>
-    </tr></tbody>
-</table><h4 id="returns-7">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-7">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>SIP.URI</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SIP.URI</code></td>
       <td>The parsed <code>SIP.URI</code> on success, <code>undefined</code> otherwise</td>
-    </tr></tbody>
+    </tr>
+  </tbody>
 </table>
+
 		</div>
 
 		<nav id="sideNav">
