@@ -50,42 +50,102 @@
       <h1 id="make-a-call">Make a Call</h1>
 
 
-<p>Let’s walk through core API concepts as we tackle some everyday use cases.</p>
+<h3 id="html">HTML</h3>
 
-<h3 id="setup-and-video-elements">Setup and Video Elements</h3>
-
-<p>First we must create the files index.html, main.js, and style.css in the same folder.  In the index.html file we need to include the <a href="/download/">SIP.js library</a>, as well as the main.js file.  </p>
+<p>Create an HTML file. In the file include the <a href="/download/">SIP.js library</a>, as well as any other javascript that will be used.  </p>
 
 <p>A <code>&lt;video&gt;</code> element is need to display the video stream.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC. </p>
 
 <p>Within the <code>&lt;body&gt;</code> tags, there is a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person being called.  There is also a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that is being sent to the person being called.  The local video stream should always be muted to prevent feedback.</p>
 
-<p>In the style.css file we will put a border around the <code>&lt;video&gt;</code> elements, to visualize them better.</p>
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td>
+  <td class="code"><pre><span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attribute-name">rel</span>=<span class="string"><span class="delimiter">"</span><span class="content">stylesheet</span><span class="delimiter">"</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">"</span><span class="content">my-styles.css</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;video</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">remoteVideo</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/video&gt;</span>
+    <span class="tag">&lt;video</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">localVideo</span><span class="delimiter">"</span></span> <span class="attribute-name">muted</span>=<span class="string"><span class="delimiter">"</span><span class="content">muted</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/video&gt;</span>
 
-<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/OnSIP/BLBKL/embedded/html,js,css,result/">
-</iframe>
+    <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">sip-0.6.2-min.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span> 
+    <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">my-javascript.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span> 
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre></td>
+</tr></table></div>
 
-<h3 id="making-the-call">Making the Call</h3>
+<h3 id="javascript">Javascript</h3>
 
-<p>These <code>&lt;video&gt;</code> elements are not useful if we aren’t calling anyone, so let’s make a call.</p>
+<h4 id="creating-a-user-agent">Creating a User Agent</h4>
 
-<h4 id="creating-the-user-agent">Creating the User Agent</h4>
+<p>In order to make calls and send messages, create a SIP user agent.  Calling the <code>SIP.UA()</code> method, with no parameters, creates an anonymous user agent.</p>
 
-<p>In order to make calls and send messages, create a SIP user agent.  Calling <code>SIP.UA()</code> method, with no parameters, creates an anonymous user agent.</p>
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre><span class="keyword">var</span> userAgent = <span class="keyword">new</span> SIP.UA();
+</pre></td>
+</tr></table></div>
 
-<iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/OnSIP/R4FHe/embedded/js,html,css,result/">
-</iframe>
+<h4 id="sending-an-invite">Sending an Invite</h4>
 
-<h4 id="sending-the-invite">Sending the Invite</h4>
+<p>After the user agent has connected to the SIP server, an invite can be sent to make a call and thereby create a SIP session.</p>
 
-<p>After the user agent has connected to the SIP server, we can send an invite to make a call and thereby create a SIP session.</p>
+<p>To send an invite you will need the target user’s SIP address and some options to define the session. </p>
 
-<p>To send an invite first create a javascript object, which contains the <code>media</code> variable that specifies:</p>
+<p>Create an options object to define your session.</p>
 
-<ol>
-<li>The session’s media constraints (whether it contains audio, video, or both)</li>
-  <li>The <code>&lt;video&gt;</code> elements that will display the local and remote videos.</li>
-</ol><p>Then call the <code>.invite()</code> method with the target address and the <code>options</code> object containing media information.</p>
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td>
+  <td class="code"><pre><span class="keyword">var</span> options = {
+        <span class="key">media</span>: {
+            <span class="key">constraints</span>: {
+                <span class="key">audio</span>: <span class="predefined-constant">true</span>,
+                <span class="key">video</span>: <span class="predefined-constant">true</span>
+            },
+            <span class="key">render</span>: {
+                <span class="key">remote</span>: {
+                    <span class="key">video</span>: document.getElementById(<span class="string"><span class="delimiter">'</span><span class="content">remoteVideo</span><span class="delimiter">'</span></span>)
+                },
+                <span class="key">local</span>: {
+                    <span class="key">video</span>: document.getElementById(<span class="string"><span class="delimiter">'</span><span class="content">localVideo</span><span class="delimiter">'</span></span>)
+                }
+            }
+        }
+    };
+</pre></td>
+</tr></table></div>
+
+<p>Then call the <code>.invite()</code> method with the target SIP address and the <code>options</code> object containing session information.</p>
 
 <p>After invite is called, the browser will ask for permission to access the camera and microphone.  Permission must be allowed to make the call.  The person being called has the choice of accepting or rejecting the call.  </p>
 

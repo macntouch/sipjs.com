@@ -92,7 +92,7 @@
 </tr></table></div>
 
 <h2 id="handling-a-blind-transfer">Handling a Blind Transfer</h2>
-<p>When receiving a refer, you need to handle the request and attach the new media stream to the video element.  This is done by catching the <code>referred</code> event and passing it to a function using <code>session.on('referred', onReferred)</code>.  This function gets passed in the referred request as well as the new session.  Then we must display the new session using the <code>attachMediaStream()</code> function like in previous examples.</p>
+<p>When receiving a refer, you need to handle the request and attach the new media stream to the video element.  This is done by catching the <code>refer</code> event and calling the followRefer function with a callback using <code>session.on('refer', session.followRefer(onReferred))</code>.  This function gets passed in the refer request as well as the new session.  Then we must display the new session using the <code>attachMediaStream()</code> function like in previous examples.</p>
 
 <div><table class="CodeRay"><tr>
 <td class="line-numbers"><pre>1
@@ -105,7 +105,7 @@
 8
 </pre></td>
   <td class="code"><pre>  <span class="comment">//calls the onReferred function when the referred event happens</span>
-  session.on(<span class="string"><span class="delimiter">'</span><span class="content">referred</span><span class="delimiter">'</span></span>, onReferred);
+  session.on(<span class="string"><span class="delimiter">'</span><span class="content">refer</span><span class="delimiter">'</span></span>, session.followRefer(onReferred));
 
   <span class="keyword">function</span> <span class="function">onReferred</span>(request, newSession)
   {

@@ -66,8 +66,22 @@
 
 <p>If you are authenticating a user agent using OnSIP, follow <a href="http://developer.onsip.com/guides/platform/sip-ua-authentication/">these instructions</a>.</p>
 
-<iframe style="width: 100%; height: 250px" src="http://jsfiddle.net/OnSIP/ycv2n/embedded/js,result/">
-</iframe>
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre><span class="keyword">var</span> userAgent = <span class="keyword">new</span> SIP.UA({
+  <span class="key">uri</span>: <span class="string"><span class="delimiter">'</span><span class="content">bob@example.onsip.com</span><span class="delimiter">'</span></span>,
+  <span class="key">wsServers</span>: [<span class="string"><span class="delimiter">'</span><span class="content">wss://sip-ws.example.com</span><span class="delimiter">'</span></span>],
+  <span class="key">authorizationUser</span>: <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>,
+  <span class="key">password</span>: <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>
+});
+</pre></td>
+</tr></table></div>
     </div>
 
     <nav id="sideNav">
