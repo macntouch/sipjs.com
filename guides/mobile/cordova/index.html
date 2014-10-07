@@ -54,16 +54,18 @@
 <p>To create a hybrid native iOS WebRTC app you will need:</p>
 
 <ul>
-  <li><a href="http://www.apple.com/osx/">Mac OS X</a></li>
+<li><a href="http://www.apple.com/osx/">Mac OS X</a></li>
   <li><a href="https://developer.apple.com/programs/ios/">Apple iOS Developer Account</a></li>
-  <li><a href="http://store.apple.com/us/iphone">Physical iOS device (this will not work on an emulator)</a></li>
-  <li><a href="https://developer.apple.com/xcode/">XCode</a></li>
   <li>
-<a href="http://cordova.apache.org/">Cordova</a> - If you are running <a href="http://brew.sh/">Homebrew</a>, you can run <code>brew install cordova</code>
+<a href="http://store.apple.com/us/iphone">Physical iOS device</a> (this will not work on an emulator)</li>
+  <li>
+<a href="http://cordova.apache.org/">Cordova</a> - If you are running <a href="http://nodejs.org/">Node.js</a>, you can run <code>npm install -g cordova</code>
 </li>
-</ul>
-
-<h2 id="project-setup">Project Setup</h2>
+  <li>(Optional) <a href="https://developer.apple.com/xcode/">XCode</a>
+</li>
+  <li>(Optional) <a href="https://github.com/phonegap/ios-deploy">ios-deploy</a> - If you are running <a href="http://nodejs.org/">Node.js</a>, you can run <code>npm install -g ios-deploy</code>
+</li>
+</ul><h2 id="project-setup">Project Setup</h2>
 
 <p>Open terminal and navigate to the directory you want to create your project in. Run the following commands to create a Cordova iOS project. Replace <code>Cordova-SIPjs</code> with your own project name.</p>
 
@@ -73,13 +75,21 @@
 
 <p><code>cordova platform add ios</code></p>
 
-<h2 id="add-the-webrtc-library">Add the WebRTC Library</h2>
+<h2 id="add-the-onsip-cordova-plugin">Add the OnSIP Cordova Plugin</h2>
 
 <p>Run the following command to add the PhoneRTC WebRTC library to your Cordova project.</p>
 
-<p><code>cordova plugin add https://github.com/alongubkin/phonertc.git</code></p>
+<p><code>cordova plugin add https://github.com/onsip/onsip-cordova.git</code></p>
 
-<h2 id="set-the-compilation-architecture">Set the compilation architecture</h2>
+<h2 id="running-project-from-command-line">Running project from Command Line</h2>
+
+<ul>
+<li>Note: If you are running the project from XCode you can skip this section</li>
+</ul><p>Ensure your device is plugged into your computer and provisioned for development. Then run the following command.</p>
+
+<p><code>cordova run ios</code></p>
+
+<h2 id="running-project-from-xcode">Running project from XCode</h2>
 
 <p>The architecture needs to be set to armv7. This is because the WebRTC libraries that are included are precompiled for this architecture. Trying to compile the libraries with other architectures will cause a linker error and your project will not compile.
 Open the platforms folder then the ios folder. In the ios folder you will see an xcodeproj. Open the xcodeproj with XCode.
@@ -96,27 +106,10 @@ In XCode navigate to the build settings for <code>CordovaLib.xcodeproj</code>. <
 <p>Set <code>Valid Architectures</code> to <code>armv7</code></p>
 
 <ul>
-  <li>You should now be able to compile and run the sample Cordova project on your iOS device. If you are still having linker errors verify the settings above and clean the project before building `</li>
-</ul>
-
-<h2 id="adding-sipjs-and-web-content">Adding SIP.js and Web Content</h2>
-
-<p>Go back to the project’s root folder. There you should see a few folders which include <code>platforms</code>, <code>plugins</code>, <code>www</code>, among others. In the <code>www</code> folder you can place your web application and include the <code>SIP.js</code> library.</p>
-
-<p>To stage your new web project for your iOS device in terminal run <code>cordova prepare</code>. </p>
-
-<p>Once the project is staged, go back to XCode and run the project on your iOS device. You should now see the new web content. </p>
-
-<ul>
-  <li>Every time you update the content in the <code>www</code> folder you will need to run <code>cordova prepare</code>.</li>
-</ul>
-
-<h2 id="configure-sipjs">Configure SIP.js</h2>
-
-<h2 id="troubleshooting">Troubleshooting</h2>
+<li>You should now be able to compile and run the sample Cordova project on your iOS device. If you are still having linker errors verify the settings above and clean the project before building.</li>
+</ul><h2 id="troubleshooting">Troubleshooting</h2>
 
 <p>If you have difficulty, please reach out to us on our <a href="https://groups.google.com/forum/#!forum/sip_js">mailing list</a>.</p>
-
     </div>
 
     <nav id="sideNav">
@@ -134,6 +127,7 @@ In XCode navigate to the build settings for <code>CordovaLib.xcodeproj</code>. <
       <a class="parent" href="/guides/mobile/">Mobile</a>
       <ul>
         <li><a href="/guides/mobile/android-native/">Android (Native)</a></li>
+        <li><a href="/guides/mobile/cordova/">iOS (Hybrid Cordova)</a></li>
       </ul>
     </li>
     <li><a href="/guides/convert-to-sipjs/">Convert to SIP.js</a></li>
