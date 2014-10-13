@@ -109,6 +109,23 @@
 </pre></td>
 </tr></table></div>
 
+<p>If you’d like to enable video as well as audio, adjust FreeSWITCH’s codec preferences to include VP8.</p>
+
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre><span class="comment">&lt;!--vars.xml--&gt;</span>
+...
+<span class="tag">&lt;X-PRE-PROCESS</span> <span class="attribute-name">cmd</span>=<span class="string"><span class="delimiter">"</span><span class="content">set</span><span class="delimiter">"</span></span> <span class="attribute-name">data</span>=<span class="string"><span class="delimiter">"</span><span class="content">global_codec_prefs=PCMU,PCMA,VP8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+<span class="tag">&lt;X-PRE-PROCESS</span> <span class="attribute-name">cmd</span>=<span class="string"><span class="delimiter">"</span><span class="content">set</span><span class="delimiter">"</span></span> <span class="attribute-name">data</span>=<span class="string"><span class="delimiter">"</span><span class="content">outbound_codec_prefs=PCMU,PCMA,VP8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+...
+</pre></td>
+</tr></table></div>
+
 <p>Start FreeSWITCH: <code>/usr/local/freeswitch/bin/freeswitch</code>.</p>
 
 <h2 id="configure-sipjs">Configure SIP.js</h2>
@@ -136,14 +153,14 @@
   <td class="code"><pre><span class="keyword">var</span> config = {
   <span class="comment">// Replace this IP address with your FreeSWITCH IP address</span>
   <span class="key">uri</span>: <span class="string"><span class="delimiter">'</span><span class="content">1000@127.0.0.1</span><span class="delimiter">'</span></span>,
-  
+
   <span class="comment">// Replace this IP address with your FreeSWITCH IP address</span>
   <span class="comment">// and replace the port with your FreeSWITCH port</span>
   <span class="key">ws_servers</span>: <span class="string"><span class="delimiter">'</span><span class="content">ws://127.0.0.1:5066</span><span class="delimiter">'</span></span>,
-  
+
   <span class="comment">// FreeSWITCH Default Username</span>
   <span class="key">authorizationUser</span>: <span class="string"><span class="delimiter">'</span><span class="content">1000</span><span class="delimiter">'</span></span>,
-  
+
   <span class="comment">// FreeSWITCH Default Password</span>
   <span class="key">password</span>: <span class="string"><span class="delimiter">'</span><span class="content">1234</span><span class="delimiter">'</span></span>
 };
