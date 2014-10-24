@@ -67,27 +67,24 @@
 <p>Take a moment to think about your favorite kind of ice cream. Maybe it’s chocolate with fudge swirls or pistachio with real nuts, or maybe just vanilla with a few fresh berries. Notice that these ice creams have two parts: the base (chocolate, pistachio, or vanilla) and the mixin (fudge, nuts, or berries). Contexts are, in a much less delicious way, kind of like ice cream. They have two parts, and they match up to their two main uses.</p>
 
 <ol>
-  <li>
+<li>
     <p>First, the base. This part of the Context <em>deals with handling the request, itself.</em> If you’re sending a MESSAGE request, for example, your Context will be a <code>ClientContext</code> and will send the request, handle any authorization challenges and retransmissions, and notify you via events when the MESSAGE is accepted or rejected. If you’re receiving the request, your context will be a <code>ServerContext</code>, and it will do the opposite:  notifying you that you received the request and allowing you to respond to it.</p>
   </li>
   <li>
     <p>Second, the mixins. This part of the Context <em>defines what will happen after the request is accepted.</em>  An INVITE request will use the <code>Session</code> to define session methods such as <code>hold()</code> and <code>refer()</code>, while MESSAGE requests use <code>Message</code> to parse the body of the MESSAGE.</p>
   </li>
-</ol>
-
-<p>While some people may like plain ice cream or snacking on chocolate chips, creating a <code>ServerContext</code> or <code>Session</code> alone isn’t very useful. The magic happens when you <em>mix them together.</em> That’s why in the source code you’ll typically see objects called <code>InviteServerContext</code> or <code>MessageClientContext</code>. They each share only the behavior they need for the <em>context</em> in which the request was encountered.</p>
+</ol><p>While some people may like plain ice cream or snacking on chocolate chips, creating a <code>ServerContext</code> or <code>Session</code> alone isn’t very useful. The magic happens when you <em>mix them together.</em> That’s why in the source code you’ll typically see objects called <code>InviteServerContext</code> or <code>MessageClientContext</code>. They each share only the behavior they need for the <em>context</em> in which the request was encountered.</p>
 
 <h2 id="read-on">Read on</h2>
 
 <ul>
-  <li>
+<li>
 <a href="/api/0.5.0/context/client/"><code>SIP.ClientContext</code></a> and <a href="/api/0.5.0/context/server/"><code>SIP.ServerContext</code></a> documentation</li>
   <li>
 <a href="/api/0.5.0/session"><code>SIP.Session</code></a> documentation</li>
   <li>
 <a href="/api/0.5.0/message"><code>SIP.Message</code></a> documentation</li>
 </ul>
-
 		</div>
 
 		<nav id="sideNav">

@@ -57,18 +57,18 @@
 <p><code>MediaHandler</code> represents a common interface for SIP.js to interact with media streams. The default MediaHandler included with SIP.js interacts with WebRTC to provide voice, video, and data streams.</p>
 
 <ul id="markdown-toc">
-  <li><a href="#construction">Construction</a></li>
+<li><a href="#construction">Construction</a></li>
   <li><a href="#instance-variables">Instance Variables</a></li>
   <li>
 <a href="#application-methods">Application Methods</a>    <ul>
-      <li><a href="#getlocalstreams"><code>getLocalStreams()</code></a></li>
+<li><a href="#getlocalstreams"><code>getLocalStreams()</code></a></li>
       <li><a href="#getremotestreams"><code>getRemoteStreams()</code></a></li>
       <li><a href="#renderrenderhint"><code>render([renderHint])</code></a></li>
     </ul>
-  </li>
+</li>
   <li>
 <a href="#events">Events</a>    <ul>
-      <li><a href="#usermediarequest"><code>userMediaRequest</code></a></li>
+<li><a href="#usermediarequest"><code>userMediaRequest</code></a></li>
       <li><a href="#usermedia"><code>userMedia</code></a></li>
       <li><a href="#usermediafailed"><code>userMediaFailed</code></a></li>
       <li><a href="#icegathering"><code>iceGathering</code></a></li>
@@ -79,10 +79,8 @@
       <li><a href="#datachannel"><code>dataChannel</code></a></li>
       <li><a href="#addstream"><code>addStream</code></a></li>
     </ul>
-  </li>
-</ul>
-
-<h2 id="construction">Construction</h2>
+</li>
+</ul><h2 id="construction">Construction</h2>
 
 <p>A WebRTC Media Handler will be automatically constructed by SIP.js.</p>
 
@@ -97,93 +95,77 @@
 <h4 id="returns">Returns</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Type</th>
+<thead><tr>
+<th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Array of MediaStream</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>Array of MediaStream</code></td>
       <td>An array containing all of the local MediaStreams.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="getremotestreams"><code>getRemoteStreams()</code></h3>
+    </tr></tbody>
+</table><h3 id="getremotestreams"><code>getRemoteStreams()</code></h3>
 
 <h4 id="returns-1">Returns</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Type</th>
+<thead><tr>
+<th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Array of MediaStream</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>Array of MediaStream</code></td>
       <td>An array containing all of the remote MediaStreams.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="renderrenderhint"><code>render([renderHint])</code></h3>
+    </tr></tbody>
+</table><h3 id="renderrenderhint"><code>render([renderHint])</code></h3>
 
 <p>Renders the media to the application.</p>
 
 <h4 id="parameters">Parameters</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>renderHint</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>renderHint</code></td>
       <td><code>Object</code></td>
       <td>Optional object that contains local and remote properties from the application to the MediaStreamManager (see below). If no renderHint is provided the render function will look at the MediaHandler’s mediaHint.render property. If the mediaHint.render property does not exist the render function will not execute.</td>
     </tr>
-    <tr>
-      <td><code>renderHint.local</code></td>
+<tr>
+<td><code>renderHint.local</code></td>
       <td><code>Object</code></td>
       <td>Optional object that contains local media properties from the application to the MediaHandler (see below). If not provided no local media will be rendered.</td>
     </tr>
-    <tr>
-      <td><code>renderHint.local.audio</code></td>
+<tr>
+<td><code>renderHint.local.audio</code></td>
       <td><code>Object</code></td>
       <td>Optional page element where the local audio stream should be rendered to. If not provided no local audio stream will be rendered.</td>
     </tr>
-    <tr>
-      <td><code>renderHint.local.video</code></td>
+<tr>
+<td><code>renderHint.local.video</code></td>
       <td><code>Object</code></td>
       <td>Optional page element where the local video stream should be rendered to. If not provided no local video stream will be rendered. If both the audio and video elements are provided, the video element will be muted to prevent audio from playing twice.</td>
     </tr>
-    <tr>
-      <td><code>renderHint.remote</code></td>
+<tr>
+<td><code>renderHint.remote</code></td>
       <td><code>Object</code></td>
       <td>Optional object that contains remote media properties from the application to the MediaHandler (see below). If not provided no remote media will be rendered.</td>
     </tr>
-    <tr>
-      <td><code>renderHint.remote.audio</code></td>
+<tr>
+<td><code>renderHint.remote.audio</code></td>
       <td><code>Object</code></td>
       <td>Optional page element where the remote audio stream should be rendered to. If not provided no remote audio stream will be rendered.</td>
     </tr>
-    <tr>
-      <td><code>renderHint.remote.video</code></td>
+<tr>
+<td><code>renderHint.remote.video</code></td>
       <td><code>Object</code></td>
       <td>Optional page element where the remote video stream should be rendered to. If not provided no remote video stream will be rendered. If both the audio and video elements are provided, the video element will be muted to prevent audio from playing twice.</td>
     </tr>
-  </tbody>
-</table>
-
-<h2 id="events">Events</h2>
+</tbody>
+</table><h2 id="events">Events</h2>
 
 <h3 id="usermediarequest"><code>userMediaRequest</code></h3>
 
@@ -192,69 +174,51 @@
 <h4 id="onusermediarequest-function-constraints-"><code>on('userMediaRequest', function (constraints) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>constraints</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>constraints</code></td>
       <td><code>Object</code></td>
       <td>The constraints that were used with getUserMedia().</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="usermedia"><code>userMedia</code></h3>
+    </tr></tbody>
+</table><h3 id="usermedia"><code>userMedia</code></h3>
 
 <p>Fired when <code>getUserMedia()</code> returned local media.</p>
 
 <h4 id="onusermedia-function-stream-"><code>on('userMedia', function (stream) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>stream</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>stream</code></td>
       <td><code>MediaStream</code></td>
       <td>The local media stream that was returned from getUserMedia().</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="usermediafailed"><code>userMediaFailed</code></h3>
+    </tr></tbody>
+</table><h3 id="usermediafailed"><code>userMediaFailed</code></h3>
 
 <p>Fired when <code>getUserMedia()</code> has returned unsuccessfully from getting user media. Typically this might mean that the user has denied access to local media.</p>
 
 <h4 id="onusermediafailed-function-error-"><code>on('userMediaFailed', function (error) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>error</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>error</code></td>
       <td><code>String</code></td>
       <td>The message returned from the getUserMedia failure.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="icegathering"><code>iceGathering</code></h3>
+    </tr></tbody>
+</table><h3 id="icegathering"><code>iceGathering</code></h3>
 
 <p>Fired when the WebRTC layer has started gathering ICE candidates.</p>
 
@@ -279,111 +243,92 @@
 <h4 id="ongetdescription-function-sdpwrapper-"><code>on('getDescription', function (sdpWrapper) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>sdpWrapper</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>sdpWrapper</code></td>
       <td><code>Object</code></td>
       <td>The sdpWrapper used by getDescription.</td>
     </tr>
-    <tr>
-      <td><code>sdpWrapper.type</code></td>
+<tr>
+<td><code>sdpWrapper.type</code></td>
       <td><code>String</code></td>
       <td>Can be either ‘offer’ or ‘answer’ depending on which type of SDP was gotten from the browser.</td>
     </tr>
-    <tr>
-      <td><code>sdpWrapper.sdp</code></td>
+<tr>
+<td><code>sdpWrapper.sdp</code></td>
       <td><code>String</code></td>
       <td>The SDP that was gotten from the browser.</td>
     </tr>
-  </tbody>
-</table>
-
-<h3 id="setdescription"><code>setDescription</code></h3>
+</tbody>
+</table><h3 id="setdescription"><code>setDescription</code></h3>
 
 <p>Fired when the browser completes the WebRTC setDescription function.</p>
 
 <h4 id="onsetdescription-function-sdpwrapper-"><code>on('setDescription', function (sdpWrapper) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>sdpWrapper</code></td>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>sdpWrapper</code></td>
       <td><code>Object</code></td>
       <td>The sdpWrapper used by setDescription.</td>
     </tr>
-    <tr>
-      <td><code>sdpWrapper.type</code></td>
+<tr>
+<td><code>sdpWrapper.type</code></td>
       <td><code>String</code></td>
       <td>Can be either ‘offer’ or ‘answer’ depending on which type of SDP was received.</td>
     </tr>
-    <tr>
-      <td><code>sdpWrapper.sdp</code></td>
+<tr>
+<td><code>sdpWrapper.sdp</code></td>
       <td><code>String</code></td>
       <td>The SDP that was received.</td>
     </tr>
-  </tbody>
-</table>
-
-<h3 id="datachannel"><code>dataChannel</code></h3>
+</tbody>
+</table><h3 id="datachannel"><code>dataChannel</code></h3>
 
 <p>Fired when a WebRTC data channel is setup.</p>
 
 <h4 id="ondatachannel-function-datachannel-"><code>on('dataChannel', function (dataChannel) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>dataChannel</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>dataChannel</code></td>
       <td><code>DataChannel</code></td>
       <td>The WebRTC data channel setup between the peers.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="addstream"><code>addStream</code></h3>
+    </tr></tbody>
+</table><h3 id="addstream"><code>addStream</code></h3>
 
 <p>Fired when a new stream is added to the PeerConnection.</p>
 
 <h4 id="onaddstream-function-stream-"><code>on('addStream', function (stream) {})</code></h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
+<thead><tr>
+<th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>stream</code></td>
+    </tr></thead>
+<tbody><tr>
+<td><code>stream</code></td>
       <td><code>Object</code></td>
       <td>The stream that was added to the PeerConnection.</td>
-    </tr>
-  </tbody>
+    </tr></tbody>
 </table>
-
 		</div>
 
 		<nav id="sideNav">
