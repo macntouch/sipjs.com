@@ -52,31 +52,35 @@
 			</nav>
 		</header>
 		<div id="content">
-			<h1 id="sipgrammar">SIP.Grammar</h1>
+			
+<h1 id="sipgrammar">SIP.Grammar</h1>
 
 <p>The SIP Grammar provides rules and parsing mechanisms for SIP requests, responses, headers, and other structures. SIP.js makes use of the Grammar when parsing incoming messages. The Grammar is written using <a href="http://pegjs.majda.cz/">PEG.js v0.8.0</a> and compiled for size optimization.</p>
 
 <p><em>If you are making source code changes to SIP.Grammar, be sure to run <code>grunt grammar</code> to rebuild the processed JavaScript file.</em></p>
 
 <ul id="markdown-toc">
-<li>
+  <li>
 <a href="#instance-variables">Instance Variables</a>    <ul>
-<li><a href="#syntaxerror"><code>SyntaxError</code></a></li>
+      <li><a href="#syntaxerror"><code>SyntaxError</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#methods">Methods</a>    <ul>
-<li><a href="#parseinput-startrule"><code>parse(input, startRule)</code></a></li>
+      <li><a href="#parseinput-startrule"><code>parse(input, startRule)</code></a></li>
     </ul>
-</li>
-</ul><div class="dev">
+  </li>
+</ul>
+
+<div class="dev">
 
   <h2 class="no_toc" id="dependencies">Dependencies</h2>
 
   <ul>
-<li>SIP.URI</li>
+    <li>SIP.URI</li>
     <li>SIP.NameAddrHeader</li>
   </ul>
+
 </div>
 
 <h2 id="instance-variables">Instance Variables</h2>
@@ -94,35 +98,44 @@
 <h4 id="parameters">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>input</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>input</code></td>
       <td><code>String</code></td>
       <td>The String to parse according to the Grammar.</td>
     </tr>
-<tr>
-<td><code>startRule</code></td>
+    <tr>
+      <td><code>startRule</code></td>
       <td><code>String</code></td>
       <td>The name of the grammar rule to parse the input against.</td>
     </tr>
-</tbody>
-</table><h4 id="returns">Returns</h4>
+  </tbody>
+</table>
+
+<h4 id="returns">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>Object|Integer</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Object|Integer</code></td>
       <td>The data parsed, or -1 if the input failed to parse.</td>
-    </tr></tbody>
+    </tr>
+  </tbody>
 </table>
+
 		</div>
 
 		<nav id="sideNav">
