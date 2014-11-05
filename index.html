@@ -119,9 +119,6 @@
             <button id="alice-video-button" class="right" type="button">video</button>
             <div class="clearfix"></div>
           </div>
-          <svg class="arrow mobile-hide demo-arrow" width="60" height="34" viewbox="0 0 80 45">
-            <polygon points="40,5 75,40 5,40"></polygon>
-          </svg>
         </div>
         <div class="column-box">
           <div class="demo-window">
@@ -138,6 +135,9 @@
         </div>
         <div class="clearfix"></div>
       </div>
+      <svg class="arrow mobile-hide demo-arrow" width="60" height="34" viewbox="0 0 80 45">
+        <polygon points="40,5 75,40 5,40"></polygon>
+      </svg>
     </div>
     <div id="content-message">
       <h2>Real-Time Messaging with a Dozen Lines of Code</h2>
@@ -158,9 +158,6 @@
             <button id="alice-message-button" class="right" type="button">send message</button>
             <div class="clearfix"></div>
           </div>
-          <svg class="arrow mobile-hide demo-arrow" width="60" height="34" viewbox="0 0 80 45">
-            <polygon points="40,5 75,40 5,40"></polygon>
-          </svg>
         </div>
         <div class="column-box">
           <div class="demo-window">
@@ -180,6 +177,9 @@
         </div>
         <div class="clearfix"></div>
       </div>
+      <svg class="arrow mobile-hide demo-arrow" width="60" height="34" viewbox="0 0 80 45">
+        <polygon points="40,5 75,40 5,40"></polygon>
+      </svg>
     </div>
     <div id="content-data-channel">
       <h2>Send Real-Time Data In A Flash</h2>
@@ -197,16 +197,14 @@
               <input id="alice-file-choose-input" type="file" name="file" class="file-choose-button">
             </span>
             <span id="alice-filename" class="message-body">no file selected</span>
-            <div id="alice-file-error-msg" class="file-error-msg"></div>
+            <div class="message-body file-info-msg">Max file size is 16KB</div>
+            <div id="alice-file-error-msg" class="file-info-msg error-msg"></div>
             <div class="left">
               <h4>Alice's View</h4>
               <h5>Demo user one</h5>
             </div>
             <button id="alice-data-share-button" class="right" type="button">share</button>
             <div class="clearfix"></div>
-            <svg class="arrow mobile-hide demo-arrow" width="60" height="34" viewbox="0 0 80 45">
-              <polygon points="40,5 75,40 5,40"></polygon>
-            </svg>
           </div>
         </div>
         <div class="column-box">
@@ -221,7 +219,8 @@
               <input id="bob-file-choose-input" type="file" name="file" class="file-choose-button">
             </span>
             <span id="bob-filename" class="message-body">no file selected</span>
-            <div id="bob-file-error-msg" class="file-error-msg"></div>
+            <div class="message-body file-info-msg">Max file size is 16KB</div>
+            <div id="bob-file-error-msg" class="file-info-msg error-msg"></div>
             <div class="clearfix"></div>
             <div class="left">
               <h4>Bob's View</h4>
@@ -233,6 +232,9 @@
         </div>
         <div class="clearfix"></div>
       </div>
+      <svg class="arrow mobile-hide demo-arrow" width="60" height="34" viewbox="0 0 80 45">
+        <polygon points="40,5 75,40 5,40"></polygon>
+      </svg>
     </div>
   </div>
 
@@ -248,16 +250,14 @@
     </div>
 <div class="code-wrapper mobile-hide">
 <div class="index-demo-code" id="code-video-audio">
-        <div class="highlighter-coderay">
+        <div>
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> domain = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sipjs.onsip.com</span><span style="color:#710">'</span></span>;
 <span style="color:#080;font-weight:bold">var</span> aliceURI      = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice</span><span style="color:#710">'</span></span> + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">@</span><span style="color:#710">'</span></span> + domain;
 <span style="color:#080;font-weight:bold">var</span> aliceName     = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Alice</span><span style="color:#710">'</span></span>;
-<span style="color:#080;font-weight:bold">var</span> aliceButton   = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-video-button</span><span style="color:#710">'</span></span>);
 
 <span style="color:#080;font-weight:bold">var</span> bobURI        = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob</span><span style="color:#710">'</span></span> + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">@</span><span style="color:#710">'</span></span> + domain;
 <span style="color:#080;font-weight:bold">var</span> bobName       = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Bob</span><span style="color:#710">'</span></span>;
-<span style="color:#080;font-weight:bold">var</span> bobButton     = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob-video-button</span><span style="color:#710">'</span></span>);
 
 <span style="color:#777">// A shortcut function to construct the media options for an SIP session.</span>
 <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">mediaOptions</span>(audio, video, remoteRender, localRender) {
@@ -279,19 +279,6 @@
     };
 }
 
-<span style="color:#777">// Creates a user agent with the given arguments plugged into the UA</span>
-<span style="color:#777">// configuration. This is a standard user agent for WebRTC calls.</span>
-<span style="color:#777">// For a user agent for data transfer, see createDataUA</span>
-<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">createUA</span>(callerURI, displayName) {
-    <span style="color:#080;font-weight:bold">var</span> configuration = {
-        <span style="color:#606">traceSip</span>: <span style="color:#069">true</span>,
-        <span style="color:#606">uri</span>: callerURI,
-        <span style="color:#606">displayName</span>: displayName
-    };
-    <span style="color:#080;font-weight:bold">var</span> userAgent = <span style="color:#080;font-weight:bold">new</span> SIP.UA(configuration);
-    <span style="color:#080;font-weight:bold">return</span> userAgent;
-}
-
 <span style="color:#777">// Makes a call from a user agent to a target URI</span>
 <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">makeCall</span>(userAgent, target, audio, video, remoteRender, localRender) {
     <span style="color:#080;font-weight:bold">var</span> options = mediaOptions(audio, video, remoteRender, localRender);
@@ -300,65 +287,45 @@
     <span style="color:#080;font-weight:bold">return</span> session;
 }
 
-<span style="color:#777">// Sets up the button for a user to manage calling and hanging up</span>
-<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">setUpVideoInterface</span>(userAgent, target, remoteRenderId, buttonId) {
-    <span style="color:#777">// true if the button should initiate a call,</span>
-    <span style="color:#777">// false if the button should end a call</span>
+<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">setUpVideoInterface</span>(userAgent, target, remoteRenderId) {
     <span style="color:#080;font-weight:bold">var</span> onCall = <span style="color:#069">false</span>;
     <span style="color:#080;font-weight:bold">var</span> session;
     <span style="color:#080;font-weight:bold">var</span> remoteRender = document.getElementById(remoteRenderId);
-    <span style="color:#080;font-weight:bold">var</span> button = document.getElementById(buttonId);
 
     <span style="color:#777">// Handling invitations to calls.</span>
-    <span style="color:#777">// We automatically accept invitations and toggle the button state based on</span>
-    <span style="color:#777">// whether we are in a call our not.</span>
     <span style="color:#777">// Also, for each new call session, we need to add an event handler to set</span>
-    <span style="color:#777">// the correct button state when we receive a "bye" request.</span>
+    <span style="color:#777">// the correct state when we receive a "bye" request.</span>
     userAgent.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">invite</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (incomingSession) {
         onCall = <span style="color:#069">true</span>;
         session = incomingSession;
         <span style="color:#080;font-weight:bold">var</span> options = mediaOptions(<span style="color:#069">false</span>, <span style="color:#069">true</span>, remoteRender, <span style="color:#069">null</span>);
-        button.firstChild.nodeValue = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">hang up</span><span style="color:#710">'</span></span>;
         remoteRender.style.visibility = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">visible</span><span style="color:#710">'</span></span>;
         session.accept(options);
         session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bye</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
             onCall = <span style="color:#069">false</span>;
-            button.firstChild.nodeValue = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">video</span><span style="color:#710">'</span></span>;
             remoteRender.style.visibility = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">hidden</span><span style="color:#710">'</span></span>;
             session = <span style="color:#069">null</span>;
         });
     });
-    <span style="color:#777">// The button either makes a call, creating a session and binding a listener</span>
-    <span style="color:#777">// for the "bye" request, or it hangs up a current call.</span>
-    button.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
-        <span style="color:#777">// Was on a call, so the button press means we are hanging up</span>
-        <span style="color:#080;font-weight:bold">if</span> (onCall) {
-            onCall = <span style="color:#069">false</span>;
-            button.firstChild.nodeValue = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">video</span><span style="color:#710">'</span></span>;
-            remoteRender.style.visibility = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">hidden</span><span style="color:#710">'</span></span>;
-            session.bye();
-            session = <span style="color:#069">null</span>;
-        }
-        <span style="color:#777">// Was not on a call, so the button press means we are ringing someone</span>
-        <span style="color:#080;font-weight:bold">else</span> {
             onCall = <span style="color:#069">true</span>;
-            button.firstChild.nodeValue = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">hang up</span><span style="color:#710">'</span></span>;
-            remoteRender.style.visibility = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">visible</span><span style="color:#710">'</span></span>;
-            session = makeCall(userAgent, target,
-                               <span style="color:#069">false</span>, <span style="color:#069">true</span>,
-                               remoteRender, <span style="color:#069">null</span>);
-            session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bye</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
-                onCall = <span style="color:#069">false</span>;
-                button.firstChild.nodeValue = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">video</span><span style="color:#710">'</span></span>;
-                remoteRender.style.visibility = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">hidden</span><span style="color:#710">'</span></span>;
-                session = <span style="color:#069">null</span>;
-            });
-        }
+    remoteRender.style.visibility = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">visible</span><span style="color:#710">'</span></span>;
+    session = makeCall(userAgent, target,
+                       <span style="color:#069">false</span>, <span style="color:#069">true</span>,
+                       remoteRender, <span style="color:#069">null</span>);
+    session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bye</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
+        onCall = <span style="color:#069">false</span>;
+        remoteRender.style.visibility = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">hidden</span><span style="color:#710">'</span></span>;
+        session = <span style="color:#069">null</span>;
     });
 }
 
-<span style="color:#080;font-weight:bold">var</span> aliceUA = createUA(aliceURI, aliceName);
-setUpVideoInterface(aliceUA, bobURI, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">video-of-bob</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-video-button</span><span style="color:#710">'</span></span>);
+
+<span style="color:#080;font-weight:bold">var</span> aliceUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA({
+        <span style="color:#606">traceSip</span>: <span style="color:#069">true</span>,
+        <span style="color:#606">uri</span>: aliceURI,
+        <span style="color:#606">displayName</span>: aliceName
+    });
+setUpVideoInterface(aliceUA, bobURI, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">video-of-bob</span><span style="color:#710">'</span></span>);
 </pre></div>
 </div>
         </div>
@@ -366,87 +333,30 @@ setUpVideoInterface(aliceUA, bobURI, <span style="background-color:hsla(0,100%,5
 </div>
 <div class="code-wrapper mobile-hide">
 <div class="index-demo-code" id="code-message">
-        <div class="highlighter-coderay">
+        <div>
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> domain = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sipjs.onsip.com</span><span style="color:#710">'</span></span>;
 <span style="color:#080;font-weight:bold">var</span> aliceURI      = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice</span><span style="color:#710">'</span></span> + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">@</span><span style="color:#710">'</span></span> + domain;
 <span style="color:#080;font-weight:bold">var</span> aliceName     = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Alice</span><span style="color:#710">'</span></span>;
-<span style="color:#080;font-weight:bold">var</span> aliceButton   = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-video-button</span><span style="color:#710">'</span></span>);
 
 <span style="color:#080;font-weight:bold">var</span> bobURI        = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob</span><span style="color:#710">'</span></span> + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">@</span><span style="color:#710">'</span></span> + domain;
 <span style="color:#080;font-weight:bold">var</span> bobName       = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Bob</span><span style="color:#710">'</span></span>;
-<span style="color:#080;font-weight:bold">var</span> bobButton     = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob-video-button</span><span style="color:#710">'</span></span>);
 
 <span style="color:#777">// Sets up the chat interface for text messaging</span>
-<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">setUpMessageInterface</span>(userAgent, target,
-                               messageRenderId, messageInputId, buttonId) {
-    <span style="color:#080;font-weight:bold">var</span> messageRender = document.getElementById(messageRenderId);
-    <span style="color:#080;font-weight:bold">var</span> messageInput = document.getElementById(messageInputId);
-    <span style="color:#080;font-weight:bold">var</span> button = document.getElementById(buttonId);
-
-    <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">sendMessage</span>() {
-        <span style="color:#080;font-weight:bold">var</span> msg = messageInput.value;
-        <span style="color:#777">// Only send a message if the message is non-empty</span>
-        <span style="color:#080;font-weight:bold">if</span> (msg !== <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>) {
-            messageInput.value = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>;
-            userAgent.message(target, msg);
-        }
-    }
-
-    <span style="color:#777">// We have placeholder text in the message render box. It should be deleted</span>
-    <span style="color:#777">// after we have sent or received our first message. This keeps track of</span>
-    <span style="color:#777">// that.</span>
-    <span style="color:#080;font-weight:bold">var</span> noMessages = <span style="color:#069">true</span>;
-
+<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">setUpMessageInterface</span>(userAgent) {
     <span style="color:#777">// Receive a message and put it in the message display div</span>
     userAgent.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (msg) {
-        <span style="color:#777">// If we have not received any messages yet, remove the placeholder</span>
-        <span style="color:#777">// text.</span>
-        <span style="color:#080;font-weight:bold">if</span> (noMessages) {
-            noMessages = <span style="color:#069">false</span>;
-            <span style="color:#080;font-weight:bold">if</span> (messageRender.childElementCount &gt; <span style="color:#00D">0</span>)
-                messageRender.removeChild(messageRender.children[<span style="color:#00D">0</span>]);
-        }
-        <span style="color:#080;font-weight:bold">var</span> msgTag = createMsgTag(msg.remoteIdentity.displayName, msg.body);
-        messageRender.appendChild(msgTag);
-    });
-    <span style="color:#777">// Cut the content from the input textarea and send it</span>
-    button.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
-        sendMessage();
-    });
-    <span style="color:#777">// Register pressing of the "enter" key while in textarea to send a message.</span>
-    <span style="color:#777">// If user presses shift while entering, then add a newline instead.</span>
-    messageInput.onkeydown = (<span style="color:#080;font-weight:bold">function</span>(e) {
-        <span style="color:#080;font-weight:bold">if</span>(e.keyCode == <span style="color:#00D">13</span> &amp;&amp; !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-        }
+        alert(msg.body);
     });
 }
 
-<span style="color:#777">// Creates the HTML tag and its children for a given message.</span>
-<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">createMsgTag</span>(from, msgBody) {
-    <span style="color:#080;font-weight:bold">var</span> msgTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">p</span><span style="color:#710">'</span></span>);
-    msgTag.className = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>;
-    <span style="color:#777">// Create the "from" section</span>
-    <span style="color:#080;font-weight:bold">var</span> fromTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">span</span><span style="color:#710">'</span></span>);
-    fromTag.className = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message-from</span><span style="color:#710">'</span></span>;
-    fromTag.appendChild(document.createTextNode(from + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">:</span><span style="color:#710">'</span></span>));
-    <span style="color:#777">// Create the message body</span>
-    <span style="color:#080;font-weight:bold">var</span> msgBodyTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">span</span><span style="color:#710">'</span></span>);
-    msgBodyTag.className = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message-body</span><span style="color:#710">'</span></span>;
-    msgBodyTag.appendChild(document.createTextNode(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20"> </span><span style="color:#710">'</span></span> + msgBody));
-    <span style="color:#777">// Put everything in the message tag</span>
-    msgTag.appendChild(fromTag);
-    msgTag.appendChild(msgBodyTag);
-    <span style="color:#080;font-weight:bold">return</span> msgTag;
-}
-
-<span style="color:#080;font-weight:bold">var</span> aliceUA = createUA(aliceURI, aliceName);
-setUpMessageInterface(aliceUA, bobURI,
-                      <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-message-display</span><span style="color:#710">'</span></span>,
-                      <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-message-input</span><span style="color:#710">'</span></span>,
-                      <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-message-button</span><span style="color:#710">'</span></span>);
+<span style="color:#080;font-weight:bold">var</span> aliceUA = <span style="color:#080;font-weight:bold">new</span> SIP.UA({
+        <span style="color:#606">traceSip</span>: <span style="color:#069">true</span>,
+        <span style="color:#606">uri</span>: aliceURI,
+        <span style="color:#606">displayName</span>: aliceName
+    });
+setUpMessageInterface(aliceUA);
+aliceUA.message(bobURI, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Check out this palindrome: "Now sir, a war is never even. Sir, a war is won."</span><span style="color:#710">'</span></span>);
 </pre></div>
 </div>
         </div>
@@ -454,16 +364,14 @@ setUpMessageInterface(aliceUA, bobURI,
 </div>
 <div class="code-wrapper mobile-hide">
 <div class="index-demo-code" id="code-data-channel">
-        <div class="highlighter-coderay">
+        <div>
 <div class="CodeRay">
-  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> domain = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sipjs.onsip.com</span><span style="color:#710">'</span></span>;
+  <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> domain        = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sipjs.onsip.com</span><span style="color:#710">'</span></span>;
 <span style="color:#080;font-weight:bold">var</span> aliceURI      = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice</span><span style="color:#710">'</span></span> + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">@</span><span style="color:#710">'</span></span> + domain;
 <span style="color:#080;font-weight:bold">var</span> aliceName     = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Alice</span><span style="color:#710">'</span></span>;
-<span style="color:#080;font-weight:bold">var</span> aliceButton   = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-video-button</span><span style="color:#710">'</span></span>);
 
 <span style="color:#080;font-weight:bold">var</span> bobURI        = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob</span><span style="color:#710">'</span></span> + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">@</span><span style="color:#710">'</span></span> + domain;
 <span style="color:#080;font-weight:bold">var</span> bobName       = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Bob</span><span style="color:#710">'</span></span>;
-<span style="color:#080;font-weight:bold">var</span> bobButton     = document.getElementById(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bob-video-button</span><span style="color:#710">'</span></span>);
 
 <span style="color:#777">// Creates a user agent with the given parameters. This user agent is only for</span>
 <span style="color:#777">// sending data, so it has a special media handler factory for the</span>
@@ -475,7 +383,12 @@ setUpMessageInterface(aliceUA, bobURI,
         <span style="color:#606">uri</span>: dataURI,
         <span style="color:#606">displayName</span>: displayName,
         <span style="color:#06B;font-weight:bold">mediaHandlerFactory</span>: <span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">mediaHandlerFactory</span>(session, options) {
-
+            <span style="color:#777">// Call this so that we define</span>
+            <span style="color:#777">// - WebRTC.MediaStream</span>
+            <span style="color:#777">// - WebRTC.getUserMedia</span>
+            <span style="color:#777">// - WebRTC.RTCPeerConnection</span>
+            <span style="color:#777">// - WebRTC.RTCSessionDescription.</span>
+            SIP.WebRTC.isSupported();
             <span style="color:#777">/* Like a default mediaHandler, but no streams to manage */</span>
             <span style="color:#080;font-weight:bold">var</span> self = <span style="color:#080;font-weight:bold">new</span> SIP.WebRTC.MediaHandler(session, {
                 <span style="color:#606">mediaStreamManager</span>: {
@@ -502,227 +415,50 @@ setUpMessageInterface(aliceUA, bobURI,
 }
 
 <span style="color:#777">// Sets up the file transfer interface for the WebRTC data channel.</span>
-<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">setUpDataInterface</span>(userAgent, target,
-                            dataRenderId,
-                            fileInputId,
-                            filenameDisplayId,
-                            dataShareButtonId,
-                            errorMsgContainerId) {
+<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">setUpDataInterface</span>(userAgent, target) {
     <span style="color:#777">// Target has a 'data.' prefix</span>
     <span style="color:#080;font-weight:bold">var</span> dataTarget = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">data.</span><span style="color:#710">'</span></span> + target;
-    <span style="color:#080;font-weight:bold">var</span> dataRender = document.getElementById(dataRenderId);
-    <span style="color:#080;font-weight:bold">var</span> fileInput = document.getElementById(fileInputId);
-    <span style="color:#080;font-weight:bold">var</span> filenameDisplay = document.getElementById(filenameDisplayId);
-    <span style="color:#080;font-weight:bold">var</span> dataShareButton = document.getElementById(dataShareButtonId);
-    <span style="color:#080;font-weight:bold">var</span> errorMsgContainer = document.getElementById(errorMsgContainerId);
-    <span style="color:#080;font-weight:bold">if</span> (errorMsgContainer.childNodes.length === <span style="color:#00D">0</span>) {
-        errorMsgContainer.appendChild(document.createTextNode(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>));
-    }
-
     <span style="color:#777">// The open data transfer session</span>
     <span style="color:#080;font-weight:bold">var</span> session;
-    <span style="color:#777">// The File object for the chosen local file</span>
-    <span style="color:#080;font-weight:bold">var</span> file = <span style="color:#069">null</span>;
-    <span style="color:#777">// An ArrayBuffer of the loaded local File that has actually been loaded</span>
-    <span style="color:#777">// into memory</span>
-    <span style="color:#080;font-weight:bold">var</span> loadedFile = <span style="color:#069">null</span>;
-    <span style="color:#777">// Metadata for the received file. The metadata has "name" and "type"</span>
-    <span style="color:#080;font-weight:bold">var</span> receivedFileMetadata;
-    <span style="color:#777">// The actual received file data</span>
-    <span style="color:#080;font-weight:bold">var</span> receivedFileData;
-    <span style="color:#777">// We do not support file chunking, so we can only send small files.</span>
-    <span style="color:#080;font-weight:bold">var</span> maxChunkSize = <span style="color:#00D">16000</span>; <span style="color:#777">// 16 KB</span>
-    <span style="color:#777">// The Blob object that combines the received file data and file type.</span>
-    <span style="color:#777">// We cannot construct File objects, so we must make a Blob, which does not</span>
-    <span style="color:#777">// have a file name.</span>
-    <span style="color:#080;font-weight:bold">var</span> receivedFile;
 
-    <span style="color:#777">// We have placeholder text in the message render box. It should be deleted</span>
-    <span style="color:#777">// after we have sent or received our first message. This keeps track of</span>
-    <span style="color:#777">// that.</span>
-    <span style="color:#080;font-weight:bold">var</span> noMessages = <span style="color:#069">true</span>;
-
-    <span style="color:#777">// When we receive an invite, we must set up our media handler to read in</span>
-    <span style="color:#777">// data from over the RTCDataChannel.</span>
-    <span style="color:#777">// Each data transmission consists of three parts:</span>
-    <span style="color:#777">//   1) a JSON text object with the fields:</span>
-    <span style="color:#777">//          "name" --&gt; file name</span>
-    <span style="color:#777">//          "type" --&gt; file type</span>
-    <span style="color:#777">//   2) an ArrayBuffer of binary content, which is the actual file.</span>
-    <span style="color:#777">//   3) a terminating single newline character</span>
-    <span style="color:#777">// The only order restriction on the transmission is that parts 1 and 2 come</span>
-    <span style="color:#777">// before the terminating part 3.</span>
-    <span style="color:#777">//</span>
-    <span style="color:#777">// This then makes a link to the file and puts the file received notice and</span>
-    <span style="color:#777">// link into the message display box.</span>
-    <span style="color:#777">// After a terminating newline, the session is closed. So, each session has</span>
-    <span style="color:#777">// only one file transfer.</span>
     userAgent.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">invite</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (session) {
         session.mediaHandler.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">dataChannel</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (dataChannel) {
             dataChannel.<span style="color:#06B;font-weight:bold">onmessage</span> = <span style="color:#080;font-weight:bold">function</span> (event) {
-                <span style="color:#777">// The terminating empty newline.</span>
-                <span style="color:#777">// Here we construct our Blob object and create a download URL</span>
-                <span style="color:#777">// and plug it into the message render box.</span>
-                <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span>(event.data) === <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">string</span><span style="color:#710">'</span></span> &amp;&amp; event.data === <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">\n</span><span style="color:#710">'</span></span>) {
-                    receivedFile = <span style="color:#080;font-weight:bold">new</span> Blob([receivedFileData],
-                                            {<span style="color:#606">type</span>: receivedFileMetadata.type});
-                    <span style="color:#080;font-weight:bold">var</span> fileUrl = URL.createObjectURL(receivedFile);
-                    <span style="color:#080;font-weight:bold">var</span> msgTag = createDataMsgTag(
-                        session.remoteIdentity.displayName,
-                        <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">data received</span><span style="color:#710">'</span></span>,
-                        receivedFileMetadata.name,
-                        fileUrl
-                    );
-                    <span style="color:#080;font-weight:bold">if</span> (noMessages) {
-                        dataRender.removeChild(dataRender.children[<span style="color:#00D">0</span>]);
-                        noMessages = <span style="color:#069">false</span>;
-                    }
-                    dataRender.appendChild(msgTag);
-                    session.bye();
-                <span style="color:#777">// The file metadata</span>
-                } <span style="color:#080;font-weight:bold">else</span> <span style="color:#080;font-weight:bold">if</span> (<span style="color:#080;font-weight:bold">typeof</span>(event.data) === <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">string</span><span style="color:#710">'</span></span>) {
-                    receivedFileMetadata = JSON.parse(event.data);
-                <span style="color:#777">// The actual file content</span>
-                } <span style="color:#080;font-weight:bold">else</span> {
-                    receivedFileData = event.data;
-                }
+                alert(event.data);
+                session.bye();
             };
         });
         session.accept();
     });
 
-    <span style="color:#777">// This fires every time we choose a new file.</span>
-    <span style="color:#777">// We display what file we have selected and load it into an ArrayBuffer.</span>
-    fileInput.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">change</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (event) {
-        <span style="color:#080;font-weight:bold">var</span> tmpFile = event.target.files[<span style="color:#00D">0</span>];
-        <span style="color:#080;font-weight:bold">if</span> (tmpFile !== <span style="color:#069">undefined</span> &amp;&amp; tmpFile !== file) {
-            <span style="color:#777">// Reset the loadedFile variable, since we are supposed to load in a</span>
-            <span style="color:#777">// new file but have not done so yet.</span>
-            <span style="color:#777">// This value might not be set if the file is too large. This is</span>
-            <span style="color:#777">// intended. We later prevent ourselves from sending a null file.</span>
-            loadedFile = <span style="color:#069">null</span>;
-            file = tmpFile;
-
-            <span style="color:#080;font-weight:bold">var</span> filename = file.name;
-            filenameDisplay.childNodes[<span style="color:#00D">0</span>].nodeValue = filename;
-
-            <span style="color:#777">// File is small enough to send, so we load it.</span>
-            <span style="color:#080;font-weight:bold">if</span> (file.size &lt;= maxChunkSize) {
-                <span style="color:#777">// Clear the error message</span>
-                errorMsgContainer.childNodes[<span style="color:#00D">0</span>].nodeValue = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#710">'</span></span>;
-                <span style="color:#777">// errorMsgContainer.nodeValue = '';</span>
-                <span style="color:#080;font-weight:bold">var</span> reader = <span style="color:#080;font-weight:bold">new</span> FileReader();
-                reader.onload = (<span style="color:#080;font-weight:bold">function</span> (e) {
-                    loadedFile = e.target.result;
-                });
-                reader.readAsArrayBuffer(file);
-            }
-            <span style="color:#777">// The file is too large to send. We still display its name, but we</span>
-            <span style="color:#777">// do not set the loadedFile variable, which will prevent us from</span>
-            <span style="color:#777">// sending it.</span>
-            <span style="color:#080;font-weight:bold">else</span> {
-                <span style="color:#777">// DBM: foobar</span>
-                <span style="color:#080;font-weight:bold">var</span> errorStr = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">File too large to send using demo (chunking not supported)</span><span style="color:#710">'</span></span>;
-                errorMsgContainer.childNodes[<span style="color:#00D">0</span>].nodeValue = errorStr;
-                <span style="color:#777">// errorMsgContainer.nodeValue = errorStr;</span>
-            }
-        }
-    });
-
-    <span style="color:#777">// This shares the loaded file.</span>
     <span style="color:#777">// We invite the target and then send the data to them and wait for a "BYE"</span>
     <span style="color:#777">// response to signal that they got the file.</span>
-    dataShareButton.addEventListener(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">click</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> () {
-        <span style="color:#777">// No video or audio, only data</span>
-        <span style="color:#080;font-weight:bold">var</span> options = {
-            <span style="color:#606">media</span>: {
-                <span style="color:#606">constraints</span>: {
-                    <span style="color:#606">audio</span>: <span style="color:#069">false</span>,
-                    <span style="color:#606">video</span>: <span style="color:#069">false</span>
-                },
-                <span style="color:#606">dataChannel</span>: <span style="color:#069">true</span>
-            }
-        };
-        <span style="color:#777">// Make sure we don't try to send nothing</span>
-        <span style="color:#080;font-weight:bold">if</span> (loadedFile !== <span style="color:#069">null</span>) {
-            session = userAgent.invite(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:</span><span style="color:#710">'</span></span> + dataTarget, options);
-
-            session.mediaHandler.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">dataChannel</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (dataChannel) {
-                dataChannel.onopen = (<span style="color:#080;font-weight:bold">function</span> () {
-                    <span style="color:#777">// Send JSON data about file</span>
-                    dataChannel.send(JSON.stringify({
-                        <span style="color:#606">name</span>: file.name,
-                        <span style="color:#606">type</span>: file.type
-                    }));
-                    dataChannel.send(loadedFile);
-                    <span style="color:#777">// Send empty newline to end transmission</span>
-                    dataChannel.send(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">\n</span><span style="color:#710">'</span></span>);
-                });
-            });
-
-            <span style="color:#777">// Handling the BYE response, which means that we successfully</span>
-            <span style="color:#777">// sent the file.</span>
-            session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bye</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (req) {
-                <span style="color:#080;font-weight:bold">var</span> msgTag = createDataMsgTag(
-                    userAgent.configuration.displayName,
-                    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">data sent</span><span style="color:#710">'</span></span>,
-                    file.name,
-                    URL.createObjectURL(file)
-                );
-                <span style="color:#080;font-weight:bold">if</span> (noMessages) {
-                    dataRender.removeChild(dataRender.children[<span style="color:#00D">0</span>]);
-                    noMessages = <span style="color:#069">false</span>;
-                }
-                dataRender.appendChild(msgTag);
-            });
+    <span style="color:#777">// No video or audio, only data</span>
+    <span style="color:#080;font-weight:bold">var</span> options = {
+        <span style="color:#606">media</span>: {
+            <span style="color:#606">constraints</span>: {
+                <span style="color:#606">audio</span>: <span style="color:#069">false</span>,
+                <span style="color:#606">video</span>: <span style="color:#069">false</span>
+            },
+            <span style="color:#606">dataChannel</span>: <span style="color:#069">true</span>
         }
+    };
+    session = userAgent.invite(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sip:</span><span style="color:#710">'</span></span> + dataTarget, options);
+    session.mediaHandler.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">dataChannel</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (dataChannel) {
+        dataChannel.onopen = (<span style="color:#080;font-weight:bold">function</span> () {
+            <span style="color:#777">// Send JSON data about file</span>
+            dataChannel.send(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Sending data. This is text, but you can also send binary files!</span><span style="color:#710">'</span></span>);
+        });
     });
-}
 
-
-<span style="color:#777">// Creates the HTML tag and its children for a given message.</span>
-<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">createMsgTag</span>(from, msgBody) {
-    <span style="color:#080;font-weight:bold">var</span> msgTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">p</span><span style="color:#710">'</span></span>);
-    msgTag.className = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>;
-    <span style="color:#777">// Create the "from" section</span>
-    <span style="color:#080;font-weight:bold">var</span> fromTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">span</span><span style="color:#710">'</span></span>);
-    fromTag.className = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message-from</span><span style="color:#710">'</span></span>;
-    fromTag.appendChild(document.createTextNode(from + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">:</span><span style="color:#710">'</span></span>));
-    <span style="color:#777">// Create the message body</span>
-    <span style="color:#080;font-weight:bold">var</span> msgBodyTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">span</span><span style="color:#710">'</span></span>);
-    msgBodyTag.className = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message-body</span><span style="color:#710">'</span></span>;
-    msgBodyTag.appendChild(document.createTextNode(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20"> </span><span style="color:#710">'</span></span> + msgBody));
-    <span style="color:#777">// Put everything in the message tag</span>
-    msgTag.appendChild(fromTag);
-    msgTag.appendChild(msgBodyTag);
-    <span style="color:#080;font-weight:bold">return</span> msgTag;
-}
-
-<span style="color:#777">// Similar to the createMsgTag, but we add in an extra section with a link to</span>
-<span style="color:#777">// the file sent or received.</span>
-<span style="color:#777">// To download files, they must be anchors to the file reference.</span>
-<span style="color:#777">// Typically, you will create your dataURI by calling URL.createObjectURL,</span>
-<span style="color:#777">// which creates a unique URI (for some reason it's still called a URL).</span>
-<span style="color:#080;font-weight:bold">function</span> <span style="color:#06B;font-weight:bold">createDataMsgTag</span>(from, msgBody, filename, dataURI) {
-    <span style="color:#080;font-weight:bold">var</span> msgTag = createMsgTag(from, msgBody + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20"> </span><span style="color:#710">'</span></span>);
-    <span style="color:#080;font-weight:bold">var</span> fileLinkTag = document.createElement(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">a</span><span style="color:#710">'</span></span>);
-    fileLinkTag.className = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message-link</span><span style="color:#710">'</span></span>;
-    fileLinkTag.setAttribute(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">href</span><span style="color:#710">'</span></span>, dataURI);
-    <span style="color:#777">// Set the filename of the Blob and indicate that it should download when we</span>
-    <span style="color:#777">// click on it, not open up somewhere else.</span>
-    fileLinkTag.setAttribute(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">download</span><span style="color:#710">'</span></span>, filename);
-    fileLinkTag.appendChild(document.createTextNode(filename));
-    msgTag.appendChild(fileLinkTag);
-    <span style="color:#080;font-weight:bold">return</span> msgTag;
+    <span style="color:#777">// Handling the BYE response, which means that they receiced the data.</span>
+    session.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bye</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (req) {
+        alert(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">They received the generic data.</span><span style="color:#710">'</span></span>);
+    });
 }
 
 <span style="color:#080;font-weight:bold">var</span> aliceDataUA = createDataUA(aliceURI, aliceName);
-setUpDataInterface(aliceDataUA, bobURI,
-                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-data-display</span><span style="color:#710">'</span></span>,
-                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-file-choose-input</span><span style="color:#710">'</span></span>,
-                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-filename</span><span style="color:#710">'</span></span>,
-                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-data-share-button</span><span style="color:#710">'</span></span>,
-                   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice-file-error-msg</span><span style="color:#710">'</span></span>);
+setUpDataInterface(aliceDataUA, bobURI);
 </pre></div>
 </div>
         </div>
@@ -730,7 +466,7 @@ setUpDataInterface(aliceDataUA, bobURI,
 </div>
 <div class="code-wrapper desktop-hide">
 <div class="index-demo-code">
-        <div class="highlighter-coderay">
+        <div>
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#080;font-weight:bold">var</span> ua = <span style="color:#080;font-weight:bold">new</span> SIP.UA();
 ua.message(

@@ -39,11 +39,9 @@ if (token === '') {
 var domain = 'sipjs.onsip.com';
 var aliceURI      = 'alice.' + window.token + '@' + domain;
 var aliceName     = 'Alice';
-var aliceButton   = document.getElementById('alice-video-button');
 
 var bobURI        = 'bob.' + window.token + '@' + domain;
 var bobName       = 'Bob';
-var bobButton     = document.getElementById('bob-video-button');
 
 // Function: mediaOptions
 //   A shortcut function to construct the media options for an SIP session.
@@ -266,8 +264,17 @@ function createDataUA(callerURI, displayName) {
         traceSip: true,
         uri: dataURI,
         displayName: displayName,
+        /*
+         * Custom media handler factories don't have great compatibility with
+         * our WebRTC function caching (like SIP.WebRTC.RTCPeerConnection)
+         */
         mediaHandlerFactory: function mediaHandlerFactory(session, options) {
-
+            // Call this so that we define
+            // - WebRTC.MediaStream
+            // - WebRTC.getUserMedia
+            // - WebRTC.RTCPeerConnection
+            // - WebRTC.RTCSessionDescription.
+            SIP.WebRTC.isSupported();
             /* Like a default mediaHandler, but no streams to manage */
             var self = new SIP.WebRTC.MediaHandler(session, {
                 mediaStreamManager: {
@@ -290,7 +297,7 @@ function createDataUA(callerURI, displayName) {
         }
     };
 
-    return dataUA = new SIP.UA(configuration);
+    return new SIP.UA(configuration);
 }
 
 // Function: setUpDataInterface
@@ -417,7 +424,6 @@ function setUpDataInterface(userAgent, target,
             if (file.size <= maxChunkSize) {
                 // Clear the error message
                 errorMsgContainer.childNodes[0].nodeValue = '';
-                // errorMsgContainer.nodeValue = '';
                 var reader = new FileReader();
                 reader.onload = (function (e) {
                     loadedFile = e.target.result;
@@ -428,10 +434,8 @@ function setUpDataInterface(userAgent, target,
             // do not set the loadedFile variable, which will prevent us from
             // sending it.
             else {
-                // DBM: foobar
                 var errorStr = 'File too large to send using demo (chunking not supported)';
                 errorMsgContainer.childNodes[0].nodeValue = errorStr;
-                // errorMsgContainer.nodeValue = errorStr;
             }
         }
     });
@@ -512,29 +516,57 @@ function createDataMsgTag(from, msgBody, filename, dataURI) {
 }
 
 
+(function () {
 if (SIP.WebRTC.isSupported()) {
     // Javascript is not disabled and WebRTC works, so hide the
-    // "demo-error" div.
+    // "demo-error" div and fix the color of the feature arrow.
     var demoErrorDiv = document.getElementById('demo-error');
-    demoErrorDiv.style.display = 'none';
     var featureArrow = document.getElementById('feature-arrow');
-    for (var i=0; i < featureArrow.children.length; i++) {
-        var child = featureArrow.children[i];
-        if (child.tagName === 'polygon') {
-            child.style.fill = 'rgb(193,191,182)';
-            child.style.stroke = 'rgb(193,191,182)';
+    function setFeatureArrowColor(color) {
+        for (var i=0; i < featureArrow.children.length; i++) {
+            var child = featureArrow.children[i];
+            if (child.tagName === 'polygon') {
+                child.style.fill = color;
+                child.style.stroke = color;
+            }
         }
     }
+    demoErrorDiv.style.display = 'none';
+    setFeatureArrowColor('rgb(193,191,182)');
 
     // Now we do SIP.js stuff
-    var aliceUA = createUA(aliceURI, aliceName);
-    var bobUA   = createUA(bobURI, bobName);
-    /*
-     * Custom media handler factories don't have great compatibility with
-     * our WebRTC function caching (like SIP.WebRTC.RTCPeerConnection)
-     */
-    var aliceDataUA = createDataUA(aliceURI, aliceName);
-    var bobDataUA = createDataUA(bobURI, bobName);
+    window.aliceUA = createUA(aliceURI, aliceName);
+    window.bobUA   = createUA(bobURI, bobName);
+    window.aliceDataUA = createDataUA(aliceURI, aliceName);
+    window.bobDataUA = createDataUA(bobURI, bobName);
+
+    // We want to only run the demo if all users for the demo can register
+    var numToRegister = 4;
+    var numRegistered = 0;
+    var registrationFailed = false;
+    var markAsRegistered = function () {
+        numRegistered += 1;
+        if (numRegistered >= numToRegister && !registrationFailed) {
+            setupInterfaces();
+        }
+    };
+    var failRegistration = function () {
+        registrationFailed = true;
+        failInterfaceSetup();
+    };
+    // We don't want to proceed until we've registered all users.
+    // For each registered user, increase the counter.
+    aliceUA.on('registered', markAsRegistered);
+    bobUA.on('registered', markAsRegistered);
+    aliceDataUA.on('registered', markAsRegistered);
+    bobDataUA.on('registered', markAsRegistered);
+    // If any registration fails, then we need to disable the app and tell the
+    // user that we could not register them.
+    aliceUA.on('registrationFailed', failRegistration);
+    bobUA.on('registrationFailed', failRegistration);
+    aliceDataUA.on('registrationFailed', failRegistration);
+    bobDataUA.on('registrationFailed', failRegistration);
+
     // Unregister the user agents and terminate all active sessions when the
     // window closes or when we navigate away from the page
     window.onunload = function () {
@@ -542,28 +574,42 @@ if (SIP.WebRTC.isSupported()) {
         bobUA.stop();
         aliceDataUA.stop();
         bobDataUA.stop();
-    }
+    };
 
-    setUpVideoInterface(aliceUA, bobURI, 'video-of-bob', 'alice-video-button');
-    setUpVideoInterface(bobUA, aliceURI, 'video-of-alice', 'bob-video-button');
-    setUpMessageInterface(aliceUA, bobURI,
-                          'alice-message-display',
-                          'alice-message-input',
-                          'alice-message-button');
-    setUpMessageInterface(bobUA, aliceURI,
-                          'bob-message-display',
-                          'bob-message-input',
-                          'bob-message-button');
-    setUpDataInterface(aliceDataUA, bobURI,
-                       'alice-data-display',
-                       'alice-file-choose-input',
-                       'alice-filename',
-                       'alice-data-share-button',
-                       'alice-file-error-msg');
-    setUpDataInterface(bobDataUA, aliceURI,
-                       'bob-data-display',
-                       'bob-file-choose-input',
-                       'bob-filename',
-                       'bob-data-share-button',
-                       'bob-file-error-msg');
+    // Only run the demo if we could register every user agent
+    function setupInterfaces() {
+        setUpVideoInterface(aliceUA, bobURI, 'video-of-bob', 'alice-video-button');
+        setUpVideoInterface(bobUA, aliceURI, 'video-of-alice', 'bob-video-button');
+        setUpMessageInterface(aliceUA, bobURI,
+                              'alice-message-display',
+                              'alice-message-input',
+                              'alice-message-button');
+        setUpMessageInterface(bobUA, aliceURI,
+                              'bob-message-display',
+                              'bob-message-input',
+                              'bob-message-button');
+        setUpDataInterface(aliceDataUA, bobURI,
+                           'alice-data-display',
+                           'alice-file-choose-input',
+                           'alice-filename',
+                           'alice-data-share-button',
+                           'alice-file-error-msg');
+        setUpDataInterface(bobDataUA, aliceURI,
+                           'bob-data-display',
+                           'bob-file-choose-input',
+                           'bob-filename',
+                           'bob-data-share-button',
+                           'bob-file-error-msg');
+    }
+    function failInterfaceSetup() {
+        // Display an error message
+        demoErrorDiv.style.display = 'block';
+        setFeatureArrowColor('rgb(114,117,115)');
+        var overlayMessage = demoErrorDiv.getElementsByTagName('p')[0];
+        while (overlayMessage.firstChild) {
+            overlayMessage.removeChild(overlayMessage.firstChild);
+        }
+        overlayMessage.appendChild(document.createTextNode('Max registration limit hit. Could not register all user agents, so they cannot communicate. The app is disabled.'));
+    }
 }
+})();
