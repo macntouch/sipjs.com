@@ -75,8 +75,9 @@
 
 <p>When you call <code>invite</code>, the return value of that function call will be the session.  For example, if you were previously doing this:  </p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -100,12 +101,14 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
   <span class="comment">//display phone session in video element</span>
 }
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <p>You must now do this:</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -131,7 +134,8 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
   <span class="comment">//display phone session in video element</span>
 }
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h3 id="session-attributes">Session Attributes</h3>
 <p>A <code>session</code> has various attributes.  A few names of the attributes have been changed.</p>
@@ -139,6 +143,7 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
 <p>The <code>remote_identity</code> attribute is now named <code>remoteIdentity</code>.</p>
 
 <p>The <code>local_identity</code> attribute is now named <code>localIdentity</code>.</p>
+
     </div>
 
     <nav id="sideNav">
@@ -218,6 +223,28 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
       });
   });
 </script>
+
+<!-- Start Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
+
+(function() {
+var elem = document.createElement('script');
+elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+})();
+
+_qevents.push(
+{qacct:"p-WYGLU06W2MTuE",labels:"_fp.event.SIPjs Homepage"}
+);
+</script>
+<noscript>
+<img src="//pixel.quantserve.com/pixel/p-WYGLU06W2MTuE.gif?labels=_fp.event.SIPjs+Homepage" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+</noscript>
+<!-- End Quantcast tag -->
 
 
 </body>

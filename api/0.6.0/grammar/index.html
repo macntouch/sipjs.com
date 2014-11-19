@@ -59,24 +59,27 @@
 <p><em>If you are making source code changes to SIP.Grammar, be sure to run <code>grunt grammar</code> to rebuild the processed JavaScript file.</em></p>
 
 <ul id="markdown-toc">
-<li>
+  <li>
 <a href="#instance-variables">Instance Variables</a>    <ul>
-<li><a href="#syntaxerror"><code>SyntaxError</code></a></li>
+      <li><a href="#syntaxerror"><code>SyntaxError</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#methods">Methods</a>    <ul>
-<li><a href="#parseinput-startrule"><code>parse(input, startRule)</code></a></li>
+      <li><a href="#parseinput-startrule"><code>parse(input, startRule)</code></a></li>
     </ul>
-</li>
-</ul><div class="dev">
+  </li>
+</ul>
+
+<div class="dev">
 
   <h2 class="no_toc" id="dependencies">Dependencies</h2>
 
   <ul>
-<li>SIP.URI</li>
+    <li>SIP.URI</li>
     <li>SIP.NameAddrHeader</li>
   </ul>
+
 </div>
 
 <h2 id="instance-variables">Instance Variables</h2>
@@ -94,35 +97,44 @@
 <h4 id="parameters">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>input</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>input</code></td>
       <td><code>String</code></td>
       <td>The String to parse according to the Grammar.</td>
     </tr>
-<tr>
-<td><code>startRule</code></td>
+    <tr>
+      <td><code>startRule</code></td>
       <td><code>String</code></td>
       <td>The name of the grammar rule to parse the input against.</td>
     </tr>
-</tbody>
-</table><h4 id="returns">Returns</h4>
+  </tbody>
+</table>
+
+<h4 id="returns">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>Object|Integer</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Object|Integer</code></td>
       <td>The data parsed, or -1 if the input failed to parse.</td>
-    </tr></tbody>
+    </tr>
+  </tbody>
 </table>
+
 		</div>
 
 		<nav id="sideNav">
@@ -286,6 +298,28 @@
       });
   });
 </script>
+
+<!-- Start Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
+
+(function() {
+var elem = document.createElement('script');
+elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+})();
+
+_qevents.push(
+{qacct:"p-WYGLU06W2MTuE",labels:"_fp.event.SIPjs Homepage"}
+);
+</script>
+<noscript>
+<img src="//pixel.quantserve.com/pixel/p-WYGLU06W2MTuE.gif?labels=_fp.event.SIPjs+Homepage" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+</noscript>
+<!-- End Quantcast tag -->
 
 
 </body>

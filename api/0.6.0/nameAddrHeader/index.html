@@ -57,39 +57,42 @@
 <p>The SIP.NameAddrHeader constructor represents the common SIP header format containing a SIP URI and optional display name.</p>
 
 <ul id="markdown-toc">
-<li>
+  <li>
 <a href="#construction">Construction</a>    <ul>
-<li><a href="#new-sipnameaddrheaderuri-displayname-parameters"><code>new SIP.NameAddrHeader(uri, displayName, parameters)</code></a></li>
+      <li><a href="#new-sipnameaddrheaderuri-displayname-parameters"><code>new SIP.NameAddrHeader(uri, displayName, parameters)</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-variables">Instance Variables</a>    <ul>
-<li><a href="#uri"><code>uri</code></a></li>
+      <li><a href="#uri"><code>uri</code></a></li>
       <li><a href="#displayname"><code>displayName</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-<li><a href="#setparamkey-value"><code>setParam(key, value)</code></a></li>
+      <li><a href="#setparamkey-value"><code>setParam(key, value)</code></a></li>
       <li><a href="#getparamkey"><code>getParam(key)</code></a></li>
       <li><a href="#hasparamkey"><code>hasParam(key)</code></a></li>
       <li><a href="#deleteparamkey"><code>deleteParam(key)</code></a></li>
       <li><a href="#clearparams"><code>clearParams()</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#static-methods">Static Methods</a>    <ul>
-<li><a href="#parsenameaddrheader"><code>parse(name_addr_header)</code></a></li>
+      <li><a href="#parsenameaddrheader"><code>parse(name_addr_header)</code></a></li>
     </ul>
-</li>
-</ul><div class="dev">
+  </li>
+</ul>
+
+<div class="dev">
 
   <h2 class="no_toc" id="dependencies">Dependencies</h2>
 
   <ul>
-<li>SIP.URI</li>
+    <li>SIP.URI</li>
     <li>SIP.Grammar</li>
   </ul>
+
 </div>
 
 <h2 id="construction">Construction</h2>
@@ -99,30 +102,34 @@
 <h3 id="new-sipnameaddrheaderuri-displayname-parameters"><code>new SIP.NameAddrHeader(uri, displayName, parameters)</code></h3>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>uri</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>uri</code></td>
       <td><code>String|SIP.URI</code></td>
       <td>The URI portion of the header. Strings will be parsed with <code>SIP.URI.parse()</code>
 </td>
     </tr>
-<tr>
-<td><code>displayName</code></td>
+    <tr>
+      <td><code>displayName</code></td>
       <td><code>String</code></td>
       <td>The display portion of the NameAddrHeader</td>
     </tr>
-<tr>
-<td><code>parameters</code></td>
+    <tr>
+      <td><code>parameters</code></td>
       <td><code>Object</code></td>
       <td>Key-value pairs (<code>String</code> values only) to append to the header as parameters.</td>
     </tr>
-</tbody>
-</table><h2 id="instance-variables">Instance Variables</h2>
+  </tbody>
+</table>
+
+<h2 id="instance-variables">Instance Variables</h2>
 
 <h3 id="uri"><code>uri</code></h3>
 
@@ -145,109 +152,149 @@
 <h4 id="parameters-1">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
     </tr>
-<tr>
-<td><code>value</code></td>
+    <tr>
+      <td><code>value</code></td>
       <td><code>String</code></td>
       <td>Optional parameter value</td>
     </tr>
-</tbody>
-</table><h3 id="getparamkey"><code>getParam(key)</code></h3>
+  </tbody>
+</table>
+
+<h3 id="getparamkey"><code>getParam(key)</code></h3>
 
 <p>Gets the value of the given header parameter. Returns <code>undefined</code> if the parameter does not exist in the parameter set.</p>
 
 <h4 id="parameters-2">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
-    </tr></tbody>
-</table><h4 id="returns">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>String</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>String</code></td>
       <td>Value of the given header parameter.</td>
-    </tr></tbody>
-</table><h3 id="hasparamkey"><code>hasParam(key)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="hasparamkey"><code>hasParam(key)</code></h3>
 
 <p>Verifies the existence of the given header parameter.</p>
 
 <h4 id="parameters-3">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
-    </tr></tbody>
-</table><h4 id="returns-1">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-1">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>boolean</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>boolean</code></td>
       <td>
 <code>true</code> if the parameter exists, <code>false</code> otherwise.</td>
-    </tr></tbody>
-</table><h3 id="deleteparamkey"><code>deleteParam(key)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="deleteparamkey"><code>deleteParam(key)</code></h3>
 
 <p>Deletes the given parameter from the URI.</p>
 
 <h4 id="parameters-4">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>key</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>key</code></td>
       <td><code>String</code></td>
       <td>Parameter name</td>
-    </tr></tbody>
-</table><h4 id="returns-2">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-2">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>String</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>String</code></td>
       <td>Value of the deleted header parameter</td>
-    </tr></tbody>
-</table><h3 id="clearparams"><code>clearParams()</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="clearparams"><code>clearParams()</code></h3>
 
 <p>Removes all of the header parameters.</p>
 
@@ -260,28 +307,39 @@
 <h4 id="parameters-5">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>name_addr_header</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name_addr_header</code></td>
       <td><code>String</code></td>
       <td>The raw String to be parsed as a NameAddrHeader</td>
-    </tr></tbody>
-</table><h4 id="returns-3">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-3">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>SIP.NameAddrHeader</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>SIP.NameAddrHeader</code></td>
       <td>The parsed <code>SIP.NameAddrHeader</code> on success.  Otherwise, <code>undefined</code>.</td>
-    </tr></tbody>
+    </tr>
+  </tbody>
 </table>
+
 		</div>
 
 		<nav id="sideNav">
@@ -445,6 +503,28 @@
       });
   });
 </script>
+
+<!-- Start Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
+
+(function() {
+var elem = document.createElement('script');
+elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+})();
+
+_qevents.push(
+{qacct:"p-WYGLU06W2MTuE",labels:"_fp.event.SIPjs Homepage"}
+);
+</script>
+<noscript>
+<img src="//pixel.quantserve.com/pixel/p-WYGLU06W2MTuE.gif?labels=_fp.event.SIPjs+Homepage" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+</noscript>
+<!-- End Quantcast tag -->
 
 
 </body>
