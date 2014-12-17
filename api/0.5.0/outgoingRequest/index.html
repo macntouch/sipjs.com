@@ -57,26 +57,28 @@
 <p>An OutgoingRequest is a data structure that represents an Outgoing SIP Request and its attributes.</p>
 
 <ul id="markdown-toc">
-<li><a href="#construction">Construction</a></li>
+  <li><a href="#construction">Construction</a></li>
   <li>
 <a href="#instance-attributes">Instance Attributes</a>    <ul>
-<li><a href="#method"><code>method</code></a></li>
+      <li><a href="#method"><code>method</code></a></li>
       <li><a href="#ruri"><code>ruri</code></a></li>
       <li><a href="#ua"><code>ua</code></a></li>
       <li><a href="#headers"><code>headers</code></a></li>
       <li><a href="#body"><code>body</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-<li><a href="#setheadernamevalue"><code>setHeader(name,value)</code></a></li>
+      <li><a href="#setheadernamevalue"><code>setHeader(name,value)</code></a></li>
       <li><a href="#getheadername"><code>getHeader(name)</code></a></li>
       <li><a href="#getheadersname"><code>getHeaders(name)</code></a></li>
       <li><a href="#hasheadername"><code>hasHeader(name)</code></a></li>
       <li><a href="#tostring"><code>toString()</code></a></li>
     </ul>
-</li>
-</ul><h2 id="construction">Construction</h2>
+  </li>
+</ul>
+
+<h2 id="construction">Construction</h2>
 
 <p>The OutgoingRequest constructor is intended for internal use only.</p>
 
@@ -111,124 +113,170 @@
 <h4 id="parameters">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody>
-<tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>The name of the SIP header to replace</td>
     </tr>
-<tr>
-<td><code>value</code></td>
+    <tr>
+      <td><code>value</code></td>
       <td><code>String|Array</code></td>
       <td>The value of to place in the SIP header field</td>
     </tr>
-</tbody>
-</table><h3 id="getheadername"><code>getHeader(name)</code></h3>
+  </tbody>
+</table>
+
+<h3 id="getheadername"><code>getHeader(name)</code></h3>
 
 <p>Gets the value of the given header name.</p>
 
 <h4 id="parameters-1">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>The name of the SIP header to get the value of</td>
-    </tr></tbody>
-</table><h4 id="returns">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>String | undefined</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>String | undefined</code></td>
       <td>Returns the specified header, undefined if header doesn’t exist</td>
-    </tr></tbody>
-</table><h3 id="getheadersname"><code>getHeaders(name)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="getheadersname"><code>getHeaders(name)</code></h3>
 
 <p>Gets the header(s) of the given name.</p>
 
 <h4 id="parameters-2">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>The name of the SIP header to get</td>
-    </tr></tbody>
-</table><h4 id="returns-1">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-1">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>Array</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Array</code></td>
       <td>All of the headers of the specified name</td>
-    </tr></tbody>
-</table><h3 id="hasheadername"><code>hasHeader(name)</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="hasheadername"><code>hasHeader(name)</code></h3>
 
 <p>Verify the existence of the given header name</p>
 
 <h4 id="parameters-3">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>name</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
       <td><code>String</code></td>
       <td>The name of the SIP header to verify</td>
-    </tr></tbody>
-</table><h4 id="returns-2">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns-2">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>boolean</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>boolean</code></td>
       <td>
 <code>true</code> if the header with the given name exists, <code>false</code> otherwise</td>
-    </tr></tbody>
-</table><h3 id="tostring"><code>toString()</code></h3>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="tostring"><code>toString()</code></h3>
 
 <p>Returns a string of the SIP packet generated by the OutgoingRequest</p>
 
 <h4 id="returns-3">Returns</h4>
 
 <table>
-<thead><tr>
-<th>Type</th>
+  <thead>
+    <tr>
+      <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>String</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>String</code></td>
       <td>A string of the SIP packet generated by the OutgoingRequest</td>
-    </tr></tbody>
-</table><h4 id="example">Example</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="example">Example</h4>
 
 <div>
 <div class="CodeRay">
@@ -251,6 +299,7 @@ Content-Length: 0
 </pre></div>
 </div>
 </div>
+
 		</div>
 
 		<nav id="sideNav">
