@@ -47,7 +47,8 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="transfer">Transfer</h1>
+      
+<h1 id="transfer">Transfer</h1>
 
 <h2 id="setup">Setup</h2>
 
@@ -56,7 +57,7 @@
 <h2 id="making-the-call">Making the Call</h2>
 <p>As before, we will create a user agent using <code>SIP.UA()</code> and create a call using <code>userAgent.invite('test@example.onsip.com')</code></p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -78,7 +79,7 @@
 
 <p>Use the <code>session.refer(target)</code> method to make a blind transfer between the current user agent on the <code>session</code> call and the user agent at the <code>target</code> address.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -98,7 +99,7 @@
 <h2 id="handling-a-blind-transfer">Handling a Blind Transfer</h2>
 <p>When receiving a refer, you need to handle the request and attach the new media stream to the video element.  This is done by catching the <code>refer</code> event and calling the followRefer function with a callback using <code>session.on('refer', session.followRefer(onReferred))</code>.  This function gets passed in the refer request as well as the new session.  Then we must display the new session using the <code>attachMediaStream()</code> function like in previous examples.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -121,6 +122,7 @@
 </tr></table>
 </div>
 
+
     </div>
 
     <nav id="sideNav">
@@ -131,7 +133,7 @@
       <ul>
         <li><a href="/guides/server-configuration/freeswitch/">FreeSWITCH</a></li>
         <li><a href="/guides/server-configuration/asterisk/">Asterisk</a></li>
-        <li><a href="/guides/server-configuration/onsip-network/">OnSIP Network</a></li>
+        <li><a href="/guides/server-configuration/onsip-network/">OnSIP</a></li>
       </ul>
     </li>
     <li class="parent">
@@ -160,7 +162,7 @@
   <div class="wrapper">
     <div id="onsip-stamp">
       <span id="made-by-prefix">made by</span>
-      <a href="https://www.onsip.com/webrtc-sip-network" id="onsip"></a>
+      <a href="http://developer.onsip.com" id="onsip"></a>
     </div>
     <nav class="left">
       <ul class="horizontal">

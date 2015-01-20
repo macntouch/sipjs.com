@@ -47,7 +47,8 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="receive-a-call">Receive a Call</h1>
+      
+<h1 id="receive-a-call">Receive a Call</h1>
 
 
 <h3 id="html">HTML</h3>
@@ -58,7 +59,7 @@
 
 <p>Within the <code>&lt;body&gt;</code> tags, there is a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person being called.  There is also a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that is being sent to the person being called.  The local video stream should always be muted to prevent feedback.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -95,7 +96,7 @@
 
 <p>In order to make calls and send messages, create a SIP user agent.  Calling the <code>SIP.UA()</code> method, with a uri a user agent. You will typically need to also provide an authorization user and password as well. Replace the information below with your own information.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -119,6 +120,7 @@
 <iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/OnSIP/vW7Lw/embedded/js,html,css,result/">
 </iframe>
 
+
     </div>
 
     <nav id="sideNav">
@@ -129,7 +131,7 @@
       <ul>
         <li><a href="/guides/server-configuration/freeswitch/">FreeSWITCH</a></li>
         <li><a href="/guides/server-configuration/asterisk/">Asterisk</a></li>
-        <li><a href="/guides/server-configuration/onsip-network/">OnSIP Network</a></li>
+        <li><a href="/guides/server-configuration/onsip-network/">OnSIP</a></li>
       </ul>
     </li>
     <li class="parent">
@@ -158,7 +160,7 @@
   <div class="wrapper">
     <div id="onsip-stamp">
       <span id="made-by-prefix">made by</span>
-      <a href="https://www.onsip.com/webrtc-sip-network" id="onsip"></a>
+      <a href="http://developer.onsip.com" id="onsip"></a>
     </div>
     <nav class="left">
       <ul class="horizontal">

@@ -47,7 +47,8 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="converting-to-sipjs">Converting to SIP.js</h1>
+      
+<h1 id="converting-to-sipjs">Converting to SIP.js</h1>
 
 
 <p>SIP.js is a hard fork of the library <a href="http://www.jssip.net/">JsSIP</a>.  As such, if you want to convert your JsSIP application to use the SIP.js library there are a few changes that need to be made.  Below is a checklist of things that you will need to change.</p>
@@ -75,7 +76,7 @@
 
 <p>When you call <code>invite</code>, the return value of that function call will be the session.  For example, if you were previously doing this:  </p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -106,7 +107,7 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
 
 <p>You must now do this:</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -154,7 +155,7 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
       <ul>
         <li><a href="/guides/server-configuration/freeswitch/">FreeSWITCH</a></li>
         <li><a href="/guides/server-configuration/asterisk/">Asterisk</a></li>
-        <li><a href="/guides/server-configuration/onsip-network/">OnSIP Network</a></li>
+        <li><a href="/guides/server-configuration/onsip-network/">OnSIP</a></li>
       </ul>
     </li>
     <li class="parent">
@@ -183,7 +184,7 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
   <div class="wrapper">
     <div id="onsip-stamp">
       <span id="made-by-prefix">made by</span>
-      <a href="https://www.onsip.com/webrtc-sip-network" id="onsip"></a>
+      <a href="http://developer.onsip.com" id="onsip"></a>
     </div>
     <nav class="left">
       <ul class="horizontal">

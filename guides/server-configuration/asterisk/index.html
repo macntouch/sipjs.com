@@ -47,9 +47,10 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <section class="callout">
+      
+<section class="callout">
 <h3>Tired of fighting with configs?</h3>
-<p>Try <a href="/">SIP.js</a> and <a href="http://www.onsip.com/webrtc-sip-network/">OnSIP Network</a> — a perfect pairing for WebRTC!</p>
+<p>Try <a href="/">SIP.js</a> and <a href="http://developer.onsip.com/">OnSIP</a> — a perfect pairing for WebRTC!</p>
 </section>
 
 <h1 id="configure-asterisk">Configure Asterisk</h1>
@@ -135,7 +136,7 @@
 By default, Asterisk config files are located in <code>/etc/asterisk/</code>.
 Start by editing <code>http.conf</code> and make sure that the following lines are uncommented:</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -156,7 +157,7 @@ bindport=8088 ; Replace this with the port you want to listen on
 
 <p>Next, edit <code>sip.conf</code>. Here you will set up two peers, one for a WebRTC client and one for a non-WebRTC SIP client. The WebRTC peer requires encryption, avpf, and icesupport to be enabled. In most cases, directmedia should be disabled. Also under the WebRTC client, the transport needs to be listed as ‘ws’ to allow websocket connections. All of these config lines should be under the peer itself; setting these config lines globally might not work.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -225,7 +226,7 @@ context=default
 
 <p>Lastly, set up <code>extensions.conf</code> to allow the two peers to call each other.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -250,7 +251,7 @@ exten =&gt; 1061,1,Dial(SIP/1061) ; Dialing 1061 will call the SIP client regist
 
 <p>The following configuration example creates a UA for the Asterisk configuration above. Replace the values with the values from your config.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -331,7 +332,7 @@ ua.invite(<span class="string"><span class="delimiter">'</span><span class="cont
       <ul>
         <li><a href="/guides/server-configuration/freeswitch/">FreeSWITCH</a></li>
         <li><a href="/guides/server-configuration/asterisk/">Asterisk</a></li>
-        <li><a href="/guides/server-configuration/onsip-network/">OnSIP Network</a></li>
+        <li><a href="/guides/server-configuration/onsip-network/">OnSIP</a></li>
       </ul>
     </li>
     <li class="parent">
@@ -360,7 +361,7 @@ ua.invite(<span class="string"><span class="delimiter">'</span><span class="cont
   <div class="wrapper">
     <div id="onsip-stamp">
       <span id="made-by-prefix">made by</span>
-      <a href="https://www.onsip.com/webrtc-sip-network" id="onsip"></a>
+      <a href="http://developer.onsip.com" id="onsip"></a>
     </div>
     <nav class="left">
       <ul class="horizontal">
