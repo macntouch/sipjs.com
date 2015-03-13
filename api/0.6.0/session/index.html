@@ -766,7 +766,7 @@ INVALID_STATE_ERROR</p>
 
 <p>Fired when an established call ends.</p>
 
-<p>Please note:  The <code>terminated</code> event in 0.6.x versions does not always behave as you would expect.  Instead, to reliably determine the end of a call, it is recommended that you provide listeners for both the <code>failed</code> (for when a Session fails before being accepted) and <code>bye</code> (for when an accepted Session is terminated) events.  This is a known issue and is resolved properly on the <code>master</code> branch, to be released in 0.7.0.</p>
+<p>Please note:  The <code>terminated</code> event in 0.6.x versions does not always behave as you would expect.  Instead, to reliably determine the end of a call, it is recommended that you provide listeners for both the <code>failed</code> (for when a Session fails before being accepted) and <code>bye</code> (for when an accepted Session is terminated) events.  Due to a bug, you also need to listen for the <code>cancel</code> event.  This is a known issue and is resolved properly on the <code>master</code> branch, to be released in 0.7.0.</p>
 
 <h4 id="onterminated-functionmessage-cause-"><code>on('terminated', function(message, cause) {})</code></h4>
 
