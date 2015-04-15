@@ -2454,6 +2454,9 @@ var Hacks = {
       }
     },
     unmaskDtls: function (sdp) {
+      // Break all host candidates.
+      //sdp = sdp.replace(/. typ host generation 0/gmi, ' typ host generation 0');
+
       /**
        * Chrome does not handle DTLS correctly (Canaray does, but not production)
        * keeping Chrome as SDES until DTLS is fixed (comment out 'is_opera' condition)
