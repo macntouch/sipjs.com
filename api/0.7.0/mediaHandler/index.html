@@ -168,32 +168,12 @@ a custom Rock-Paper-Scissors MediaHandler in our test suite.</p>
     <tr>
       <td><code>renderHint.local</code></td>
       <td><code>Object</code></td>
-      <td>Optional object that contains local media properties from the application to the MediaHandler (see below). If not provided no local media will be rendered.</td>
-    </tr>
-    <tr>
-      <td><code>renderHint.local.audio</code></td>
-      <td><code>Object</code></td>
-      <td>Optional page element where the local audio stream should be rendered to. If not provided no local audio stream will be rendered.</td>
-    </tr>
-    <tr>
-      <td><code>renderHint.local.video</code></td>
-      <td><code>Object</code></td>
-      <td>Optional page element where the local video stream should be rendered to. If not provided no local video stream will be rendered. If both the audio and video elements are provided, the video element will be muted to prevent audio from playing twice.</td>
+      <td>Optional <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> element (or <code>Array</code> of elements) to use to render the local media. If not provided, no local media will be rendered automatically.</td>
     </tr>
     <tr>
       <td><code>renderHint.remote</code></td>
       <td><code>Object</code></td>
-      <td>Optional object that contains remote media properties from the application to the MediaHandler (see below). If not provided no remote media will be rendered.</td>
-    </tr>
-    <tr>
-      <td><code>renderHint.remote.audio</code></td>
-      <td><code>Object</code></td>
-      <td>Optional page element where the remote audio stream should be rendered to. If not provided no remote audio stream will be rendered.</td>
-    </tr>
-    <tr>
-      <td><code>renderHint.remote.video</code></td>
-      <td><code>Object</code></td>
-      <td>Optional page element where the remote video stream should be rendered to. If not provided no remote video stream will be rendered. If both the audio and video elements are provided, the video element will be muted to prevent audio from playing twice.</td>
+      <td>Optional <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> element (or <code>Array</code> of elements) to use to render the remote media. If not provided, no remote media will be rendered automatically.</td>
     </tr>
   </tbody>
 </table>
