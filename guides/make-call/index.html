@@ -31,7 +31,7 @@
       <a id="logo-link" href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
       <ul id="full-nav" class="horizontal mobile-hide">
         <li><a href="/download/">Download</a></li>
-        <li><a id="api-nav" href="/api/0.6.0/">API</a></li>
+        <li><a id="api-nav" href="/api/0.7.0/">API</a></li>
         <li><a href="/guides/">Guides</a></li>
         <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
@@ -47,19 +47,21 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="make-a-call">Make a Call</h1>
+      
+<h1 id="make-a-call">Make a Call</h1>
 
 
 <h3 id="html">HTML</h3>
 
-<p>Create an HTML file. In the file include the <a href="/download/">SIP.js library</a>, as well as any other javascript that will be used.  </p>
+<p>Create an HTML file. In the file include the <a href="/download/">SIP.js library</a>, as well as any other javascript that will be used.</p>
 
-<p>A <code>&lt;video&gt;</code> element is need to display the video stream.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC. </p>
+<p>A <code>&lt;video&gt;</code> element is need to display the video stream.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC.</p>
 
 <p>Within the <code>&lt;body&gt;</code> tags, there is a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person being called.  There is also a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that is being sent to the person being called.  The local video stream should always be muted to prevent feedback.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -81,11 +83,12 @@
     <span class="tag">&lt;video</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">localVideo</span><span class="delimiter">"</span></span> <span class="attribute-name">muted</span>=<span class="string"><span class="delimiter">"</span><span class="content">muted</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/video&gt;</span>
 
     <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">sip-0.6.3-min.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
-    <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">my-javascript.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span> 
+    <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">my-javascript.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
   <span class="tag">&lt;/body&gt;</span>
 <span class="tag">&lt;/html&gt;</span>
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h3 id="javascript">Javascript</h3>
 
@@ -93,23 +96,26 @@
 
 <p>In order to make calls and send messages, create a SIP user agent.  Calling the <code>SIP.UA()</code> method, with no parameters, creates an anonymous user agent.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 </pre></td>
   <td class="code"><pre><span class="keyword">var</span> userAgent = <span class="keyword">new</span> SIP.UA();
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h4 id="sending-an-invite">Sending an Invite</h4>
 
 <p>After the user agent has connected to the SIP server, an invite can be sent to make a call and thereby create a SIP session.</p>
 
-<p>To send an invite you will need the target user’s SIP address and some options to define the session. </p>
+<p>To send an invite you will need the target user’s SIP address and some options to define the session.</p>
 
 <p>Create an options object to define your session.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -143,16 +149,18 @@
         }
     };
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <p>Then call the <code>.invite()</code> method with the target SIP address and the <code>options</code> object containing session information.</p>
 
-<p>After invite is called, the browser will ask for permission to access the camera and microphone.  Permission must be allowed to make the call.  The person being called has the choice of accepting or rejecting the call.  </p>
+<p>After invite is called, the browser will ask for permission to access the camera and microphone.  Permission must be allowed to make the call.  The person being called has the choice of accepting or rejecting the call.</p>
 
 <p>An <code>endCall</code> button is added to terminate the session using the <code>.bye()</code> method.</p>
 
 <iframe style="width: 100%; height: 410px" src="http://jsfiddle.net/OnSIP/W93H6/embedded/js,html,css,result/">
 </iframe>
+
     </div>
 
     <nav id="sideNav">

@@ -31,7 +31,7 @@
       <a id="logo-link" href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
       <ul id="full-nav" class="horizontal mobile-hide">
         <li><a href="/download/">Download</a></li>
-        <li><a id="api-nav" href="/api/0.6.0/">API</a></li>
+        <li><a id="api-nav" href="/api/0.7.0/">API</a></li>
         <li><a href="/guides/">Guides</a></li>
         <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
@@ -47,19 +47,21 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="receive-a-call">Receive a Call</h1>
+      
+<h1 id="receive-a-call">Receive a Call</h1>
 
 
 <h3 id="html">HTML</h3>
 
-<p>Create an HTML file. In the file include the <a href="/download/">SIP.js library</a>, as well as any other javascript that will be used.  </p>
+<p>Create an HTML file. In the file include the <a href="/download/">SIP.js library</a>, as well as any other javascript that will be used.</p>
 
-<p>A <code>&lt;video&gt;</code> element is need to display the video stream.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC. </p>
+<p>A <code>&lt;video&gt;</code> element is need to display the video stream.  The <code>&lt;video&gt;</code> element adds a standard way for browsers to display video over the internet without additional plugins. This makes <code>&lt;video&gt;</code> elements perfect for WebRTC.</p>
 
 <p>Within the <code>&lt;body&gt;</code> tags, there is a <code>remoteVideo</code> <code>&lt;video&gt;</code> element, to display the video of the person being called.  There is also a <code>localVideo</code> <code>&lt;video&gt;</code> element, to display the video stream that is being sent to the person being called.  The local video stream should always be muted to prevent feedback.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -81,11 +83,12 @@
     <span class="tag">&lt;video</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">localVideo</span><span class="delimiter">"</span></span> <span class="attribute-name">muted</span>=<span class="string"><span class="delimiter">"</span><span class="content">muted</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/video&gt;</span>
 
     <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">sip-0.6.3-min.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
-    <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">my-javascript.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span> 
+    <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">my-javascript.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
   <span class="tag">&lt;/body&gt;</span>
 <span class="tag">&lt;/html&gt;</span>
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h3 id="javascript">Javascript</h3>
 
@@ -93,8 +96,9 @@
 
 <p>In order to make calls and send messages, create a SIP user agent.  Calling the <code>SIP.UA()</code> method, with a uri a user agent. You will typically need to also provide an authorization user and password as well. Replace the information below with your own information.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -106,7 +110,8 @@
         <span class="key">password</span>: <span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>
 });
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h3 id="accept-a-call">Accept a Call</h3>
 
@@ -114,6 +119,8 @@
 
 <iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/OnSIP/vW7Lw/embedded/js,html,css,result/">
 </iframe>
+
+
     </div>
 
     <nav id="sideNav">

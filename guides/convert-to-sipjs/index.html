@@ -31,7 +31,7 @@
       <a id="logo-link" href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
       <ul id="full-nav" class="horizontal mobile-hide">
         <li><a href="/download/">Download</a></li>
-        <li><a id="api-nav" href="/api/0.6.0/">API</a></li>
+        <li><a id="api-nav" href="/api/0.7.0/">API</a></li>
         <li><a href="/guides/">Guides</a></li>
         <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
@@ -47,7 +47,8 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="converting-to-sipjs">Converting to SIP.js</h1>
+      
+<h1 id="converting-to-sipjs">Converting to SIP.js</h1>
 
 
 <p>SIP.js is a hard fork of the library <a href="http://www.jssip.net/">JsSIP</a>.  As such, if you want to convert your JsSIP application to use the SIP.js library there are a few changes that need to be made.  Below is a checklist of things that you will need to change.</p>
@@ -71,12 +72,13 @@
 
 <p>There are also a few new session events, such as <code>referred</code>, <code>cancel</code>, and <code>failed</code>.</p>
 
-<p>A larger change was made to the <code>newRTCSession</code> event.  This event has been changed to <code>invite</code>.  Also, it previously fired when receiving an invite as well as when sending an invite.  Now, the <code>invite</code> only fires upon receiving an event.  </p>
+<p>A larger change was made to the <code>newRTCSession</code> event.  This event has been changed to <code>invite</code>.  Also, it previously fired when receiving an invite as well as when sending an invite.  Now, the <code>invite</code> only fires upon receiving an event.</p>
 
-<p>When you call <code>invite</code>, the return value of that function call will be the session.  For example, if you were previously doing this:  </p>
+<p>When you call <code>invite</code>, the return value of that function call will be the session.  For example, if you were previously doing this:</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -100,12 +102,14 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
   <span class="comment">//display phone session in video element</span>
 }
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <p>You must now do this:</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -131,7 +135,8 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
   <span class="comment">//display phone session in video element</span>
 }
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h3 id="session-attributes">Session Attributes</h3>
 <p>A <code>session</code> has various attributes.  A few names of the attributes have been changed.</p>
@@ -139,6 +144,7 @@ MyPhone.on(<span class="string"><span class="delimiter">'</span><span class="con
 <p>The <code>remote_identity</code> attribute is now named <code>remoteIdentity</code>.</p>
 
 <p>The <code>local_identity</code> attribute is now named <code>localIdentity</code>.</p>
+
     </div>
 
     <nav id="sideNav">

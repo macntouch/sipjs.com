@@ -31,7 +31,7 @@
       <a id="logo-link" href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
       <ul id="full-nav" class="horizontal mobile-hide">
         <li><a href="/download/">Download</a></li>
-        <li><a id="api-nav" href="/api/0.6.0/">API</a></li>
+        <li><a id="api-nav" href="/api/0.7.0/">API</a></li>
         <li><a href="/guides/">Guides</a></li>
         <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
@@ -52,16 +52,17 @@
 			</nav>
 		</header>
 		<div id="content">
-			<h1 id="siptransport">SIP.Transport</h1>
+			
+<h1 id="siptransport">SIP.Transport</h1>
 
 <p>The transport layer is responsible for the actual transmission of requests
 and responses over network transports. For SIP.js, this includes maintaining the WebSocket connection, as well as sending and receiving SIP requests and responses over the WebSocket.</p>
 
 <ul id="markdown-toc">
-<li><a href="#construction">Construction</a></li>
+  <li><a href="#construction">Construction</a></li>
   <li>
 <a href="#instance-variables">Instance Variables</a>    <ul>
-<li><a href="#logger"><code>logger</code></a></li>
+      <li><a href="#logger"><code>logger</code></a></li>
       <li><a href="#ua"><code>ua</code></a></li>
       <li><a href="#ws"><code>ws</code></a></li>
       <li><a href="#server"><code>server</code></a></li>
@@ -71,32 +72,35 @@ and responses over network transports. For SIP.js, this includes maintaining the
       <li><a href="#reconnecttimer"><code>reconnectTimer</code></a></li>
       <li><a href="#lasttransporterror"><code>lastTransportError</code></a></li>
     </ul>
-</li>
+  </li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-<li><a href="#sendmsg"><code>send(msg)</code></a></li>
+      <li><a href="#sendmsg"><code>send(msg)</code></a></li>
       <li><a href="#connect"><code>connect()</code></a></li>
       <li><a href="#disconnect"><code>disconnect()</code></a></li>
     </ul>
-</li>
-</ul><div class="dev">
+  </li>
+</ul>
+
+<div class="dev">
 
   <h2 class="no_toc" id="dependencies">Dependencies</h2>
 
   <ul>
-<li>SIP.Parser.parseMessage</li>
+    <li>SIP.Parser.parseMessage</li>
     <li>SIP.IncomingRequest</li>
     <li>SIP.IncomingResponse</li>
     <li>SIP.sanityCheck</li>
     <li>SIP.UA.C</li>
     <li>WebSocket</li>
   </ul>
-<h3 class="no_toc" id="injected">Injected</h3>
+
+  <h3 class="no_toc" id="injected">Injected</h3>
 
   <h4 class="no_toc" id="sipua">SIP.UA</h4>
 
   <ul>
-<li>.getLogger</li>
+    <li>.getLogger</li>
     <li>.transport</li>
     <li>.status</li>
     <li>.emit</li>
@@ -111,11 +115,13 @@ and responses over network transports. For SIP.js, this includes maintaining the
     <li>.configuration.wsServerReconnectionTimeout</li>
     <li>WebSocket server</li>
   </ul>
-<h4 class="no_toc" id="wsserver">wsServer</h4>
+
+  <h4 class="no_toc" id="wsserver">wsServer</h4>
 
   <ul>
-<li>.ws_uri</li>
+    <li>.ws_uri</li>
   </ul>
+
 </div>
 <!-- end dev -->
 
@@ -174,17 +180,23 @@ event of error.</p>
 <h4 id="parameters">Parameters</h4>
 
 <table>
-<thead><tr>
-<th>Name</th>
+  <thead>
+    <tr>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
-    </tr></thead>
-<tbody><tr>
-<td><code>msg</code></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>msg</code></td>
       <td><code>SIP.OutgoingRequest|String</code></td>
       <td>A SIP Request (represented as a String or <a href="/api/0.6.0/sipMessage/">SIP.OutgoingRequest</a>) to send along the WebSocket.</td>
-    </tr></tbody>
-</table><h4 id="returns">Returns</h4>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="returns">Returns</h4>
 
 <p><code>Boolean</code> - <code>true</code> if the WebSocket is open for sending. Otherwise, <code>false</code></p>
 
@@ -219,6 +231,7 @@ event of error.</p>
   <p><em>Internal</em> Logs an error when the WebSocket errors. Errors typically also disconnect the WebSocket, so no extra handling is done here.</p>
 
 </div>
+
 		</div>
 
 		<nav id="sideNav">

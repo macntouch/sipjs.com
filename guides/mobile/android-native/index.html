@@ -31,7 +31,7 @@
       <a id="logo-link" href="/"><img id="logo" src="/shared/img/logo.png" alt="sip.js"></a>
       <ul id="full-nav" class="horizontal mobile-hide">
         <li><a href="/download/">Download</a></li>
-        <li><a id="api-nav" href="/api/0.6.0/">API</a></li>
+        <li><a id="api-nav" href="/api/0.7.0/">API</a></li>
         <li><a href="/guides/">Guides</a></li>
         <li><a href="https://github.com/onsip/sip.js" target="_blank">Github</a></li>
         <li><a href="/aboutus/" class="nav-aboutus">About Us</a></li>
@@ -47,29 +47,35 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="android-native-apps">Android Native Apps</h1>
+      
+<h1 id="android-native-apps">Android Native Apps</h1>
 
 <p>SIP.js web apps can be ported to Android using <a href="https://crosswalk-project.org/">Crosswalk</a>, which provides a WebRTC-capable WebView to display the web app without the conventional browser interface surrounding it. This guide will show you how to use Crosswalk to generate an Android app for the <a href="/demo-phone/">SIP.js Demo Phone</a> on Mac OS X. Linux and Windows users should be able to follow along, as well.</p>
 
 <h2 id="system-setup">System Setup</h2>
 
 <ul>
-<li>Create and go to a working directory: <code>mkdir /tmp/xwalk &amp;&amp; cd /tmp/xwalk</code>
+  <li>Create and go to a working directory: <code>mkdir /tmp/xwalk &amp;&amp; cd /tmp/xwalk</code>
 </li>
   <li>Install Crosswalk (instructions for <a href="https://crosswalk-project.org/#documentation/getting_started/linux_host_setup/Install-the-Oracle-JDK">OS X</a>, <a href="https://crosswalk-project.org/#documentation/getting_started/Linux_host_setup/Installation-for-Crosswalk-Android">Linux</a>, <a href="https://crosswalk-project.org/#documentation/getting_started/Windows_host_setup/Installation-for-Crosswalk-Android">Windows</a>)</li>
   <li>Ensure your Android device can connect to your computer: <a href="https://crosswalk-project.org/#documentation/getting_started/android_target_setup">Android Target Setup</a>
 </li>
-</ul><h2 id="project-configuration">Project Configuration</h2>
+</ul>
+
+<h2 id="project-configuration">Project Configuration</h2>
 
 <ul>
-<li>
+  <li>
     <p>Clone the <a href="https://github.com/onsip/sipjs-examples">sipjs-examples repository</a>: <code>git clone https://github.com/onsip/sipjs-examples</code></p>
   </li>
   <li>
     <p>Add an <a href="https://raw.githubusercontent.com/onsip/sipjs-examples/crosswalk/demo-phone/icon.png">icon.png</a> and a <a href="https://raw.githubusercontent.com/onsip/sipjs-examples/crosswalk/demo-phone/manifest.json">manifest.json</a> to the demo-phone directory of the checked-out repository. This tells Crosswalk how the app should appear on the phone and which page to load when it opens. More detail can be found in <a href="https://crosswalk-project.org/#documentation/manifest">the Crosswalk docs</a>:</p>
   </li>
-</ul><div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+</ul>
+
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -79,14 +85,15 @@ curl -o icon.png https://raw.githubusercontent.com/onsip/sipjs-examples/crosswal
 curl -o manifest.json https://raw.githubusercontent.com/onsip/sipjs-examples/crosswalk/demo-phone/manifest.json
 # (or just `git checkout crosswalk`)
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h2 id="native-app-generation">Native App Generation</h2>
 
 <p>Follow <a href="https://crosswalk-project.org/#documentation/getting_started/run_on_android">these steps from the Crosswalk docs</a>, substituting the project’s paths/filenames in as needed:</p>
 
 <ul>
-<li>Go to the unpacked Crosswalk Android directory: <code>cd /tmp/xwalk/crosswalk-5.34.104.5</code>
+  <li>Go to the unpacked Crosswalk Android directory: <code>cd /tmp/xwalk/crosswalk-5.34.104.5</code>
 </li>
   <li>Run the make_apk.py script with Python as follows: <code>python make_apk.py --manifest=../sipjs-examples/demo-phone/manifest.json</code>
 </li>
@@ -94,6 +101,7 @@ curl -o manifest.json https://raw.githubusercontent.com/onsip/sipjs-examples/cro
 </li>
   <li>If the installation is successful, your application should now be on the Android target. Find its icon in the application list and open it.</li>
 </ul>
+
     </div>
 
     <nav id="sideNav">
