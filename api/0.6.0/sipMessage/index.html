@@ -57,9 +57,9 @@
 <p>This page describes data structures for SIP packets:  Incoming Messages, Incoming Requests, Incoming Responses, and Outgoing Requests. While each has its own constructor, they share much similar structure, properties, and methods. As such, they are all documented together below.</p>
 
 <ul id="markdown-toc">
-  <li>
+<li>
 <a href="#instance-variables">Instance Variables</a>    <ul>
-      <li><a href="#logger"><code>logger</code></a></li>
+<li><a href="#logger"><code>logger</code></a></li>
       <li><a href="#ua"><code>ua</code></a></li>
       <li><a href="#headers"><code>headers</code></a></li>
       <li><a href="#method"><code>method</code></a></li>
@@ -82,10 +82,10 @@
       <li><a href="#transport"><code>transport</code></a></li>
       <li><a href="#servertransaction"><code>server_transaction</code></a></li>
     </ul>
-  </li>
+</li>
   <li>
 <a href="#instance-methods">Instance Methods</a>    <ul>
-      <li><a href="#setheadername-value"><code>setHeader(name, value)</code></a></li>
+<li><a href="#setheadername-value"><code>setHeader(name, value)</code></a></li>
       <li><a href="#addheadername-value"><code>addHeader(name, value)</code></a></li>
       <li><a href="#getheadername"><code>getHeader(name)</code></a></li>
       <li><a href="#getheadersname"><code>getHeaders(name)</code></a></li>
@@ -96,10 +96,8 @@
       <li><a href="#replycode-reason-extraheaders-body-onsuccess-onfailure"><code>reply(code, reason, extraHeaders, body, onSuccess, onFailure)</code></a></li>
       <li><a href="#replyslcode-reason"><code>reply_sl(code, reason)</code></a></li>
     </ul>
-  </li>
-</ul>
-
-<h2 id="instance-variables">Instance Variables</h2>
+</li>
+</ul><h2 id="instance-variables">Instance Variables</h2>
 
 <h3 id="logger"><code>logger</code></h3>
 
@@ -280,26 +278,22 @@
   <h3 class="no_toc" id="dependencies">Dependencies</h3>
 
   <ul>
-    <li>UA.C</li>
+<li>UA.C</li>
     <li>SIP.NameAddrHeader</li>
     <li>SIP.Utils.createRandomToken</li>
     <li>SIP.Utils.headerize</li>
     <li>SIP.C</li>
   </ul>
-
-  <h4 class="no_toc" id="injected">Injected</h4>
+<h4 class="no_toc" id="injected">Injected</h4>
 
   <ul>
-    <li>UA.getLogger</li>
+<li>UA.getLogger</li>
     <li>UA.configuration.displayName</li>
     <li>UA.configuration.uri</li>
     <li>UA.configuration.sipjsId</li>
     <li>UA.configuration.userAgentString</li>
   </ul>
-
-  <!--  Incoming Message -->
-
-  <h2 class="no_toc" id="incomingmessage">IncomingMessage</h2>
+<!--  Incoming Message --><h2 class="no_toc" id="incomingmessage">IncomingMessage</h2>
 
   <h3 class="no_toc" id="construction-1">Construction</h3>
 
@@ -308,13 +302,10 @@
   <h3 class="no_toc" id="dependencies-1">Dependencies</h3>
 
   <ul>
-    <li>SIP.Utils.headerize</li>
+<li>SIP.Utils.headerize</li>
     <li>SIP.Grammar</li>
   </ul>
-
-  <!-- Incoming Request -->
-
-  <h2 class="no_toc" id="incomingrequest">IncomingRequest</h2>
+<!-- Incoming Request --><h2 class="no_toc" id="incomingrequest">IncomingRequest</h2>
 
   <h3 class="no_toc" id="construction-2">Construction</h3>
 
@@ -323,23 +314,19 @@
   <h3 class="no_toc" id="dependencies-2">Dependencies</h3>
 
   <ul>
-    <li>SIP.Utils.newTag</li>
+<li>SIP.Utils.newTag</li>
     <li>SIP.C</li>
   </ul>
-
-  <h4 class="no_toc" id="injected-1">Injected</h4>
+<h4 class="no_toc" id="injected-1">Injected</h4>
 
   <ul>
-    <li>UA.getLogger</li>
+<li>UA.getLogger</li>
     <li>UA.contact</li>
     <li>UA.configuration.rel100</li>
     <li>Transaction.receiveResponse</li>
     <li>Transport.send</li>
   </ul>
-
-  <!-- Incoming Response -->
-
-  <h2 class="no_toc" id="incomingresponse">IncomingResponse</h2>
+<!-- Incoming Response --><h2 class="no_toc" id="incomingresponse">IncomingResponse</h2>
 
   <h3 class="no_toc" id="construction-3">Construction</h3>
 
@@ -348,11 +335,9 @@
   <h3 class="no_toc" id="dependencies-3">Dependencies</h3>
 
   <ul>
-    <li>Injected: UA</li>
+<li>Injected: UA</li>
   </ul>
-
 </div>
-
 		</div>
 
 		<nav id="sideNav">
