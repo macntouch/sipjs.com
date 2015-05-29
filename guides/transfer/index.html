@@ -56,8 +56,9 @@
 <h2 id="making-the-call">Making the Call</h2>
 <p>As before, we will create a user agent using <code>SIP.UA()</code> and create a call using <code>userAgent.invite('test@example.onsip.com')</code></p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -69,15 +70,17 @@
   <span class="comment">// Make a call to 'test@example.onsip.com`</span>
   session = userAgent.invite(<span class="string"><span class="delimiter">'</span><span class="content">test@example.onsip.com</span><span class="delimiter">'</span></span>);
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h2 id="making-a-blind-transfer">Making a Blind Transfer</h2>
 <p>SIP.js supports making blind transfers only.  A blind transfer occurs when A causes B to create a session with C.</p>
 
 <p>Use the <code>session.refer(target)</code> method to make a blind transfer between the current user agent on the <code>session</code> call and the user agent at the <code>target</code> address.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -89,13 +92,15 @@
   <span class="comment">//refers the call to `test2@example.onsip.com`</span>
   session.refer(target);
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h2 id="handling-a-blind-transfer">Handling a Blind Transfer</h2>
 <p>When receiving a refer, you need to handle the request and attach the new media stream to the video element.  This is done by catching the <code>refer</code> event and calling the followRefer function with a callback using <code>session.on('refer', session.followRefer(onReferred))</code>.  This function gets passed in the refer request as well as the new session.  Then we must display the new session using the <code>attachMediaStream()</code> function like in previous examples.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div>
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -113,7 +118,9 @@
     attachMediaStream(remoteVideo, newSession.mediaHandler.getRemoteStreams()[<span class="integer">0</span>]);
   }
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
+
     </div>
 
     <nav id="sideNav">
