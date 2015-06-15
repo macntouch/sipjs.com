@@ -47,7 +47,8 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="configure-freeswitch">Configure FreeSWITCH</h1>
+      
+<h1 id="configure-freeswitch">Configure FreeSWITCH</h1>
 
 <p>SIP.js has been tested with <a href="https://freeswitch.org/confluence/display/FREESWITCH/CentOS+6">FreeSWITCH 1.5.14</a> without any modification to the source code of SIP.js or FreeSWITCH. Later versions of FreeSWITCH will require similar configuration.</p>
 
@@ -104,7 +105,7 @@
 
 <p>Start by editing the internal SIP profile <code>sip_profiles/internal.xml</code>. Uncomment the line <code>&lt;param name="ws-binding"  value=":5066"/&gt;</code> to allow web sockets to talk to FreeSWITCH. No other configuration changes are necessary to make FreeSWITCH work with WebRTC.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -119,7 +120,7 @@
 
 <p>If you’d like to enable video as well as audio, adjust FreeSWITCH’s codec preferences to include VP8.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -142,7 +143,7 @@
 
 <p>SIP.js works with FreeSWITCH without any special configuration parameters. The following UA is configured to connect to a default FreeSWITCH configuration. Replace <code>127.0.0.1</code> with the IP address of your FreeSWITCH server.</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
@@ -185,7 +186,7 @@
 
 <p>It is known that SIP.js and FreeSWITCH might not interop well if you have the following option enabled on FreeSWITCH:</p>
 
-<div>
+<div class="highlighter-coderay">
 <table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 </pre></td>
