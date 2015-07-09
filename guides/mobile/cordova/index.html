@@ -47,15 +47,14 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      
-<h1 id="using-cordova-with-ios-and-webrtc">Using Cordova with iOS and WebRTC</h1>
+      <h1 id="using-cordova-with-ios-and-webrtc">Using Cordova with iOS and WebRTC</h1>
 
 <h2 id="requirements">Requirements</h2>
 
 <p>To create a hybrid native iOS WebRTC app you will need:</p>
 
 <ul>
-  <li><a href="http://www.apple.com/osx/">Mac OS X</a></li>
+<li><a href="http://www.apple.com/osx/">Mac OS X</a></li>
   <li><a href="https://developer.apple.com/programs/ios/">Apple iOS Developer Account</a></li>
   <li>
 <a href="http://store.apple.com/us/iphone">Physical iOS device</a> (this will not work on an emulator)</li>
@@ -66,9 +65,7 @@
 </li>
   <li>(Optional) <a href="https://github.com/phonegap/ios-deploy">ios-deploy</a> - If you are running <a href="http://nodejs.org/">Node.js</a>, you can run <code>npm install -g ios-deploy</code>
 </li>
-</ul>
-
-<p>The Cordova plugin includes WebRTC libraries for iOS, SIP.js, a custom media handler to use the iOS WebRTC libraries, and a Cordova build script to build and run the project on devices.</p>
+</ul><p>The Cordova plugin includes WebRTC libraries for iOS, SIP.js, a custom media handler to use the iOS WebRTC libraries, and a Cordova build script to build and run the project on devices.</p>
 
 <h2 id="project-setup">Project Setup</h2>
 
@@ -92,9 +89,8 @@
 
 <p>The HTML and Javascript required to use the plugin is very similar to regular SIP.js applications that would run in the browser. The only difference is that you need to set the app to use the plugin installed SIP.js and MediaHandler.</p>
 
-<div class="highlighter-coderay">
-<table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
+<div><table class="CodeRay"><tr>
+<td class="line-numbers"><pre>1
 2
 3
 4
@@ -116,18 +112,15 @@
   <span class="key">mediaHandlerFactory</span>: PhoneRTCMediaHandler
 });
 </pre></td>
-</tr></table>
-</div>
+</tr></table></div>
 
 <h2 id="running-the-project">Running the project</h2>
 
 <h3 id="running-project-from-command-line">Running project from Command Line</h3>
 
 <ul>
-  <li>Note: If you are running the project from XCode you can skip this section.</li>
-</ul>
-
-<p>Ensure your device is plugged into your computer and provisioned for development. Then run the following command.</p>
+<li>Note: If you are running the project from XCode you can skip this section.</li>
+</ul><p>Ensure your device is plugged into your computer and provisioned for development. Then run the following command.</p>
 
 <p><code>cordova run ios</code></p>
 
@@ -148,22 +141,17 @@ In XCode navigate to the build settings for <code>CordovaLib.xcodeproj</code>.</
 <p>Set <code>Valid Architectures</code> to <code>armv7</code></p>
 
 <ul>
-  <li>You should now be able to compile and run the sample Cordova project on your iOS device. If you are still having linker errors verify the settings above and clean the project before building.</li>
-</ul>
-
-<h2 id="known-limitations">Known limitations</h2>
+<li>You should now be able to compile and run the sample Cordova project on your iOS device. If you are still having linker errors verify the settings above and clean the project before building.</li>
+</ul><h2 id="known-limitations">Known limitations</h2>
 
 <p>These are currently the known limitations of the Cordova Plugin:</p>
 
 <ul>
-  <li>One call at a time (audio or audio/video).</li>
+<li>One call at a time (audio or audio/video).</li>
   <li>No HTML/Javascript video manipulation.</li>
-</ul>
-
-<h2 id="troubleshooting">Troubleshooting</h2>
+</ul><h2 id="troubleshooting">Troubleshooting</h2>
 
 <p>If you have difficulty, please reach out to us on our <a href="https://groups.google.com/forum/#!forum/sip_js">mailing list</a> or open an issue on the project’s <a href="https://github.com/onsip/onsip-cordova">GitHub page</a>.</p>
-
     </div>
 
     <nav id="sideNav">

@@ -57,23 +57,21 @@
 <p><code>SIP.Message</code> represents an instant message using the SIP MESSAGE request. By default, the message is treated as plain text. However, any valid content type may be specified.</p>
 
 <ul id="markdown-toc">
-  <li>
+<li>
 <a href="#construction">Construction</a>    <ul>
-      <li><a href="#examples">Examples</a></li>
+<li><a href="#examples">Examples</a></li>
     </ul>
-  </li>
+</li>
   <li><a href="#instance-variables">Instance Variables</a></li>
   <li><a href="#instance-methods">Instance Methods</a></li>
   <li><a href="#events">Events</a></li>
-</ul>
-
-<h2 id="construction">Construction</h2>
+</ul><h2 id="construction">Construction</h2>
 
 <p>The Message constructor is intended for internal use only. Instead, outbound Messages are created through the <a href="../ua/#messagetarget-body-options"><code>SIP.UA.message</code></a> method. Inbound Messages are obtained via the <code>SIP.UA</code> <a href="../ua/#message"><code>message</code></a> event callback.</p>
 
 <h3 id="examples">Examples</h3>
 
-<div class="highlighter-coderay">
+<div>
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777">// Sends a new message</span>
 myUA.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">alice@example.com</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello Alice!</span><span style="color:#710">'</span></span>);
@@ -81,7 +79,7 @@ myUA.message(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="c
 </div>
 </div>
 
-<div class="highlighter-coderay">
+<div>
 <div class="CodeRay">
   <div class="code"><pre><span style="color:#777">// When receiving a message, prints it out</span>
 myUA.on(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">message</span><span style="color:#710">'</span></span>, <span style="color:#080;font-weight:bold">function</span> (message) {
@@ -123,8 +121,6 @@ Type | Description
 `SIP.Message`| This Message
 
 -->
-
-
 		</div>
 
 		<nav id="sideNav">
