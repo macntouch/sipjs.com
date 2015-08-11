@@ -47,7 +47,8 @@
       <h1><a href="/guides/">Guides</a></h1>
     </header>
     <div id="content">
-      <h1 id="send-dtmf">Send DTMF</h1>
+      
+<h1 id="send-dtmf">Send DTMF</h1>
 
 <h3 id="overview">Overview</h3>
 
@@ -59,8 +60,9 @@ may want to do so first for an explanation of core API concepts</p>
 
 <p>Let’s add a set of buttons to our html that accept DTMF input.</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -82,15 +84,17 @@ may want to do so first for an explanation of core API concepts</p>
  <span class="tag">&lt;button</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">9</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>9<span class="tag">&lt;/button&gt;</span>
  <span class="tag">&lt;button</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">0</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>0<span class="tag">&lt;/button&gt;</span>
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h3 id="send-the-dial-tone">Send the Dial Tone</h3>
 
 <p>Listen for clicks on our dial pad and respond by sending DTMF to the session.
 This is done by using the <code>dtmf(number)</code> method, which can be used to send one or multiple dial tones at the same time</p>
 
-<div><table class="CodeRay"><tr>
-<td class="line-numbers"><pre>1
+<div class="highlighter-coderay">
+<table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
 2
 3
 4
@@ -112,7 +116,8 @@ document.getElementById(<span class="string"><span class="delimiter">'</span><sp
 document.getElementById(<span class="string"><span class="delimiter">'</span><span class="content">9</span><span class="delimiter">'</span></span>).addEventListener(<span class="string"><span class="delimiter">"</span><span class="content">click</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() { session.dtmf(<span class="integer">9</span>);}, <span class="predefined-constant">false</span>);
 document.getElementById(<span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span>).addEventListener(<span class="string"><span class="delimiter">"</span><span class="content">click</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() { session.dtmf(<span class="integer">0</span>);}, <span class="predefined-constant">false</span>);
 </pre></td>
-</tr></table></div>
+</tr></table>
+</div>
 
 <h3 id="putting-it-together">Putting It Together</h3>
 
@@ -123,6 +128,7 @@ To further explore SIP.js, try using the <code>session.on('dtmf', ...)</code> ev
 
 <iframe style="width: 100%; height: 600px" src="http://jsfiddle.net/NBUS3/embedded/js,html,css,result/">
 </iframe>
+
     </div>
 
     <nav id="sideNav">
