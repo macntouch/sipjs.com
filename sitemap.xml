@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://sipjs.com/</loc>
-    <lastmod>2015-06-15</lastmod>
+    <lastmod>2015-09-13</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/CNAME</loc>
@@ -226,7 +226,7 @@
   </url>
   <url>
     <loc>http://sipjs.com/download/</loc>
-    <lastmod>2015-06-15</lastmod>
+    <lastmod>2015-09-13</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/faq/</loc>
@@ -250,7 +250,7 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/make-call/</loc>
-    <lastmod>2015-06-15</lastmod>
+    <lastmod>2015-09-13</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/mobile/</loc>
@@ -266,7 +266,7 @@
   </url>
   <url>
     <loc>http://sipjs.com/guides/receive-call/</loc>
-    <lastmod>2015-06-15</lastmod>
+    <lastmod>2015-09-13</lastmod>
   </url>
   <url>
     <loc>http://sipjs.com/guides/reuse-mediastreams/</loc>
@@ -310,10 +310,6 @@
   </url>
   <url>
     <loc>http://sipjs.com/sitemap.xml</loc>
-    <lastmod>2015-06-15</lastmod>
-  </url>
-  <url>
-    <loc>http://sipjs.com/success-story/</loc>
     <lastmod>2015-06-15</lastmod>
   </url>
   <url>
