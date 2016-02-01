@@ -82,9 +82,9 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
   <li><a href="#construction" id="markdown-toc-construction">Construction</a></li>
   <li>
 <a href="#instance-methods" id="markdown-toc-instance-methods">Instance Methods</a>    <ul>
-      <li><a href="#onevent-callback-bindtarget" id="markdown-toc-onevent-callback-bindtarget"><code>on(event, callback[, bindTarget])</code></a></li>
-      <li><a href="#onceevent-callback-bindtarget" id="markdown-toc-onceevent-callback-bindtarget"><code>once(event, callback[, bindTarget])</code></a></li>
-      <li><a href="#offevent-callback-bindtarget" id="markdown-toc-offevent-callback-bindtarget"><code>off([event[, callback[, bindTarget]]])</code></a></li>
+      <li><a href="#onevent-callback" id="markdown-toc-onevent-callback"><code>on(event, callback)</code></a></li>
+      <li><a href="#onceevent-callback" id="markdown-toc-onceevent-callback"><code>once(event, callback)</code></a></li>
+      <li><a href="#offevent-callback" id="markdown-toc-offevent-callback"><code>off([event[, callback]])</code></a></li>
       <li><a href="#setmaxlistenerslisteners" id="markdown-toc-setmaxlistenerslisteners"><code>setMaxListeners(listeners)</code></a></li>
     </ul>
   </li>
@@ -96,7 +96,7 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
 
 <h2 id="instance-methods">Instance Methods</h2>
 
-<h3 id="onevent-callback-bindtarget"><code>on(event, callback[, bindTarget])</code></h3>
+<h3 id="onevent-callback"><code>on(event, callback)</code></h3>
 
 <p>Register a method to be called each time a particular event is emitted.</p>
 
@@ -124,7 +124,8 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
     <tr>
       <td><code>bindTarget</code></td>
       <td><code>Object</code></td>
-      <td>If provided, when <code>callback</code> is called, <code>this</code> will be set to the <code>bindTarget</code>.  Otherwise, <code>this</code> will be bound to this <code>SIP.EventEmitter</code>
+      <td>
+<em>(Removed in 0.7.0)</em> Please bind your target explicitly with <code>callback.bind(bindTarget)</code>
 </td>
     </tr>
   </tbody>
@@ -147,7 +148,7 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
   </tbody>
 </table>
 
-<h3 id="onceevent-callback-bindtarget"><code>once(event, callback[, bindTarget])</code></h3>
+<h3 id="onceevent-callback"><code>once(event, callback)</code></h3>
 
 <p>Register a method to be called the next time a particular event is emitted.  The callback will only be called once, even if the event is emitted multiple times.</p>
 
@@ -175,7 +176,8 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
     <tr>
       <td><code>bindTarget</code></td>
       <td><code>Object</code></td>
-      <td>If provided, when <code>callback</code> is called, <code>this</code> will be set to the <code>bindTarget</code>.  Otherwise, <code>this</code> will be bound to this <code>SIP.EventEmitter</code>
+      <td>
+<em>(Removed in 0.7.0)</em> Please bind your target explicitly with <code>callback.bind(bindTarget)</code>
 </td>
     </tr>
   </tbody>
@@ -198,15 +200,13 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
   </tbody>
 </table>
 
-<h3 id="offevent-callback-bindtarget"><code>off([event[, callback[, bindTarget]]])</code></h3>
+<h3 id="offevent-callback"><code>off([event[, callback]])</code></h3>
 
 <p>Removes callback listeners from a particular event.  The specific behavior varies depending on the number of arguments provided:</p>
 
 <ul>
   <li>
-<code>off(event, callback, bindTarget)</code> will remove all listeners for that event, callback, and bindTarget.</li>
-  <li>
-<code>off(event, callback)</code> will remove all listeners for that event and callback, regardless of whether a bindTarget was provided when adding the listener.</li>
+<code>off(event, callback)</code> will remove all listeners for that event and callback.</li>
   <li>
 <code>off(event)</code> will remove all listeners for that event</li>
   <li>
@@ -238,7 +238,8 @@ myUA.off(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color
     <tr>
       <td><code>bindTarget</code></td>
       <td><code>Object</code></td>
-      <td>If provided, only listeners configured with this bindTarget will be removed.</td>
+      <td>
+<em>(Removed in 0.7.0)</em> If your callback was bound, you must pass the bound function into <code>off</code>.</td>
     </tr>
   </tbody>
 </table>
