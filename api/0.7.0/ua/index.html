@@ -725,7 +725,7 @@ as well as if the WebSocket connection drops and an attempt is made to reconnect
   <li>When registered, a periodic re-registration fails.</li>
 </ul>
 
-<h4 id="onunregistered-function-cause-"><code>on('unregistered', function (cause) {})</code></h4>
+<h4 id="onunregistered-function-response-cause-"><code>on('unregistered', function (response, cause) {})</code></h4>
 
 <table>
   <thead>
@@ -736,6 +736,11 @@ as well as if the WebSocket connection drops and an attempt is made to reconnect
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><code>response</code></td>
+      <td> </td>
+      <td>The SIP message which caused this to be emitted, if one exists</td>
+    </tr>
     <tr>
       <td><code>cause</code></td>
       <td> </td>
@@ -750,7 +755,7 @@ as well as if the WebSocket connection drops and an attempt is made to reconnect
 
 <p>Fired for a registration failure.</p>
 
-<h4 id="onregistrationfailed-function-cause-"><code>on('registrationFailed', function (cause) {})</code></h4>
+<h4 id="onregistrationfailed-function-cause-response-"><code>on('registrationFailed', function (cause, response) {})</code></h4>
 
 <table>
   <thead>
@@ -766,6 +771,11 @@ as well as if the WebSocket connection drops and an attempt is made to reconnect
       <td> </td>
       <td>One value of <a href="../causes">Failure and End Causes</a>
 </td>
+    </tr>
+    <tr>
+      <td><code>response</code></td>
+      <td> </td>
+      <td>The SIP message which caused this to be emitted, if one exists</td>
     </tr>
   </tbody>
 </table>
